@@ -6,11 +6,12 @@ import styles from "./Dashboard.module.css";
 import Calender from "react-calendar";
 import './Calender.css'
 import CardComponent from "../components/Dashboard/CardComponent";
+import Constants from "../Config/Constants";
 const Dashboard: FunctionComponent = () => {
   const [date, setDate] = useState(new Date());
   const varial = "hello"
   return (
-    <NavLayout>
+    <NavLayout activeTab={Constants.NavbarTabs.HOME}>
       <>
         <div className={styles.bottomsection} id="bottomSection">
           <section className={styles.leftcontainer}>

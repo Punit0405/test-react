@@ -1,11 +1,12 @@
 import { FunctionComponent } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
+import Constants from "../../Config/Constants";
 import NavLayoutWithSideBar from "../NavLayoutWithSideBar";
 import styles from "./PrivacySetting.module.css"
 
 const PrivacySetting: FunctionComponent = () => {
     return (
-        <NavLayoutWithSideBar>
+        <NavLayoutWithSideBar activeTab={Constants.NavbarTabs.GALLARY}>
             <>
                 <div className={styles.maincomponent}>
                     <Form>

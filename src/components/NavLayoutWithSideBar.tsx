@@ -6,14 +6,15 @@ import styles from "./NavLayout.module.css"
 
 interface Props {
     children: JSX.Element;
+    activeTab:string;
 }
 
-const NavLayoutWithSideBar = ({ children }: Props) => {
+const NavLayoutWithSideBar = ({ children ,activeTab }: Props) => {
     return (
         <div className={styles.maincomp}>
             <Container fluid >
                 <TopBarComponent />
-                <NavBarComponent />
+                <NavBarComponent activeTab={activeTab} />
                 <Row>
                     <Col xl={3} lg={3} sm={3}>
                         <StudioSideBar />
