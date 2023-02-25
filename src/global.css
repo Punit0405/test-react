@@ -203,6 +203,13 @@ body {
   line-height: normal;
 }
 
+a:-webkit-any-link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+
 .setcolor {
   color: var(--color-crimson);
   margin-right: 10px;
@@ -240,6 +247,7 @@ body {
   color: black;
   width: 30px;
 }
+
 :root {
   /* fonts */
   --font-poppins: Poppins;
