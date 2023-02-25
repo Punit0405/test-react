@@ -215,6 +215,7 @@ const Dashboard: FunctionComponent = () => {
               </div>
             </section>
             <section className={styles.rightcontainer}>
+              <div className={styles.upcomingBookingsTitle}>Upcoming Bookings</div>
               <div className={styles.calenderDiv}>
                 <Calender onChange={setDate} value={date} />
                 
@@ -229,10 +230,8 @@ const Dashboard: FunctionComponent = () => {
                     <div className={styles.monday16Sept}>
                      {date.toDateString()}
                     </div>
-                    <button className={styles.groupButton}>
-                      <button>
-                        150 Customers
-                      </button>
+                    <button className={styles.cutomersButton}>
+                        150 Customers                      
                     </button>
                   </div>
                   <div className={styles.totalCustomers}>
