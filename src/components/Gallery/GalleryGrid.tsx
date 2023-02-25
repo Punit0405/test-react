@@ -7,7 +7,7 @@ const GalleryGrid: FunctionComponent = () => {
     return (
         <Row className={styles.maincomp}>
             <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
-                <div className={styles.imgblock1}>
+                <div className={styles.imgblock}>
                     <div className={styles.imgdiv}>
                         <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
                     </div>
@@ -24,78 +24,91 @@ const GalleryGrid: FunctionComponent = () => {
                 </div>
             </Col>
             <Col xl={3} lg={4} sm={6} >
-                <div className={styles.imgdiv}>
-                    <Image className={styles.myimage} src="../../../sample.jpeg" />
+                <div className={styles.imgblock}>
+
+                    <div className={styles.imgdiv}>
+                        <Image className={styles.myimage} src="../../../sample.jpeg" />
+                    </div>
+                    <div className={styles.outertitle}>
+                        <p className={styles.title}>Tebogo Wedding</p>
+                        <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
+                    </div>
+                    <div className={styles.outerdetails}>
+                        <p className={styles.details}>January 6th,2023</p>
+                        <p className={styles.details}>230 photos</p>
+                        <p className={styles.details}>1 videos</p>
+                        <p className={styles.details}>Publised</p>
+                    </div>
                 </div>
-                <div className={styles.outertitle}>
-                    <p className={styles.title}>Tebogo Wedding</p>
-                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
-                </div>
-                <div className={styles.outerdetails}>
-                    <p className={styles.details}>January 6th,2023</p>
-                    <p className={styles.details}>230 photos</p>
-                    <p className={styles.details}>1 videos</p>
-                    <p className={styles.details}>Publised</p>
+            </Col>
+            <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
+                <div className={styles.imgblock}>
+                    <div className={styles.imgdiv}>
+                        <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                    </div>
+                    <div className={styles.outertitle}>
+                        <p className={styles.title}>Tebogo Wedding</p>
+                        <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
+                    </div>
+                    <div className={styles.outerdetails}>
+                        <p className={styles.details}>January 6th,2023</p>
+                        <p className={styles.details}>230 photos</p>
+                        <p className={styles.details}>1 videos</p>
+                        <p className={styles.details}>Publised</p>
+                    </div>
                 </div>
             </Col>
             <Col xl={3} lg={4} sm={6} >
-                <div className={styles.imgdiv}>
-                    <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                <div className={styles.imgblock}>
+
+                    <div className={styles.imgdiv}>
+                        <Image className={styles.myimage} src="../../../sample.jpeg" />
+                    </div>
+                    <div className={styles.outertitle}>
+                        <p className={styles.title}>Tebogo Wedding</p>
+                        <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
+                    </div>
+                    <div className={styles.outerdetails}>
+                        <p className={styles.details}>January 6th,2023</p>
+                        <p className={styles.details}>230 photos</p>
+                        <p className={styles.details}>1 videos</p>
+                        <p className={styles.details}>Publised</p>
+                    </div>
                 </div>
-                <div className={styles.outertitle}>
-                    <p className={styles.title}>Tebogo Wedding</p>
-                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
-                </div>
-                <div className={styles.outerdetails}>
-                    <p className={styles.details}>January 6th,2023</p>
-                    <p className={styles.details}>230 photos</p>
-                    <p className={styles.details}>1 videos</p>
-                    <p className={styles.details}>Publised</p>
+            </Col>
+            <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
+                <div className={styles.imgblock}>
+                    <div className={styles.imgdiv}>
+                        <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                    </div>
+                    <div className={styles.outertitle}>
+                        <p className={styles.title}>Tebogo Wedding</p>
+                        <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
+                    </div>
+                    <div className={styles.outerdetails}>
+                        <p className={styles.details}>January 6th,2023</p>
+                        <p className={styles.details}>230 photos</p>
+                        <p className={styles.details}>1 videos</p>
+                        <p className={styles.details}>Publised</p>
+                    </div>
                 </div>
             </Col>
             <Col xl={3} lg={4} sm={6} >
-                <div className={styles.imgdiv}>
-                    <Image className={styles.myimage} src="../../../sample.jpeg" />
-                </div>
-                <div className={styles.outertitle}>
-                    <p className={styles.title}>Tebogo Wedding</p>
-                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
-                </div>
-                <div className={styles.outerdetails}>
-                    <p className={styles.details}>January 6th,2023</p>
-                    <p className={styles.details}>230 photos</p>
-                    <p className={styles.details}>1 videos</p>
-                    <p className={styles.details}>Publised</p>
-                </div>
-            </Col>
-            <Col xl={3} lg={4} sm={6} >
-                <div className={styles.imgdiv}>
-                    <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
-                </div>
-                <div className={styles.outertitle}>
-                    <p className={styles.title}>Tebogo Wedding</p>
-                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
-                </div>
-                <div className={styles.outerdetails}>
-                    <p className={styles.details}>January 6th,2023</p>
-                    <p className={styles.details}>230 photos</p>
-                    <p className={styles.details}>1 videos</p>
-                    <p className={styles.details}>Publised</p>
-                </div>
-            </Col>
-            <Col xl={3} lg={4} sm={6} >
-                <div className={styles.imgdiv}>
-                    <Image className={styles.myimage} src="../../../sample.jpeg" />
-                </div>
-                <div className={styles.outertitle}>
-                    <p className={styles.title}>Tebogo Wedding</p>
-                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
-                </div>
-                <div className={styles.outerdetails}>
-                    <p className={styles.details}>January 6th,2023</p>
-                    <p className={styles.details}>230 photos</p>
-                    <p className={styles.details}>1 videos</p>
-                    <p className={styles.details}>Publised</p>
+                <div className={styles.imgblock}>
+
+                    <div className={styles.imgdiv}>
+                        <Image className={styles.myimage} src="../../../sample.jpeg" />
+                    </div>
+                    <div className={styles.outertitle}>
+                        <p className={styles.title}>Tebogo Wedding</p>
+                        <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
+                    </div>
+                    <div className={styles.outerdetails}>
+                        <p className={styles.details}>January 6th,2023</p>
+                        <p className={styles.details}>230 photos</p>
+                        <p className={styles.details}>1 videos</p>
+                        <p className={styles.details}>Publised</p>
+                    </div>
                 </div>
             </Col>
         </Row>

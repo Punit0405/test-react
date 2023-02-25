@@ -22,7 +22,7 @@
 .details {
     margin-top: -3%;
     font-family: var(--font-poppins);
-    font-size: 0.9vw;
+    font-size: 0.8vw;
     font-weight: 400;
 }
 
@@ -31,6 +31,10 @@
     font-family: var(--font-poppins);
     font-size: 1.3vw;
     font-weight: 500;
+}
+
+.imgblock {
+    padding: 0% 3%;
 }
 
 .outerdetails {

@@ -11,13 +11,13 @@
 }
 
 .helpbox {
-    font-weight: 200;
+    font-weight: 250;
     font-size: 0.8vw;
     color: rgb(88, 88, 88);
 }
 
 .formlabel {
-    font-size: 1.3vw;
+    font-size: 1.1vw;
     font-weight: 400;
     color: black;
     font-family: var(--font-poppins);
