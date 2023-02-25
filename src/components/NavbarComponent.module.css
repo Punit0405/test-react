@@ -9,8 +9,11 @@
 
 
 .navpadding {
+    display: flex;
+    justify-content: center;
     margin: 0px 15%;
 }
+
 .frameItem {
     position: absolute;
     top: 14px;
