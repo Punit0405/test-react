@@ -5,6 +5,7 @@ import NavLayout from "../components/NavLayout";
 import styles from "./Dashboard.module.css";
 import Calender from "react-calendar";
 import './Calender.css'
+import CardComponent from "../components/Dashboard/CardComponent";
 const Dashboard: FunctionComponent = () => {
   const [date, setDate] = useState(new Date());
   const varial = "hello"
@@ -17,73 +18,12 @@ const Dashboard: FunctionComponent = () => {
               <div className={styles.cardsParent}>
                 <div className={styles.cards}>
                   <div className={styles.clientsParent}>
-                    <div className={styles.clients}>
-                      <div className={styles.rectangleParent}>
-                        <div className={styles.clientsGroup}>
-                          <h5>Clients</h5>
-                          <h5>Last 7 days</h5>
-                          <h5>4</h5>
-                        </div>
-                        <div className={styles.rectangleGroup}>
-                          <img
-                            className={styles.frameItem}
-                            alt=""
-                            src="../rectangle-52.svg"
-                          />
-                          <img
-                            className={styles.h38ch38bm0014iconset0111}
-                            alt=""
-                            src="../h38ch38bm0014iconset011-1.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <PhotographyCard
-                      serviceType="Photography"
-                      serviceOption="3"
-                      serviceImageUrl="../7627479-app-photography-camera-cam-photo-icon-1@2x.png"
-                      propBackgroundColor="#fa77ac"
-                      propColor="#fff"
-                      propColor1="#fff"
-                      propColor2="#fff"
-                      propWidth="16.68px"
-                      propBackgroundColor1="#ff569a"
-                      propTop="16.68px"
-                      propHeight="28.92px"
-                    />
+                  <CardComponent classname="clients" topTitle="Clients" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg"/>
+                  <CardComponent classname="photography" topTitle="Photography" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg"/>
                   </div>
-                  <div className={styles.videographyParent}>
-                    <PhotographyCard
-                      serviceType="Videography"
-                      serviceOption="1"
-                      serviceImageUrl="../7627385-app-photography-cam-camera-video-icon-1@2x.png"
-                      propBackgroundColor="#f2f2f2"
-                      propColor="#080b23"
-                      propColor1="#030303"
-                      propColor2="#080b23"
-                      propWidth="10.01px"
-                      propBackgroundColor1="#fff"
-                      propTop="8.9px"
-                      propHeight="43.38px"
-                    />
-                    <div className={styles.clients}>
-                      <div className={styles.rectangleParent}>
-                        <div className={styles.frameInner} />
-                        <div className={styles.clientsGroup}>
-                          <h5>Revenue</h5>
-                          <h5>Last 7 days</h5>
-                          <h5>R 8 000</h5>
-                        </div>
-                        <div className={styles.rectangleGroup}>
-                          <div className={styles.rectangleDiv} />
-                          <img
-                            className={styles.dFinance91}
-                            alt=""
-                            src="../3d-finance-9-1@2x.png"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                  <div className={styles.clientsParent}>
+                   <CardComponent classname = "videography"topTitle="Videography" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg"/>
+                  <CardComponent classname = "revenue"topTitle="Revenue" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg"/>
                   </div>
                 </div>
                 <div className={styles.recentCustomersParent}>

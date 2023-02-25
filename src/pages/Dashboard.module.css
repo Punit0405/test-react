@@ -38,21 +38,8 @@
   width: 17.8px;
   height: 40.04px;
 }
-.clientsGroup,
-.frameItem {
-  position: absolute;
-  top: 97.85px;
-  left: 17.8px;
-  width: 86.75px;
-  height: 117.9px;
-}
-.frameItem {
-  top: 0;
-  left: 0;
-  border-radius: var(--br-2xl);
-  width: 62.29px;
-  height: 62.28px;
-}
+
+
 .h38ch38bm0014iconset0111,
 .rectangleGroup {
   position: absolute;
@@ -73,17 +60,7 @@
   height:100%;
   flex-shrink: 0;
 }
-.clients{
-  display: flex;
-  margin: 0% 2%;
-  flex-direction: row;
-  border-radius: 20px;
-  width: 50%;
-  height: 100%;
-  align-items: flex-start;
-  justify-content: flex-start;
-  background-color: var(--color-lavenderblush);
-}
+
 .clientsParent {  
   width: 50%;
   height: 100%;
@@ -1041,9 +1018,8 @@
   justify-content: space-between;
 } */
 .customerBox {
-  border: 1px solid black;
   box-shadow: 8.341666221618652px 20.020000457763672px 45.04px
-    rgba(0, 0, 0, 0.06);
+    rgba(0, 0, 0, 0.1);
   border-radius: var(--br-md);
   background-color: var(--color-white);
   display: flex;
@@ -1091,6 +1067,7 @@
   justify-content: space-between;
   height: 30%;
   width: 100%;
+  margin-top: 25px;
   flex-direction: column;
 }
 
@@ -1129,6 +1106,7 @@
   background-color: var(--color-white);
   flex-direction: row;
   padding: 0 var(--padding-3xl) 65px;
+  margin-top: 40px;
 }
 .rightcontainer {
   position: relative;
@@ -1146,16 +1124,7 @@
   flex-direction: column;
   align-items: center;
 }
-.clientsGroup{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  
-}
-.clientsGroup h5{
-  font-size: 0.75rem;
 
-}
 
 @media screen and (max-width: 1250px) {
   .recentCustomersGrid {
@@ -1311,10 +1280,7 @@
     grid-template-columns: auto;
     grid-gap: 10px;
   }
-  .clients{
-    width: 80%;
-    margin: 10px 0px;
-  }
+
 
 
 }
@@ -1336,10 +1302,7 @@
     grid-template-columns: auto;
     grid-gap: 10px;
   }
-  .clients{
-    width: 100%;
-    margin: 10px 0px;
-  }
+
 
 
 }
@@ -1347,22 +1310,6 @@
   .leftcontainer{
     height: 260vh;
   }
-
-
-  .clientsGroup
-{  
-  top: 0px;
-  left: 160px;
-  width: 86.75px;
-  height: 117.9px;
-}
-
-  
-  
-
-
-
-
 }
 
 
