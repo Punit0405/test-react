@@ -5,6 +5,8 @@
     width: 200px;
     background-color: crimson;
     color: white;
+    padding: 2% 2%;
+    /* margin: -3% 3%; */
 }
 
 .collectionbtn:hover {

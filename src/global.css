@@ -17,9 +17,27 @@ a:-webkit-any-link {
   font-size: 1.6vw;
 }
 
+.sidebaricon {
+  font-size: 1.2vw;
+  color: var(--color-crimson);
+  margin-top: 4%;
+}
+
+.galleryicon {
+  margin-top: 5%;
+  font-family: var(--font-poppins);
+  font-size: 1.3vw;
+  font-weight: 500;
+}
+
 .setcolortopbar {
   color: rgb(117, 116, 116);
   font-size: 1.6vw;
+}
+
+.setcolorsidesetting {
+  font-size: 1.6vw;
+  color: black;
 }
 
 :root {

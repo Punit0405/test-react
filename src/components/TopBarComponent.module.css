@@ -5,12 +5,13 @@
 }
 
 .navdropdown {
-    margin-left: -10%;
+    margin-left: 5%;
     font-size: 1vw;
 }
 
 .iconset {
-    margin: 0% 7%;
+    /* margin: 0% 7%; */
+    margin-left: 5%;
 }
 
 .artboard134x81 {
@@ -133,10 +134,16 @@
     overflow: hidden;
 }
 
-.frameParent {
-    width: 351px;
-    flex-shrink: 0;
+.navbarinline {
+    display: flex;
     justify-content: space-between;
+}
+
+.frameParent {
+    width: 50%;
+    flex-shrink: 0;
+    /* justify-content: space-between; */
+    justify-content: right;
 }
 
 .artboard134x81Parent,

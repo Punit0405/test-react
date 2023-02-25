@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Image, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import styles from "./TopBarComponent.module.css";
 
 const TopBarComponent: FunctionComponent = () => {
     return (
         <Navbar className={styles.topbar} id="headerTopbar">
             <div className={styles.artboard134x81Parent} id="innerHeader">
-                <img
+                <Image fluid
                     className={styles.artboard134x81}
                     alt=""
                     src="../snape_logo@2x.png"
@@ -20,11 +20,12 @@ const TopBarComponent: FunctionComponent = () => {
                     </Nav.Link>
 
                     <NavDropdown
-                        title={<img
-                            className={styles.maskGroupIcon}
-                            alt=""
-                            src="../profile_image@2x.png"
-                        />} className={styles.navdropdown} id="collasible-nav-dropdown">
+                        title={
+                            <Image fluid
+                                className={styles.maskGroupIcon}
+                                alt=""
+                                src="../profile_image@2x.png"
+                            />} className={styles.navdropdown} id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
                             Another action
@@ -37,7 +38,7 @@ const TopBarComponent: FunctionComponent = () => {
                     </NavDropdown>
                     <Nav.Link className={styles.iconset}>
                         <button className={styles.groupWrapper}>
-                            <i className="fa-light setcolortopbar fa-ellipsis-vertical"></i>
+                            <i className="fa-regular setcolortopbar fa-ellipsis-vertical"></i>
                         </button>
                     </Nav.Link>
                 </div>

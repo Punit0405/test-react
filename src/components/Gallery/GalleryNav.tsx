@@ -17,10 +17,10 @@ function GalleryNav() {
                             <Button className={styles.collectionbtn} variant="custom">New Collection</Button>
                         </Link>
                         <Button className={styles.searchbtn} variant="custom">
-                            <img src='../../../group.svg' />
+                            <i className="fa-regular fa-magnifying-glass"></i>
                         </Button>
                         <Button className={styles.searchbtn} variant="custom">
-                            <img src='../../../group.svg' />
+                            <i className="fa-regular fa-arrow-right-arrow-left"></i>
                         </Button>
                     </Form>
                 </Container>

@@ -13,6 +13,7 @@ const GalleryGrid: FunctionComponent = () => {
                     </div>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>
+                        <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
                     </div>
                     <div className={styles.outerdetails}>
                         <p className={styles.details}>January 6th,2023</p>
@@ -28,6 +29,7 @@ const GalleryGrid: FunctionComponent = () => {
                 </div>
                 <div className={styles.outertitle}>
                     <p className={styles.title}>Tebogo Wedding</p>
+                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
                 </div>
                 <div className={styles.outerdetails}>
                     <p className={styles.details}>January 6th,2023</p>
@@ -42,6 +44,7 @@ const GalleryGrid: FunctionComponent = () => {
                 </div>
                 <div className={styles.outertitle}>
                     <p className={styles.title}>Tebogo Wedding</p>
+                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
                 </div>
                 <div className={styles.outerdetails}>
                     <p className={styles.details}>January 6th,2023</p>
@@ -56,6 +59,7 @@ const GalleryGrid: FunctionComponent = () => {
                 </div>
                 <div className={styles.outertitle}>
                     <p className={styles.title}>Tebogo Wedding</p>
+                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
                 </div>
                 <div className={styles.outerdetails}>
                     <p className={styles.details}>January 6th,2023</p>
@@ -70,6 +74,7 @@ const GalleryGrid: FunctionComponent = () => {
                 </div>
                 <div className={styles.outertitle}>
                     <p className={styles.title}>Tebogo Wedding</p>
+                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
                 </div>
                 <div className={styles.outerdetails}>
                     <p className={styles.details}>January 6th,2023</p>
@@ -84,6 +89,7 @@ const GalleryGrid: FunctionComponent = () => {
                 </div>
                 <div className={styles.outertitle}>
                     <p className={styles.title}>Tebogo Wedding</p>
+                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
                 </div>
                 <div className={styles.outerdetails}>
                     <p className={styles.details}>January 6th,2023</p>

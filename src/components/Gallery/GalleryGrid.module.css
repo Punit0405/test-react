@@ -3,6 +3,10 @@
     height: 200px;
 }
 
+.outertitle {
+    display: flex;
+    justify-content: space-between;
+}
 
 .imgdiv {
     height: 200px;

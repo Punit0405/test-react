@@ -7,9 +7,9 @@ import AddPhotosNav from "./AddPhotosNav";
 
 const AddCollection: FunctionComponent = () => {
     return (
-        <Container fluid className={styles.outermain}>
-            <NavLayoutWithSideBar>
-                <>
+        <NavLayoutWithSideBar>
+            <>
+                <div className={styles.outermain}>
                     <AddPhotosNav />
                     <div className={styles.addmedia}>
                         <p className={styles.nomedia}>
@@ -21,9 +21,9 @@ const AddCollection: FunctionComponent = () => {
                     </div>
                     {/* <DragMedia /> */}
                     {/* <UploadView /> */}
-                </>
-            </NavLayoutWithSideBar>
-        </Container>
+                </div>
+            </>
+        </NavLayoutWithSideBar>
     );
 };
 
