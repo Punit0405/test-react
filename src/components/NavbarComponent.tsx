@@ -35,11 +35,8 @@ const NavBarComponent: FunctionComponent = () => {
                 </Nav.Link>
 
                 <Nav.Link >
-                    <Link to="/collection-setting">
-                        <div className={styles.home}>
-                            <i className="fa-regular fa-folder setcolor"></i>
-                            <p>Asset Registry</p>
-                        </div>
+                    <Link to="/asset-registry">
+                        <div className={styles.home}><i className="fa-regular fa-folder setcolor"></i>Asset Registry</div>
                     </Link>
                 </Nav.Link>
 

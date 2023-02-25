@@ -23,11 +23,14 @@ function App() {
       <Route path="/" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/gallery" element={<Gallery />} />
+      <Route path="/studiomanagement" element={<Gallery />} />
       <Route path="/gallery/newcollection" element={<AddCollection />} />
       <Route path="/gallery/addcollection" element={<DragMedia />} />
       <Route path="/setting/collection-setting" element={<CollectionSetting />} />
       <Route path="/setting/privacy" element={<PrivacySetting />} />
       <Route path="/setting/download" element={<DownloadStatus />} />
+      <Route path="/asset-registry" element={<Gallery />} />
+      <Route path="/music" element={<Gallery />} />
     </Routes>
   );
 }
