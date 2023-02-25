@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstrap";
 import PhotographyCard from "../components/Dashboard/PhotographyCard";
 import NavLayout from "../components/NavLayout";
@@ -6,6 +6,8 @@ import styles from "./Dashboard.module.css";
 import Calender from "react-calendar";
 import './Calender.css'
 const Dashboard: FunctionComponent = () => {
+  const [date, setDate] = useState(new Date());
+  const varial = "hello"
   return (
     <Container fluid className={styles.outermain}>
       <NavLayout>
@@ -214,7 +216,7 @@ const Dashboard: FunctionComponent = () => {
             </section>
             <section className={styles.rightcontainer}>
               <div className={styles.calenderDiv}>
-                <Calender  />
+                <Calender onChange={setDate} value={date} />
                 
               </div>
               <div className={styles.rightcontainerInner}>
@@ -225,7 +227,7 @@ const Dashboard: FunctionComponent = () => {
                 <div className={styles.frameParent1}>
                   <div className={styles.monday16Sept2021Parent}>
                     <div className={styles.monday16Sept}>
-                      Monday, 16 Sept 2021
+                     {date.toDateString()}
                     </div>
                     <button className={styles.groupButton}>
                       <button>
