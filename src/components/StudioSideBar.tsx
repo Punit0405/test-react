@@ -27,7 +27,7 @@ const StudioSideBar: FunctionComponent = () => {
             </div>
             <div className={styles.settingtab}>
                 <button className={styles.settingbtn}>
-                    <i className="fa-light setcolorsidesetting fa-gear"></i>
+                    <i className="fa-light setcolorsidesettingset fa-gear"></i>
                 </button>
             </div>
             <p className={styles.settings}>Settings</p>

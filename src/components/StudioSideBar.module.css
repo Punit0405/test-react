@@ -31,7 +31,9 @@
 
 .settingname {
     display: inline;
-    margin-left: 10px;
+    /* margin-left: 10px; */
+    margin-top: 0px;
+    /* border: 2px solid red; */
 }
 
 .settingtab {}
@@ -93,6 +95,9 @@
     border: none;
     margin-bottom: 7%;
     text-align: left;
+    display: flex;
+    justify-content: left;
+    /* border: 2px solid black; */
 }
 
 .datesection,

@@ -36,8 +36,17 @@ a:-webkit-any-link {
 }
 
 .setcolorsidesetting {
-  font-size: 1.6vw;
+  text-align: center;
+  font-size: 1.4vw;
   color: black;
+  width: 30px;
+}
+
+.setcolorsidesettingset {
+  text-align: center;
+  font-size: 1.7vw;
+  color: black;
+  width: 30px;
 }
 
 :root {
