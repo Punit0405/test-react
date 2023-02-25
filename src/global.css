@@ -194,8 +194,6 @@ body {
   --br-9xl: 89.67px;
 }
 */
-
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
@@ -203,6 +201,44 @@ body {
 body {
   margin: 0;
   line-height: normal;
+}
+
+.setcolor {
+  color: var(--color-crimson);
+  margin-right: 10px;
+  font-size: 1.6vw;
+}
+
+.sidebaricon {
+  font-size: 1.2vw;
+  color: var(--color-crimson);
+  margin-top: 4%;
+}
+
+.galleryicon {
+  margin-top: 5%;
+  font-family: var(--font-poppins);
+  font-size: 1.3vw;
+  font-weight: 500;
+}
+
+.setcolortopbar {
+  color: rgb(117, 116, 116);
+  font-size: 1.6vw;
+}
+
+.setcolorsidesetting {
+  text-align: center;
+  font-size: 1.4vw;
+  color: black;
+  width: 30px;
+}
+
+.setcolorsidesettingset {
+  text-align: center;
+  font-size: 1.7vw;
+  color: black;
+  width: 30px;
 }
 :root {
   /* fonts */

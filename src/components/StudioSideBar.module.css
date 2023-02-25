@@ -7,6 +7,10 @@
     margin-bottom: 0%;
 }
 
+.titleedit {
+    display: flex;
+    justify-content: space-between;
+}
 
 .outermain {}
 
@@ -27,7 +31,9 @@
 
 .settingname {
     display: inline;
-    margin-left: 10px;
+    /* margin-left: 10px; */
+    margin-top: 0px;
+    /* border: 2px solid red; */
 }
 
 .settingtab {}
@@ -38,6 +44,7 @@
     padding: 4% 0%;
     color: white;
     border: none;
+    font-size: 1.2vw;
 }
 
 .settingbtn {
@@ -88,6 +95,9 @@
     border: none;
     margin-bottom: 7%;
     text-align: left;
+    display: flex;
+    justify-content: left;
+    /* border: 2px solid black; */
 }
 
 .datesection,
@@ -101,7 +111,7 @@
 .maincomponent {
     /* border: 2px solid red; */
     font-family: var(--font-poppins);
-    padding: 15% 0%;
+    padding: 15% 2%;
 }
 
 .sidemaintitle {

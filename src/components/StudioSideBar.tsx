@@ -8,8 +8,9 @@ import styles from "./StudioSideBar.module.css";
 const StudioSideBar: FunctionComponent = () => {
     return (
         <div className={styles.maincomponent}>
-            <div>
+            <div className={styles.titleedit}>
                 <p className={styles.sidemaintitle}>Tebogo Wedding</p>
+                <i className="fa-regular fa-pen sidebaricon"></i>
             </div>
             <div className={styles.datepreview}>
                 <p className={styles.datesection}>
@@ -26,32 +27,32 @@ const StudioSideBar: FunctionComponent = () => {
             </div>
             <div className={styles.settingtab}>
                 <button className={styles.settingbtn}>
-                    <img className={styles.groupIcon} alt="" src="../group.svg" />
+                    <i className="fa-light setcolorsidesettingset fa-gear"></i>
                 </button>
             </div>
             <p className={styles.settings}>Settings</p>
             <Nav defaultActiveKey="/home" className="flex-column">
                 <button className={styles.navbutton}>
                     <Link to="/setting/collection-setting">
-                        <img className={styles.groupIcon} alt="" src="../group.svg" />
+                        <i className="fa-regular setcolorsidesetting fa-ellipsis-vertical"></i>
                         <p className={styles.settingname}> Collection Settings</p>
                     </Link>
                 </button>
                 <button className={styles.navbutton}>
                     <Link to="/setting/design">
-                        <img className={styles.groupIcon} alt="" src="../group.svg" />
+                        <i className="fa-regular setcolorsidesetting fa-pen-to-square"></i>
                         <p className={styles.settingname}> Design</p>
                     </Link>
                 </button>
                 <button className={styles.navbutton}>
                     <Link to="/setting/privacy">
-                        <img className={styles.groupIcon} alt="" src="../group.svg" />
+                        <i className="fa-regular setcolorsidesetting fa-lock-keyhole"></i>
                         <p className={styles.settingname}> Privacy</p>
                     </Link>
                 </button>
                 <button className={styles.navbutton}>
                     <Link to="/setting/download">
-                        <img className={styles.groupIcon} alt="" src="../group.svg" />
+                        <i className="fa-sharp setcolorsidesetting fa-regular fa-arrow-down-to-line"></i>
                         <p className={styles.settingname}> Download</p>
                     </Link>
                 </button>

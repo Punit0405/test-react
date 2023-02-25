@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./global.css";
+import "./fontawesome/css/all.css"
 import Gallery from "./pages/Gallery";
 import AddCollection from "./components/Gallery/AddCollection";
 import DragMedia from "./components/Gallery/DragMedia";

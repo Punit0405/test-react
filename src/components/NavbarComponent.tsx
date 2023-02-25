@@ -9,36 +9,31 @@ const NavBarComponent: FunctionComponent = () => {
             <Container>
                 <Nav.Link >
                     <Link to="/">
-                        <Image className={styles.imagehome} alt="" src="../homeIcon.svg" />
-                        <div className={styles.home}>Home</div>
+                        <div className={styles.home}><i className="fa-regular fa-house setcolor"></i>Home</div>
                     </Link>
                 </Nav.Link>
 
                 <Nav.Link >
                     <Link to="/studiomanagement">
-                        <img alt="" src="../172629-camera-video-icon-1.svg" />
-                        <div className={styles.home}>Studio Management</div>
+                        <div className={styles.home}><i className="fa-regular fa-video setcolor"></i>Studio Management</div>
                     </Link>
                 </Nav.Link>
 
                 <Nav.Link >
                     <Link to="/gallery">
-                        <img alt="" src="../galleryIcon.svg" />
-                        <div className={styles.home}>Gallery</div>
+                        <div className={styles.home}><i className="fa-regular setcolor fa-grid-2"></i>Gallery</div>
                     </Link>
                 </Nav.Link>
 
                 <Nav.Link >
                     <Link to="/collection-setting">
-                        <img alt="" src="../folderIcon.svg" />
-                        <div className={styles.home}>Asset Registry</div>
+                        <div className={styles.home}><i className="fa-regular fa-folder setcolor"></i>Asset Registry</div>
                     </Link>
                 </Nav.Link>
 
                 <Nav.Link >
                     <Link to="/music">
-                        <img alt="" src="../musicIcon.svg" />
-                        <div className={styles.home}>Music</div>
+                        <div className={styles.home}><i className="fa-regular fa-circle-play setcolor"></i>Music</div>
                     </Link>
                 </Nav.Link>
             </Container>

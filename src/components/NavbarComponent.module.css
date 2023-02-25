@@ -11,9 +11,7 @@
     margin: 0px 20%;
 }
 
-.imagehome{
-    
-}
+.imagehome {}
 
 .frameItem {
     position: absolute;
@@ -30,13 +28,6 @@
     left: 0;
     width: 1471.69px;
     height: 17.83px;
-}
-
-.home,
-.icon {
-    /* position: absolute; */
-    top: 0;
-    /* height: 24.53px; */
 }
 
 .icon {

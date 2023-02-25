@@ -2,6 +2,7 @@ import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstra
 import NavBarComponent from "../components/NavbarComponent";
 import TopBarComponent from "../components/TopBarComponent";
 import StudioSideBar from "./StudioSideBar";
+import styles from "./NavLayout.module.css"
 
 interface Props {
     children: JSX.Element;
@@ -9,18 +10,20 @@ interface Props {
 
 const NavLayoutWithSideBar = ({ children }: Props) => {
     return (
-        <Container fluid >
-            <TopBarComponent />
-            <NavBarComponent />
-            <Row>
-                <Col xl={3} lg={3} sm={3}>
-                    <StudioSideBar />
-                </Col>
-                <Col xl={9} lg={9} sm={9}>
-                    {children}
-                </Col>
-            </Row>
-        </Container>
+        <div className={styles.maincomp}>
+            <Container fluid >
+                <TopBarComponent />
+                <NavBarComponent />
+                <Row>
+                    <Col xl={3} lg={3} sm={3}>
+                        <StudioSideBar />
+                    </Col>
+                    <Col xl={9} lg={9} sm={9}>
+                        {children}
+                    </Col>
+                </Row>
+            </Container>
+        </div>
     );
 };
 
