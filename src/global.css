@@ -219,9 +219,16 @@ a:-webkit-any-link {
 
 
 .setcolor {
-  color: var(--color-crimson);
+  color: #ec1a25;
   margin-right: 10px;
   font-size: 1.6vw;
+  /* border: 2px solid red; */
+  margin-top: 2%;
+}
+.setcolorwhite {
+  color: white;
+  margin-left: 2px;
+  font-size: 1.3vw;
   /* border: 2px solid red; */
   margin-top: 2%;
 }

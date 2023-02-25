@@ -16,6 +16,7 @@ import CollectionSetting from "./components/StudioManagement/CollectionSetting";
 import PrivacySetting from "./components/StudioManagement/PrivacySetting";
 import DownloadStatus from "./components/StudioManagement/DownloadStatus";
 import Login from "./pages/Login";
+import AssetRegistry from "./pages/AssetRegistry";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
       <Route path="/setting/collection-setting" element={<CollectionSetting />} />
       <Route path="/setting/privacy" element={<PrivacySetting />} />
       <Route path="/setting/download" element={<DownloadStatus />} />
-      <Route path="/asset-registry" element={<Gallery />} />
+      <Route path="/asset-registry" element={<AssetRegistry/>} />
       <Route path="/music" element={<Gallery />} />
     </Routes>
   );
