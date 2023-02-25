@@ -11,6 +11,17 @@ a:-webkit-any-link {
   cursor: pointer;
 }
 
+.setcolor {
+  color: var(--color-crimson);
+  margin-right: 10px;
+  font-size: 1.6vw;
+}
+
+.setcolortopbar {
+  color: rgb(117, 116, 116);
+  font-size: 1.6vw;
+}
+
 :root {
   /* fonts */
   --font-poppins: Poppins;
