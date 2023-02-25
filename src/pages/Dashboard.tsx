@@ -3,7 +3,8 @@ import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstra
 import PhotographyCard from "../components/Dashboard/PhotographyCard";
 import NavLayout from "../components/NavLayout";
 import styles from "./Dashboard.module.css";
-
+import Calender from "react-calendar";
+import './Calender.css'
 const Dashboard: FunctionComponent = () => {
   return (
     <Container fluid className={styles.outermain}>
@@ -213,105 +214,8 @@ const Dashboard: FunctionComponent = () => {
             </section>
             <section className={styles.rightcontainer}>
               <div className={styles.calenderDiv}>
-                <div className={styles.upcomingBookingsParent}>
-                  <div className={styles.upcomingBookings}>Upcoming Bookings</div>
-                  <div className={styles.groupDiv}>
-                    <div className={styles.september2021Parent}>
-                      <div className={styles.september2021}>September 2021</div>
-                      <div className={styles.groupWrapper}>
-                        <div className={styles.rectangleWrapper}>
-                          <div className={styles.groupItem} />
-                        </div>
-                      </div>
-                      <img
-                        className={styles.expandLeftLightIcon}
-                        alt=""
-                        src="../expand-left-light.svg"
-                      />
-                      <div className={styles.groupFrame}>
-                        <div className={styles.rectangleWrapper}>
-                          <div className={styles.groupInner} />
-                        </div>
-                      </div>
-                      <img
-                        className={styles.expandRightLightIcon}
-                        alt=""
-                        src="../expand-right-light.svg"
-                      />
-                    </div>
-                    <div className={styles.groupParent1}>
-                      <div className={styles.monWrapper}>
-                        <div className={styles.mon}>Mon</div>
-                      </div>
-                      <div className={styles.tueWrapper}>
-                        <div className={styles.tue}>Tue</div>
-                      </div>
-                      <div className={styles.wedWrapper}>
-                        <div className={styles.wed}>Wed</div>
-                      </div>
-                      <div className={styles.friWrapper}>
-                        <div className={styles.fri}>Fri</div>
-                      </div>
-                      <div className={styles.satWrapper}>
-                        <div className={styles.sat}>Sat</div>
-                      </div>
-                      <div className={styles.sunWrapper}>
-                        <div className={styles.sun}>Sun</div>
-                      </div>
-                    </div>
-                    <div className={styles.parent}>
-                      <div className={styles.div1}>27</div>
-                      <div className={styles.div2}>28</div>
-                      <div className={styles.div3}>29</div>
-                      <div className={styles.div4}>30</div>
-                      <div className={styles.div5}>31</div>
-                      <div className={styles.div6}>1</div>
-                    </div>
-                    <div className={styles.group}>
-                      <div className={styles.div7}>2</div>
-                      <div className={styles.div8}>3</div>
-                      <div className={styles.div9}>4</div>
-                      <div className={styles.div10}>5</div>
-                      <div className={styles.div11}>6</div>
-                      <div className={styles.div12}>7</div>
-                    </div>
-                    <div className={styles.container}>
-                      <div className={styles.div13}>8</div>
-                      <div className={styles.div14}>9</div>
-                      <div className={styles.div15}>10</div>
-                      <div className={styles.div16}>11</div>
-                      <div className={styles.div17}>12</div>
-                      <div className={styles.div18}>13</div>
-                    </div>
-                    <div className={styles.parent1}>
-                      <div className={styles.div19}>14</div>
-                      <div className={styles.div20}>15</div>
-                      <div className={styles.rectangleParent1}>
-                        <div className={styles.groupChild1} />
-                        <div className={styles.div21}>16</div>
-                      </div>
-                      <div className={styles.div22}>17</div>
-                      <div className={styles.div23}>18</div>
-                      <div className={styles.div24}>19</div>
-                    </div>
-                    <div className={styles.parent2}>
-                      <div className={styles.div25}>20</div>
-                      <div className={styles.div26}>21</div>
-                      <div className={styles.div27}>22</div>
-                      <div className={styles.div28}>23</div>
-                      <div className={styles.div29}>24</div>
-                      <div className={styles.div30}>25</div>
-                    </div>
-                    <div className={styles.parent3}>
-                      <div className={styles.div31}>26</div>
-                      <div className={styles.div32}>27</div>
-                      <div className={styles.div33}>28</div>
-                      <div className={styles.div34}>29</div>
-                      <div className={styles.div35}>30</div>
-                      <div className={styles.div36}>31</div>
-                    </div>
-                  </div>
-                </div>
+                <Calender  />
+                
               </div>
               <div className={styles.rightcontainerInner}>
 
