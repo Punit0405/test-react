@@ -214,6 +214,8 @@ a:-webkit-any-link {
   color: var(--color-crimson);
   margin-right: 10px;
   font-size: 1.6vw;
+  /* border: 2px solid red; */
+  margin-top: 2%;
 }
 
 .sidebaricon {

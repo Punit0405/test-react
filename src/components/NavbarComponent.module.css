@@ -42,7 +42,7 @@
     font-weight: 400;
     font-family: var(--font-poppins);
     text-align: left;
-    display: inline-block;
+    display: flex;
     margin-left: 10px;
     /* width: 49.12px; */
     color: black;
@@ -230,6 +230,12 @@
         padding-top: 0;
         padding-right: var(--padding-xl);
         box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .navpadding {
+        margin: 0px 10%;
     }
 }
 
