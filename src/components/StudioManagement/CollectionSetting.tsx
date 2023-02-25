@@ -1,11 +1,12 @@
 import { FunctionComponent } from "react";
 import { Form } from "react-bootstrap";
+import Constants from "../../Config/Constants";
 import NavLayoutWithSideBar from "../NavLayoutWithSideBar";
 import styles from "./CollectionSetting.module.css"
 
 const CollectionSetting: FunctionComponent = () => {
     return (
-        <NavLayoutWithSideBar>
+        <NavLayoutWithSideBar activeTab={Constants.NavbarTabs.GALLARY}>
             <>
                 <div className={styles.maincomponent}>
                     <Form>
