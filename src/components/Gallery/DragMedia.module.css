@@ -14,6 +14,11 @@
     color: white;
 }
 
+.outermain {
+    /* margin: 5% 0%; */
+    margin-top: 4%;
+}
+
 .collectionbtn:hover,
 .dragbtn:hover {
     background-color: crimson;

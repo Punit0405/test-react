@@ -7,9 +7,9 @@ import styles from "./DragMedia.module.css";
 
 const DragMedia: FunctionComponent = () => {
     return (
-        <Container fluid >
-            <NavLayoutWithSideBar>
-                <>
+        <NavLayoutWithSideBar>
+            <>
+                <div className={styles.outermain}>
                     <AddPhotosNav />
                     <div className={styles.addmedia}>
                         <p className={styles.nomedia}>
@@ -17,9 +17,9 @@ const DragMedia: FunctionComponent = () => {
                         </p>
                         <Button className={styles.dragbtn} variant="custom">Select photos from your computer</Button>
                     </div>
-                </>
-            </NavLayoutWithSideBar>
-        </Container>
+                </div>
+            </>
+        </NavLayoutWithSideBar>
     );
 };
 
