@@ -4,6 +4,7 @@ import styles from "./AssetDashboardMain.module.css";
 import { PieChart } from 'react-minimal-pie-chart';
 import { Doughnut } from 'react-chartjs-2';
 import {Chart, ArcElement} from 'chart.js'
+import AssetRegisteryChartComp from "./AssetRegisteryChartComp";
 Chart.register(ArcElement);
  {/* <PieChart
         paddingAngle={1}
@@ -98,24 +99,13 @@ const AssetDashboardMain: FunctionComponent = () => {
 </div>
         <div className={styles.categorysection}>
           <div className={styles.cellphoneParent}>
-            <div className={styles.cellphone}>
-              <div className={styles.labellegendlight}>
-                <div className={styles.labellegendlightChild} />
-                <div className={styles.cellPhone}>Cell Phone</div>
-              </div>
-              <div >30%</div>
-            </div>
-            
+           <AssetRegisteryChartComp percentage="30%" categoryTitle="Cell Phone"/>
+           <AssetRegisteryChartComp percentage="34%" categoryTitle="Camera"/>
           </div>
           <div className={styles.cellphoneParent}>
-            
-            <div className={styles.printer}>
-              <div className={styles.labellegendlight3}>
-                <div className={styles.rectangleDiv} />
-                <div className={styles.cellPhone}>Printer</div>
-              </div>
-              <div>30%</div>
-            </div>
+           <AssetRegisteryChartComp percentage="6%" categoryTitle="Screen"/>
+           <AssetRegisteryChartComp percentage="30%" categoryTitle="Printer"/>
+          
           </div>
         </div>
       </div>
