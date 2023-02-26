@@ -105,22 +105,10 @@ const AssetDashboardMain: FunctionComponent = () => {
               </div>
               <div >30%</div>
             </div>
-            <div className={styles.camera}>
-              <div className={styles.labellegendlight1}>
-                <div className={styles.labellegendlightItem} />
-                <div className={styles.cellPhone}>Camera</div>
-              </div>
-              <div >34%</div>
-            </div>
+            
           </div>
           <div className={styles.cellphoneParent}>
-            <div className={styles.screen}>
-              <div className={styles.labellegendlight2}>
-                <div className={styles.labellegendlightInner} />
-                <div className={styles.cellPhone}>Screen</div>
-              </div>
-              <div>6%</div>
-            </div>
+            
             <div className={styles.printer}>
               <div className={styles.labellegendlight3}>
                 <div className={styles.rectangleDiv} />

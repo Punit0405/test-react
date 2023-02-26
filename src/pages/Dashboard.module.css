@@ -193,9 +193,7 @@
   height: 100%; 
 }
 
-.customerName {
- 
-}
+
 .customerData {
   display: flex;
   flex-direction: column;

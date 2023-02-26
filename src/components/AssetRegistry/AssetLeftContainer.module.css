@@ -156,7 +156,7 @@
 
 
   .leftDivButton{
-    border: 2px solid green;
+    border: 0;
     background-color: transparent;
     padding: var(--padding-17xs) var(--padding-8xs);
     display: flex;
@@ -174,10 +174,35 @@
     background-color: var(--color-crimson);
     color: white;
     border-radius: 10px;
-  
-
+  }
+  .leftDivButtonWithoutColor{
+    border: 0;
+    background-color: transparent;
+    padding: var(--padding-17xs) var(--padding-8xs);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    height: 16%;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--gap-7xs);
+    border-radius: 10px;
   }
 
+  .leftDivButtonTextWhite {
+    position: relative;
+    font-size: var(--font-size-15xl);
+    letter-spacing: 0.33px;
+    font-weight: 500;
+    font-family: var(--font-poppins);
+    text-align: left;
+    color: white;
+  }
   .leftDivButtonText {
     position: relative;
     font-size: var(--font-size-15xl);
