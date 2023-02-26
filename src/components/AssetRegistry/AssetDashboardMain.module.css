@@ -54,6 +54,7 @@
   color: var(--color-white);
 }
 .deviceCard2 {
+  border: 2px solid red;
   border-radius: var(--br-2xs);
   background-color: var(--light-theme-color-light1);
   width: 100%;
@@ -354,4 +355,12 @@
   font-size: var(--font-size-29xl);
   color: var(--color-black);
   font-family: var(--font-poppins);
+}
+
+
+@media screen and (max-width: 1000px) {
+  .cardssection{
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+  }
 }

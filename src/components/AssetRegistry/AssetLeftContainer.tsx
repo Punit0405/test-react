@@ -9,25 +9,25 @@ const AssetLeftContainer: FunctionComponent = () => {
   return (
     <section className={styles.assetleftcontainer}>
       <div className={styles.buttoncontainres}>
-        <button className={styles.dashboard}>
+        <button className={styles.leftDivButton}>
           <i className="fa-regular fa-house setcolorwhite"></i>
-          <div className={styles.dashboard1}>Dashboard</div>
+          <div className={styles.leftDivButtonText}>Dashboard</div>
         </button>
-        <button className={styles.myDevices} onClick={onMyDevicesClick}>
-          <i className="fa-light fa-envelope setcolor"></i>
-          <div className={styles.myDevices1}>My Devices</div>
+        <button className={styles.leftDivButton} onClick={onMyDevicesClick}>
+          <i className="fa-light fa-envelope setcolorwhite"></i>
+          <div className={styles.leftDivButtonText}>My Devices</div>
         </button>
-        <button className={styles.getCover}>
-          <i className="fa-regular fa-user setcolor"></i>
-          <div className={styles.productsForSale}>Get Cover</div>
+        <button className={styles.leftDivButton}>
+          <i className="fa-regular fa-user setcolorwhite"></i>
+          <div className={styles.leftDivButtonText}>Get Cover</div>
         </button>
-        <button className={styles.prouctsForSale}>
-          <i className="fa-regular fa-circle-dollar setcolor"></i>
-          <div className={styles.productsForSale}>Products For Sale</div>
+        <button className={styles.leftDivButton}>
+          <i className="fa-regular fa-circle-dollar setcolorwhite"></i>
+          <div className={styles.leftDivButtonText}>Products For Sale</div>
         </button>
-        <button className={styles.producsForRent}>
-          <i className="fa-regular fa-grid-2 setcolor"></i>
-          <div className={styles.productsForSale}>Products For Rent</div>
+        <button className={styles.leftDivButton}>
+          <i className="fa-regular fa-grid-2 setcolorwhite"></i>
+          <div className={styles.leftDivButtonText}>Products For Rent</div>
         </button>
       </div>
     </section>
