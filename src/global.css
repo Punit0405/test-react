@@ -229,21 +229,19 @@ a:-webkit-any-link {
 .setcolor {
   color: #ec1a25;
   margin-right: 10px;
-  font-size: 1.6vw;
-  /* border: 2px solid red; */
+  font-size: 1.1rem;
   margin-top: 2%;
 }
 
 .setcolorwhite {
   color: white;
   margin-left: 2px;
-  font-size: 1.3vw;
-  /* border: 2px solid red; */
+  font-size: 1rem;
   margin-top: 2%;
 }
 
 .sidebaricon {
-  font-size: 1.2vw;
+  font-size: 1rem;
   color: var(--color-crimson);
   margin-top: 4%;
 }
@@ -251,25 +249,25 @@ a:-webkit-any-link {
 .galleryicon {
   margin-top: 5%;
   font-family: var(--font-poppins);
-  font-size: 1.3vw;
+  font-size: 1.3rem;
   font-weight: 500;
 }
 
 .setcolortopbar {
   color: rgb(117, 116, 116);
-  font-size: 1.6vw;
+  font-size: 1.6rem;
 }
 
 .setcolorsidesetting {
   text-align: center;
-  font-size: 1.4vw;
+  font-size: 1.4rem;
   color: black;
   width: 30px;
 }
 
 .setcolorsidesettingset {
   text-align: center;
-  font-size: 1.7vw;
+  font-size: 1.5rem;
   color: black;
   width: 30px;
 }
@@ -477,4 +475,10 @@ a:-webkit-any-link {
   --br-9xl: 83.42px;
   --br-10xl: 83.33px;
   --br-11xl: 89.67px;
+}
+
+.addNewDeviceModal{
+  width: 550px;
+  height: 650px;
+  margin: auto auto;
 }

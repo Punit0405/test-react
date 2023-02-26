@@ -45,7 +45,7 @@
   border-radius: var(--br-2xs);
   background-color: var(--color-crimson);
   width: 100%;
-  height: 100%;
+  height: 140%;
   flex-shrink: 0;
   display: flex;
   font-size: 14px;
@@ -61,7 +61,7 @@
   border-radius: var(--br-2xs);
   background-color: var(--light-theme-color-light1);
   width: 100%;
-  height: 100%;
+  height: 140%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;

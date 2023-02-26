@@ -71,7 +71,7 @@ const AssetDashboardMain: FunctionComponent = () => {
               <div className={styles.devicesListed}>Devices Listed</div>
               <div >4</div>
             </div>
-            <i className="fa-regular  fa-4xl  fa-circle-dollar setcolor"></i>
+            <i className="fa-regular fa-2xl fa-circle-dollar setcolor"></i>
           </div>
         </div>
         <div className={styles.deviceCard2}>
