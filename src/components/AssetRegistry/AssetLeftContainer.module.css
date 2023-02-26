@@ -217,14 +217,15 @@
 
   @media screen and (max-width: 1050px) {
     .assetleftcontainer{
-      display: none;
+      display: block;
       z-index: 2;
       position: absolute;
       width: 300px;
       background-color: white;
-      left: 0;
+      left: -100%;
       top:0px;
       border-radius: 10px;
+      transition: 200ms;
       margin: 0% 0%;
       padding: 5% 0%;
     }

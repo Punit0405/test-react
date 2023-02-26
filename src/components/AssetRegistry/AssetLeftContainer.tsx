@@ -7,11 +7,8 @@ const AssetLeftContainer: FunctionComponent = () => {
     // Please sync "Add Device" to the project
   }, []);
   const hideSideBar = ()=>{
-      $("#leftContainer").toggle(function(){
-       $('#leftContainer').animate({
-      width: "0px"
-       }, 0);
-      });
+    $("#leftContainer").css({left:'-100%' , display:"block"})
+       
 
   }
 

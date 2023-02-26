@@ -5,11 +5,7 @@ import $ from 'jquery';
 
 const AssetNavBar: FunctionComponent = () => {
   const displaySideBar = () =>{
-    $("#leftContainer").toggle(function(){
-      $('#leftContainer').animate({
-     width: "300px"
-      }, 100);
-     });
+    $("#leftContainer").css({left:'0%' , display:"block"})
 
   }
   return (
