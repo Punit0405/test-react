@@ -9,7 +9,7 @@ const GalleryGrid: FunctionComponent = () => {
             <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
                 <div className={styles.imgblock}>
                     <div className={styles.imgdiv}>
-                        <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                        <Image  className={styles.myimage} src="../../../sample2.jpg" />
                     </div>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>
@@ -44,7 +44,7 @@ const GalleryGrid: FunctionComponent = () => {
             <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
                 <div className={styles.imgblock}>
                     <div className={styles.imgdiv}>
-                        <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                        <Image  className={styles.myimage} src="../../../sample2.jpg" />
                     </div>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>
@@ -79,7 +79,7 @@ const GalleryGrid: FunctionComponent = () => {
             <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
                 <div className={styles.imgblock}>
                     <div className={styles.imgdiv}>
-                        <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                        <Image  className={styles.myimage} src="../../../sample2.jpg" />
                     </div>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>

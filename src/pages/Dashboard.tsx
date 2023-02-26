@@ -11,7 +11,6 @@ const Dashboard: FunctionComponent = () => {
   const [date, setDate] = useState(new Date());
   const varial = "hello"
   return (
-    <NavLayout activeTab={Constants.NavbarTabs.HOME}>
       <>
         <div className={styles.bottomsection} id="bottomSection">
           <section className={styles.leftcontainer}>
@@ -279,7 +278,7 @@ const Dashboard: FunctionComponent = () => {
           </section>
         </div>
       </>
-    </NavLayout>
+  
   );
 };
 

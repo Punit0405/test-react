@@ -17,52 +17,52 @@ const UploadView: FunctionComponent = () => {
                 <Row>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                            <Image  className={styles.myimage} src="../../../sample2.jpg" />
                         </div>
                     </Col>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample.jpeg" />
+                            <Image  className={styles.myimage} src="../../../sample.jpeg" />
                         </div>
                     </Col>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                            <Image  className={styles.myimage} src="../../../sample2.jpg" />
                         </div>
                     </Col>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample.jpeg" />
+                            <Image  className={styles.myimage} src="../../../sample.jpeg" />
                         </div>
                     </Col>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                            <Image  className={styles.myimage} src="../../../sample2.jpg" />
                         </div>
                     </Col>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample.jpeg" />
+                            <Image  className={styles.myimage} src="../../../sample.jpeg" />
                         </div>
                     </Col>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                            <Image  className={styles.myimage} src="../../../sample2.jpg" />
                         </div>
                     </Col>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample.jpeg" />
+                            <Image  className={styles.myimage} src="../../../sample.jpeg" />
                         </div>
                     </Col>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample2.jpg" />
+                            <Image  className={styles.myimage} src="../../../sample2.jpg" />
                         </div>
                     </Col>
                     <Col xl={2} lg={2} md={4} sm={6}>
                         <div className={styles.imgdiv}>
-                            <Image img-responsive className={styles.myimage} src="../../../sample.jpeg" />
+                            <Image  className={styles.myimage} src="../../../sample.jpeg" />
                         </div>
                     </Col>
                 </Row>

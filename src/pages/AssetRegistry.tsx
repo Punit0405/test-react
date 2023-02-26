@@ -7,7 +7,6 @@ import Constants from "../Config/Constants";
 
 const AssetRegistry: FunctionComponent = () => {
   return (
-    <NavLayout activeTab={Constants.NavbarTabs.ASSETREGISTRY}>
         <>
     <div className={styles.assetRegistry}>
     <section className={styles.bottomscreen}>
@@ -18,7 +17,7 @@ const AssetRegistry: FunctionComponent = () => {
 
     </>
 
-    </NavLayout>
+   
   );
 };
 

@@ -202,8 +202,11 @@ body {
   margin: 0;
   line-height: normal;
 }
+.nav , .nav-tabs{
+  border: 0;
+}
 
-.activeNavMenu{
+.nav.nav-tabs .nav-link.active{
   /* border: 2px solid red; */
   border-radius: 0px;
   border-top: 4px solid #ec1a25;

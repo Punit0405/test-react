@@ -8,7 +8,6 @@ import styles from "./Gallery.module.css";
 
 const Gallery: FunctionComponent = () => {
     return (
-        <NavLayout activeTab={Constants.NavbarTabs.GALLARY}>
             <>
                 <GalleryNav />
                 <div className={styles.collectioncount}>
@@ -18,7 +17,7 @@ const Gallery: FunctionComponent = () => {
                 </div>
                 <GalleryGrid />
             </>
-        </NavLayout>
+      
     );
 };
 

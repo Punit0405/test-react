@@ -14,7 +14,7 @@ const NavLayout = ({ children , activeTab }: Props) => {
         <div className={styles.maincomp}>
             <Container fluid>
                 <TopBarComponent />
-                <NavBarComponent activeTab={activeTab}/>
+                <NavBarComponent />
                 {children}
             </Container>
         </div>

@@ -17,9 +17,15 @@ import PrivacySetting from "./components/StudioManagement/PrivacySetting";
 import DownloadStatus from "./components/StudioManagement/DownloadStatus";
 import Login from "./pages/Login";
 import AssetRegistry from "./pages/AssetRegistry";
+import TopBarComponent from "./components/TopBarComponent";
+import NavBarComponent from "./components/NavbarComponent";
+import Constants from "./Config/Constants";
 
 function App() {
   return (
+    <>
+    <TopBarComponent/>
+    <NavBarComponent/>
     <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
@@ -33,6 +39,7 @@ function App() {
       <Route path="/asset-registry" element={<AssetRegistry/>} />
       <Route path="/music" element={<Gallery />} />
     </Routes>
+    </>
   );
 }
 export default App;

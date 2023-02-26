@@ -10,14 +10,15 @@ interface Props {
 
 
 
-const NavBarComponent  = ({activeTab}:Props) => {
-    const getActiveClass = (checkValue:string)=>{
-       return activeTab === checkValue ? Constants.active : ""
-    }
+const NavBarComponent  = () => {
+    // const getActiveClass = (checkValue:string)=>{
+    //    return activeTab === checkValue ? Constants.active : ""
+    // }
+    console.log("Navbar Render")
     return (
-        <Nav id="navbar"  className={styles.navpadding}>
+        <Nav id="navbar" variant="tabs" defaultActiveKey="link-1"   className={styles.navpadding}>
             {/* <Container> */}
-            <Nav.Link className={getActiveClass(Constants.NavbarTabs.HOME)}>
+            <Nav.Link eventKey="link-1">
                 <Link to="/">
                     <div className={styles.home} >
                         <i className="fa-regular fa-house setcolor"></i>
@@ -26,7 +27,7 @@ const NavBarComponent  = ({activeTab}:Props) => {
                 </Link>
             </Nav.Link>
 
-            <Nav.Link className={getActiveClass(Constants.NavbarTabs.STUDIOMANAGEMENT)}>
+            <Nav.Link eventKey="link-2">
                 <Link to="/studiomanagement">
                     <div className={styles.home}>
                         <i className="fa-regular fa-video setcolor"></i>
@@ -35,7 +36,7 @@ const NavBarComponent  = ({activeTab}:Props) => {
                 </Link>
             </Nav.Link>
 
-            <Nav.Link className={getActiveClass(Constants.NavbarTabs.GALLARY)}>
+            <Nav.Link eventKey="link-3" >
                 <Link to="/gallery">
                     <div className={styles.home}>
                         <i className="fa-regular setcolor fa-grid-2"></i>
@@ -44,7 +45,7 @@ const NavBarComponent  = ({activeTab}:Props) => {
                 </Link>
             </Nav.Link>
 
-            <Nav.Link className={getActiveClass(Constants.NavbarTabs.ASSETREGISTRY)}>
+            <Nav.Link eventKey="link-4">
                 <Link to="/asset-registry">
                     <div className={styles.home}>
                         <i className="fa-regular fa-folder setcolor"></i>
@@ -53,7 +54,7 @@ const NavBarComponent  = ({activeTab}:Props) => {
                 </Link>
             </Nav.Link>
 
-            <Nav.Link  className={getActiveClass(Constants.NavbarTabs.MUSIC)}>
+            <Nav.Link eventKey="link-5">
                 <Link to="/music">
                     <div className={styles.home}>
                         <i className="fa-regular fa-circle-play setcolor"></i>

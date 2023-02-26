@@ -14,7 +14,7 @@ const NavLayoutWithSideBar = ({ children ,activeTab }: Props) => {
         <div className={styles.maincomp}>
             <Container fluid >
                 <TopBarComponent />
-                <NavBarComponent activeTab={activeTab} />
+                <NavBarComponent />
                 <Row>
                     <Col xl={3} lg={3} sm={3}>
                         <StudioSideBar />
