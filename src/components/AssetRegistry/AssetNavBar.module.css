@@ -8,7 +8,7 @@
     font-size: var(--font-size-15xl);
     background-color: var(--color-whitesmoke-200);
     border-radius: var(--br-2xs);
-    width: 491.83px;
+    width: 100%;
     flex-shrink: 0;
     display: flex;
     flex-direction: row;
@@ -17,14 +17,8 @@
     align-items: center;
     justify-content: space-between;
   }
-  .vectorIcon {
-    position: relative;
-    width: 11.67px;
-    height: 10px;
-    flex-shrink: 0;
-  }
   .frameParent {
-    width: 554.5px;
+    width: 60%;
     flex-shrink: 0;
     display: flex;
     flex-direction: row;
@@ -37,38 +31,18 @@
     font-family: var(--font-poppins);
     color: var(--color-white);
     text-align: left;
-  }
-  .addNewDeviceWrapper {
     cursor: pointer;
     border: 0;
     padding: var(--padding-20xs) var(--padding-11xs);
     background-color: var(--color-crimson);
     border-radius: var(--br-2xs);
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-  .assetnavbardiv {
-    width: 1085.5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .assetnavbarChild {
-    position: relative;
-    width: 1101.67px;
-    height: 0.83px;
-    flex-shrink: 0;
-    opacity: 0.2;
   }
   .assetnavbar {
     align-self: stretch;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: var(--gap-10xs);
     text-align: left;
     font-size: var(--font-size-29xl);
