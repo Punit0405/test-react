@@ -58,7 +58,6 @@
 }
 
 .deviceCard2 {
-  border: 2px solid red;
   border-radius: var(--br-2xs);
   background-color: var(--light-theme-color-light1);
   width: 100%;
@@ -73,19 +72,8 @@
   color: var(--color-black);
 }
 
-.devicesMarkedFor,
-.devicesMarkedFor {
-  top: 0;
-  line-height: 21.67px;
-}
 
-.devicesMarkedForSaleParent {
-  position: absolute;
-  top: 24px;
-  left: 0;
-  width: 114px;
-  height: 56.18px;
-}
+
 
 .vectorIcon1 {
   position: absolute;
@@ -95,22 +83,8 @@
   height: 45px;
 }
 
-.frameGroup {
-  position: relative;
-  width: 194.5px;
-  height: 68.06px;
-  flex-shrink: 0;
-}
 
-.devicesmarkedforsale {
-  border-radius: var(--br-2xs);
-  background-color: var(--light-theme-color-light1);
-  display: flex;
-  flex-direction: column;
-  padding: var(--padding-3xs) var(--padding-xs);
-  align-items: center;
-  justify-content: center;
-}
+
 
 .vectorIcon2 {
   position: absolute;
@@ -153,6 +127,7 @@
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 10px;
+  margin: 0% 1%
 }
 
 .devicelostcard {
@@ -297,6 +272,7 @@
   align-items: flex-end;
   gap: var(--gap-12xl);
   color: var(--light-theme-color-body1);
+  margin: 0% 1%;
 }
 
 .rightcontainer {
@@ -313,6 +289,14 @@
 }
 
 
+@media screen and (max-width: 1050px) {
+  .cardssection {
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+  }
+}
+
+
 @media screen and (max-width: 1300px) {
   .cardssection {
     grid-template-columns: auto auto;
@@ -320,7 +304,9 @@
   }
 }
 
-@media screen and (max-width: 750px) {
+
+
+@media screen and (max-width: 500px) {
   .cardssection {
     grid-template-columns: auto;
     grid-gap: 20px;

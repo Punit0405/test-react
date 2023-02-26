@@ -62,35 +62,35 @@ const AssetDashboardMain: FunctionComponent = () => {
               <div className={styles.devicesListed}>Devices Listed</div>
               <div >4</div>
             </div>
-            <i className="fa-solid fa-display"></i>
+            <i className="fa-solid fa-2xl fa-display"></i>
           </div>
         </div>
         <div className={styles.deviceCard2}>
-          <div className={styles.frameGroup}>
-            <div className={styles.devicesMarkedForSaleParent}>
-              <div className={styles.devicesMarkedFor}>Devices Rented Out</div>
-              <div>0</div>
+        <div className={styles.frameParent}>
+            <div className={styles.devicesListedParent}>
+              <div className={styles.devicesListed}>Devices Listed</div>
+              <div >4</div>
             </div>
+            <i className="fa-regular  fa-4xl  fa-circle-dollar setcolor"></i>
           </div>
-            <i className="fa-regular fa-circle-dollar setcolor"></i>
         </div>
         <div className={styles.deviceCard2}>
-          <div className={styles.frameGroup}>
-            <div className={styles.devicesMarkedForSaleParent}>
-              <div className={styles.devicesMarkedFor}>Devices Rented Out</div>
-              <div>0</div>
+        <div className={styles.frameParent}>
+            <div className={styles.devicesListedParent}>
+              <div className={styles.devicesListed}>Devices Listed</div>
+              <div >4</div>
             </div>
+            <i className="fa-sharp  fa-2xl  fa-regular fa-arrow-up-from-line setcolor"></i>
           </div>
-            <i className="fa-sharp fa-regular fa-arrow-up-from-line setcolor"></i>
         </div>
         <div className={styles.deviceCard2}>
-          <div className={styles.frameDiv}>
-            <div className={styles.devicesLostParent}>
-              <div className={styles.devicesLost}>Devices Lost</div>
-              <div>0</div>
+        <div className={styles.frameParent}>
+            <div className={styles.devicesListedParent}>
+              <div className={styles.devicesListed}>Devices Listed</div>
+              <div >4</div>
             </div>
+            <i className="fa-regular fa-lock-keyhole  fa-2xl  setcolor"></i>
           </div>
-          <i className="fa-regular fa-lock-keyhole setcolor"></i>
         </div>
       </div>
       <div className={styles.summarySection}>

@@ -48,4 +48,18 @@
     font-size: var(--font-size-29xl);
     color: var(--color-black);
     font-family: var(--font-poppins);
+    margin: 0% 1%
+  }
+
+  .openSidebar{
+    display: none;
+  }
+
+  @media screen and (max-width: 1050px) {
+    .frameParent {
+      width: 45%;
+    }
+    .openSidebar{
+      display: block;
+    }
   }

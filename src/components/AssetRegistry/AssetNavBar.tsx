@@ -1,9 +1,20 @@
 import { FunctionComponent } from "react";
 import styles from "./AssetNavBar.module.css";
+import $ from 'jquery';
+
 
 const AssetNavBar: FunctionComponent = () => {
+  const displaySideBar = () =>{
+    $("#leftContainer").toggle(function(){
+      $('#leftContainer').animate({
+     width: "300px"
+      }, 100);
+     });
+
+  }
   return (
     <div className={styles.assetnavbar}>
+        <div className={styles.openSidebar} onClick={displaySideBar}> <i className="fa-solid  fa-bars"></i></div>
         <div className={styles.dashboard}>Dashboard</div>
         <div className={styles.frameParent}>
           <input

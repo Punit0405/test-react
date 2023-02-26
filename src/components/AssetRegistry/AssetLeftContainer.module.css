@@ -211,3 +211,28 @@
     font-family: var(--font-poppins);
     text-align: left;
   }
+  .leftDivCancel{
+    display: none;
+  }
+
+  @media screen and (max-width: 1050px) {
+    .assetleftcontainer{
+      display: none;
+      z-index: 2;
+      position: absolute;
+      width: 300px;
+      background-color: white;
+      left: 0;
+      top:0px;
+      border-radius: 10px;
+      margin: 0% 0%;
+      padding: 5% 0%;
+    }
+    .leftDivCancel{
+      display: block !important;
+      position: absolute !important;
+      top:10px;
+      right:20px !important;
+    }
+  }
+

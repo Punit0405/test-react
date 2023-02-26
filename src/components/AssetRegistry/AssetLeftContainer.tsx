@@ -1,13 +1,24 @@
 import { FunctionComponent, useCallback } from "react";
 import styles from "./AssetLeftContainer.module.css";
+import $ from 'jquery';
 
 const AssetLeftContainer: FunctionComponent = () => {
   const onMyDevicesClick = useCallback(() => {
     // Please sync "Add Device" to the project
   }, []);
+  const hideSideBar = ()=>{
+      $("#leftContainer").toggle(function(){
+       $('#leftContainer').animate({
+      width: "0px"
+       }, 0);
+      });
+
+  }
 
   return (
-    <section className={styles.assetleftcontainer}>
+    <section className={`${styles.assetleftcontainer}`} id="leftContainer">
+      <div className={styles.leftDivCancel} onClick={hideSideBar}> <i className="fa-solid fa-xl fa-xmark"></i></div>
+     
       <div className={styles.buttoncontainres}>
         <button className={styles.leftDivButton}>
           <i className="fa-regular fa-house setcolorwhite"></i>
