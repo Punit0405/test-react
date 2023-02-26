@@ -202,17 +202,22 @@ body {
   margin: 0;
   line-height: normal;
 }
-.nav , .nav-tabs{
+
+.nav,
+.nav-tabs {
   border: 0;
 }
 
-.nav.nav-tabs .nav-link.active{
+.nav.nav-tabs .nav-link.active {
   /* border: 2px solid red; */
+  border: none;
   border-radius: 0px;
   border-top: 4px solid #ec1a25;
 }
 
-
+.nav-link:hover {
+  border: none;
+}
 
 a:-webkit-any-link {
   text-decoration: none;
@@ -228,6 +233,7 @@ a:-webkit-any-link {
   /* border: 2px solid red; */
   margin-top: 2%;
 }
+
 .setcolorwhite {
   color: white;
   margin-left: 2px;
