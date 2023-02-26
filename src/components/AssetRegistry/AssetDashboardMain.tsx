@@ -99,12 +99,12 @@ const AssetDashboardMain: FunctionComponent = () => {
 </div>
         <div className={styles.categorysection}>
           <div className={styles.cellphoneParent}>
-           <AssetRegisteryChartComp percentage="30%" categoryTitle="Cell Phone"/>
-           <AssetRegisteryChartComp percentage="34%" categoryTitle="Camera"/>
+           <AssetRegisteryChartComp percentage="30%" backgroundColor="#EC1A25" categoryTitle="Cell Phone"/>
+           <AssetRegisteryChartComp percentage="34%"  backgroundColor="#F9B91B" categoryTitle="Camera"/>
           </div>
           <div className={styles.cellphoneParent}>
-           <AssetRegisteryChartComp percentage="6%" categoryTitle="Screen"/>
-           <AssetRegisteryChartComp percentage="30%" categoryTitle="Printer"/>
+           <AssetRegisteryChartComp percentage="6%"  backgroundColor="#FF569A"  categoryTitle="Screen"/>
+           <AssetRegisteryChartComp percentage="30%"  backgroundColor="#252525"  categoryTitle="Printer"/>
           
           </div>
         </div>
