@@ -1,43 +1,43 @@
 .clients{
     display: flex;
-    margin: 0% 2%;
+    margin: 5% 2%;
     flex-direction: row;
     border-radius: 20px;
-    width: 50%;
-    height: 100%;
+    width: 233px;
+    height: 233px;
     align-items: flex-start;
     justify-content: flex-start;
     background-color: var(--color-lavenderblush);
 }
 .photography{
     display: flex;
-    margin: 0% 2%;
+    margin: 5% 2%;
     flex-direction: row;
     border-radius: 20px;
-    width: 50%;
-    height: 100%;
+    width: 233px;
+    height: 233px;
     align-items: flex-start;
     justify-content: flex-start;
     background-color: #FA77AC;
 }
 .videography{
     display: flex;
-    margin: 0% 2%;
+    margin: 5% 2%;
     flex-direction: row;
     border-radius: 20px;
-    width: 50%;
-    height: 100%;
+    width: 233px;
+    height: 233px;
     align-items: flex-start;
     justify-content: flex-start;
     background-color: #F2F2F2;
 }
 .revenue{
     display: flex;
-    margin: 0% 2%;
+    margin: 5% 2%;
     flex-direction: row;
     border-radius: 20px;
-    width: 50%;
-    height: 100%;
+    width: 233px;
+    height: 233px;
     align-items: flex-start;
     justify-content: flex-start;
     background-color: #D5629F;
@@ -93,12 +93,8 @@
 }
 
 @media screen and (max-width: 500px) {
-    .leftcontainer{
-      height: 210vh;
-    }
-    .cards{
-      height: 80vh;
-    } 
+    
+     
     .clientsParent{
       flex-direction: column;
     }
@@ -110,20 +106,14 @@
       grid-template-columns: auto;
       grid-gap: 10px;
     }
-    .clients{
+    /* .clients{
       width: 80%;
       margin: 10px 0px;
-    }
+    } */
   
   
   }
   @media screen and (max-width: 450px) {
-    .leftcontainer{
-      height: 210vh;
-    }
-    .cards{
-      height: 80vh;
-    } 
     .clientsParent{
       flex-direction: column;
     }
@@ -135,24 +125,10 @@
       grid-template-columns: auto;
       grid-gap: 10px;
     }
-    .clients{
+    /* .clients{
       width: 100%;
       margin: 10px 0px;
-    }
+    } */
   
   
   }
-  @media screen and (max-width: 400px) {
-    .leftcontainer{
-      height: 260vh;
-    }
-  
-  
-    .clientsGroup
-  {  
-    top: 0px;
-    left: 160px;
-    width: 86.75px;
-    height: 117.9px;
-  }
-}
