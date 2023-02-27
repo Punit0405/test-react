@@ -5,15 +5,34 @@ import styles from "./MusicSideComp.module.css"
 const MusicSideComp: FunctionComponent = () => {
     return (
         <>
-            <Container>
-                <Form>
-                    <Button variant="custom">Filters</Button>
-                    <Form.Check type="checkbox" label="Acoustic" />
-                    <Form.Check type="checkbox" label="Ambient" />
-                    <Form.Check type="checkbox" label="Blues" />
-                    <Form.Check type="checkbox" label="Children" />
-                </Form>
-            </Container>
+            <div className={styles.maincomp}>
+                <div className="overflow-auto">
+                    <Form>
+                        <button className={styles.leftDivButton}>
+                            <i className="fa-regular fa-house setcolorwhite"></i>
+                            <div className={styles.leftDivButtonTextWhite}>Filters</div>
+                        </button>
+                        <div className={styles.checkboxgroup}>
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Acoustic" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Ambient" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Blues" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Children" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Acoustic" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Ambient" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Blues" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Children" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Acoustic" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Ambient" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Blues" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Children" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Acoustic" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Ambient" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Blues" />
+                            <Form.Check type="checkbox" className={styles.singlecheckbox} label="Children" />
+                        </div>
+                    </Form>
+                </div>
+            </div>
         </>
     );
 };

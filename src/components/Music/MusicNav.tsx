@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Container, Form, Navbar, Offcanvas } from "react-bootstrap";
 import styles from "./MusicNav.module.css"
 
 const MusicNav: FunctionComponent = () => {
@@ -14,16 +14,16 @@ const MusicNav: FunctionComponent = () => {
                         aria-label="Search"
                     />
                     <Button variant="custom" className={styles.navbtnsort}>
-                        <p>Sort By</p>
-                        <i className="fa-regular fa-arrow-right-arrow-left"></i>
+                        <div className={styles.navname}>Sort By</div>
+                        <i className="fa-regular musicnavset fa-arrow-right-arrow-left"></i>
                     </Button>
                     <Button variant="custom" className={styles.navbtndown}>
-                        <p>Downloads</p>
-                        <i className="fa-sharp  fa-regular fa-arrow-down-to-line"></i>
+                        <div className={styles.navname}>Downloads</div>
+                        <i className="fa-regular musicnavset fa-arrow-down-to-line"></i>
                     </Button>
                     <Button variant="custom" className={styles.navbtncollection}>
-                        <p>Collections</p>
-                        <i className="fa-regular  fa-pen-to-square"></i>
+                        <div className={styles.navname}>Collections</div>
+                        <i className="fa-regular musicnavset fa-pen-to-square"></i>
                     </Button>
                 </Form>
             </div>

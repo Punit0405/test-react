@@ -225,6 +225,17 @@ a:-webkit-any-link {
   cursor: pointer;
 }
 
+.musicnavset {
+  /* margin: 6% 5%; */
+  /* font-size: 1rem; */
+}
+
+@media screen and (max-width: 1000px) {
+  .musicnavset {
+    margin: 6% 5%;
+    font-size: 0.8rem;
+  }
+}
 
 .setcolor {
   color: #ec1a25;
@@ -237,7 +248,8 @@ a:-webkit-any-link {
   color: white;
   margin-left: 2px;
   font-size: 1rem;
-  margin-top: 2%;
+  margin-top: -1%;
+  margin-right: 0px;
 }
 
 .sidebaricon {
@@ -477,7 +489,7 @@ a:-webkit-any-link {
   --br-11xl: 89.67px;
 }
 
-.addNewDeviceModal{
+.addNewDeviceModal {
   width: 550px;
   height: 650px;
   margin: auto auto;

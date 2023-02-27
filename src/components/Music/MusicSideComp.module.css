@@ -1,6 +1,60 @@
 .maincomp {
+    /* width: 15%; */
+    /* border: 2px solid red; */
+}
+
+
+
+.leftDivButton {
+    border: 0;
+    background-color: transparent;
+    padding: var(--padding-17xs) var(--padding-8xs);
     /* display: flex; */
-    /* justify-content: space-between; */
+    /* flex-direction: row; */
+    align-items: center;
+    /* justify-content: flex-start; */
+    width: 100%;
+    height: 16%;
+    display: flex;
+    /* flex-direction: row; */
+    /* box-sizing: border-box; */
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--gap-7xs);
+    background-color: var(--color-crimson);
+    color: white;
+    border-radius: 5px;
+}
+
+.checkboxgroup label {
+    margin-left: 10%;
+}
+
+.checkboxgroup input[type=checkbox] {
+    border: 2px solid rgb(233, 26, 68);
+}
+
+.checkboxgroup input[type=checkbox]:checked {
+    background-color: rgb(233, 26, 68);
+}
+
+.checkboxgroup {
+    margin: 10% 10%;
+}
+
+.singlecheckbox {
+    margin: 8% 0%;
+    font-weight: 450;
+    font-size: 1rem;
+    font-family: var(--font-poppins);
+}
+
+.leftDivButtonTextWhite {
+    font-size: var(--font-size-15xl);
+    font-weight: 500;
+    font-family: var(--font-poppins);
+    text-align: left;
+    color: white;
 }
 
 .navbtnsort,
