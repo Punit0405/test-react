@@ -11,7 +11,7 @@ function AddNewDeviceModal(props: any) {
     }
     const [deviceType , setDeviceType] = useState("");
     const deviceTypeOnChange = (e:any) =>{
-        console.log(e.target.value ,"helo")
+        setDeviceType(e.target.value);
     }
 
     return (
