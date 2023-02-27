@@ -18,14 +18,14 @@
 .details {
     margin-top: -3%;
     font-family: var(--font-poppins);
-    font-size: 0.9vw;
+    font-size: 0.9rem;
     font-weight: 400;
 }
 
 .title {
     margin-top: 4%;
     font-family: var(--font-poppins);
-    font-size: 1.3vw;
+    font-size: 1.3rem;
     font-weight: 500;
 }
 
@@ -38,7 +38,7 @@
 .collectioncount {
     text-align: right;
     font-family: var(--font-poppins);
-    font-size: 1vw;
+    font-size: 1rem;
     font-weight: 500;
 }
 
