@@ -5,8 +5,8 @@ import styles from "./MusicSideComp.module.css"
 const MusicSideComp: FunctionComponent = () => {
     return (
         <>
-            <div className={styles.maincomp}>
-                <div className="overflow-auto">
+            <div className="overflow-auto">
+                <div className={styles.maincomp}>
                     <Form>
                         <button className={styles.leftDivButton}>
                             <i className="fa-regular fa-house setcolorwhite"></i>

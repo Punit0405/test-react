@@ -1,0 +1,63 @@
+.music {
+    display: flex;
+    margin: 2% 0%;
+    border-radius: 10px;
+    justify-content: space-between;
+    text-align: center;
+    padding: 2% 2%;
+    font-family: var(--font-poppins);
+    font-size: 1rem;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.imageset {
+    object-fit: cover;
+}
+
+.maincomp {
+    padding: 2% 0%;
+}
+
+.srno {
+    width: 5%;
+}
+
+.likebtn {
+    width: 5%;
+}
+
+.songpic {
+    width: 3%;
+}
+
+.songname {
+    font-weight: 500;
+    width: 15%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.songauthor {
+    color: crimson;
+    width: 10%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.songslider {
+    width: 10%;
+}
+
+.songmin {
+    width: 5%;
+}
+
+.songdownload {
+    width: 5%;
+}
+
+.songmore {
+    width: 5%;
+}
