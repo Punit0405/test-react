@@ -220,7 +220,7 @@
 
 .customerLeftDiv {
   display: flex;
-  width: 55%;
+  width: 60%;
   justify-content: space-between;
 
 }
@@ -1415,6 +1415,13 @@
     padding: 0px 1%;
   }
 
+  .customerLeftDiv {
+    display: flex;
+    width: 45%;
+    justify-content: space-between;
+  
+  }
+
 
 
 
@@ -1437,6 +1444,13 @@
     grid-gap: 10px;
   }
 
+  .customerLeftDiv {
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+  
+  }
+
 
 
 }
@@ -1454,6 +1468,12 @@
   .recentCustomersGrid {
     grid-template-columns: auto;
     grid-gap: 10px;
+  }
+  .customerLeftDiv {
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+  
   }
 
 
