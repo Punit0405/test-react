@@ -1,6 +1,6 @@
 .collectionbtn {
     font-family: var(--font-poppins);
-    font-size: 0.9vw;
+    font-size: 0.9rem;
     font-weight: 400;
     width: 150px;
     background-color: crimson;
@@ -27,7 +27,7 @@
 
 .mainname {
     font-family: var(--font-poppins);
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 
@@ -47,7 +47,7 @@
     background-color: crimson;
     color: white;
     font-family: var(--font-poppins);
-    font-size: 0.9vw;
+    font-size: 0.9rem;
     font-weight: 400;
 }
 
@@ -59,7 +59,7 @@
 
 .nomedia {
     font-family: var(--font-poppins);
-    font-size: 1.1vw;
+    font-size: 1.1rem;
     font-weight: 400;
     color: rgb(88, 88, 88);
 }

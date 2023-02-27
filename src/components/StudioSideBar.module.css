@@ -44,7 +44,7 @@
     padding: 4% 0%;
     color: white;
     border: none;
-    font-size: 1.2vw;
+    font-size: 1.2rem;
 }
 
 .settingbtn {
@@ -55,7 +55,7 @@
 }
 
 .settings {
-    font-size: 1.3vw;
+    font-size: 1.3rem;
     font-weight: 400;
     color: black;
     margin: 7% 0%;
@@ -72,7 +72,7 @@
 .publishbtn {
     width: 100%;
     padding: 3%;
-    font-size: 1vw;
+    font-size: 1rem;
     margin-right: 2%;
     margin-top: 5%;
 }
@@ -88,7 +88,7 @@
 }
 
 .navbutton {
-    font-size: 1.1vw;
+    font-size: 1.1rem;
     font-weight: 400;
     background: none;
     padding-left: 0px;
@@ -102,7 +102,7 @@
 
 .datesection,
 .previewsection {
-    font-size: 1vw;
+    font-size: 1rem;
     color: black;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .sidemaintitle {
-    font-size: 1.7vw;
+    font-size: 1.7rem;
     font-weight: 550;
 }
 
