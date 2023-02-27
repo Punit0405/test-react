@@ -1,20 +1,17 @@
 import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstrap";
-import NavBarComponent from "../components/NavbarComponent";
-import TopBarComponent from "../components/TopBarComponent";
+import NavBarComponent from "./NavbarComponent";
+import TopBarComponent from "./TopBarComponent";
 import StudioSideBar from "./StudioSideBar";
-import styles from "./NavLayout.module.css"
+import styles from "./Layout.module.css"
 
 interface Props {
     children: JSX.Element;
-    activeTab:string;
 }
 
-const NavLayoutWithSideBar = ({ children ,activeTab }: Props) => {
+const LayoutWithSideBar = ({ children }: Props) => {
     return (
         <div className={styles.maincomp}>
             <Container fluid >
-                <TopBarComponent />
-                <NavBarComponent />
                 <Row>
                     <Col xl={3} lg={3} sm={3}>
                         <StudioSideBar />
@@ -28,4 +25,4 @@ const NavLayoutWithSideBar = ({ children ,activeTab }: Props) => {
     );
 };
 
-export default NavLayoutWithSideBar;
+export default LayoutWithSideBar;

@@ -20,6 +20,7 @@ import AssetRegistry from "./pages/AssetRegistry";
 import TopBarComponent from "./components/TopBarComponent";
 import NavBarComponent from "./components/NavbarComponent";
 import Constants from "./Config/Constants";
+import Music from "./pages/Music";
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
       <Route path="/setting/privacy" element={<PrivacySetting />} />
       <Route path="/setting/download" element={<DownloadStatus />} />
       <Route path="/asset-registry" element={<AssetRegistry/>} />
-      <Route path="/music" element={<Gallery />} />
+      <Route path="/music" element={<Music />} />
     </Routes>
     </>
   );

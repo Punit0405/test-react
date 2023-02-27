@@ -1,0 +1,28 @@
+.maincomp {
+    /* display: flex; */
+    /* justify-content: space-between; */
+}
+
+.navbtnsort,
+.navbtndown,
+.navbtncollection {
+    border: 2px solid red;
+    width: 20%;
+    margin-left: 5%;
+    padding: 0% 0%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.mainLoginInput::-webkit-input-placeholder {
+    font-family: FontAwesome;
+    font-weight: normal;
+    overflow: visible;
+    vertical-align: top;
+    display: inline-block !important;
+    text-align: right;
+    padding-left: 5px;
+    padding-top: 2px;
+    color: hsl(0, 0%, 0%);
+}

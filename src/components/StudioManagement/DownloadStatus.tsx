@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import Constants from "../../Config/Constants";
-import NavLayoutWithSideBar from "../NavLayoutWithSideBar";
+import LayoutWithSideBar from "../LayoutWithSideBar";
 import styles from "./DownloadStatus.module.css"
 
 const DownloadStatus: FunctionComponent = () => {
     return (
-        <NavLayoutWithSideBar activeTab={Constants.NavbarTabs.GALLARY}>
+        <LayoutWithSideBar>
             <>
                 <div className={styles.maincomponent}>
                     <Form>
@@ -35,7 +35,7 @@ const DownloadStatus: FunctionComponent = () => {
                     </Form>
                 </div>
             </>
-        </NavLayoutWithSideBar>
+        </LayoutWithSideBar>
     );
 };
 

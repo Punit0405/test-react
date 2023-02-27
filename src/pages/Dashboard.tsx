@@ -1,16 +1,18 @@
 import { FunctionComponent, useState } from "react";
 import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstrap";
 import PhotographyCard from "../components/Dashboard/PhotographyCard";
-import NavLayout from "../components/NavLayout";
+import NavLayout from "../components/Layout";
 import styles from "./Dashboard.module.css";
 import Calender from "react-calendar";
 import './Calender.css'
 import CardComponent from "../components/Dashboard/CardComponent";
 import Constants from "../Config/Constants";
+import Layout from "../components/Layout";
 const Dashboard: FunctionComponent = () => {
   const [date, setDate] = useState(new Date());
   const varial = "hello"
   return (
+    <Layout>
       <>
         <div className={styles.bottomsection} id="bottomSection">
           <section className={styles.leftcontainer}>
@@ -278,7 +280,8 @@ const Dashboard: FunctionComponent = () => {
           </section>
         </div>
       </>
-  
+    </Layout>
+
   );
 };
 
