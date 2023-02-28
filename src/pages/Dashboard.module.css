@@ -166,7 +166,7 @@
   margin-top: 3%;
   height: 250px;
   align-self: stretch;
-  /* padding: var(--padding-lg) 64px 0; */
+  padding: 0 21px 30px 0px;
   justify-content: flex-start;
   gap: var(--gap-md);
 }
@@ -1417,7 +1417,7 @@
 
   .customerLeftDiv {
     display: flex;
-    width: 45%;
+    width: 4%;
     justify-content: space-between;
   
   }

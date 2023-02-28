@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstrap";
+import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio } from "react-bootstrap";
 import PhotographyCard from "../components/Dashboard/PhotographyCard";
 import NavLayout from "../components/Layout";
 import styles from "./Dashboard.module.css";
@@ -19,12 +19,20 @@ const Dashboard: FunctionComponent = () => {
             <div className={styles.cardsParent}>
               <div className={styles.cards}>
                 <div className={styles.clientsParent}>
+                <Ratio aspectRatio="1x1">
                   <CardComponent classname="clients" topTitle="Clients" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg" />
+                 </Ratio>
+                 <Ratio aspectRatio="1x1">
                   <CardComponent classname="photography" topTitle="Photography" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg" />
+                  </Ratio>
                 </div>
                 <div className={styles.clientsParent}>
+                <Ratio aspectRatio="1x1">
                   <CardComponent classname="videography" topTitle="Videography" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg" />
+                  </Ratio>
+                  <Ratio aspectRatio="1x1">
                   <CardComponent classname="revenue" topTitle="Revenue" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg" />
+                  </Ratio>
                 </div>
               </div>
               <div className={styles.recentCustomersParent}>
