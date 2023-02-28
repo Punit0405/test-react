@@ -1,4 +1,6 @@
 import { FunctionComponent } from "react";
+import AudioPlayer from 'react-h5-audio-player';
+import ReactAudioPlayer from "react-audio-player";
 import { Image, Ratio } from "react-bootstrap";
 import styles from "./AllMusic.module.css"
 
@@ -112,6 +114,12 @@ const AllMusic: FunctionComponent = () => {
                     </div>
                 </div>
             </div>
+            <AudioPlayer
+                autoPlay
+                src="../../../song1.mp3"
+                onPlay={e => console.log("onPlay")}
+            // other props here
+            />
         </>
     );
 };

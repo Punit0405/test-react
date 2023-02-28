@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./global.css";
 import "./fontawesome/css/all.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-h5-audio-player/lib/styles.css';
 
 const container = document.getElementById("root");
 const root = createRoot(container!);

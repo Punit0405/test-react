@@ -21,6 +21,8 @@ import TopBarComponent from "./components/TopBarComponent";
 import NavBarComponent from "./components/NavbarComponent";
 import Constants from "./Config/Constants";
 import Music from "./pages/Music";
+import 'react-h5-audio-player/lib/styles.css';
+
 
 function App() {
   return (
