@@ -225,9 +225,50 @@ a:-webkit-any-link {
   cursor: pointer;
 }
 
-.musicnavset {
-  /* margin: 6% 5%; */
-  /* font-size: 1rem; */
+.allsongs .rhap_container,
+.rhap_container *:focus {
+  outline: none !important;
+  border: none !important;
+}
+
+.allsongs .rhap_progress-filled {
+  background-color: crimson !important;
+}
+
+.allsongs .rhap_progress-indicator {
+  height: 0px !important;
+  width: 0px !important;
+}
+
+.allsongs .rhap_container {
+  background-color: rgba(0, 0, 0, 0) !important;
+  padding: 0px 0px !important;
+  margin: 0px 0px !important;
+  box-shadow: none !important;
+  position: relative;
+  top: 0px !important;
+}
+
+.allsongs .rhap_total-time {
+  padding-left: 15%;
+}
+
+
+.allsongs .rhap_container svg {
+  display: none;
+}
+
+.allsongs .rhap_controls-section {
+  display: block;
+  width: 0%;
+}
+
+.allsongs .rhap_progress-section {
+  width: 100%;
+}
+
+.allsongs .rhap_main {
+  margin: 0px;
 }
 
 .musicicon {
