@@ -49,8 +49,7 @@ const AllMusic: FunctionComponent = () => {
                                     ]
                                 }
                                 // autoPlay
-                                src="../../../song1.mp3"
-                                onPlay={e => console.log("onPlay")}
+                                src="../../../song2.mp3"
                             />
                         </div>
                         <div className={styles.songdownload}>
@@ -263,7 +262,7 @@ const AllMusic: FunctionComponent = () => {
                 </div>
                 <AudioPlayer
                     autoPlay
-                    src="../../../song1.mp3"
+                    src="../../../song2.mp3"
                     onPlay={e => console.log("onPlay")}
                 />
             </div>
