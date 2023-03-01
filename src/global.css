@@ -282,6 +282,17 @@ a:-webkit-any-link {
 .mainsong .rhap_controls-section {
   /* border: 2px solid red; */
   margin-right: 10%;
+  /* margin: 1% 0%; */
+  margin-bottom: 1%;
+}
+
+.forwardicon {
+  /* height: 50%; */
+  font-size: 1.7rem;
+}
+
+.playicon {
+  font-size: 2.2rem;
 }
 
 .mainsong .rhap_progress-filled {
@@ -302,6 +313,10 @@ a:-webkit-any-link {
 }
 
 .hearticon {
+  color: crimson;
+}
+
+.musicplayericon {
   color: crimson;
 }
 

@@ -25,6 +25,7 @@
     bottom: 0;
     width: 80%;
     border-radius: 10px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .mainsongpic {
@@ -40,6 +41,7 @@
 .mainheading {
     /* padding: 2% 0%; */
     margin-left: 8%;
+    overflow: hidden;
 }
 
 .nextsong {
@@ -53,6 +55,15 @@
     color: crimson;
     font-weight: 600;
     margin-top: 5%;
+    white-space: nowrap;
+}
+
+.upnextheading {
+    font-family: var(--font-poppins);
+    font-size: 1.1rem;
+    color: crimson;
+    font-weight: 600;
+    margin-top: 5%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -60,13 +71,69 @@
 
 .subtitle {
     font-family: var(--font-poppins);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: black;
     font-weight: 350;
     margin-top: 5%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+/* .songname:hover {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+
+    -moz-animation: my-animation 15s linear infinite;
+    -webkit-animation: my-animation 15s linear infinite;
+    animation: my-animation 15s linear infinite;
+} */
+
+.maintitle {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+
+    -moz-animation: my-animation 15s linear infinite;
+    -webkit-animation: my-animation 15s linear infinite;
+    animation: my-animation 15s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+    from {
+        -moz-transform: translateX(100%);
+    }
+
+    to {
+        -moz-transform: translateX(-100%);
+    }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+    from {
+        -webkit-transform: translateX(100%);
+    }
+
+    to {
+        -webkit-transform: translateX(-100%);
+    }
+}
+
+@keyframes my-animation {
+    from {
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+
+    to {
+        -moz-transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
 }
 
 .mainimageset {

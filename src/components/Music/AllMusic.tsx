@@ -5,7 +5,10 @@ import { Image, Ratio } from "react-bootstrap";
 import styles from "./AllMusic.module.css"
 import { RHAP_UI } from "react-h5-audio-player/lib/constants";
 
-const playButton = <i className="fa-regular fa-circle-play"></i>
+const playButton = <i className="fa-sharp musicplayericon playicon fa-solid fa-circle-play"></i>
+const pauseButton = <i className="fa-sharp musicplayericon playicon fa-solid fa-circle-pause"></i>
+const forwardButton = <i className="fa-light musicplayericon forwardicon fa-forward"></i>
+const backwardButton = <i className="fa-light musicplayericon forwardicon fa-backward"></i>
 
 const AllMusic: FunctionComponent = () => {
     return (
@@ -22,7 +25,7 @@ const AllMusic: FunctionComponent = () => {
                                 <Image className={styles.imageset} src="../../../album.png" />
                             </Ratio>
                         </div>
-                        <div className={styles.songname}>Picture in The Sky</div>
+                        <div className={styles.songname}>Kesariya Tera Ishq Hai Piya </div>
                         <div className={styles.songauthor}>Francis Tyler</div>
                         <div className={styles.songslider}>
                             <AudioPlayer
@@ -665,7 +668,7 @@ const AllMusic: FunctionComponent = () => {
                 <div className="mainsong">
                     <div className={styles.mainmusic}>
                         <AudioPlayer
-                            // autoPlay
+                            autoPlay
                             layout="horizontal-reverse"
                             customVolumeControls={[]}
                             customAdditionalControls={[]}
@@ -676,10 +679,10 @@ const AllMusic: FunctionComponent = () => {
                                     </Ratio>
                                     <div className={styles.mainheading}>
                                         <div className={styles.maintitle}>
-                                            Moon Garzing
+                                            Kesariya Tera Ishq Hai Piya
                                         </div>
                                         <div className={styles.subtitle}>
-                                            Helen Stone
+                                            Arjit Singh
                                         </div>
                                     </div>
                                 </div>,
@@ -692,7 +695,7 @@ const AllMusic: FunctionComponent = () => {
                                     RHAP_UI.DURATION,
                                     <div className={styles.nextsong}>
                                         <div className={styles.mainheading}>
-                                            <div className={styles.maintitle}>
+                                            <div className={styles.upnextheading}>
                                                 Up Next
                                             </div>
                                             <div className={styles.subtitle}>
@@ -704,6 +707,9 @@ const AllMusic: FunctionComponent = () => {
                             }
                             customIcons={{
                                 play: playButton,
+                                pause: pauseButton,
+                                forward: forwardButton,
+                                rewind: backwardButton
                             }}
                             src="../../../song2.mp3"
                             onPlay={e => console.log("onPlay")}
