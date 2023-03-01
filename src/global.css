@@ -263,6 +263,8 @@ a:-webkit-any-link {
   width: 0%;
 }
 
+
+
 .allsongs .rhap_progress-section {
   width: 100%;
 }
@@ -275,6 +277,23 @@ a:-webkit-any-link {
   /* height: 80vh; */
   /* overflow-y: scroll; */
   padding: 0% 1%;
+}
+
+.mainsong .rhap_controls-section {
+  /* border: 2px solid red; */
+  margin-right: 10%;
+}
+
+.mainsong .rhap_progress-filled {
+  background-color: crimson !important;
+}
+
+.mainsong .rhap_progress-section {
+  margin-left: 10%;
+}
+
+.mainsong .rhap_progress-indicator {
+  background: crimson !important;
 }
 
 .musicicon {

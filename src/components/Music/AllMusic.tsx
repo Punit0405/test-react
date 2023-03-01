@@ -5,6 +5,8 @@ import { Image, Ratio } from "react-bootstrap";
 import styles from "./AllMusic.module.css"
 import { RHAP_UI } from "react-h5-audio-player/lib/constants";
 
+const playButton = <i className="fa-regular fa-circle-play"></i>
+
 const AllMusic: FunctionComponent = () => {
     return (
         <>
@@ -660,15 +662,53 @@ const AllMusic: FunctionComponent = () => {
                         </div>
                     </div>
                 </div>
-                <div className={styles.mainmusic}>
-                    <AudioPlayer
-                        // autoPlay
-                        layout="horizontal-reverse"
-                        customVolumeControls={[]}
-                        customAdditionalControls={[]}
-                        src="../../../song2.mp3"
-                        onPlay={e => console.log("onPlay")}
-                    />
+                <div className="mainsong">
+                    <div className={styles.mainmusic}>
+                        <AudioPlayer
+                            // autoPlay
+                            layout="horizontal-reverse"
+                            customVolumeControls={[]}
+                            customAdditionalControls={[]}
+                            customControlsSection={[
+                                <div className={styles.mainsongpic}>
+                                    <Ratio aspectRatio="1x1" className={styles.mainsongimg}>
+                                        <Image className={styles.mainimageset} src="../../../album.png" />
+                                    </Ratio>
+                                    <div className={styles.mainheading}>
+                                        <div className={styles.maintitle}>
+                                            Moon Garzing
+                                        </div>
+                                        <div className={styles.subtitle}>
+                                            Helen Stone
+                                        </div>
+                                    </div>
+                                </div>,
+                                RHAP_UI.MAIN_CONTROLS,
+                            ]}
+                            customProgressBarSection={
+                                [
+                                    RHAP_UI.CURRENT_TIME,
+                                    RHAP_UI.PROGRESS_BAR,
+                                    RHAP_UI.DURATION,
+                                    <div className={styles.nextsong}>
+                                        <div className={styles.mainheading}>
+                                            <div className={styles.maintitle}>
+                                                Up Next
+                                            </div>
+                                            <div className={styles.subtitle}>
+                                                Winnie Gardon
+                                            </div>
+                                        </div>
+                                    </div>,
+                                ]
+                            }
+                            CustomIcons={{
+                                play: playButton,
+                            }}
+                            src="../../../song2.mp3"
+                            onPlay={e => console.log("onPlay")}
+                        />
+                    </div>
                 </div>
             </div>
         </>
