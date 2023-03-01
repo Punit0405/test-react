@@ -271,6 +271,11 @@ a:-webkit-any-link {
   margin: 0px;
 }
 
+.allsongs{
+  height: 85vh;
+  overflow: scroll;
+}
+
 .musicicon {
   font-size: 1.3rem;
   /* margin-top: 3%; */
