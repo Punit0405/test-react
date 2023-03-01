@@ -274,6 +274,7 @@ a:-webkit-any-link {
 .allsongs{
   height: 85vh;
   overflow: scroll;
+  padding: 0% 1%;
 }
 
 .musicicon {
