@@ -1,7 +1,10 @@
 import { FunctionComponent, useState } from "react";
 import { Table } from "react-bootstrap";
+import AssetActiveComp from "./AssetActiveComp";
 import AssetNavBar from "./AssetNavBar";
+import AssetTableNameComp from "./AssetTableNameComp";
 import styles from "./DeviceList.module.css";
+import DeviceListRowComponent from "./DeviceListRowComponent";
 
 
 
@@ -11,7 +14,7 @@ const AssetDeviceList: FunctionComponent = () => {
       <AssetNavBar navTitle="My Devices" />
   
      <div className={styles.deviceListComp}>
-    <Table >
+    <Table  striped >
       <thead>
         <tr className={styles.tableHeading}>
           <td>File Name</td>
@@ -21,12 +24,15 @@ const AssetDeviceList: FunctionComponent = () => {
         </tr>
       </thead>
       <tbody>
-        <tr className={styles.tableData}>
-          <td>CamCo</td>
-          <td>camera</td>
-          <td>20 mins ago</td>
-          <td>Active</td>
-        </tr>
+        <DeviceListRowComponent deviceName="CamCo" deviceType="Camera" status="Active"  lastModified="20 mins ago"/>
+        <DeviceListRowComponent deviceName="Universe" deviceType="Screen" status="Lost"  lastModified="0 mins ago"/>
+        <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale"  lastModified="10 days ago"/>
+        <DeviceListRowComponent deviceName="CamCo" deviceType="Camera" status="Active"  lastModified="20 mins ago"/>
+        <DeviceListRowComponent deviceName="Universe" deviceType="Screen" status="Lost"  lastModified="0 mins ago"/>
+        <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale"  lastModified="10 days ago"/>
+        <DeviceListRowComponent deviceName="CamCo" deviceType="Camera" status="Active"  lastModified="20 mins ago"/>
+        <DeviceListRowComponent deviceName="Universe" deviceType="Screen" status="Lost"  lastModified="0 mins ago"/>
+        <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale"  lastModified="10 days ago"/>
       </tbody>
     </Table>
      </div>
