@@ -16,7 +16,35 @@
 
 .maincomp {
     padding: 2% 0%;
-    height: 100vh;
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+.mainmusic {
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    border-radius: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: crimson;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: crimson;
 }
 
 .srno {

@@ -271,9 +271,9 @@ a:-webkit-any-link {
   margin: 0px;
 }
 
-.allsongs{
-  height: 85vh;
-  overflow: scroll;
+.allsongs {
+  /* height: 80vh; */
+  /* overflow-y: scroll; */
   padding: 0% 1%;
 }
 

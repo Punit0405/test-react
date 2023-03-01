@@ -1,6 +1,9 @@
 .maincomp {
     /* width: 15%; */
     /* border: 2px solid red; */
+    height: 75vh;
+    padding-right: 4%;
+    overflow-y: scroll;
 }
 
 

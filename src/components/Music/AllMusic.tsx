@@ -660,11 +660,16 @@ const AllMusic: FunctionComponent = () => {
                         </div>
                     </div>
                 </div>
-                <AudioPlayer
-                    // autoPlay
-                    src="../../../song2.mp3"
-                    onPlay={e => console.log("onPlay")}
-                />
+                <div className={styles.mainmusic}>
+                    <AudioPlayer
+                        // autoPlay
+                        layout="horizontal-reverse"
+                        customVolumeControls={[]}
+                        customAdditionalControls={[]}
+                        src="../../../song2.mp3"
+                        onPlay={e => console.log("onPlay")}
+                    />
+                </div>
             </div>
         </>
     );
