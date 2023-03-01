@@ -702,7 +702,7 @@ const AllMusic: FunctionComponent = () => {
                                     </div>,
                                 ]
                             }
-                            CustomIcons={{
+                            customIcons={{
                                 play: playButton,
                             }}
                             src="../../../song2.mp3"
