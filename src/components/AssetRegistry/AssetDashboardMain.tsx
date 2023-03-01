@@ -54,7 +54,7 @@ const AssetDashboardMain: FunctionComponent = () => {
   };
   return (
     <section className={styles.rightcontainer}>
-      <AssetNavBar />
+      <AssetNavBar navTitle="Dashboard" />
       <div className={styles.cardssection}>
         <div className={styles.deviceCard}>
           <div className={styles.frameParent}>

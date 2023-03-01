@@ -5,6 +5,13 @@ import styles from "./AssetRegistry.module.css";
 import NavLayout from "../components/Layout";
 import Constants from "../Config/Constants";
 import Layout from "../components/Layout";
+import {
+  Routes,
+  Route,
+  useNavigationType,
+  useLocation,
+  Outlet,
+} from "react-router-dom";
 
 const AssetRegistry: FunctionComponent = () => {
   return (
@@ -13,7 +20,8 @@ const AssetRegistry: FunctionComponent = () => {
         <div className={styles.assetRegistry}>
           <section className={styles.bottomscreen}>
             <AssetLeftContainer />
-            <AssetDashboardMain />
+            <Outlet/>
+            
           </section>
         </div>
       </>

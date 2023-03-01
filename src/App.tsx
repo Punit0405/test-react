@@ -22,6 +22,8 @@ import NavBarComponent from "./components/NavbarComponent";
 import Constants from "./Config/Constants";
 import Music from "./pages/Music";
 import 'react-h5-audio-player/lib/styles.css';
+import AssetDeviceList from "./components/AssetRegistry/DeviceList";
+import AssetDashboardMain from "./components/AssetRegistry/AssetDashboardMain";
 
 
 function App() {
@@ -39,7 +41,10 @@ function App() {
       <Route path="/setting/collection-setting" element={<CollectionSetting />} />
       <Route path="/setting/privacy" element={<PrivacySetting />} />
       <Route path="/setting/download" element={<DownloadStatus />} />
-      <Route path="/asset-registry" element={<AssetRegistry/>} />
+      <Route path="/asset-registry" element={<AssetRegistry/>}>
+        <Route path="" element= {<AssetDashboardMain/>}></Route>
+        <Route path="device-list" element={<AssetDeviceList/>}></Route>
+      </Route>
       <Route path="/music" element={<Music />} />
     </Routes>
     </>

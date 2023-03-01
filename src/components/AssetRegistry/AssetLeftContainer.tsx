@@ -1,6 +1,7 @@
 import { FunctionComponent, useCallback } from "react";
 import styles from "./AssetLeftContainer.module.css";
 import $ from 'jquery';
+import { Link } from "react-router-dom";
 
 const AssetLeftContainer: FunctionComponent = () => {
   const onMyDevicesClick = useCallback(() => {
@@ -17,14 +18,21 @@ const AssetLeftContainer: FunctionComponent = () => {
       <div className={styles.leftDivCancel} onClick={hideSideBar}> <i className="fa-solid fa-xl fa-xmark"></i></div>
      
       <div className={styles.buttoncontainres}>
+  
         <button className={styles.leftDivButton}>
           <i className="fa-regular fa-house setcolorwhite"></i>
+          
           <div className={styles.leftDivButtonTextWhite}>Dashboard</div>
+          
         </button>
+     
         <button className={styles.leftDivButtonWithoutColor} onClick={onMyDevicesClick}>
           <i className="fa-light fa-envelope setcolor"></i>
+        <Link to="device-list">
           <div className={styles.leftDivButtonText}>My Devices</div>
+        </Link>
         </button>
+
         <button className={styles.leftDivButtonWithoutColor}>
           <i className="fa-regular fa-user setcolor"></i>
           <div className={styles.leftDivButtonText}>Get Cover</div>
