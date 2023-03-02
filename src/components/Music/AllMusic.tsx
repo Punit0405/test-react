@@ -18,7 +18,19 @@ const AllMusic: FunctionComponent = () => {
   const backwardButton = <i className="fa-light musicplayericon forwardicon fa-backward"></i>
     const showMusicPlayer = async ()=>{
         $("#musicPlayerComponent").css({bottom:'0%' , display:"block"});
-        console.log(playButtonref.current.click() , 'f')
+        playButtonref.current.click();
+        
+    }
+
+    const playingFunction = (e:any) =>{
+        const currentWidth = audioPlayer.current.progressBar.current.getAttribute('aria-valuenow');
+        const currentAudioPlayer : any  = document.getElementsByClassName("1audioplayer")[0].childNodes[1].childNodes[0].childNodes[0];
+        currentAudioPlayer.setAttribute('aria-valuenow' ,currentWidth)
+        const upperBar = currentAudioPlayer.childNodes[0].childNodes[0];
+        const lowerBar = currentAudioPlayer.childNodes[0].childNodes[1];
+        upperBar.style.left = `${currentWidth}%`
+        lowerBar.style.width = `${currentWidth}%` 
+
     }
 
     return (
@@ -39,6 +51,7 @@ const AllMusic: FunctionComponent = () => {
                         <div className={styles.songauthor}>Francis Tyler</div>
                         <div className={styles.songslider}>
                             <AudioPlayer
+                                className="1audioplayer"
                                 preload="metadata"
                                 showSkipControls={false}
                                 showJumpControls={false}
@@ -46,25 +59,12 @@ const AllMusic: FunctionComponent = () => {
                                 customAdditionalControls={[]}
                                 showDownloadProgress={false}
                                 layout="horizontal-reverse"
-                                // CustomIcons={{
-                                //     play: "<></>",
-                                //     pause: "<></>",
-                                //     rewind?: ReactNode,
-                                //     forward?: ReactNode,
-                                //     previous?: ReactNode,
-                                //     next?: ReactNode,
-                                //     loop?: ReactNode,
-                                //     loopOff?: ReactNode,
-                                //     volume?: ReactNode,
-                                //     volumeMute?: ReactNode,
-                                // }}
                                 customProgressBarSection={
                                     [
                                         RHAP_UI.PROGRESS_BAR,
                                         RHAP_UI.DURATION,
                                     ]
                                 }
-                                // autoPlay
                                 src="../../../song2.mp3"
                             />
                         </div>
@@ -117,6 +117,7 @@ const AllMusic: FunctionComponent = () => {
                                 // autoPlay
                                 src="../../../song1.mp3"
                                 onPlay={e => console.log("onPlay")}
+                                onPlaying={e => console.log("plyaing")}
                             />
                         </div>
                         <div className={styles.songdownload}>
@@ -167,6 +168,7 @@ const AllMusic: FunctionComponent = () => {
                                 // autoPlay
                                 src="../../../song1.mp3"
                                 onPlay={e => console.log("onPlay")}
+                                onListen={e=>console.log("hello")}
                             />
                         </div>
                         <div className={styles.songdownload}>
@@ -681,6 +683,7 @@ const AllMusic: FunctionComponent = () => {
                     <div id="musicPlayerComponent"  className={styles.mainmusic}>
                         <AudioPlayer
                             layout="horizontal-reverse"
+                            ref={audioPlayer as any}
                             customVolumeControls={[]}
                             customAdditionalControls={[]}
                             customControlsSection={[
@@ -725,6 +728,7 @@ const AllMusic: FunctionComponent = () => {
                             }}
                             src="../../../song2.mp3"
                             onPlay={e => console.log("onPlay")}
+                            onListen={playingFunction}
                         />
                     </div>
                 </div>
