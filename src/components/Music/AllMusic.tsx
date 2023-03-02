@@ -1,21 +1,31 @@
-import { FunctionComponent } from "react";
+import { createRef, FunctionComponent, useRef } from "react";
 import AudioPlayer from 'react-h5-audio-player';
 import ReactAudioPlayer from "react-audio-player";
 import { Image, Ratio } from "react-bootstrap";
 import styles from "./AllMusic.module.css"
 import { RHAP_UI } from "react-h5-audio-player/lib/constants";
+import $ from 'jquery';
 
-const playButton = <i className="fa-sharp musicplayericon playicon fa-solid fa-circle-play"></i>
-const pauseButton = <i className="fa-sharp musicplayericon playicon fa-solid fa-circle-pause"></i>
-const forwardButton = <i className="fa-light musicplayericon forwardicon fa-forward"></i>
-const backwardButton = <i className="fa-light musicplayericon forwardicon fa-backward"></i>
+
 
 const AllMusic: FunctionComponent = () => {
+    // const audioPlayer = useRef()
+    const audioPlayer : any =  createRef();
+    const playButtonref : any =  createRef();
+    const playButton = <i ref={playButtonref} className="fa-sharp musicplayericon playicon fa-solid fa-circle-play"></i>
+   const pauseButton = <i className="fa-sharp musicplayericon playicon fa-solid fa-circle-pause"></i>
+   const forwardButton = <i className="fa-light musicplayericon forwardicon fa-forward"></i>
+  const backwardButton = <i className="fa-light musicplayericon forwardicon fa-backward"></i>
+    const showMusicPlayer = async ()=>{
+        $("#musicPlayerComponent").css({bottom:'0%' , display:"block"});
+        console.log(playButtonref.current.click() , 'f')
+    }
+
     return (
         <>
             <div className={styles.maincomp}>
                 <div className="allsongs">
-                    <div className={styles.music}>
+                    <div className={styles.music} onClick={showMusicPlayer}>
                         <div className={styles.srno}>1</div>
                         <div className={styles.likebtn}>
                             <i className="fa-regular musicicon hearticon fa-heart"></i>
@@ -29,6 +39,7 @@ const AllMusic: FunctionComponent = () => {
                         <div className={styles.songauthor}>Francis Tyler</div>
                         <div className={styles.songslider}>
                             <AudioPlayer
+                                preload="metadata"
                                 showSkipControls={false}
                                 showJumpControls={false}
                                 customVolumeControls={[]}
@@ -78,6 +89,7 @@ const AllMusic: FunctionComponent = () => {
                         <div className={styles.songauthor}>Francis Tyler</div>
                         <div className={styles.songslider}>
                             <AudioPlayer
+                                ref={audioPlayer as any}
                                 showSkipControls={false}
                                 showJumpControls={false}
                                 customVolumeControls={[]}
@@ -666,9 +678,8 @@ const AllMusic: FunctionComponent = () => {
                     </div>
                 </div>
                 <div className="mainsong">
-                    <div className={styles.mainmusic}>
+                    <div id="musicPlayerComponent"  className={styles.mainmusic}>
                         <AudioPlayer
-                            autoPlay
                             layout="horizontal-reverse"
                             customVolumeControls={[]}
                             customAdditionalControls={[]}
@@ -688,6 +699,7 @@ const AllMusic: FunctionComponent = () => {
                                 </div>,
                                 RHAP_UI.MAIN_CONTROLS,
                             ]}
+                            
                             customProgressBarSection={
                                 [
                                     RHAP_UI.CURRENT_TIME,

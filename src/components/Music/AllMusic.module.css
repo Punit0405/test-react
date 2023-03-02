@@ -9,6 +9,9 @@
     font-size: 1rem;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
 }
+.music:hover{
+    cursor: pointer;
+}
 
 .imageset {
     object-fit: cover;
@@ -22,9 +25,10 @@
 
 .mainmusic {
     position: fixed;
-    bottom: 0;
+    bottom: -100%;
     width: 80%;
     border-radius: 10px;
+    transition: 0.4s;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
