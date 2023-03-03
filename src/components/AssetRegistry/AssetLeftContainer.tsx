@@ -21,8 +21,10 @@ const AssetLeftContainer: FunctionComponent = () => {
   
         <button className={styles.leftDivButton}>
           <i className="fa-regular fa-house setcolorwhite"></i>
+          <Link to="">
           
           <div className={styles.leftDivButtonTextWhite}>Dashboard</div>
+          </Link>
           
         </button>
      
@@ -39,7 +41,9 @@ const AssetLeftContainer: FunctionComponent = () => {
         </button>
         <button className={styles.leftDivButtonWithoutColor}>
           <i className="fa-regular fa-circle-dollar setcolor"></i>
+          <Link to="for-sale">
           <div className={styles.leftDivButtonText}>Products For Sale</div>
+          </Link>
         </button>
         <button className={styles.leftDivButtonWithoutColor}>
           <i className="fa-regular fa-grid-2 setcolor"></i>

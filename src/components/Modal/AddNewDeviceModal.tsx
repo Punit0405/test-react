@@ -56,6 +56,16 @@ function AddNewDeviceModal(props: any) {
                             />
                         </InputGroup>
                     </div>
+                    <div className={styles.formcomp}>
+                        <Form.Label className={styles.formlabel}>Device Amount</Form.Label>
+                        <InputGroup className="mb-3">
+                            <Form.Control
+                                type="input"
+                                name="deviceAmount"
+                                placeholder="Device Amount"
+                            />
+                        </InputGroup>
+                    </div>
                     <div className={styles.buttondiv}>
                         <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>
                         <Button className={styles.createbtn} onClick={createCollection} variant="custom">Add</Button>
