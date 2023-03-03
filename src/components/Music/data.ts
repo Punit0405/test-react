@@ -19,7 +19,7 @@ export const musicList = [
         name:'Saami Saami',
         singer: "Sunidhi Chauhan",
         duration:"03:47",
-        musicClass:"music-23014"
+        musicClass:"music-23015"
 
     },
     {

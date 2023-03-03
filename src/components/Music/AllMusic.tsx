@@ -15,22 +15,26 @@ const AllMusic: FunctionComponent = () => {
     const [currentSongName, setCurrentSongName] = useState("");
     const [currentSingerName, setCurrentSingerName] = useState("");
     const [currentMusicSrc, setCurrentMusicSrc] = useState("");
+    const [currentMusicClassName, setCurrentMusicClassName] = useState("");
     const audioPlayer : any =  createRef();
     const playButtonref : any =  createRef();
     const playButton = <i ref={playButtonref} className="fa-sharp musicplayericon playicon fa-solid fa-circle-play"></i>
    const pauseButton = <i className="fa-sharp musicplayericon playicon fa-solid fa-circle-pause"></i>
    const forwardButton = <i className="fa-light musicplayericon forwardicon fa-forward"></i>
   const backwardButton = <i className="fa-light musicplayericon forwardicon fa-backward"></i>
-    const showMusicPlayer = async (e:any)=>{
-        const currentSongSrc= e.target.childNodes[5].childNodes[0].childNodes[0].getAttribute("src");
+    const showMusicPlayer = async (e:any,song:any)=>{
+        const currentSongSrc= song.src;
         setCurrentMusicSrc(currentSongSrc);
+        setCurrentSingerName(song.singer);
+        setCurrentSongName(song.name);
+        setCurrentMusicClassName(song.musicClass);
         $("#musicPlayerComponent").css({bottom:'0%' , display:"block"});
         playButtonref.current.click();
     }
 
     const playingFunction = (e:any) =>{
         const currentWidth = audioPlayer.current.progressBar.current.getAttribute('aria-valuenow');
-        const currentAudioPlayer : any  = document.getElementsByClassName("1audioplayer")[0].childNodes[1].childNodes[0].childNodes[0];
+        const currentAudioPlayer : any  = document.getElementsByClassName(currentMusicClassName)[0].childNodes[1].childNodes[0].childNodes[0];
         currentAudioPlayer.setAttribute('aria-valuenow' ,currentWidth)
         const upperBar = currentAudioPlayer.childNodes[0].childNodes[0];
         const lowerBar = currentAudioPlayer.childNodes[0].childNodes[1];
@@ -45,7 +49,7 @@ const AllMusic: FunctionComponent = () => {
                 <div className="allsongs">
                   {musicList.map((song)=>(
                    <MusicListComponent
-                   showMusicPlayer={showMusicPlayer} 
+                   showMusicPlayer={(e:any)=>showMusicPlayer(e,song)} 
                    singerName={song.singer}
                    songName={song.name}
                    musiclistClassname={song.musicClass}
@@ -70,10 +74,10 @@ const AllMusic: FunctionComponent = () => {
                                     </Ratio>
                                     <div className={styles.mainheading}>
                                         <div className={styles.maintitle}>
-                                            Kesariya Tera Ishq Hai Piya
+                                            {currentSongName}
                                         </div>
                                         <div className={styles.subtitle}>
-                                            Arjit Singh
+                                            {currentSingerName}
                                         </div>
                                     </div>
                                 </div>,
