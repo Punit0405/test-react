@@ -11,7 +11,6 @@ import "./global.css";
 import "./fontawesome/css/all.css"
 import Gallery from "./pages/Gallery";
 import AddCollection from "./components/Gallery/AddCollection";
-import DragMedia from "./components/Gallery/DragMedia";
 import CollectionSetting from "./components/StudioManagement/CollectionSetting";
 import PrivacySetting from "./components/StudioManagement/PrivacySetting";
 import DownloadStatus from "./components/StudioManagement/DownloadStatus";
@@ -27,6 +26,9 @@ import AssetDashboardMain from "./components/AssetRegistry/AssetDashboardMain";
 import ForSaleList from "./components/AssetRegistry/ForSaleList";
 import MusicDownloads from "./pages/MusicDownloads";
 import MusicDownloadList from "./pages/MusicDownloadList";
+import DragMedia from "./components/Gallery/DragMedia";
+import MusicCollectionList from "./pages/MusicCollectionList";
+import MusicCollections from "./pages/MusicCollections";
 
 
 function App() {
@@ -51,7 +53,9 @@ function App() {
       </Route>
       <Route path="/music" element={<Music />} />
       <Route path="/music/downloads" element={<MusicDownloadList/>} />
+      <Route path="/music/collections" element={<MusicCollectionList/>} />
       <Route path="/music/downloads/:id" element={<MusicDownloads/>} />
+      <Route path="/music/collections/:id" element={<MusicCollections/>} />
     </Routes>
     </>
   );

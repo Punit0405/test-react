@@ -4,14 +4,11 @@ import styles from "./MusicGrid.module.css";
 import MusicGridCard from "./MusicGridCard";
 
 
-const MusicGrid: FunctionComponent = () => {
+const MusicCollectionGrid: FunctionComponent = () => {
     return (
         <div className={styles.musicGridMain}>
-        <div className={styles.collectionCount}><p>4 Collections</p></div>
+        <div className={styles.collectionCount}><p>2 Collections</p></div>
         <Row className={styles.maincomp}>
-           <MusicGridCard/>
-           <MusicGridCard/>
-           <MusicGridCard/>
            <MusicGridCard/>
            <MusicGridCard/>
         </Row>
@@ -19,4 +16,4 @@ const MusicGrid: FunctionComponent = () => {
     );
 };
 
-export default MusicGrid;
+export default MusicCollectionGrid;

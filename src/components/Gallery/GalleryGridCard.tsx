@@ -1,4 +1,4 @@
-import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio } from "react-bootstrap";
+import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio, NavDropdown } from "react-bootstrap";
 import styles from "./GalleryGrid.module.css";
 const GalleryGridCard = () => {
     return (
@@ -9,7 +9,18 @@ const GalleryGridCard = () => {
                 </Ratio>
                 <div className={styles.outertitle}>
                     <p className={styles.title}>Tebogo Wedding</p>
-                    <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
+                    <NavDropdown
+                        title={<i className="fa-regular fa-ellipsis setcolorgallery galleryicon"></i>} className={styles.navdropdown} id="collasible-nav-dropdown gallerydropdown">
+                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">
+                            Another action
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4">
+                            Separated link
+                        </NavDropdown.Item>
+                    </NavDropdown>
                 </div>
                 <div className={styles.outerdetails}>
                     <p className={styles.details}>January 6th,2023</p>

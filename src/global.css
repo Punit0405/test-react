@@ -208,6 +208,14 @@ body {
   border: 0;
 }
 
+
+.nav-tabs .nav-link {
+    margin-bottom: none;
+    border: none;
+    border-top-left-radius: none;
+    border-top-right-radius: none;
+}
+
 .nav.nav-tabs .nav-link.active {
   /* border: 2px solid red; */
   border: none;
@@ -334,6 +342,12 @@ a:-webkit-any-link {
   margin-top: 2%;
 }
 
+.setcolorgallery {
+  color: #ec1a25;
+  font-size: 1.1rem;
+  margin-top: 20%;
+}
+
 .setcolorwhite {
   color: white;
   margin-left: 2px;
@@ -372,6 +386,10 @@ a:-webkit-any-link {
   font-size: 1.2rem;
   color: black;
   width: 30px;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
 }
 
 :root {
