@@ -11,7 +11,7 @@ const StudioSideBar: FunctionComponent = () => {
             <div className={styles.titleedit}>
                 <p className={styles.sidemaintitle}>Tebogo Wedding</p>
                 <i className="fa-regular fa-pen sidebaricon"></i>
-            </div>
+            </div> 
             <div className={styles.datepreview}>
                 <p className={styles.datesection}>
                     January 6th, 2023

@@ -1,13 +1,14 @@
 import { FunctionComponent } from "react";
 import { Button, Container, Form, Navbar, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import styles from "./MusicNav.module.css"
+import styles from "./FullMusicNav.module.css";
 
-const MusicNav: FunctionComponent = () => {
+const FullMusicNav: FunctionComponent = () => {
     return (
         <>
             <div className={styles.maincomp}>
-                <Form className="d-flex">
+                <p className={styles.navTitle}>Downloads</p>
+                <Form className={styles.musicNavForm}>
                     <Form.Control
                         type="search"
                         placeholder="Search Music"
@@ -37,4 +38,4 @@ const MusicNav: FunctionComponent = () => {
     );
 };
 
-export default MusicNav;
+export default FullMusicNav;

@@ -25,6 +25,8 @@ import 'react-h5-audio-player/lib/styles.css';
 import AssetDeviceList from "./components/AssetRegistry/DeviceList";
 import AssetDashboardMain from "./components/AssetRegistry/AssetDashboardMain";
 import ForSaleList from "./components/AssetRegistry/ForSaleList";
+import MusicDownloads from "./pages/MusicDownloads";
+import MusicDownloadList from "./pages/MusicDownloadList";
 
 
 function App() {
@@ -48,6 +50,8 @@ function App() {
         <Route path="for-sale" element={<ForSaleList/>}></Route>
       </Route>
       <Route path="/music" element={<Music />} />
+      <Route path="/music/downloads" element={<MusicDownloadList/>} />
+      <Route path="/music/downloads/:id" element={<MusicDownloads/>} />
     </Routes>
     </>
   );
