@@ -1,6 +1,7 @@
 import {  Col ,  Row } from "react-bootstrap";
 import Layout from "../components/Layout";
 import AllMusic from "../components/Music/AllMusic";
+import DonwloadMusicList from "../components/Music/DownloadMusicList";
 import MusicLeftBarComponent from "../components/Music/MusicLeftBarComponent";
 import MusicNav from "../components/Music/MusicNav";
 import MusicSideComp from "../components/Music/MusicSideComp";
@@ -14,7 +15,7 @@ const MusicDownloads = () => {
                     </Col>
                     <Col md={9} lg={9} >
                         <MusicNav />
-                        <AllMusic />
+                         <DonwloadMusicList/>
                     </Col>
                 </Row>
             </>

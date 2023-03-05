@@ -19,13 +19,13 @@ const MusicNav: FunctionComponent = () => {
                         <div className={styles.navname}>Sort By</div>
                         <i className="fa-regular musicnavset fa-arrow-right-arrow-left"></i>
                     </Button>
-                    <Link to="downloads" className={styles.navbtndown}>
+                    <Link to="/music/downloads" className={styles.navbtndown}>
                     <Button variant="custom" className={styles.navbtndown}>
                         <div className={styles.navname}>Downloads</div>
                         <i className="fa-regular musicnavset fa-arrow-down-to-line"></i>
                     </Button>
                     </Link>
-                    <Link to="collections" className={styles.navbtncollection}>
+                    <Link to="/music/collections" className={styles.navbtncollection}>
                     <Button variant="custom" className={styles.navbtncollection}>
                         <div className={styles.navname}>Collections</div>
                         <i className="fa-regular musicnavset fa-pen-to-square"></i>
