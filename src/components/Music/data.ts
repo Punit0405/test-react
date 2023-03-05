@@ -8,7 +8,7 @@ export const musicList = [
     },
     {
         src:"https://pagalnew.com/download128/20264",
-        name:'Javed Ali',
+        name:'Srivali',
         singer: "Javed Ali",
         duration:"03:41",
         musicClass:"music-20264"
