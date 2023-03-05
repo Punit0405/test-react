@@ -1,6 +1,6 @@
 .collectionbtn {
     font-family: var(--font-poppins);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 400;
     width: 150px;
     background-color: crimson;
@@ -20,12 +20,13 @@
 
 .mainname {
     font-family: var(--font-poppins);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 500;
+    top: 0;
 }
 
 .maincomp {
-    margin: 1% 0%;
+    margin: 0% 0%;
 }
 
 .collectionbtn:hover,

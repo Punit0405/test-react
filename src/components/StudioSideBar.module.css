@@ -33,7 +33,7 @@
     display: inline;
     /* margin-left: 10px; */
     margin-top: 0px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     /* border: 2px solid red; */
 }
 
@@ -56,7 +56,7 @@
 }
 
 .settings {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 400;
     color: black;
     margin: 7% 0%;
@@ -73,7 +73,7 @@
 .publishbtn {
     width: 100%;
     padding: 3%;
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-right: 2%;
     margin-top: 5%;
 }
@@ -103,7 +103,7 @@
 
 .datesection,
 .previewsection {
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: black;
 }
 
@@ -120,10 +120,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    background-color: grey;
+    background-color: rgb(190, 190, 190, 0.7);
     width: 100%;
     text-align: center;
     padding: 4% 0%;
+    font-size: 0.7rem;
 }
 
 .previewsection {}
@@ -131,12 +132,12 @@
 .maincomponent {
     /* border: 2px solid red; */
     font-family: var(--font-poppins);
-    padding: 0% 2%;
+    padding: 0% 0%;
     margin: 4% 0%;
 }
 
 .sidemaintitle {
-    font-size: 1.7rem;
+    font-size: 1.1rem;
     font-weight: 550;
 }
 

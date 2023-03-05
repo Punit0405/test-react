@@ -13,10 +13,10 @@ const LayoutWithSideBar = ({ children }: Props) => {
         <div className={styles.maincomp}>
             <Container fluid >
                 <Row>
-                    <Col xl={3} lg={3} sm={3}>
+                    <Col lg={2} md={3} sm={3}>
                         <StudioSideBar />
                     </Col>
-                    <Col xl={9} lg={9} sm={9}>
+                    <Col lg={10} md={9} sm={9}>
                         {children}
                     </Col>
                 </Row>

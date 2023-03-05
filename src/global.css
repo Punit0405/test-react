@@ -343,7 +343,7 @@ a:-webkit-any-link {
 }
 
 .sidebaricon {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: var(--color-crimson);
   margin-top: 4%;
 }
@@ -369,7 +369,7 @@ a:-webkit-any-link {
 
 .setcolorsidesettingset {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: black;
   width: 30px;
 }
