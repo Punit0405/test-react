@@ -28,7 +28,7 @@ const AllMusic: FunctionComponent = () => {
         setCurrentSingerName(song.singer);
         setCurrentSongName(song.name);
         setCurrentMusicClassName(song.musicClass);
-        $("#musicPlayerComponent").css({bottom:'0%' , display:"block"});
+        $("#musicPlayerComponent").css({bottom:'0%' , display:"block",right:"1%"});
         playButtonref.current.click();
     }
 

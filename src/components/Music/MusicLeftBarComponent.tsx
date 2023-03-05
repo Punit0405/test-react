@@ -3,11 +3,13 @@ import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio } from "react-b
 import { Link } from "react-router-dom";
 import styles from "./MusicLeftBarComponent.module.css";
 
-
-const MusicLeftBarComponent: FunctionComponent = () => {
+interface Props {
+    leftBarType : string
+} 
+const MusicLeftBarComponent = ({leftBarType}:Props) => {
     return (
         <div className={styles.maincomponent}>
-            Downloads
+            {leftBarType}
            
                <Ratio aspectRatio="1x1">
                 <div className={styles.coverinside}>
