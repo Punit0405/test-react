@@ -334,6 +334,12 @@ a:-webkit-any-link {
   margin-top: 2%;
 }
 
+.setcolorgallery {
+  color: #ec1a25;
+  font-size: 1.1rem;
+  margin-top: 20%;
+}
+
 .setcolorwhite {
   color: white;
   margin-left: 2px;
@@ -372,6 +378,10 @@ a:-webkit-any-link {
   font-size: 1.2rem;
   color: black;
   width: 30px;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
 }
 
 :root {

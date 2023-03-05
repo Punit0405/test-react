@@ -26,6 +26,10 @@
     font-weight: 400;
 }
 
+.navdropdown {
+    margin-top: 4%;
+}
+
 .title {
     margin-top: 4%;
     font-family: var(--font-poppins);
