@@ -24,6 +24,22 @@
     font-family: var(--font-poppins);
     font-size: 0.7rem;
     font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.navtags {
+    width: 60%;
+    margin-right: 10%;
+    font-family: poppins;
+    font-size: 0.9rem;
+}
+
+.navicons {
+    display: flex;
+    justify-content: left;
+    margin: 4% 2%;
 }
 
 .navdropdown {

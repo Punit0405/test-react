@@ -11,14 +11,23 @@ const GalleryGridCard = () => {
                     <p className={styles.title}>Tebogo Wedding</p>
                     <NavDropdown
                         title={<i className="fa-regular fa-ellipsis setcolorgallery galleryicon"></i>} className={styles.navdropdown} id="collasible-nav-dropdown gallerydropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
-                            Another action
+                        <NavDropdown.Item href="#action/3.1">
+                            <div className={styles.navicons}>
+                                <i className="fa-sharp fa-regular navicons fa-pencil"></i>
+                                <div className={styles.navtags}>Quick Edit</div>
+                            </div>
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                            Separated link
+                        <NavDropdown.Item href="#action/3.2">
+                            <div className={styles.navicons}>
+                                <i className="fa-solid navicons fa-link"></i>
+                                <div className={styles.navtags}>Get Direct Link</div>
+                            </div>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">
+                            <div className={styles.navicons}>
+                                <i className="fa-solid navicons fa-trash-can"></i>
+                                <div className={styles.navtags}>Delete Collection</div>
+                            </div>
                         </NavDropdown.Item>
                     </NavDropdown>
                 </div>

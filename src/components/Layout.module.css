@@ -2,3 +2,19 @@
     margin: 0% 2%;
     /* padding: 0% 15%; */
 }
+
+.imageset {
+    padding: 0% 5%;
+}
+
+.singleimage {
+    margin: 2% 0%;
+    height: 40vh;
+    width: cover;
+    /* border: 2px solid red; */
+}
+
+.imgset {
+    display: flex;
+    justify-content: space-between;
+}
