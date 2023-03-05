@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstrap";
+import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio } from "react-bootstrap";
 import styles from "./GalleryGrid.module.css";
 
 
@@ -8,9 +8,9 @@ const GalleryGrid: FunctionComponent = () => {
         <Row className={styles.maincomp}>
             <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
                 <div className={styles.imgblock}>
-                    <div className={styles.imgdiv}>
-                        <Image  className={styles.myimage} src="../../../sample2.jpg" />
-                    </div>
+                    <Ratio aspectRatio='16x9'>
+                        <Image className={styles.myimage} src="../../../sample2.jpg" />
+                    </Ratio>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>
                         <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
@@ -25,10 +25,9 @@ const GalleryGrid: FunctionComponent = () => {
             </Col>
             <Col xl={3} lg={4} sm={6} >
                 <div className={styles.imgblock}>
-
-                    <div className={styles.imgdiv}>
+                    <Ratio aspectRatio='16x9'>
                         <Image className={styles.myimage} src="../../../sample.jpeg" />
-                    </div>
+                    </Ratio>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>
                         <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
@@ -43,9 +42,9 @@ const GalleryGrid: FunctionComponent = () => {
             </Col>
             <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
                 <div className={styles.imgblock}>
-                    <div className={styles.imgdiv}>
-                        <Image  className={styles.myimage} src="../../../sample2.jpg" />
-                    </div>
+                    <Ratio aspectRatio='16x9'>
+                        <Image className={styles.myimage} src="../../../sample2.jpg" />
+                    </Ratio>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>
                         <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
@@ -60,10 +59,9 @@ const GalleryGrid: FunctionComponent = () => {
             </Col>
             <Col xl={3} lg={4} sm={6} >
                 <div className={styles.imgblock}>
-
-                    <div className={styles.imgdiv}>
+                    <Ratio aspectRatio='16x9'>
                         <Image className={styles.myimage} src="../../../sample.jpeg" />
-                    </div>
+                    </Ratio>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>
                         <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
@@ -76,11 +74,12 @@ const GalleryGrid: FunctionComponent = () => {
                     </div>
                 </div>
             </Col>
+
             <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
                 <div className={styles.imgblock}>
-                    <div className={styles.imgdiv}>
-                        <Image  className={styles.myimage} src="../../../sample2.jpg" />
-                    </div>
+                    <Ratio aspectRatio='16x9'>
+                        <Image className={styles.myimage} src="../../../sample2.jpg" />
+                    </Ratio>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>
                         <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
@@ -95,10 +94,9 @@ const GalleryGrid: FunctionComponent = () => {
             </Col>
             <Col xl={3} lg={4} sm={6} >
                 <div className={styles.imgblock}>
-
-                    <div className={styles.imgdiv}>
+                    <Ratio aspectRatio='16x9'>
                         <Image className={styles.myimage} src="../../../sample.jpeg" />
-                    </div>
+                    </Ratio>
                     <div className={styles.outertitle}>
                         <p className={styles.title}>Tebogo Wedding</p>
                         <i className="fa-regular fa-ellipsis setcolor galleryicon"></i>
@@ -110,8 +108,7 @@ const GalleryGrid: FunctionComponent = () => {
                         <p className={styles.details}>Publised</p>
                     </div>
                 </div>
-            </Col>
-        </Row>
+            </Col>        </Row>
     );
 };
 

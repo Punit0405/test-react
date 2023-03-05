@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstrap";
+import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 import styles from "./StudioSideBar.module.css";
@@ -11,7 +11,7 @@ const StudioSideBar: FunctionComponent = () => {
             <div className={styles.titleedit}>
                 <p className={styles.sidemaintitle}>Tebogo Wedding</p>
                 <i className="fa-regular fa-pen sidebaricon"></i>
-            </div> 
+            </div>
             <div className={styles.datepreview}>
                 <p className={styles.datesection}>
                     January 6th, 2023
@@ -21,8 +21,13 @@ const StudioSideBar: FunctionComponent = () => {
                 </p>
             </div>
             <div className={styles.covermain}>
-                <div className={styles.coverinside}>
-                    <button className={styles.coverbtn}>Change Cover</button>
+                <div className={styles.coverinside1}>
+                    <Ratio aspectRatio='16x9'>
+                        <div>
+                            <Image className={styles.myimage} src="../../sample2.jpg" alt="../../imagegrey.jpg" />
+                            <div className={styles.textimage}>Change Cover</div>
+                        </div>
+                    </Ratio>
                 </div>
             </div>
             <div className={styles.settingtab}>
