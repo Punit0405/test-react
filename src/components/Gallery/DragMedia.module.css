@@ -1,0 +1,80 @@
+.collectionbtn {
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 150px;
+    background-color: crimson;
+    color: white;
+    margin: 0% 2%;
+}
+
+.collectionbtn:hover,
+.dragbtn:hover {
+    background-color: crimson;
+    color: white;
+}
+
+.outermain {
+    /* margin: 5% 0%; */
+    /* margin-top: 4%; */
+}
+
+.collectionbtn:hover,
+.dragbtn:hover {
+    background-color: crimson;
+    color: white;
+}
+
+.dragbtn {
+    background-color: crimson;
+    color: white;
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.searchbtn {
+    margin: -3% 3%;
+}
+
+.mainname {
+    font-family: var(--font-poppins);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.maincomp {
+    margin: 1% 0%;
+}
+
+.collectioncount {}
+
+.outermain {
+    margin: 0% 0%;
+}
+
+.addmedia {
+    text-align: center;
+    padding: 20% 0%;
+    border: 2ps solid red;
+}
+
+.nomedia {
+    font-family: var(--font-poppins);
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: rgb(88, 88, 88);
+}
+
+@media screen and (min-width: 1500px) {
+
+    .collectionbtn {
+        font-family: var(--font-poppins);
+        font-size: 0.9rem;
+        font-weight: 400;
+        width: 300px;
+        background-color: crimson;
+        color: white;
+    }
+
+}
