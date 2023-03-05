@@ -3,11 +3,16 @@ import { Button, Container, Form, Navbar, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./FullMusicNav.module.css";
 
-const FullMusicNav: FunctionComponent = () => {
+
+interface Props {
+    navTitle : string
+}
+
+const FullMusicNav = ({navTitle}:Props) => {
     return (
         <>
             <div className={styles.maincomp}>
-                <p className={styles.navTitle}>Downloads</p>
+                <p className={styles.navTitle}>{navTitle}</p>
                 <Form className={styles.musicNavForm}>
                     <Form.Control
                         type="search"

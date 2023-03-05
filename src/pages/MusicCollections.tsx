@@ -5,16 +5,16 @@ import DonwloadMusicList from "../components/Music/DownloadMusicList";
 import MusicLeftBarComponent from "../components/Music/MusicLeftBarComponent";
 import MusicNav from "../components/Music/MusicNav";
 import MusicSideComp from "../components/Music/MusicSideComp";
-const MusicDownloads = () => {
+const MusicCollections = () => {
   return (
     <Layout>
             <>
                 <Row>
                     <Col md={3} lg={3} >
-                        <MusicLeftBarComponent leftBarType="Downloads"/>
+                        <MusicLeftBarComponent leftBarType="Collections"/>
                     </Col>
                     <Col md={9} lg={9} >
-                        <MusicNav />
+                         <MusicNav />
                          <DonwloadMusicList/>
                     </Col>
                 </Row>
@@ -23,4 +23,4 @@ const MusicDownloads = () => {
   )
 }
 
-export default MusicDownloads
+export default MusicCollections;
