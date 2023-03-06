@@ -18,3 +18,16 @@
     display: flex;
     justify-content: space-between;
 }
+
+
+.gridClassPunit{
+    columns: 4;
+    column-gap: 1%;
+    
+}
+
+.singleimagePunit {
+    margin: 2% 0%;
+    break-inside: avoid;
+
+}

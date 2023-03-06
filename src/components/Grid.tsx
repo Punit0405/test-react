@@ -39,6 +39,58 @@ const Grid = () => {
                     </Col>
                 </Row>
             </Container>
+
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <h1>Punit's Grid</h1>
+
+            <div className={styles.gridClassPunit}>
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../sample2.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images11.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images16.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid   src="../../images16.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../sample2.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images11.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images16.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid   src="../../images16.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../sample2.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images11.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images16.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
+            <Image className={styles.singleimagePunit} fluid   src="../../images16.jpg" />
+            </div>
+
         </div>
     );
 };
