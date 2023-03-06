@@ -37,7 +37,13 @@ function CreateCollectionModal(props: any) {
                     </div>
                     <div className={styles.buttondiv}>
                         <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>
-                        <Button className={styles.createbtn} onClick={createCollection} variant="custom">Create</Button>
+                        {
+                            props.createNew ?
+                                <Button className={styles.createbtn} onClick={createCollection} variant="custom">Create</Button> :
+                                <Button className={styles.createbtn} onClick={createCollection} variant="custom">Save</Button>
+                        }
+
+
                     </div>
 
                 </Form>

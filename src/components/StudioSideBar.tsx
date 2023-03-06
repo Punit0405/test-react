@@ -1,16 +1,20 @@
 import { FunctionComponent } from "react";
+import { useState } from "react";
 import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
+import CreateCollectionModal from "./Modal/CreateCollectionModal";
 import styles from "./StudioSideBar.module.css";
 
 
 const StudioSideBar: FunctionComponent = () => {
+    const [modalShow, setModalShow] = useState(false);
+
     return (
         <div className={styles.maincomponent}>
             <div className={styles.titleedit}>
                 <p className={styles.sidemaintitle}>Tebogo Wedding</p>
-                <i className="fa-regular fa-pen sidebaricon"></i>
+                <i className="fa-regular fa-pen sidebaricon" onClick={() => setModalShow(true)}></i>
             </div>
             <div className={styles.datepreview}>
                 <p className={styles.datesection}>
@@ -68,6 +72,11 @@ const StudioSideBar: FunctionComponent = () => {
                     <button className={styles.publishbtn}>Publish</button>
                 </p>
             </div>
+            <CreateCollectionModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                createNew={false}
+            />
         </div>
     );
 };

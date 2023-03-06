@@ -29,6 +29,7 @@ function GalleryNav() {
                 <CreateCollectionModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
+                    createNew={true}
                 />
             </Navbar>
         </>
