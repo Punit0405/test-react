@@ -35,7 +35,47 @@
 .collectioncount {}
 
 .outermain {
-    margin: 2% 0%;
+    margin: 0% 0%;
+    display: flex;
+    justify-content: left;
+    overflow: hidden;
+}
+
+.imgcontainer {
+    /* border: 2px solid red; */
+    height: 158px;
+    width: 100px;
+}
+
+.imgblock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 0px;
+    height: 158px;
+    width: 102px;
+}
+
+.imgdiv {
+    text-align: center;
+    padding: 2% 2%;
+    height: 120px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding: 2% 2%; */
+}
+
+.outerimg {
+    /* background: black; */
+    margin: 2% 1%;
+    padding: 0px 1px;
+    border: 1px solid rgb(219, 219, 219);
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
 }
 
 .addmedia {
@@ -85,9 +125,8 @@
 }
 
 .imgdiv {
-    height: 100px;
+    /* height: 100px; */
     overflow: hidden;
-    margin: 2% 0%;
 }
 
 .myimage {

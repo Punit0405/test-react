@@ -355,6 +355,11 @@ a:-webkit-any-link {
   margin-top: 20%;
 }
 
+.uploadcolor {
+  color: #ec1a25;
+  font-size: 1.2rem;
+}
+
 .setcolorwhite {
   color: white;
   margin-left: 2px;

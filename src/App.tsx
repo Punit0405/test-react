@@ -31,6 +31,7 @@ import MusicCollectionList from "./pages/MusicCollectionList";
 import MusicCollections from "./pages/MusicCollections";
 import Grid from "./components/Grid";
 import Grid1 from "./components/Grid1";
+import Collection from "./components/Gallery/Collection";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/studiomanagement" element={<Gallery />} />
         <Route path="/gallery/newcollection" element={<AddCollection />} />
+        <Route path="/gallery/collection" element={<Collection />} />
         <Route path="/gallery/addcollection" element={<DragMedia />} />
         <Route path="/gallery/grid" element={<Grid />} />
         <Route path="/setting/collection-setting" element={<CollectionSetting />} />
