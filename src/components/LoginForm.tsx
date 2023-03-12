@@ -1,11 +1,12 @@
 import { FunctionComponent, useCallback } from "react";
 import { Container, Form, Image } from "react-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 import { useState } from 'react';
 import { Formik } from "formik";
 import { loginValidations } from "../Utils/validations";
 import AuthService from "../api/auth/auth";
-import { STATUS_CODE, VALIDATIONS } from "../Utils/constants";
+import { STATUS_CODE, VALIDATIONS, AUTH_TOKEN } from "../Utils/constants";
 import Loader from "./Loader/Loader";
 import { NotificationWithIcon } from "../Utils/helper";
 
@@ -16,6 +17,8 @@ let formInitialValues = {
 
 const LoginForm: FunctionComponent = () => {
 
+  const navigate = useNavigate();
+
   const [loader, setLoader] = useState<boolean>(false);
 
   const handleSubmit = async (values: any) => {
@@ -23,16 +26,15 @@ const LoginForm: FunctionComponent = () => {
     try {
       const loginRes = await AuthService.postLoginDetail(values)
       if (loginRes && loginRes?.code === STATUS_CODE.SUCCESS) {
-        console.log("success====================");
         setLoader(false);
+        localStorage.setItem(AUTH_TOKEN, loginRes?.result?.token);
         NotificationWithIcon("success", "Login successful")
+        navigate('/');
       }
     } catch (err: any) {
       setLoader(false);
-      console.log(err?.data?.error?.message, '------------err--------');
       NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
     }
-
   }
 
   return (

@@ -29,3 +29,16 @@ export const NotificationWithIcon = (
         });
     }
 };
+
+export const getUserToken = () => {
+    const { AUTH_TOKEN } = Constants;
+    return localStorage.getItem(AUTH_TOKEN);
+};
+
+export const isUserLoggedIn = () => {
+    const token = getUserToken();
+    if (token) {
+        return true;
+    }
+    return false;
+};

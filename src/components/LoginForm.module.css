@@ -175,6 +175,14 @@
   color: var(--color-crimson);
 }
 
+input[type=checkbox] {}
+
+input[type=checkbox]:checked {
+  border: 2px solid rgb(233, 26, 68);
+  background-color: rgb(233, 26, 68);
+  color: rgb(233, 26, 68);
+}
+
 .artboard134x81Parent {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.01);
   display: flex;

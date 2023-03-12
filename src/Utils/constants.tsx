@@ -51,6 +51,8 @@ export const VALIDATIONS = Object.freeze({
     SOMETHING_WENT_WRONG: "Something went wrong",
 });
 
+export const AUTH_TOKEN = "accessToken";
+
 export const STATUS_CODE = {
     SUCCESS: 200
 }

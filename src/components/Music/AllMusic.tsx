@@ -16,30 +16,30 @@ const AllMusic: FunctionComponent = () => {
     const [currentSingerName, setCurrentSingerName] = useState("");
     const [currentMusicSrc, setCurrentMusicSrc] = useState("");
     const [currentMusicClassName, setCurrentMusicClassName] = useState("");
-    const audioPlayer : any =  createRef();
-    const playButtonref : any =  createRef();
+    const audioPlayer: any = createRef();
+    const playButtonref: any = createRef();
     const playButton = <i ref={playButtonref} className="fa-sharp musicplayericon playicon fa-solid fa-circle-play"></i>
-   const pauseButton = <i className="fa-sharp musicplayericon playicon fa-solid fa-circle-pause"></i>
-   const forwardButton = <i className="fa-light musicplayericon forwardicon fa-forward"></i>
-  const backwardButton = <i className="fa-light musicplayericon forwardicon fa-backward"></i>
-    const showMusicPlayer = async (e:any,song:any)=>{
-        const currentSongSrc= song.src;
+    const pauseButton = <i className="fa-sharp musicplayericon playicon fa-solid fa-circle-pause"></i>
+    const forwardButton = <i className="fa-light musicplayericon forwardicon fa-forward"></i>
+    const backwardButton = <i className="fa-light musicplayericon forwardicon fa-backward"></i>
+    const showMusicPlayer = async (e: any, song: any) => {
+        const currentSongSrc = song.src;
         setCurrentMusicSrc(currentSongSrc);
         setCurrentSingerName(song.singer);
         setCurrentSongName(song.name);
         setCurrentMusicClassName(song.musicClass);
-        $("#musicPlayerComponent").css({bottom:'0%' , display:"block",right:"1%"});
+        $("#musicPlayerComponent").css({ bottom: '0%', display: "block", right: "1%" });
         playButtonref.current.click();
     }
 
-    const playingFunction = (e:any) =>{
+    const playingFunction = (e: any) => {
         const currentWidth = audioPlayer.current.progressBar.current.getAttribute('aria-valuenow');
-        const currentAudioPlayer : any  = document.getElementsByClassName(currentMusicClassName)[0].childNodes[1].childNodes[0].childNodes[0];
-        currentAudioPlayer.setAttribute('aria-valuenow' ,currentWidth)
+        const currentAudioPlayer: any = document.getElementsByClassName(currentMusicClassName)[0].childNodes[1].childNodes[0].childNodes[0];
+        currentAudioPlayer.setAttribute('aria-valuenow', currentWidth)
         const upperBar = currentAudioPlayer.childNodes[0].childNodes[0];
         const lowerBar = currentAudioPlayer.childNodes[0].childNodes[1];
         upperBar.style.left = `${currentWidth}%`
-        lowerBar.style.width = `${currentWidth}%` 
+        lowerBar.style.width = `${currentWidth}%`
 
     }
 
@@ -47,21 +47,21 @@ const AllMusic: FunctionComponent = () => {
         <>
             <div className={styles.maincomp}>
                 <div className="allsongs">
-                  {musicList.map((song)=>(
-                   <MusicListComponent
-                   showMusicPlayer={(e:any)=>showMusicPlayer(e,song)} 
-                   singerName={song.singer}
-                   songName={song.name}
-                   musiclistClassname={song.musicClass}
-                   musicSrc={song.src}
-                   />
+                    {musicList.map((song) => (
+                        <MusicListComponent
+                            showMusicPlayer={(e: any) => showMusicPlayer(e, song)}
+                            singerName={song.singer}
+                            songName={song.name}
+                            musiclistClassname={song.musicClass}
+                            musicSrc={song.src}
+                        />
 
-                  ))}
-                  
-                
+                    ))}
+
+
                 </div>
                 <div className="mainsong">
-                    <div id="musicPlayerComponent"  className={styles.mainmusic}>
+                    <div id="musicPlayerComponent" className={styles.mainmusic}>
                         <AudioPlayer
                             layout="horizontal-reverse"
                             ref={audioPlayer as any}
@@ -83,7 +83,7 @@ const AllMusic: FunctionComponent = () => {
                                 </div>,
                                 RHAP_UI.MAIN_CONTROLS,
                             ]}
-                            
+
                             customProgressBarSection={
                                 [
                                     RHAP_UI.CURRENT_TIME,
