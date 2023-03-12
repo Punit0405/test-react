@@ -12,22 +12,12 @@ import { getUserPassword, NotificationWithIcon } from "../Utils/helper";
 
 
 const LoginForm: FunctionComponent = () => {
+  const initialValue = getUserPassword()
 
   let formInitialValues = {
-    email: "",
-    password: "",
+    email:initialValue?.email as string,
+    password: initialValue?.password as string,
   }
-
-  useEffect(() => {
-    const initialValue = getUserPassword()
-    if (initialValue?.email && initialValue?.password) {
-      console.log("--------in----------");
-      formInitialValues.email = initialValue?.email
-      formInitialValues.password = initialValue?.password
-      console.log(formInitialValues, '----formInitialValues-------');
-    }
-  }, []);
-
   const navigate = useNavigate();
 
   const [loader, setLoader] = useState<boolean>(false);
@@ -36,6 +26,7 @@ const LoginForm: FunctionComponent = () => {
   const handleSubmit = async (values: any) => {
 
     if (checked) {
+      console.log("helo")
       localStorage.setItem("email", String(values.email));
       localStorage.setItem("password", String(values.password));
     }
