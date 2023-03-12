@@ -64,7 +64,7 @@ const LoginForm: FunctionComponent = () => {
         {({
           handleSubmit,
           handleChange,
-          values,
+          values = { formInitialValues },
           touched,
           isValid,
           errors,
