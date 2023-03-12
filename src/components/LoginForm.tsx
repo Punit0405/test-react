@@ -2,26 +2,43 @@ import { FunctionComponent, useCallback } from "react";
 import { Container, Form, Image } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Formik } from "formik";
 import { loginValidations } from "../Utils/validations";
 import AuthService from "../api/auth/auth";
 import { STATUS_CODE, VALIDATIONS, AUTH_TOKEN } from "../Utils/constants";
 import Loader from "./Loader/Loader";
-import { NotificationWithIcon } from "../Utils/helper";
+import { getUserPassword, NotificationWithIcon } from "../Utils/helper";
 
-let formInitialValues = {
-  email: "",
-  password: "",
-}
 
 const LoginForm: FunctionComponent = () => {
+
+  let formInitialValues = {
+    email: "",
+    password: "",
+  }
+
+  useEffect(() => {
+    const initialValue = getUserPassword()
+    if (initialValue?.email && initialValue?.password) {
+      console.log("--------in----------");
+      formInitialValues.email = initialValue?.email
+      formInitialValues.password = initialValue?.password
+      console.log(formInitialValues, '----formInitialValues-------');
+    }
+  }, []);
 
   const navigate = useNavigate();
 
   const [loader, setLoader] = useState<boolean>(false);
+  const [checked, setChecked] = useState(false);
 
   const handleSubmit = async (values: any) => {
+
+    if (checked) {
+      localStorage.setItem("email", String(values.email));
+      localStorage.setItem("password", String(values.password));
+    }
     setLoader(true);
     try {
       const loginRes = await AuthService.postLoginDetail(values)
@@ -95,7 +112,9 @@ const LoginForm: FunctionComponent = () => {
               className={styles.rememberMe}
               type={"checkbox"}
               id={`default-${"checkbox"}`}
+              checked={checked}
               label={`Remember me`}
+              onChange={() => { setChecked(!checked) }}
             />
             <Form.Label className={styles.lostPassword}>Lost Password</Form.Label>
             <button className={styles.buttonChild} type="submit">Login</button>

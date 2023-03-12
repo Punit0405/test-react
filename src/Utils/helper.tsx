@@ -42,3 +42,13 @@ export const isUserLoggedIn = () => {
     }
     return false;
 };
+
+export const getUserPassword = () => {
+    let email: string | null = ""
+    let password: string | null = ""
+    if (localStorage.getItem("email") && localStorage.getItem("password")) {
+        email = localStorage.getItem("email") ? localStorage.getItem("email") : "";
+        password = localStorage.getItem("password") ? localStorage.getItem("password") : "";
+    }
+    return { email, password }
+}
