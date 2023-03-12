@@ -11,4 +11,13 @@ const loginValidations = Yup.object().shape({
         .required(Constants.VALIDATIONS.PASSWORD_REQUIRED)
 });
 
-export { loginValidations }
+const collectionValidations = Yup.object().shape({
+    name: Yup.string()
+        .trim()
+        .required(Constants.VALIDATIONS.NAME_REQUIRED),
+    eventDate: Yup.string()
+        .trim()
+        .required(Constants.VALIDATIONS.DATE_REQUIRED)
+});
+
+export { loginValidations, collectionValidations }

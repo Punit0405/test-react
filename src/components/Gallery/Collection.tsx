@@ -1,98 +1,48 @@
-import { FunctionComponent } from "react";
-import { Button, Container, Image, Row, Nav, NavItem, Navbar, Form } from "react-bootstrap";
+import { FunctionComponent, useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import CollectionService from "../../api/Collection/collection";
+import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
 import LayoutWithSideBar from "../LayoutWithSideBar";
-import StudioSideBar from "../StudioSideBar";
+import Loader from "../Loader/Loader";
 import AddPhotosNav from "./AddPhotosNav";
 import styles from "./Collection.module.css";
+import CollectionView from "./CollectionView";
 
 
 const Collection: FunctionComponent = () => {
+
+    const { collectionId } = useParams()
+    const [loader, setLoader] = useState(true);
+    const [collection, setCollection] = useState([]);
+
+    const getCollectionList = async () => {
+        try {
+            if (collectionId) {
+                const res = await CollectionService.getCollectionById(collectionId as string)
+                if (res && res?.code === STATUS_CODE.SUCCESS) {
+                    setCollection(res?.result)
+                    setLoader(false);
+                }
+            }
+        } catch (err: any) {
+            setLoader(false);
+            NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+        }
+    }
+
+    useEffect(() => {
+        getCollectionList();
+    }, [])
+
     return (
         <LayoutWithSideBar>
             <>
+                {loader && <Loader />}
                 <Container fluid >
                     <AddPhotosNav />
-                    <div className={styles.maincomp}>
-                        <div className={styles.totalmedia}>
-                            <p className={styles.totalcount}>Photos | 10</p>
-                            <p className={styles.totalcount}>Videos | 09</p>
-                        </div>
-                        <div className={styles.outermain}>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div>
-                                        <i className="fa-light fa-arrows-up-down-left-right"></i>
-                                    </div>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images11.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images12.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images13.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images14.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images15.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images16.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images16.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images13.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images11.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.outerimg}>
-                                <div className={styles.imgblock}>
-                                    <div className={styles.imgdiv}>
-                                        <Image className={styles.myimage} src="../../../images12.jpg" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <CollectionView />
                 </Container>
             </>
         </LayoutWithSideBar>

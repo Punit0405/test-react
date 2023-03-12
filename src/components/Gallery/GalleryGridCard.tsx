@@ -1,18 +1,31 @@
 import { useState } from "react";
 import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio, NavDropdown } from "react-bootstrap";
 import CreateCollectionModal from "../Modal/CreateCollectionModal";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./GalleryGrid.module.css";
-const GalleryGridCard = () => {
+import Moment from "react-moment";
+import 'moment-timezone';
+
+const GalleryGridCard = ({ collectionData }: any) => {
+
     const [modalShow, setModalShow] = useState(false);
+
+    console.log(collectionData, '-----collectionData------------');
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/gallery/collection/${collectionData.id}`)
+    }
 
     return (
         <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
             <div className={styles.imgblock}>
-                <Ratio aspectRatio='16x9'>
+                <Ratio aspectRatio='16x9' onClick={handleClick} className={styles.imgdivpoint}>
                     <Image className={styles.myimage} src="../../../sample2.jpg" />
                 </Ratio>
                 <div className={styles.outertitle}>
-                    <p className={styles.title}>Tebogo Wedding</p>
+                    <p className={styles.title}>{collectionData.name}</p>
                     <NavDropdown
                         title={<i className="fa-regular fa-ellipsis setcolorgallery galleryicon"></i>} className={styles.navdropdown} id="collasible-nav-dropdown gallerydropdown">
                         <NavDropdown.Item onClick={() => setModalShow(true)} >
@@ -36,16 +49,23 @@ const GalleryGridCard = () => {
                     </NavDropdown>
                 </div>
                 <div className={styles.outerdetails}>
-                    <p className={styles.details}>January 6th,2023</p>
+                    <p className={styles.details}>
+                        <Moment format="MMMM  Do,YYYY">{collectionData.eventDate}</Moment>
+                    </p>
                     <p className={styles.details}>230 photos</p>
                     <p className={styles.details}>1 videos</p>
-                    <p className={styles.details}>Publised</p>
+                    <p className={styles.details}>{
+                        collectionData && collectionData?.status === "UNPUBLISH" ? "Unpublish" : "Published"
+                    }</p>
                 </div>
             </div>
             <CreateCollectionModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 createNew={false}
+                id={collectionData.id}
+                name={collectionData.name}
+                eventDate={collectionData.eventDate}
             />
         </Col>
     )

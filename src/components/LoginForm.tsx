@@ -24,9 +24,7 @@ const LoginForm: FunctionComponent = () => {
   const [checked, setChecked] = useState(false);
 
   const handleSubmit = async (values: any) => {
-
     if (checked) {
-      console.log("helo")
       localStorage.setItem("email", String(values.email));
       localStorage.setItem("password", String(values.password));
     }
@@ -55,7 +53,7 @@ const LoginForm: FunctionComponent = () => {
         {({
           handleSubmit,
           handleChange,
-          values = { formInitialValues },
+          values,
           touched,
           isValid,
           errors,
