@@ -120,11 +120,6 @@
   border: none;
 }
 
-.button,
-.login {
-  /* position: absolute; */
-}
-
 .button {
   border: 0;
   padding: var(--padding-md);
@@ -174,8 +169,6 @@
   font-weight: 500;
   color: var(--color-crimson);
 }
-
-input[type=checkbox] {}
 
 input[type=checkbox]:checked {
   border: 2px solid rgb(233, 26, 68);
