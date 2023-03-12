@@ -28,7 +28,7 @@ const LoginForm: FunctionComponent = () => {
         NotificationWithIcon("success", "Login successful")
       }
     } catch (err: any) {
-      // setLoader(false);
+      setLoader(false);
       console.log(err?.data?.error?.message, '------------err--------');
       NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
     }
@@ -37,7 +37,7 @@ const LoginForm: FunctionComponent = () => {
 
   return (
     <>
-      {true && <Loader />}
+      {loader && <Loader />}
       <Formik
         initialValues={formInitialValues}
         onSubmit={handleSubmit}
