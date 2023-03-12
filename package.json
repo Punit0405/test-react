@@ -7,6 +7,8 @@
         "@aws-sdk/lib-storage": "^3.282.0",
         "@aws-sdk/node-http-handler": "^3.282.0",
         "@aws-sdk/xhr-http-handler": "^3.282.0",
+        "@emotion/react": "^11.10.6",
+        "@emotion/styled": "^11.10.6",
         "@mui/material": "^5.11.12",
         "@testing-library/jest-dom": "^5.16.1",
         "@testing-library/react": "^13.3.0",

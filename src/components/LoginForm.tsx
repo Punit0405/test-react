@@ -37,7 +37,7 @@ const LoginForm: FunctionComponent = () => {
 
   return (
     <>
-      {loader && <Loader />}
+      {true && <Loader />}
       <Formik
         initialValues={formInitialValues}
         onSubmit={handleSubmit}

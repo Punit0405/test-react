@@ -233,6 +233,11 @@ a:-webkit-any-link {
   cursor: pointer;
 }
 
+.ant-spin-dot-item{
+  background-color: #ec1a25 !important;
+  font-size: 2rem !important;
+}
+
 .allsongs .rhap_container,
 .rhap_container *:focus {
   outline: none !important;

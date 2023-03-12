@@ -5,14 +5,13 @@ import { Backdrop } from '@mui/material';
 const Loader = () => {
     return (
         <Backdrop
-            sx={{ color: '#fff', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}
+            sx={{ color: '#EC1A25', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}
             open={true}
         >
-            <Space direction="vertical" style={{ width: '100%' }}>
-                <Spin tip="Loading" size="large">
-                    <div className="content" />
+                <Spin style={{color:"#EC1A25" , background:"red"  }} size="large">
+                    <div style={{color:"#EC1A25" , background:"red" }} className="content" />
                 </Spin>
-            </Space>
+            
         </Backdrop>
     );
 };
