@@ -5,13 +5,18 @@
   /* height: 679px; */
   /* flex-shrink: 0; */
   margin-bottom: 0%;
+  width: fit-content;
+  margin-bottom: 1px;
+  padding-bottom: 1px;
 }
 
-.frame141 {
-  border-radius: 37px;
-  /* width: 365px; */
-  /* height: 649px; */
+.outdiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
+
+.frame141 {}
 
 .login {
   position: relative;
@@ -20,7 +25,8 @@
   /* height: 800px; */
   display: flex;
   flex-direction: row;
-  padding: 2% 5%;
+  /* padding: 0% 0%; */
+  margin-top: 3%;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;

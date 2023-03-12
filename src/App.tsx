@@ -32,35 +32,15 @@ import MusicCollections from "./pages/MusicCollections";
 import Grid from "./components/Grid";
 import Grid1 from "./components/Grid1";
 import Collection from "./components/Gallery/Collection";
+import RoutesAll from "./RoutesAll";
 
 
 function App() {
   return (
     <>
-      <TopBarComponent />
-      <NavBarComponent />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/studiomanagement" element={<Gallery />} />
-        <Route path="/gallery/newcollection" element={<AddCollection />} />
-        <Route path="/gallery/collection" element={<Collection />} />
-        <Route path="/gallery/addcollection" element={<DragMedia />} />
-        <Route path="/gallery/grid" element={<Grid />} />
-        <Route path="/setting/collection-setting" element={<CollectionSetting />} />
-        <Route path="/setting/privacy" element={<PrivacySetting />} />
-        <Route path="/setting/download" element={<DownloadStatus />} />
-        <Route path="/asset-registry" element={<AssetRegistry />}>
-          <Route path="" element={<AssetDashboardMain />}></Route>
-          <Route path="device-list" element={<AssetDeviceList />}></Route>
-          <Route path="for-sale" element={<ForSaleList />}></Route>
-        </Route>
-        <Route path="/music" element={<Music />} />
-        <Route path="/music/downloads" element={<MusicDownloadList />} />
-        <Route path="/music/collections" element={<MusicCollectionList />} />
-        <Route path="/music/downloads/:id" element={<MusicDownloads />} />
-        <Route path="/music/collections/:id" element={<MusicCollections />} />
+        <Route path="/*" element={<RoutesAll />} />
       </Routes>
     </>
   );

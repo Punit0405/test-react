@@ -1,42 +1,112 @@
 import { FunctionComponent, useCallback } from "react";
 import { Container, Form, Image } from "react-bootstrap";
 import styles from "./LoginForm.module.css";
+import { useState } from 'react';
+import { Formik } from "formik";
+import { loginValidations } from "../Utils/validations";
+import AuthService from "../api/auth/auth";
+import { STATUS_CODE, VALIDATIONS } from "../Utils/constants";
+import Loader from "./Loader/Loader";
+import { NotificationWithIcon } from "../Utils/helper";
+
+let formInitialValues = {
+  email: "",
+  password: "",
+}
 
 const LoginForm: FunctionComponent = () => {
 
+  const [loader, setLoader] = useState<boolean>(false);
+
+  const handleSubmit = async (values: any) => {
+    setLoader(true);
+    try {
+      const loginRes = await AuthService.postLoginDetail(values)
+      if (loginRes && loginRes?.code === STATUS_CODE.SUCCESS) {
+        console.log("success====================");
+        setLoader(false);
+        NotificationWithIcon("success", "Login successful")
+      }
+    } catch (err: any) {
+      // setLoader(false);
+      console.log(err?.data?.error?.message, '------------err--------');
+      NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+    }
+
+  }
+
   return (
-    <Form className={styles.artboard134x81Parent}>
-      <Image
-        className={styles.artboard134x81}
-        alt=""
-        src="../artboard-134x8-1@2x.png"
-      />
-      <h3 className={styles.studioManagementSuite}>
-        Studio Management Suite Login
-      </h3>
-      <Form.Group className={styles.client}>
-        <Form.Label className={styles.emailAddress}>Email Address</Form.Label>
-        <Form.Control className={styles.form} type="email" required />
-      </Form.Group>
-      <Form.Group className={styles.client}>
-        <Form.Label className={styles.emailAddress}>Password</Form.Label>
-        <Form.Control className={styles.form} type="password" required />
-      </Form.Group>
-      <Form.Check
-        className={styles.rememberMe}
-        type={"checkbox"}
-        id={`default-${"checkbox"}`}
-        label={`Remember me`}
-      />
-      <Form.Label className={styles.lostPassword}>Lost Password</Form.Label>
-      <button className={styles.buttonChild}>Login</button>
-      <div
-        className={styles.onyRegisteredPhotographers}
-      >{`Ony Registered Photographers & Videographers Can Login`}</div>
-      <a className={styles.downloadAppTo} target="_blank">
-        Download App To Register
-      </a>
-    </Form>
+    <>
+      {loader && <Loader />}
+      <Formik
+        initialValues={formInitialValues}
+        onSubmit={handleSubmit}
+        validationSchema={loginValidations}>
+        {({
+          handleSubmit,
+          handleChange,
+          values,
+          touched,
+          isValid,
+          errors,
+        }) => (
+          <Form className={styles.artboard134x81Parent} onSubmit={handleSubmit}>
+            <Image
+              className={styles.artboard134x81}
+              alt=""
+              src="../artboard-134x8-1@2x.png"
+            />
+            <h3 className={styles.studioManagementSuite}>
+              Studio Management Suite Login
+            </h3>
+            <Form.Group className={styles.client} controlId="validationFormik01">
+              <Form.Label className={styles.emailAddress}>Email Address</Form.Label>
+              <Form.Control
+                className={styles.form}
+                name="email"
+                type="text"
+                value={values.email}
+                onChange={handleChange}
+                isValid={touched.email && !errors.email}
+                isInvalid={!!errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className={styles.client} controlId="validationFormik02">
+              <Form.Label className={styles.emailAddress}>Password</Form.Label>
+              <Form.Control
+                className={styles.form}
+                name="password"
+                type="password"
+                onChange={handleChange}
+                value={values.password}
+                isValid={touched.email && !errors.email}
+                isInvalid={!!errors.password}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Check
+              className={styles.rememberMe}
+              type={"checkbox"}
+              id={`default-${"checkbox"}`}
+              label={`Remember me`}
+            />
+            <Form.Label className={styles.lostPassword}>Lost Password</Form.Label>
+            <button className={styles.buttonChild} type="submit">Login</button>
+            <div
+              className={styles.onyRegisteredPhotographers}
+            >{`Ony Registered Photographers & Videographers Can Login`}</div>
+            <a className={styles.downloadAppTo} target="_blank">
+              Download App To Register
+            </a>
+          </Form>
+        )}
+      </Formik>
+    </>
   );
 };
 
