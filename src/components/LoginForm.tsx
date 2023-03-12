@@ -90,7 +90,7 @@ const LoginForm: FunctionComponent = () => {
                 isInvalid={!!errors.email}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.email}
+                <p>{errors.email}</p>
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className={styles.client} controlId="validationFormik02">
@@ -105,7 +105,7 @@ const LoginForm: FunctionComponent = () => {
                 isInvalid={!!errors.password}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.password}
+                <p>{errors.password}</p>
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Check

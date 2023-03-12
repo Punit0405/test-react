@@ -238,6 +238,14 @@ a:-webkit-any-link {
   font-size: 2rem !important;
 }
 
+.invalid-feedback{
+  display: block !important;
+  height: 20px !important;
+}
+.invalid-feedback p{
+  margin: 0% 0%;
+}
+
 .allsongs .rhap_container,
 .rhap_container *:focus {
   outline: none !important;
