@@ -38,6 +38,7 @@
     margin: 0% 0%;
     display: flex;
     justify-content: left;
+    flex-wrap: wrap;
     overflow: hidden;
 }
 
@@ -82,10 +83,12 @@
     border: 1px solid rgb(219, 219, 219);
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     text-align: center;
 }
-
+.anchorImg{
+   border: 2px solid red !important;
+}
 .addmedia {
     text-align: center;
     padding: 20% 0%;

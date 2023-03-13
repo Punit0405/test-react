@@ -242,6 +242,13 @@ a:-webkit-any-link {
   display: block !important;
   height: 20px !important;
 }
+.fa-arrows-up-down-left-right::before{
+  float: left;
+
+}
+.fa-arrows-up-down-left-right{
+  z-index: 2 !important;
+}
 
 .invalid-feedback p {
   margin: 0% 0%;
