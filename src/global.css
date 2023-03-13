@@ -244,6 +244,9 @@ a:-webkit-any-link {
 }
 .fa-arrows-up-down-left-right::before{
   float: left;
+  background-color: rgb(188, 188, 188);
+  margin-top: 5px;
+  margin-left: 3px;
 
 }
 .fa-arrows-up-down-left-right{
