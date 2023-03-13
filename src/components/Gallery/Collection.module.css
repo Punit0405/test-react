@@ -56,6 +56,14 @@
     width: 102px;
 }
 
+.tagicon {
+    position: absolute;
+    z-index: -1;
+    height: 20px;
+    text-align: left;
+    border: 2px solid red;
+}
+
 .imgdiv {
     text-align: center;
     padding: 2% 2%;

@@ -6,6 +6,7 @@ import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import LayoutWithSideBar from "../LayoutWithSideBar";
 import Loader from "../Loader/Loader";
+import SimpleLoader from "../Loader/SimpleLoader";
 import AddPhotosNav from "./AddPhotosNav";
 import styles from "./Collection.module.css";
 import CollectionView from "./CollectionView";
@@ -39,7 +40,7 @@ const Collection: FunctionComponent = () => {
     return (
         <LayoutWithSideBar>
             <>
-                {loader && <Loader />}
+                {loader && <SimpleLoader />}
                 <Container fluid >
                     <AddPhotosNav />
                     <CollectionView />

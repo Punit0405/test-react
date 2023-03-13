@@ -4,6 +4,7 @@ import CollectionService from "../../api/Collection/collection";
 import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import Loader from "../Loader/Loader";
+import SimpleLoader from "../Loader/SimpleLoader";
 import styles from "./GalleryGrid.module.css";
 import GalleryGridCard from "./GalleryGridCard";
 
@@ -32,7 +33,7 @@ const GalleryGrid: FunctionComponent = () => {
     }, [])
     return (
         <>
-            {loader && <Loader />}
+            {loader && <SimpleLoader />}
             <Row className={styles.maincomp}>
                 {
                     collection && collection.map((singleCollection: any) => (

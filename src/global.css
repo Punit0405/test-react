@@ -233,16 +233,17 @@ a:-webkit-any-link {
   cursor: pointer;
 }
 
-.ant-spin-dot-item{
+.ant-spin-dot-item {
   background-color: #ec1a25 !important;
   font-size: 2rem !important;
 }
 
-.invalid-feedback{
+.invalid-feedback {
   display: block !important;
   height: 20px !important;
 }
-.invalid-feedback p{
+
+.invalid-feedback p {
   margin: 0% 0%;
 }
 
@@ -339,6 +340,19 @@ a:-webkit-any-link {
 
 .musicplayericon {
   color: crimson;
+}
+
+.simpleloader {
+  position: absolute;
+  z-index: -1;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.anchortag{
+  font-size: 0.9rem;
 }
 
 .navicons {

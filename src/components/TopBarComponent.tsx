@@ -9,7 +9,7 @@ const TopBarComponent: FunctionComponent = () => {
                 <Image fluid
                     className={styles.artboard134x81}
                     alt=""
-                    src="../snape_logo@2x.png"
+                    src="../../snape_logo@2x.png"
                 />
                 <div className={styles.frameParent}>
                     <Nav.Link className={styles.iconset}>
@@ -22,7 +22,7 @@ const TopBarComponent: FunctionComponent = () => {
                         <Image fluid
                             className={styles.maskGroupIcon1}
                             alt=""
-                            src="../profile_image@2x.png"
+                            src="../../profile_image@2x.png"
                         />
                     </Ratio>
 
