@@ -21,9 +21,6 @@ function CreateCollectionModal(props: any) {
 
     const handleSubmit = async (values: any) => {
         try {
-            console.log(values, '--------values=========');
-
-            console.log(collectionId, '--------collectionId------------');
 
             if (collectionId) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
@@ -33,11 +30,10 @@ function CreateCollectionModal(props: any) {
             } else {
                 const res = await CollectionService.createCollection(values)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
-                    navigate("/gallery/newcollection")
+                    const createId = res?.result?.id
+                    navigate("/gallery/collection/createId")
                 }
-                console.log(res, '----------res--------------');
             }
-
         } catch (err: any) {
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
         }

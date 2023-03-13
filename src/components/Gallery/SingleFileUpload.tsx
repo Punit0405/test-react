@@ -27,10 +27,6 @@ function SingleFileUpload({ filedata }: any) {
                 const s3 = new S3({
                     requestHandler: new XhrHttpHandler({}),
                     region: 'us-east-1',
-                    credentials: {
-                        accessKeyId: 'AKIARHYMET7XKFE7MBUT',
-                        secretAccessKey: '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'
-                    }
                 })
                 const parallelUploads3 = new Upload({
                     client: s3,
