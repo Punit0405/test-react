@@ -46,7 +46,7 @@ function RoutesAll() {
                 <Route path="/studiomanagement" element={<Gallery />} />
                 <Route path="/gallery/newcollection" element={<AddCollection />} />
                 <Route path="/gallery/collection/:collectionId" element={<Collection />} />
-                <Route path="/gallery/addcollection" element={<DragMedia />} />
+                <Route path="/gallery/addcollection/:collectionId" element={<DragMedia />} />
                 <Route path="/gallery/grid" element={<Grid />} />
                 <Route path="/setting/collection-setting" element={<CollectionSetting />} />
                 <Route path="/setting/privacy" element={<PrivacySetting />} />

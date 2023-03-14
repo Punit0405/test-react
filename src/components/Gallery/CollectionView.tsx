@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
 import { Button, Container, Image, Row, Nav, NavItem, Navbar, Form, TabContainer } from "react-bootstrap";
-
 import styles from "./Collection.module.css";
 import CollectionImageView from "./CollectionImage";
 

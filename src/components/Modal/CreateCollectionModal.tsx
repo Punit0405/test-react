@@ -21,17 +21,16 @@ function CreateCollectionModal(props: any) {
 
     const handleSubmit = async (values: any) => {
         try {
-
             if (collectionId) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
-                    navigate("/gallery/newcollection")
+                    props.onHide()
                 }
             } else {
                 const res = await CollectionService.createCollection(values)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
                     const createId = res?.result?.id
-                    navigate("/gallery/collection/createId")
+                    navigate(`/gallery/collection/${createId}`)
                 }
             }
         } catch (err: any) {

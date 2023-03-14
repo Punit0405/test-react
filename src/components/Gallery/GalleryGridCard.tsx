@@ -10,19 +10,17 @@ const GalleryGridCard = ({ collectionData }: any) => {
 
     const [modalShow, setModalShow] = useState(false);
 
-    console.log(collectionData, '-----collectionData------------');
-
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/gallery/collection/${collectionData.id}`)
+        navigate(`/gallery/collection/${collectionData?.id}`)
     }
 
     return (
         <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
             <div className={styles.imgblock}>
                 <Ratio aspectRatio='16x9' onClick={handleClick} className={styles.imgdivpoint}>
-                    <Image className={styles.myimage} src="../../../sample2.jpg" />
+                    <Image className={styles.myimage} src={collectionData.coverPhoto} />
                 </Ratio>
                 <div className={styles.outertitle}>
                     <p className={styles.title}>{collectionData.name}</p>
@@ -52,8 +50,8 @@ const GalleryGridCard = ({ collectionData }: any) => {
                     <p className={styles.details}>
                         <Moment format="MMMM  Do,YYYY">{collectionData.eventDate}</Moment>
                     </p>
-                    <p className={styles.details}>230 photos</p>
-                    <p className={styles.details}>1 videos</p>
+                    <p className={styles.details}>{collectionData?.photos} Photos</p>
+                    <p className={styles.details}>{collectionData?.videos} Videos</p>
                     <p className={styles.details}>{
                         collectionData && collectionData?.status === "UNPUBLISH" ? "Unpublish" : "Published"
                     }</p>

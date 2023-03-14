@@ -34,6 +34,11 @@ const GalleryGrid: FunctionComponent = () => {
     return (
         <>
             {loader && <SimpleLoader />}
+            <div className={styles.collectioncount}>
+                <p className={styles.collectioncountdis}>
+                    6 collections
+                </p>
+            </div>
             <Row className={styles.maincomp}>
                 {
                     collection && collection.map((singleCollection: any) => (

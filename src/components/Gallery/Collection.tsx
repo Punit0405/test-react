@@ -5,10 +5,9 @@ import CollectionService from "../../api/Collection/collection";
 import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import LayoutWithSideBar from "../LayoutWithSideBar";
-import Loader from "../Loader/Loader";
 import SimpleLoader from "../Loader/SimpleLoader";
+import AddCollection from "./AddCollection";
 import AddPhotosNav from "./AddPhotosNav";
-import styles from "./Collection.module.css";
 import CollectionView from "./CollectionView";
 
 
@@ -16,15 +15,15 @@ const Collection: FunctionComponent = () => {
 
     const { collectionId } = useParams()
     const [loader, setLoader] = useState(true);
-    const [collection, setCollection] = useState([]);
+    const [collection, setCollection]: any = useState([]);
 
     const getCollectionList = async () => {
         try {
             if (collectionId) {
                 const res = await CollectionService.getCollectionById(collectionId as string)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
-                    setCollection(res?.result)
                     setLoader(false);
+                    setCollection(res?.result)
                 }
             }
         } catch (err: any) {
@@ -43,7 +42,10 @@ const Collection: FunctionComponent = () => {
                 {loader && <SimpleLoader />}
                 <Container fluid >
                     <AddPhotosNav />
-                    <CollectionView />
+                    {
+                        collection && collection?.photos && collection?.videos ?
+                            <CollectionView /> : <AddCollection />
+                    }
                 </Container>
             </>
         </LayoutWithSideBar>

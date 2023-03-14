@@ -242,14 +242,16 @@ a:-webkit-any-link {
   display: block !important;
   height: 20px !important;
 }
-.fa-arrows-up-down-left-right::before{
+
+.fa-up-down-left-right::before {
   float: left;
   background-color: rgb(188, 188, 188);
   margin-top: 5px;
   margin-left: 3px;
-
+  padding: 1px 1px;
 }
-.fa-arrows-up-down-left-right{
+
+.fa-up-down-left-right {
   z-index: 2 !important;
 }
 
@@ -353,15 +355,13 @@ a:-webkit-any-link {
 }
 
 .simpleloader {
-  position: absolute;
-  z-index: -1;
   text-align: center;
   position: fixed;
   top: 50%;
   left: 50%;
 }
 
-.anchortag{
+.anchortag {
   font-size: 0.9rem;
 }
 

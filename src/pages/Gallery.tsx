@@ -12,11 +12,6 @@ const Gallery: FunctionComponent = () => {
         <Layout>
             <>
                 <GalleryNav />
-                <div className={styles.collectioncount}>
-                    <p className={styles.collectioncountdis}>
-                        6 collections
-                    </p>
-                </div>
                 <GalleryGrid />
             </>
         </Layout>
