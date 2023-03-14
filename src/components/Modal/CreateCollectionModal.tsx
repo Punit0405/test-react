@@ -4,7 +4,7 @@ import styles from "./CreateCollectionModal.module.css";
 import { Formik } from "formik";
 import { collectionValidations } from "../../Utils/validations";
 import CollectionService from "../../api/Collection/collection";
-import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import moment from "moment";
 
@@ -34,7 +34,12 @@ function CreateCollectionModal(props: any) {
                 }
             }
         } catch (err: any) {
-            NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+                navigate('/login');
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
         }
     }
 

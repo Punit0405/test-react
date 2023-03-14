@@ -13,7 +13,8 @@
 .outdiv {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
+  margin-bottom: 5%;
 }
 
 .frame141 {}

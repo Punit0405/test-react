@@ -30,7 +30,6 @@ import DragMedia from "./components/Gallery/DragMedia";
 import MusicCollectionList from "./pages/MusicCollectionList";
 import MusicCollections from "./pages/MusicCollections";
 import Grid from "./components/Grid";
-import Grid1 from "./components/Grid1";
 import Collection from "./components/Gallery/Collection";
 
 

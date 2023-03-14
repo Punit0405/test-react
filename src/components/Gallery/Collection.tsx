@@ -1,8 +1,8 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CollectionService from "../../api/Collection/collection";
-import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import LayoutWithSideBar from "../LayoutWithSideBar";
 import SimpleLoader from "../Loader/SimpleLoader";
@@ -16,6 +16,7 @@ const Collection: FunctionComponent = () => {
     const { collectionId } = useParams()
     const [loader, setLoader] = useState(true);
     const [collection, setCollection]: any = useState([]);
+    const navigate = useNavigate();
 
     const getCollectionList = async () => {
         try {
@@ -27,8 +28,14 @@ const Collection: FunctionComponent = () => {
                 }
             }
         } catch (err: any) {
-            setLoader(false);
-            NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                setLoader(false);
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+                navigate('/login');
+            } else {
+                setLoader(false);
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
         }
     }
 

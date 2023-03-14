@@ -54,6 +54,11 @@ export const VALIDATIONS = Object.freeze({
 
 export const AUTH_TOKEN = "accessToken";
 
+export const MESSAGE={
+    UNAUTHORIZED:'Unauthorized user'
+}
+
 export const STATUS_CODE = {
-    SUCCESS: 200
+    SUCCESS: 200,
+    UNAUTHORIZED:401,
 }

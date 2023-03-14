@@ -15,7 +15,7 @@ const LoginForm: FunctionComponent = () => {
   const initialValue = getUserPassword()
 
   let formInitialValues = {
-    email:initialValue?.email as string,
+    email: initialValue?.email as string,
     password: initialValue?.password as string,
   }
   const navigate = useNavigate();
