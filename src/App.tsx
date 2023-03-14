@@ -20,14 +20,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Login />} />
-        {
-          accessToken !== "" && accessToken !== null && accessToken !== undefined ?
-            <Route path="/*" element={<RoutesAll />} /> :
-            <Route
-              path="*"
-              element={<Navigate to="/" replace />}
-            />
-        }
+        <Route path="/*" element={<RoutesAll />} /> 
       </Routes>
     </>
   );

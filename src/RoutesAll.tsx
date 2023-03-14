@@ -40,7 +40,6 @@ function RoutesAll() {
             <NavBarComponent />
             <Routes>
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/" element={<Login />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/studiomanagement" element={<Gallery />} />
                 <Route path="/gallery/newcollection" element={<AddCollection />} />
