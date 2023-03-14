@@ -39,8 +39,8 @@ function RoutesAll() {
             <TopBarComponent />
             <NavBarComponent />
             <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/" element={<Login />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/studiomanagement" element={<Gallery />} />
                 <Route path="/gallery/newcollection" element={<AddCollection />} />

@@ -36,7 +36,7 @@ function CreateCollectionModal(props: any) {
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
                 NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
-                navigate('/login');
+                navigate('/');
             } else {
                 NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
             }

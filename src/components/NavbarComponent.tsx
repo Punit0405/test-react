@@ -15,7 +15,7 @@ const NavBarComponent  = () => {
         <Nav id="navbar" variant="tabs" defaultActiveKey="link-1"   className={styles.navpadding}>
             {/* <Container> */}
             
-            <Nav.Link  as={NavLink} to="/"  eventKey="link-1">
+            <Nav.Link  as={NavLink} to="/dashboard"  eventKey="link-1">
                     <div className={styles.home} >
                         <i className="fa-regular fa-house setcolor"></i>
                         <p>Home</p>

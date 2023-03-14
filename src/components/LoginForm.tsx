@@ -34,8 +34,9 @@ const LoginForm: FunctionComponent = () => {
       if (loginRes && loginRes?.code === STATUS_CODE.SUCCESS) {
         setLoader(false);
         localStorage.setItem(AUTH_TOKEN, loginRes?.result?.token);
+        navigate('/dashboard');
         NotificationWithIcon("success", "Login successful")
-        navigate('/');
+        console.log("Hello punit")
       }
     } catch (err: any) {
       setLoader(false);

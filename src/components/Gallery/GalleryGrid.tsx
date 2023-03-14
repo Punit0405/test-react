@@ -27,7 +27,7 @@ const GalleryGrid: FunctionComponent = () => {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
                 setLoader(false);
                 NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
-                navigate('/login');
+                navigate('/');
             } else {
                 setLoader(false);
                 NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
