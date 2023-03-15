@@ -1,20 +1,28 @@
 import { FunctionComponent } from "react";
 import { Button, Container, Navbar, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import StudioSideBar from "../StudioSideBar";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./UploadNavDone.module.css";
+import { useParams, redirect } from "react-router-dom";
 
+const UploadDoneNav = (props: any) => {
 
-const UploadDoneNav: FunctionComponent = () => {
+    const { collectionId } = useParams()
+
+    const handleClick = () => {
+        props.handleSetChange()
+    }
+
     return (
         <Navbar className={styles.maincomp}>
             <Container fluid>
                 <Navbar.Brand className={styles.mainname}>Add Photos to Highlights</Navbar.Brand>
                 <Form className={styles.btnsetting}>
-                    <Link to="/gallery/newcollection" className={styles.widthset}>
+                    <div className={styles.widthset} onClick={handleClick}>
                         <Button className={styles.collectionbtn} variant="custom">Upload More</Button>
+                    </div>
+                    <Link to={`/gallery/collection/${collectionId}`}>
+                        <Button className={styles.collectionbtn} variant="custom">Manage Collection</Button>
                     </Link>
-                    <Button className={styles.collectionbtn} variant="custom">Manage Collection</Button>
                 </Form>
             </Container>
         </Navbar>

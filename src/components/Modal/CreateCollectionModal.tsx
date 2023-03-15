@@ -6,7 +6,6 @@ import { collectionValidations } from "../../Utils/validations";
 import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import moment from "moment";
 
 function CreateCollectionModal(props: any) {
 
@@ -18,7 +17,6 @@ function CreateCollectionModal(props: any) {
     const collectionId = props?.id
 
     const navigate = useNavigate()
-
     const handleSubmit = async (values: any) => {
         try {
             if (collectionId) {

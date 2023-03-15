@@ -14,8 +14,6 @@ import { getUserToken } from "./Utils/helper";
 
 function App() {
   const accessToken = getUserToken();
-  console.log(accessToken, '--------accessToken-------');
-
   return (
     <>
       <Routes>

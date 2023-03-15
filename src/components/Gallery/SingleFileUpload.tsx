@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './SingleFileUpload.module.css'
 import { Upload } from "@aws-sdk/lib-storage";
-import { S3Client, S3 } from "@aws-sdk/client-s3";
+import { S3 } from "@aws-sdk/client-s3";
 import Spinner from 'react-bootstrap/Spinner';
 import { ProgressBar } from 'react-bootstrap';
 import { XhrHttpHandler } from "@aws-sdk/xhr-http-handler";
@@ -27,6 +27,7 @@ function SingleFileUpload({ filedata }: any) {
                 const s3 = new S3({
                     requestHandler: new XhrHttpHandler({}),
                     region: 'us-east-1',
+                   
                 })
                 const parallelUploads3 = new Upload({
                     client: s3,
@@ -40,11 +41,32 @@ function SingleFileUpload({ filedata }: any) {
                         setComplete(true)
                     }
                 });
-                parallelUploads3.done();
+                parallelUploads3.done().then((result) => {
+                    uploadDone(result);
+                });
+
             } catch (e) {
                 console.log(e);
             }
         }
+    }
+
+    const uploadDone = (uploadResult: any) => {
+        try {
+            let reqObj: any = {
+                name: filedata.name,
+                url: uploadResult.Location,
+                size: filedata.size,
+                type: "PHOTO"
+            }
+            let data = {
+                files: [reqObj]
+            }
+
+        } catch (error) {
+
+        }
+
     }
 
     return (

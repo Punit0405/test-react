@@ -11,7 +11,7 @@ const CollectionService = {
                 authorization: token,
             })
         } catch (error) {
-
+            throw error
         }
     },
 
@@ -22,7 +22,7 @@ const CollectionService = {
                 authorization: token,
             })
         } catch (error) {
-
+            throw error
         }
     },
 
@@ -36,7 +36,7 @@ const CollectionService = {
                 authorization: token,
             })
         } catch (error) {
-
+            throw error
         }
     },
 
@@ -50,7 +50,7 @@ const CollectionService = {
                 authorization: token,
             })
         } catch (error) {
-
+            throw error
         }
     }
 

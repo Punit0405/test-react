@@ -43,8 +43,6 @@ function DragMedia() {
     const [files, setFiles] = useState<UploadableFile[]>([])
 
     const onDrop = useCallback((acceptedFiles: any, rejFiles: any) => {
-        console.log(rejFiles, '---------rejFiles---------');
-
         const mappedAcc = acceptedFiles.map((file: any) => ({ file, errors: [] }))
         setFiles([...mappedAcc, ...rejFiles])
 
@@ -72,6 +70,10 @@ function DragMedia() {
         isDragAccept
     ]);
 
+    const handleState = () => {
+        setFiles([])
+    }
+
     return (
         <LayoutWithSideBar>
             <>
@@ -79,7 +81,7 @@ function DragMedia() {
                     {
                         files.length ?
                             <>
-                                <UploadDoneNav />
+                                <UploadDoneNav handleSetChange={handleState} />
                                 {files.map((file: any) => (
                                     file?.errors?.length === 0 ?
                                         <SingleFileUpload filedata={file.file} /> :
