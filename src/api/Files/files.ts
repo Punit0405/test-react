@@ -19,3 +19,5 @@ const FilesSevice = {
     }
 
 }
+
+export default FilesSevice;

@@ -5,8 +5,12 @@ import { S3 } from "@aws-sdk/client-s3";
 import Spinner from 'react-bootstrap/Spinner';
 import { ProgressBar } from 'react-bootstrap';
 import { XhrHttpHandler } from "@aws-sdk/xhr-http-handler";
+import FilesSevice from '../../api/Files/files';
+import { useParams } from "react-router-dom";
 
 function SingleFileUpload({ filedata }: any) {
+
+    const { collectionId } = useParams()
 
     const [progress, setProgress] = useState(0)
     const [isCompleted, setComplete] = useState(false)
@@ -20,7 +24,7 @@ function SingleFileUpload({ filedata }: any) {
 
     function uploadFile(file: any) {
         if (file) {
-            const Key = `123/${file.name}`
+            const Key = `${collectionId}/${file.name}`
             const Bucket = 'dev-media.snape.com'
             const Body: any = file
             try {
@@ -51,7 +55,7 @@ function SingleFileUpload({ filedata }: any) {
         }
     }
 
-    const uploadDone = (uploadResult: any) => {
+    const uploadDone = async (uploadResult: any) => {
         try {
             let reqObj: any = {
                 name: filedata.name,
@@ -63,7 +67,10 @@ function SingleFileUpload({ filedata }: any) {
                 files: [reqObj]
             }
 
+            const res = await FilesSevice.addFiles(data, collectionId)
+
         } catch (error) {
+            console.log(error, '----err--------');
 
         }
 
@@ -86,7 +93,7 @@ function SingleFileUpload({ filedata }: any) {
                     <div className={styles.progesssection}>
                         <ProgressBar striped variant="danger" animated now={progress} label={`${progress}%`} />
                     </div>
-                    <div className={styles.filesize}>Size</div>
+                    <div className={styles.filesize}>{(filedata?.size / 1024 ** 2).toFixed(2)} MB</div>
                 </div>
             </div>
         </>

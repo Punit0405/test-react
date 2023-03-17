@@ -48,7 +48,7 @@ const GalleryGridCard = ({ collectionData }: any) => {
                 </div>
                 <div className={styles.outerdetails}>
                     <p className={styles.details}>
-                        <Moment format="MMMM  Do,YYYY">{collectionData.eventDate}</Moment>
+                        <Moment format="MMMM  Do, YYYY">{collectionData.eventDate}</Moment>
                     </p>
                     <p className={styles.details}>{collectionData?.photos} Photos</p>
                     <p className={styles.details}>{collectionData?.videos} Videos</p>

@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import LayoutWithSideBar from "../LayoutWithSideBar";
 import SimpleLoader from "../Loader/SimpleLoader";
 import AddCollection from "./AddCollection";
 import AddPhotosNav from "./AddPhotosNav";
@@ -44,18 +43,16 @@ const Collection: FunctionComponent = () => {
     }, [])
 
     return (
-        <LayoutWithSideBar>
-            <>
-                {loader && <SimpleLoader />}
-                <Container fluid >
-                    <AddPhotosNav />
-                    {
-                        collection && collection?.photos && collection?.videos ?
-                            <CollectionView /> : <AddCollection />
-                    }
-                </Container>
-            </>
-        </LayoutWithSideBar>
+        <>
+            {loader && <SimpleLoader />}
+            <Container fluid >
+                <AddPhotosNav />
+                {
+                    collection && (collection?.photos || collection?.videos) ?
+                        <CollectionView /> : <AddCollection />
+                }
+            </Container>
+        </>
     );
 };
 

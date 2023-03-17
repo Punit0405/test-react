@@ -363,6 +363,7 @@ a:-webkit-any-link {
 
 .anchortag {
   font-size: 0.9rem;
+  font-weight: 300;
 }
 
 .navicons {

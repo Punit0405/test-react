@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
-import LayoutWithSideBar from '../LayoutWithSideBar';
 import styles from "./DragMedia.module.css";
 import SingleFileUpload from './SingleFileUpload';
 import DagPhotoNav from './DragPhotoNav';
@@ -75,7 +74,6 @@ function DragMedia() {
     }
 
     return (
-        <LayoutWithSideBar>
             <>
                 <div className={styles.outermain}>
                     {
@@ -105,7 +103,6 @@ function DragMedia() {
 
                 </div>
             </>
-        </LayoutWithSideBar>
     )
 }
 

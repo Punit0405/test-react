@@ -1,24 +1,53 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { useState } from "react";
-import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import LoginForm from "../components/LoginForm";
+import { Image, Nav, Ratio } from "react-bootstrap";
+import Moment from "react-moment";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import CollectionService from "../api/Collection/collection";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../Utils/constants";
+import { NotificationWithIcon } from "../Utils/helper";
 import CreateCollectionModal from "./Modal/CreateCollectionModal";
 import styles from "./StudioSideBar.module.css";
 
 
 const StudioSideBar: FunctionComponent = () => {
     const [modalShow, setModalShow] = useState(false);
+    const { collectionId } = useParams()
+    const [collection, setCollection]: any = useState([]);
+    const navigate = useNavigate();
+
+    const getCollectionList = async () => {
+        try {
+            if (collectionId) {
+                const res = await CollectionService.getCollectionById(collectionId as string)
+                if (res && res?.code === STATUS_CODE.SUCCESS) {
+                    console.log(res?.result, '----res?.result--------');
+                    setCollection(res?.result)
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+                navigate('/');
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
+
+    useEffect(() => {
+        getCollectionList();
+    }, [])
 
     return (
         <div className={styles.maincomponent}>
             <div className={styles.titleedit}>
-                <p className={styles.sidemaintitle}>Tebogo Wedding</p>
+                <p className={styles.sidemaintitle}>{collection.name}</p>
                 <i className="fa-regular fa-pen sidebaricon" onClick={() => setModalShow(true)}></i>
             </div>
             <div className={styles.datepreview}>
                 <p className={styles.datesection}>
-                    January 6th, 2023
+                    <Moment format="MMMM  Do, YYYY">{collection.eventDate}</Moment>
                 </p>
                 <p className={styles.previewsection}>
                     Preview
@@ -28,7 +57,7 @@ const StudioSideBar: FunctionComponent = () => {
                 <div className={styles.coverinside1}>
                     <Ratio aspectRatio='16x9'>
                         <div>
-                            <Image className={styles.myimage} src="../../sample2.jpg" alt="../../imagegrey.jpg" />
+                            <Image className={styles.myimage} src={collection.coverPhoto}  />
                             <div className={styles.textimage}>Change Cover</div>
                         </div>
                     </Ratio>
@@ -42,25 +71,25 @@ const StudioSideBar: FunctionComponent = () => {
             <p className={styles.settings}>Settings</p>
             <Nav defaultActiveKey="/home" className="flex-column">
                 <button className={styles.navbutton}>
-                    <Link to="/setting/collection-setting">
+                    <Link to="/gallery/collection-setting">
                         <i className="fa-regular setcolorsidesetting fa-ellipsis-vertical"></i>
                         <p className={styles.settingname}> Collection Settings</p>
                     </Link>
                 </button>
                 <button className={styles.navbutton}>
-                    <Link to="/setting/design">
+                    <Link to="/gallery/design">
                         <i className="fa-regular setcolorsidesetting fa-pen-to-square"></i>
                         <p className={styles.settingname}> Design</p>
                     </Link>
                 </button>
                 <button className={styles.navbutton}>
-                    <Link to="/setting/privacy">
+                    <Link to="/gallery/privacy">
                         <i className="fa-regular setcolorsidesetting fa-lock-keyhole"></i>
                         <p className={styles.settingname}> Privacy</p>
                     </Link>
                 </button>
                 <button className={styles.navbutton}>
-                    <Link to="/setting/download">
+                    <Link to="/gallery/download">
                         <i className="fa-sharp setcolorsidesetting fa-regular fa-arrow-down-to-line"></i>
                         <p className={styles.settingname}> Download</p>
                     </Link>

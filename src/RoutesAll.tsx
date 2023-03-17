@@ -31,6 +31,7 @@ import MusicCollectionList from "./pages/MusicCollectionList";
 import MusicCollections from "./pages/MusicCollections";
 import Grid from "./components/Grid";
 import Collection from "./components/Gallery/Collection";
+import LayoutWithSideBar from "./components/LayoutWithSideBar";
 
 
 function RoutesAll() {
@@ -40,15 +41,17 @@ function RoutesAll() {
             <NavBarComponent />
             <Routes>
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/gallery" element={<Gallery />} />
                 <Route path="/studiomanagement" element={<Gallery />} />
-                <Route path="/gallery/newcollection" element={<AddCollection />} />
-                <Route path="/gallery/collection/:collectionId" element={<Collection />} />
-                <Route path="/gallery/addcollection/:collectionId" element={<DragMedia />} />
-                <Route path="/gallery/grid" element={<Grid />} />
-                <Route path="/setting/collection-setting" element={<CollectionSetting />} />
-                <Route path="/setting/privacy" element={<PrivacySetting />} />
-                <Route path="/setting/download" element={<DownloadStatus />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/gallery" element={<LayoutWithSideBar />} >
+                    <Route path="/gallery/newcollection" element={<AddCollection />} />
+                    <Route path="/gallery/collection/:collectionId" element={<Collection />} />
+                    <Route path="/gallery/addcollection/:collectionId" element={<DragMedia />} />
+                    <Route path="/gallery/grid" element={<Grid />} />
+                    <Route path="/gallery/collection-setting" element={<CollectionSetting />} />
+                    <Route path="/gallery/privacy" element={<PrivacySetting />} />
+                    <Route path="/gallery/download" element={<DownloadStatus />} />
+                </Route>
                 <Route path="/asset-registry" element={<AssetRegistry />}>
                     <Route path="" element={<AssetDashboardMain />}></Route>
                     <Route path="device-list" element={<AssetDeviceList />}></Route>

@@ -8,7 +8,7 @@ interface Props {
 const CollectionImageView = ({ imageUrl }: Props) => {
     return (
         <div className={styles.outerimg}>
-            <i className="fa-sharp fa-solid fa-up-down-left-right anchortag"></i>
+            <i className="fa-sharp fa-light fa-up-down-left-right anchortag"></i>
             <div className={styles.imgblock}>
                 <div className={styles.imgdiv}>
                     <Image className={styles.myimage} src={imageUrl} />
