@@ -210,10 +210,10 @@ body {
 
 
 .nav-tabs .nav-link {
-    margin-bottom: none;
-    border: none;
-    border-top-left-radius: none;
-    border-top-right-radius: none;
+  margin-bottom: none;
+  border: none;
+  border-top-left-radius: none;
+  border-top-right-radius: none;
 }
 
 .nav.nav-tabs .nav-link.active {
@@ -231,6 +231,32 @@ a:-webkit-any-link {
   text-decoration: none;
   color: rgb(0, 0, 0);
   cursor: pointer;
+}
+
+.ant-spin-dot-item {
+  background-color: #ec1a25 !important;
+  font-size: 2rem !important;
+}
+
+.invalid-feedback {
+  display: block !important;
+  height: 20px !important;
+}
+
+.fa-up-down-left-right::before {
+  float: left;
+  background-color: rgb(188, 188, 188);
+  margin-top: 5px;
+  margin-left: 3px;
+  padding: 1px 1px;
+}
+
+.fa-up-down-left-right {
+  z-index: 2 !important;
+}
+
+.invalid-feedback p {
+  margin: 0% 0%;
 }
 
 .allsongs .rhap_container,
@@ -328,6 +354,29 @@ a:-webkit-any-link {
   color: crimson;
 }
 
+.simpleloader {
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.anchortag {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.selecticon {
+  font-size: 0.7rem;
+}
+
+.navicons {
+  margin-top: 3%;
+  width: 18%;
+  margin-left: -3%;
+  font-size: 0.9rem;
+}
+
 @media screen and (max-width: 1000px) {
   .musicnavset {
     margin: 6% 5%;
@@ -348,6 +397,11 @@ a:-webkit-any-link {
   margin-top: 20%;
 }
 
+.uploadcolor {
+  color: #ec1a25;
+  font-size: 1.2rem;
+}
+
 .setcolorwhite {
   color: white;
   margin-left: 2px;
@@ -357,7 +411,7 @@ a:-webkit-any-link {
 }
 
 .sidebaricon {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--color-crimson);
   margin-top: 4%;
 }

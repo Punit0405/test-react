@@ -1,9 +1,11 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
-import LayoutWithSideBar from '../LayoutWithSideBar';
-import AddPhotosNav from './AddPhotosNav';
 import styles from "./DragMedia.module.css";
+import SingleFileUpload from './SingleFileUpload';
+import DagPhotoNav from './DragPhotoNav';
+import RejectFile from './RejectFile';
+import UploadDoneNav from './UploadDoneNav';
 
 const baseStyle = {
     display: 'flex',
@@ -31,20 +33,17 @@ const rejectStyle = {
     borderColor: '#ff1744'
 };
 
+export interface UploadableFile {
+    file: File;
+    errors: []
+}
 function DragMedia() {
 
-    const onDrop = useCallback((acceptedFiles: any) => {
-        acceptedFiles.forEach((file: any) => {
-            const reader = new FileReader()
-            reader.onabort = () => console.log('file reading was aborted')
-            reader.onerror = () => console.log('file reading has failed')
-            reader.onload = () => {
-                console.log(file, '---file---------');
-                const binaryStr = reader.result
-                console.log(binaryStr, "----------str---------")
-            }
-            reader.readAsArrayBuffer(file);
-        })
+    const [files, setFiles] = useState<UploadableFile[]>([])
+
+    const onDrop = useCallback((acceptedFiles: any, rejFiles: any) => {
+        const mappedAcc = acceptedFiles.map((file: any) => ({ file, errors: [] }))
+        setFiles([...mappedAcc, ...rejFiles])
 
     }, [])
 
@@ -56,7 +55,7 @@ function DragMedia() {
         isDragReject
     } = useDropzone({
         onDrop,
-        accept: 'image/jpeg, image/png'
+        accept: 'image/*'
     });
 
     const style = useMemo(() => ({
@@ -70,23 +69,40 @@ function DragMedia() {
         isDragAccept
     ]);
 
+    const handleState = () => {
+        setFiles([])
+    }
+
     return (
-        <LayoutWithSideBar>
-            <>
-                <div className={styles.outermain}>
-                    <AddPhotosNav />
-                    <div {...getRootProps({ style })}>
-                        <input {...getInputProps()} />
-                        <div className={styles.addmedia}>
-                            <p className={styles.nomedia}>
-                                Drag photos here
-                            </p>
-                            <Button className={styles.dragbtn} variant="custom">Select photos from your computer</Button>
-                        </div>
-                    </div>
-                </div>
-            </>
-        </LayoutWithSideBar>
+        <>
+            <div className={styles.outermain}>
+                {
+                    files.length ?
+                        <>
+                            <UploadDoneNav handleSetChange={handleState} />
+                            {files.map((file: any, index: any) => (
+                                file?.errors?.length === 0 ?
+                                    <SingleFileUpload filedata={file.file} key={index} /> :
+                                    <RejectFile filedata={file.file} error={file.errors} key={index} />
+                            ))}
+                        </>
+                        :
+                        <>
+                            <DagPhotoNav />
+                            <div {...getRootProps({ style })}>
+                                <input {...getInputProps()} />
+                                <div className={styles.addmedia}>
+                                    <p className={styles.nomedia}>
+                                        Drag photos here
+                                    </p>
+                                    <Button className={styles.dragbtn} variant="custom">Select photos from your computer</Button>
+                                </div>
+                            </div>
+                        </>
+                }
+
+            </div>
+        </>
     )
 }
 

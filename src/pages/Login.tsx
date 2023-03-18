@@ -7,14 +7,14 @@ const Login: FunctionComponent = () => {
     return (
         <Container className={styles.login}>
             <Row>
-                <Col>
-                    <Image fluid className={styles.frame151} alt="" src="../frame-15-1.svg" />
+                <Col md={3} lg={3} sm={1} className={styles.outdiv}>
+                    <Image fluid className={styles.frame151} alt="" src="../left1.png" />
                 </Col>
-                <Col>
+                <Col md={6} lg={6} sm={10}>
                     <LoginForm />
                 </Col>
-                <Col>
-                    <Image fluid className={styles.frame141} alt="" src="../frame-14-1.svg" />
+                <Col md={3} lg={3} sm={1} className={styles.outdiv}>
+                    <Image fluid className={styles.frame141} alt="" src="../right1.png" />
                 </Col>
             </Row>
         </Container>

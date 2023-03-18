@@ -1,14 +1,13 @@
-import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstrap";
-import NavBarComponent from "./NavbarComponent";
-import TopBarComponent from "./TopBarComponent";
+import { Container, Row, Col } from "react-bootstrap";
 import StudioSideBar from "./StudioSideBar";
 import styles from "./Layout.module.css"
+import { Outlet } from "react-router-dom";
 
 interface Props {
     children: JSX.Element;
 }
 
-const LayoutWithSideBar = ({ children }: Props) => {
+const LayoutWithSideBar = () => {
     return (
         <div className={styles.maincomp}>
             <Container fluid >
@@ -17,7 +16,7 @@ const LayoutWithSideBar = ({ children }: Props) => {
                         <StudioSideBar />
                     </Col>
                     <Col lg={10} md={9} sm={9}>
-                        {children}
+                        <Outlet />
                     </Col>
                 </Row>
             </Container>

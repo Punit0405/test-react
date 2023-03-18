@@ -1,64 +1,51 @@
-import { useEffect } from "react";
-import { Container, Image, Nav, Navbar } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import styles from "./NavbarComponent.module.css"
-import Constants from "../Config/Constants"
+import { useLocation } from 'react-router-dom';
 
-interface Props {
-    activeTab:string;
-}
+const NavBarComponent = () => {
 
+    const location = useLocation()
+    const currentRoute = location.pathname.split('/')[1] as string
 
-
-const NavBarComponent  = () => {
     return (
-        <Nav id="navbar" variant="tabs" defaultActiveKey="link-1"   className={styles.navpadding}>
-            {/* <Container> */}
-            
-            <Nav.Link  as={NavLink} to="/"  eventKey="link-1">
-                    <div className={styles.home} >
-                        <i className="fa-regular fa-house setcolor"></i>
-                        <p>Home</p>
-                    </div>
-            </Nav.Link>
-            
-       
-            
-            <Nav.Link  as={NavLink} to="/studiomanagement"  eventKey="link-2">
-                    <div className={styles.home}>
-                        <i className="fa-regular fa-video setcolor"></i>
-                        <p>Studio Management</p>
-                    </div>
-            </Nav.Link>
-            
+        <Nav id="navbar" variant="tabs" defaultActiveKey={currentRoute} className={styles.navpadding}>
 
-           
-            <Nav.Link as={NavLink}  to="/gallery" eventKey="link-3" >
-                    <div className={styles.home}>
-                        <i className="fa-regular setcolor fa-grid-2"></i>
-                        <p>Gallery</p>
-                    </div>
+            <Nav.Link as={NavLink} to="/dashboard" eventKey="dashboard">
+                <div className={styles.home} >
+                    <i className="fa-regular fa-house setcolor"></i>
+                    <p>Home</p>
+                </div>
             </Nav.Link>
-           
 
-            
-            <Nav.Link eventKey="link-4" as={NavLink} to="/asset-registry" >
-                    <div className={styles.home}>
-                        <i className="fa-regular fa-folder setcolor"></i>
-                        <p>Asset Registry</p>
-                    </div>
+            <Nav.Link as={NavLink} to="/studiomanagement" eventKey="studiomanagement">
+                <div className={styles.home}>
+                    <i className="fa-regular fa-video setcolor"></i>
+                    <p>Studio Management</p>
+                </div>
             </Nav.Link>
-          
 
-            
-            <Nav.Link eventKey="link-5" as={NavLink} to="/music">
-                    <div className={styles.home}>
-                        <i className="fa-regular fa-circle-play setcolor"></i>
-                        <p >Music</p>
-                    </div>
+            <Nav.Link as={NavLink} to="/gallery" eventKey="gallery" >
+                <div className={styles.home}>
+                    <i className="fa-regular setcolor fa-grid-2"></i>
+                    <p>Gallery</p>
+                </div>
             </Nav.Link>
-           
-            {/* </Container> */}
+
+            <Nav.Link eventKey="asset-registry" as={NavLink} to="/asset-registry" >
+                <div className={styles.home}>
+                    <i className="fa-regular fa-folder setcolor"></i>
+                    <p>Asset Registry</p>
+                </div>
+            </Nav.Link>
+
+            <Nav.Link eventKey="music" as={NavLink} to="/music">
+                <div className={styles.home}>
+                    <i className="fa-regular fa-circle-play setcolor"></i>
+                    <p >Music</p>
+                </div>
+            </Nav.Link>
+
         </Nav>
 
     );

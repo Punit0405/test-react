@@ -3,7 +3,7 @@
   /* width: 222px; */
   /* height: 66px; */
   flex-shrink: 0;
-  width: 50%;
+  width: 30%;
   /* object-fit: cover; */
   /* padding: 10% 15%; */
 }
@@ -16,6 +16,7 @@
   font-family: inherit;
   color: var(--color1);
   text-align: center;
+  margin: 5% 0%;
 }
 
 .emailAddress {
@@ -31,7 +32,7 @@
 }
 
 .form {
-  border: 2px solid var(--light-mode-form1);
+  /* border: 2px solid var(--light-mode-form1); */
   background-color: transparent;
   position: relative;
   border-radius: var(--br-sm);
@@ -78,7 +79,7 @@
 
 .rememberMe {
   position: relative;
-  font-size: var(--font-size-base);
+  font-size: 0.8rem;
   /* top: 0; */
   /* left: 0; */
   text-shadow: 0 0 0 rgba(255, 255, 255, 0.01);
@@ -88,7 +89,7 @@
 .rememberMeWrapper {
   position: relative;
   text-align: center;
-  font-size: var(--font-size-base);
+  font-size: 0.8rem;
 }
 
 .rememberMeWrapper {
@@ -117,11 +118,6 @@
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.01);
   cursor: pointer;
   border: none;
-}
-
-.button,
-.login {
-  /* position: absolute; */
 }
 
 .button {
@@ -162,8 +158,9 @@
 
 .downloadAppTo,
 .onyRegisteredPhotographers {
+  text-align: center;
   position: relative;
-  font-size: var(--font-size-base);
+  font-size: 0.7rem;
   color: var(--color-gray-100);
 }
 
@@ -171,6 +168,12 @@
   text-decoration: none;
   font-weight: 500;
   color: var(--color-crimson);
+}
+
+input[type=checkbox]:checked {
+  border: 2px solid rgb(233, 26, 68);
+  background-color: rgb(233, 26, 68);
+  color: rgb(233, 26, 68);
 }
 
 .artboard134x81Parent {
@@ -184,4 +187,5 @@
   /* font-size: var(--font-size-lg); */
   color: var(--color-main-text1);
   font-family: var(--font-poppins);
+  padding: 0% 8%;
 }
