@@ -366,6 +366,10 @@ a:-webkit-any-link {
   font-weight: 300;
 }
 
+.selecticon {
+  font-size: 0.7rem;
+}
+
 .navicons {
   margin-top: 3%;
   width: 18%;

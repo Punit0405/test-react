@@ -55,6 +55,7 @@
     padding: 0px 0px;
     height: 158px;
     width: 102px;
+    padding-bottom: 20px;
 }
 
 .tagicon {
@@ -80,15 +81,21 @@
     /* background: black; */
     margin: 2% 1%;
     padding: 0px 1px;
-    border: 1px solid rgb(219, 219, 219);
+    border: 1px solid #D9D9D9;
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
 }
-.anchorImg{
-   border: 2px solid red !important;
+
+.selectImg {
+    border: 1px solid crimson;
 }
+
+.anchorImg {
+    border: 2px solid red !important;
+}
+
 .addmedia {
     text-align: center;
     padding: 20% 0%;
@@ -126,13 +133,59 @@
 .totalmedia {
     display: flex;
     justify-content: flex-start;
+    height: 20%;
 }
 
 .totalcount {
     font-family: var(--font-poppins);
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     margin-right: 3%;
+}
+
+.selectCount {
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-right: 8%;
+    width: 15%;
+}
+
+.selectOption {
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-right: 8%;
+    color: crimson;
+    cursor: pointer;
+}
+
+.btnset {
+    padding: 1% 2%;
+    margin-left: 3px;
+    color: black;
+    background-color: #D9D9D9;
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.selectbtn {
+    width: 50%;
+    display: flex;
+    justify-content: right;
+}
+
+.totalSelectionDiv {
+    display: flex;
+    justify-content: left;
+    width: 50%;
+}
+
+.selectphotonav {
+    display: flex;
+    justify-content: space-between;
+    height: 20%;
 }
 
 .imgdiv {
