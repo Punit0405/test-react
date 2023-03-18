@@ -414,6 +414,7 @@ a:-webkit-any-link {
   font-size: 0.9rem;
   color: var(--color-crimson);
   margin-top: 4%;
+  cursor: pointer;
 }
 
 .galleryicon {

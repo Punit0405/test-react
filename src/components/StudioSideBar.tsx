@@ -34,6 +34,10 @@ const StudioSideBar: FunctionComponent = () => {
         }
     }
 
+    const onSubmit = (data: any) => {
+        setCollection({ ...collection, data })
+    }
+
     useEffect(() => {
         getCollectionList();
     }, [])
@@ -104,6 +108,10 @@ const StudioSideBar: FunctionComponent = () => {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 createNew={false}
+                id={collection.id}
+                name={collection.name}
+                eventDate={collection.eventDate}
+                onSubmit={onSubmit}
             />
         </div>
     );
