@@ -47,10 +47,10 @@ function RoutesAll() {
                     <Route path="/gallery/newcollection" element={<AddCollection />} />
                     <Route path="/gallery/collection/:collectionId" element={<Collection />} />
                     <Route path="/gallery/addcollection/:collectionId" element={<DragMedia />} />
-                    <Route path="/gallery/grid" element={<Grid />} />
-                    <Route path="/gallery/collection-setting" element={<CollectionSetting />} />
-                    <Route path="/gallery/privacy" element={<PrivacySetting />} />
-                    <Route path="/gallery/download" element={<DownloadStatus />} />
+                    <Route path="/gallery/grid/:collectionId" element={<Grid />} />
+                    <Route path="/gallery/collection-setting/:collectionId" element={<CollectionSetting />} />
+                    <Route path="/gallery/privacy/:collectionId" element={<PrivacySetting />} />
+                    <Route path="/gallery/download/:collectionId" element={<DownloadStatus />} />
                 </Route>
                 <Route path="/asset-registry" element={<AssetRegistry />}>
                     <Route path="" element={<AssetDashboardMain />}></Route>

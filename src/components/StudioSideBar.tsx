@@ -74,25 +74,25 @@ const StudioSideBar: FunctionComponent = () => {
             <p className={styles.settings}>Settings</p>
             <Nav defaultActiveKey="/home" className="flex-column">
                 <button className={styles.navbutton}>
-                    <Link to="/gallery/collection-setting">
+                    <Link to={`/gallery/collection-setting/${collectionId}`}>
                         <i className="fa-regular setcolorsidesetting fa-ellipsis-vertical"></i>
                         <p className={styles.settingname}> Collection Settings</p>
                     </Link>
                 </button>
                 <button className={styles.navbutton}>
-                    <Link to="/gallery/design">
+                    <Link to={`/gallery/design/${collectionId}`}>
                         <i className="fa-regular setcolorsidesetting fa-pen-to-square"></i>
                         <p className={styles.settingname}> Design</p>
                     </Link>
                 </button>
                 <button className={styles.navbutton}>
-                    <Link to="/gallery/privacy">
+                    <Link to={`/gallery/privacy/${collectionId}`}>
                         <i className="fa-regular setcolorsidesetting fa-lock-keyhole"></i>
                         <p className={styles.settingname}> Privacy</p>
                     </Link>
                 </button>
                 <button className={styles.navbutton}>
-                    <Link to="/gallery/download">
+                    <Link to={`/gallery/download/${collectionId}`}>
                         <i className="fa-sharp setcolorsidesetting fa-regular fa-arrow-down-to-line"></i>
                         <p className={styles.settingname}> Download</p>
                     </Link>
