@@ -21,7 +21,6 @@ const StudioSideBar: FunctionComponent = () => {
             if (collectionId) {
                 const res = await CollectionService.getCollectionById(collectionId as string)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
-                    console.log(res?.result, '----res?.result--------');
                     setCollection(res?.result)
                 }
             }
@@ -57,7 +56,7 @@ const StudioSideBar: FunctionComponent = () => {
                 <div className={styles.coverinside1}>
                     <Ratio aspectRatio='16x9'>
                         <div>
-                            <Image className={styles.myimage} src={collection.coverPhoto}  />
+                            <Image className={styles.myimage} src={collection.coverPhoto} />
                             <div className={styles.textimage}>Change Cover</div>
                         </div>
                     </Ratio>

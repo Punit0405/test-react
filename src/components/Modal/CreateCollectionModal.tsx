@@ -22,6 +22,7 @@ function CreateCollectionModal(props: any) {
             if (collectionId) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    props.onSubmit(values)
                     props.onHide()
                 }
             } else {

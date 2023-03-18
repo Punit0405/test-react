@@ -74,35 +74,35 @@ function DragMedia() {
     }
 
     return (
-            <>
-                <div className={styles.outermain}>
-                    {
-                        files.length ?
-                            <>
-                                <UploadDoneNav handleSetChange={handleState} />
-                                {files.map((file: any) => (
-                                    file?.errors?.length === 0 ?
-                                        <SingleFileUpload filedata={file.file} /> :
-                                        <RejectFile filedata={file.file} error={file.errors} />
-                                ))}
-                            </>
-                            :
-                            <>
-                                <DagPhotoNav />
-                                <div {...getRootProps({ style })}>
-                                    <input {...getInputProps()} />
-                                    <div className={styles.addmedia}>
-                                        <p className={styles.nomedia}>
-                                            Drag photos here
-                                        </p>
-                                        <Button className={styles.dragbtn} variant="custom">Select photos from your computer</Button>
-                                    </div>
+        <>
+            <div className={styles.outermain}>
+                {
+                    files.length ?
+                        <>
+                            <UploadDoneNav handleSetChange={handleState} />
+                            {files.map((file: any, index: any) => (
+                                file?.errors?.length === 0 ?
+                                    <SingleFileUpload filedata={file.file} key={index} /> :
+                                    <RejectFile filedata={file.file} error={file.errors} key={index} />
+                            ))}
+                        </>
+                        :
+                        <>
+                            <DagPhotoNav />
+                            <div {...getRootProps({ style })}>
+                                <input {...getInputProps()} />
+                                <div className={styles.addmedia}>
+                                    <p className={styles.nomedia}>
+                                        Drag photos here
+                                    </p>
+                                    <Button className={styles.dragbtn} variant="custom">Select photos from your computer</Button>
                                 </div>
-                            </>
-                    }
+                            </div>
+                        </>
+                }
 
-                </div>
-            </>
+            </div>
+        </>
     )
 }
 

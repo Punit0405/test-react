@@ -1,6 +1,6 @@
 import { Image } from "react-bootstrap";
 import styles from "./Collection.module.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Props {
     imageUrl: string,

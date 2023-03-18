@@ -4,7 +4,11 @@ import styles from "./Collection.module.css";
 import CollectionImageView from "./CollectionImage";
 import { useState } from 'react';
 
-const CollectionView: FunctionComponent = () => {
+interface Props {
+    collectionData: any
+}
+
+const CollectionView = ({ collectionData }: Props) => {
 
     const [count, setCount] = useState(0)
     const [selectAll, setSelectAll] = useState(false)
@@ -14,15 +18,17 @@ const CollectionView: FunctionComponent = () => {
     }
 
     const handleSelect = () => {
-        console.log("click--------");
         setSelectAll(true)
+    }
+
+    const handleClear = () => {
+        setSelectAll(false)
     }
 
     return (
         <>
             <div className={styles.maincomp}>
                 <Container fluid>
-
                     {
                         count === 0 ?
                             <div className={styles.totalmedia}>
@@ -33,7 +39,7 @@ const CollectionView: FunctionComponent = () => {
                                 <div className={styles.totalSelectionDiv}>
                                     <p className={styles.selectCount}>{count} Selected</p>
                                     <p className={styles.selectOption} onClick={handleSelect}>Select all</p>
-                                    <p className={styles.selectOption}>Clear Selection</p>
+                                    <p className={styles.selectOption} onClick={handleClear}>Clear Selection</p>
                                 </div>
                                 <div className={styles.selectbtn}>
                                     <Button variant="custom" className={styles.btnset}><i className="fa-solid selecticon fa-magnifying-glass"></i></Button>
@@ -43,36 +49,15 @@ const CollectionView: FunctionComponent = () => {
                                     <Button variant="custom" className={styles.btnset}>Sort <i className="fa-solid selecticon fa-arrow-up-arrow-down"></i></Button>
                                 </div>
                             </div>
-
                     }
 
                     <div className={styles.outermain}>
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images11.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images12.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images13.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images14.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images11.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images12.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images11.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images12.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images13.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images14.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images11.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images12.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images11.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images12.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images13.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images14.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images11.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images12.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images11.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images12.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images13.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images14.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images11.jpg" />
-                        <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl="../../../images12.jpg" />
-
-
+                        {
+                            collectionData && collectionData.length &&
+                            collectionData.map((file: any) => (
+                                <CollectionImageView isSelect={selectAll} setSelect={setSelection} imageUrl={file?.url} key={file?.id} />
+                            ))
+                        }
 
                     </div>
                 </Container>

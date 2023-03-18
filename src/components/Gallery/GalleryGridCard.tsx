@@ -8,6 +8,15 @@ import 'moment-timezone';
 
 const GalleryGridCard = ({ collectionData }: any) => {
 
+    const [collection, setCollection] = useState({
+        name: collectionData.name || "",
+        eventDate: collectionData.eventDate || ""
+    })
+
+    const onSubmit = (data: any) => {
+        setCollection(data)
+    }
+
     const [modalShow, setModalShow] = useState(false);
 
     const navigate = useNavigate();
@@ -23,7 +32,7 @@ const GalleryGridCard = ({ collectionData }: any) => {
                     <Image className={styles.myimage} src={collectionData.coverPhoto} />
                 </Ratio>
                 <div className={styles.outertitle}>
-                    <p className={styles.title}>{collectionData.name}</p>
+                    <p className={styles.title}>{collection.name}</p>
                     <NavDropdown
                         title={<i className="fa-regular fa-ellipsis setcolorgallery galleryicon"></i>} className={styles.navdropdown} id="collasible-nav-dropdown gallerydropdown">
                         <NavDropdown.Item onClick={() => setModalShow(true)} >
@@ -48,7 +57,7 @@ const GalleryGridCard = ({ collectionData }: any) => {
                 </div>
                 <div className={styles.outerdetails}>
                     <p className={styles.details}>
-                        <Moment format="MMMM  Do, YYYY">{collectionData.eventDate}</Moment>
+                        <Moment format="MMMM  Do, YYYY">{collection.eventDate}</Moment>
                     </p>
                     <p className={styles.details}>{collectionData?.photos} Photos</p>
                     <p className={styles.details}>{collectionData?.videos} Videos</p>
@@ -62,8 +71,9 @@ const GalleryGridCard = ({ collectionData }: any) => {
                 onHide={() => setModalShow(false)}
                 createNew={false}
                 id={collectionData.id}
-                name={collectionData.name}
-                eventDate={collectionData.eventDate}
+                name={collection.name}
+                eventDate={collection.eventDate}
+                onSubmit={onSubmit}
             />
         </Col>
     )

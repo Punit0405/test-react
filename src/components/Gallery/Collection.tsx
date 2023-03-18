@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import CollectionService from "../../api/Collection/collection";
+import FilesSevice from "../../api/Files/files";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import SimpleLoader from "../Loader/SimpleLoader";
@@ -14,16 +14,16 @@ const Collection: FunctionComponent = () => {
 
     const { collectionId } = useParams()
     const [loader, setLoader] = useState(true);
-    const [collection, setCollection]: any = useState([]);
+    const [files, setFiles]: any = useState([]);
     const navigate = useNavigate();
 
     const getCollectionList = async () => {
         try {
             if (collectionId) {
-                const res = await CollectionService.getCollectionById(collectionId as string)
+                const res = await FilesSevice.getFiles(collectionId)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
                     setLoader(false);
-                    setCollection(res?.result)
+                    setFiles(res?.result)
                 }
             }
         } catch (err: any) {
@@ -48,8 +48,8 @@ const Collection: FunctionComponent = () => {
             <Container fluid >
                 <AddPhotosNav />
                 {
-                    collection && (collection?.photos || collection?.videos) ?
-                        <CollectionView /> : <AddCollection />
+                    files && files?.length ?
+                        <CollectionView collectionData={files} /> : <AddCollection />
                 }
             </Container>
         </>

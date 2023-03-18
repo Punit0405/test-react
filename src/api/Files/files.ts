@@ -16,6 +16,17 @@ const FilesSevice = {
         } catch (error) {
             throw error
         }
+    },
+
+    getFiles: async (collectionId: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.get(`collection/files/${collectionId}`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
     }
 
 }
