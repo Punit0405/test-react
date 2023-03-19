@@ -40,7 +40,7 @@
     font-size: 0.9rem;
     font-weight: 400;
     width: 150px;
-    background-color: crimson;
+    background-color: rgb(0, 0, 0);
     color: white;
     margin: 2% 2%;
 }
@@ -50,17 +50,17 @@
     font-size: 0.9rem;
     font-weight: 400;
     width: 150px;
-    background-color: rgb(0, 0, 0);
+    background-color:crimson;
     color: white;
     margin: 2% 2%;
 }
 
 .cancelbtn:hover {
-    background-color: crimson;
+    background-color:rgb(0, 0, 0);
     color: white;
 }
 
 .createbtn:hover {
-    background-color: rgb(0, 0, 0);
+    background-color: crimson;
     color: white;
 }

@@ -12,12 +12,6 @@ const TopBarComponent: FunctionComponent = () => {
                     src="../../snape_logo@2x.png"
                 />
                 <div className={styles.frameParent}>
-                    <Nav.Link className={styles.iconset}>
-                        <i className="fa-light setcolortopbar fa-bell"></i>
-                    </Nav.Link>
-                    <Nav.Link className={styles.iconset}>
-                        <i className="fa-light setcolortopbar fa-gear"></i>
-                    </Nav.Link>
                     <Ratio aspectRatio='1x1' className={styles.navimg}>
                         <Image fluid
                             className={styles.maskGroupIcon1}
@@ -25,8 +19,7 @@ const TopBarComponent: FunctionComponent = () => {
                             src="../../profile_image@2x.png"
                         />
                     </Ratio>
-
-                    <NavDropdown
+                        <NavDropdown
                         title="My Name" className={styles.navdropdown} id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
@@ -38,11 +31,6 @@ const TopBarComponent: FunctionComponent = () => {
                             Separated link
                         </NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link className={styles.iconset}>
-                        <button className={styles.groupWrapper}>
-                            <i className="fa-regular setcolortopbar fa-ellipsis-vertical"></i>
-                        </button>
-                    </Nav.Link>
                 </div>
             </div>
         </Navbar >

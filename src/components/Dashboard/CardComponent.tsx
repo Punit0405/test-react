@@ -16,9 +16,9 @@ const CardComponent = ({ classname,topTitle ,middleTitle  ,bottomTitle , backgro
         <div className={styles[`${classname}`]}>
         <div className={styles.rectangleParent}>
           <div className={styles.clientsGroup}>
-            <h5>{topTitle}</h5>
-            <h5>{middleTitle}</h5>
-            <h5>{bottomTitle}</h5>
+            <p>{topTitle}</p>
+            <p>{middleTitle}</p>
+            <p>{bottomTitle}</p>
           </div>
           <div className={styles.rectangleGroup}>
             <img

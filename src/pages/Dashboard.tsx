@@ -23,15 +23,15 @@ const Dashboard: FunctionComponent = () => {
                   <CardComponent classname="clients" topTitle="Clients" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg" />
                  </Ratio>
                  <Ratio aspectRatio="1x1">
-                  <CardComponent classname="photography" topTitle="Photography" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg" />
+                  <CardComponent classname="photography" topTitle="Photography" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../cameraiconbg.svg" iconImage="../cameraicon.svg" />
                   </Ratio>
                 </div>
                 <div className={styles.clientsParent}>
                 <Ratio aspectRatio="1x1">
-                  <CardComponent classname="videography" topTitle="Videography" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg" />
+                  <CardComponent classname="videography" topTitle="Videography" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../videoiconbg.svg" iconImage="../videoicon.svg" />
                   </Ratio>
                   <Ratio aspectRatio="1x1">
-                  <CardComponent classname="revenue" topTitle="Revenue" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../rectangle-52.svg" iconImage="../h38ch38bm0014iconset011-1.svg" />
+                  <CardComponent classname="revenue" topTitle="Revenue" middleTitle="4" bottomTitle="Last 7 days" backgroudBox="../moneybankbg.svg" iconImage="../moneybank.svg" />
                   </Ratio>
                 </div>
               </div>
