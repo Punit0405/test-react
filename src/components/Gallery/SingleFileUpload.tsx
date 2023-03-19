@@ -8,6 +8,7 @@ import { XhrHttpHandler } from "@aws-sdk/xhr-http-handler";
 import FilesSevice from '../../api/Files/files';
 import { useParams } from "react-router-dom";
 
+
 function SingleFileUpload({ filedata }: any) {
 
     const { collectionId } = useParams()
@@ -31,7 +32,11 @@ function SingleFileUpload({ filedata }: any) {
                 const s3 = new S3({
                     requestHandler: new XhrHttpHandler({}),
                     region: 'us-east-1',
-                   
+                    credentials: {
+                        accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY as string,
+                        secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY as string
+                    }
+                    
                 })
                 const parallelUploads3 = new Upload({
                     client: s3,
@@ -58,17 +63,16 @@ function SingleFileUpload({ filedata }: any) {
     const uploadDone = async (uploadResult: any) => {
         try {
             let reqObj: any = {
-                name: filedata.name,
-                url: uploadResult.Location,
-                size: filedata.size,
-                type: "PHOTO"
+                name: filedata?.name,
+                url: uploadResult?.Location,
+                size: filedata?.size,
+                type: "PHOTO",
+                key: uploadResult?.Key
             }
             let data = {
                 files: [reqObj]
             }
-
             const res = await FilesSevice.addFiles(data, collectionId)
-
         } catch (error) {
             console.log(error, '----err--------');
 
