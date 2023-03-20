@@ -1,0 +1,85 @@
+.maincomponent {
+    /* border: 2px solid red; */
+    font-family: var(--font-poppins);
+    padding: 1% 5%;
+    padding-right: 5%;
+}
+
+.sidemaintitle {
+    font-size: 1.6vw;
+    font-weight: 550;
+}
+
+.selection {
+    padding: 2% 3%;
+}
+
+.viewpoint {
+    border: 2px solid red;
+}
+
+.covertitle {
+    width: 100%;
+    font-size: 1.5rem;
+    padding-left: 5%;
+    padding-top: 5%;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    font-weight: 500;
+}
+
+.coverdate {
+    width: 100%;
+    font-size: 0.8rem;
+    padding-left: 5%;
+    border-bottom: 1px solid #D9D9D9;
+    padding-bottom: 5%;
+    margin-bottom: 0px;
+}
+
+
+.fontstyle {
+    border: none;
+    border-radius: 0px;
+    margin-top: 0px;
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+.titlediv {
+    border: 1px solid #D9D9D9;
+}
+
+.formlabel {
+    font-size: 1.1vw;
+    font-weight: 550;
+    color: black;
+    font-family: var(--font-poppins);
+    margin: 7% 0%;
+}
+
+.fontmain {
+    margin-bottom: 5%;
+}
+
+.gridstylediv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gridstyleinnerdiv {
+    width: 48%;
+}
+
+.gridinnersetting {
+    border: 1px solid #D9D9D9;
+    padding: 15% 15%;
+    text-align: center;
+}
+
+.stylenames {
+    text-align: center;
+    font-size: 0.8rem;
+    font-family: var(--font-poppins);
+    margin: 4% 0%;
+}

@@ -32,6 +32,7 @@ import MusicCollections from "./pages/MusicCollections";
 import Grid from "./components/Grid";
 import Collection from "./components/Gallery/Collection";
 import LayoutWithSideBar from "./components/LayoutWithSideBar";
+import Design from "./components/StudioManagement/Design";
 
 
 function RoutesAll() {
@@ -51,6 +52,7 @@ function RoutesAll() {
                     <Route path="/gallery/collection-setting/:collectionId" element={<CollectionSetting />} />
                     <Route path="/gallery/privacy/:collectionId" element={<PrivacySetting />} />
                     <Route path="/gallery/download/:collectionId" element={<DownloadStatus />} />
+                    <Route path="/gallery/design/:collectionId" element={<Design />} />
                 </Route>
                 <Route path="/asset-registry" element={<AssetRegistry />}>
                     <Route path="" element={<AssetDashboardMain />}></Route>
