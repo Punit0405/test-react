@@ -256,11 +256,44 @@
   font-size: var(--font-size-3xl);
 }
 
-.categorysection,
-.rightcontainer,
+
 .summarySection {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
+}
+.rightcontainer{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.categorysection{
+  display: flex;
+  justify-content: center;
+  margin: 0% 2%;
+}
+
+.priceBox{
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  align-self: start;
+  background-color: #252525;
+  font-family: 'Poppins';
+  color: #ffffff;
+  height: 30%;
+  font-weight: 100;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.priceBox p{
+  margin: 0% 5%;
+
+}
+.priceBox h3{
+  font-size: 1.4rem;
+  margin: 0% 5%;
 }
 
 .summarySection {
@@ -286,6 +319,10 @@
   font-size: var(--font-size-29xl);
   color: var(--color-black);
   font-family: var(--font-poppins);
+}
+
+.chartDiv{
+  display: flex;
 }
 
 
