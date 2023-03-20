@@ -94,9 +94,14 @@ const AssetDashboardMain: FunctionComponent = () => {
         </div>
       </div>
       <div className={styles.summarySection}>
+        <div className={styles.priceBox}>
+          <p>Total Device Value</p>
+          <h3>R 36000</h3>
+        </div>
+        <div className={styles.chartDiv}>
         <div>
        <Doughnut data={data}/>
-</div>
+      </div>
         <div className={styles.categorysection}>
           <div className={styles.cellphoneParent}>
            <AssetRegisteryChartComp percentage="30%" backgroundColor="#EC1A25" categoryTitle="Cell Phone"/>
@@ -108,6 +113,8 @@ const AssetDashboardMain: FunctionComponent = () => {
           
           </div>
         </div>
+        </div>
+       
       </div>
     </section>
   );
