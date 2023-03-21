@@ -429,6 +429,11 @@ a:-webkit-any-link {
   font-size: 1.3rem;
 }
 
+.sidescreennav {
+  color: black;
+  margin-right: 3px;
+}
+
 .gridicon {
   color: black;
   font-size: 2rem;

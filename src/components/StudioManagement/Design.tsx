@@ -80,15 +80,15 @@ const Design: FunctionComponent = () => {
                         </Col>
                         <Col lg={8} md={8} sm={8} className={styles.viewpoint}>
                             <div className={styles.sidemain}>
-                                <Navbar bg="light" variant="light">
+                                <Navbar className={styles.sidenav} variant="light">
                                     <Container>
                                         <Nav className="me-auto">
-                                            <Nav.Link href="#home">Cover</Nav.Link>
-                                            <Nav.Link href="#pricing">Collection</Nav.Link>
+                                            <Nav.Link className={styles.navname} href="#home">Cover</Nav.Link>
+                                            <Nav.Link className={styles.navname} href="#pricing">Collection</Nav.Link>
                                         </Nav>
                                         <Nav className="">
-                                            <Nav.Link href="#home">Cover</Nav.Link>
-                                            <Nav.Link href="#pricing">Focal Point</Nav.Link>
+                                            <Nav.Link className={styles.navname} href="#home"><i className="fa-regular fa-image sidescreennav"></i>Cover</Nav.Link>
+                                            <Nav.Link className={styles.navname} href="#pricing"><i className="fa-solid fa-circle-dot sidescreennav"></i>Focal Point</Nav.Link>
                                         </Nav>
                                     </Container>
                                 </Navbar>
