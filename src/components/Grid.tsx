@@ -1,95 +1,152 @@
 import { FunctionComponent } from "react";
-import { Button, Container, Image, Row, Col, Nav, NavItem } from "react-bootstrap";
+import { Button, Container, Row, Col, Nav, NavItem } from "react-bootstrap";
 import NavBarComponent from "./NavbarComponent";
 import TopBarComponent from "./TopBarComponent";
-import styles from "./Layout.module.css"
+import styles from "./Layout.module.css";
+import Gallery from "react-photo-gallery";
+
 
 interface Props {
     children: JSX.Element;
 }
+const data = [
+    { src: "../../images15.jpg",height:0,width:0 }, { src: "../../sample2.jpg",height:0,width:0 }, { src: "../../images11.jpg",height:0,width:0 }, { src: "../../images12.jpg",height:0,width:0 },
+    {src:"../../images13.jpg",height:0,width:0},{src:"../../images14.jpg",height:0,width:0},
+];
+const newData = [
+    {
+        "src": "../../images15.jpg",
+        "height": 3744,
+        "width": 3744
+    },
+    {
+        "src": "../../sample2.jpg",
+        "height": 2251,
+        "width": 1500
+    },
+    {
+        "src": "../../images11.jpg",
+        "height": 2988,
+        "width": 5312
+    },
+    {
+        "src": "../../images12.jpg",
+        "height": 3024,
+        "width": 4032
+    },
+    {
+        "src": "../../images13.jpg",
+        "height": 4032,
+        "width": 3024
+    },
+    {
+        "src": "../../images15.jpg",
+        "height": 3744,
+        "width": 3744
+    },
+    {
+        "src": "../../sample2.jpg",
+        "height": 2251,
+        "width": 1500
+    },
+    {
+        "src": "../../images15.jpg",
+        "height": 3744,
+        "width": 3744
+    },
+    {
+        "src": "../../sample2.jpg",
+        "height": 2251,
+        "width": 1500
+    },
+    {
+        "src": "../../images14.jpg",
+        "height": 3787,
+        "width": 2525
+    },
+    {
+        "src": "../../images13.jpg",
+        "height": 4032,
+        "width": 3024
+    },
+    {
+        "src": "../../images14.jpg",
+        "height": 3787,
+        "width": 2525
+    },
+    {
+        "src": "../../images13.jpg",
+        "height": 4032,
+        "width": 3024
+    },
+    {
+        "src": "../../images14.jpg",
+        "height": 3787,
+        "width": 2525
+    },
+    {
+        "src": "../../images15.jpg",
+        "height": 3744,
+        "width": 3744
+    },
+    {
+        "src": "../../sample2.jpg",
+        "height": 2251,
+        "width": 1500
+    },
+    {
+        "src": "../../images11.jpg",
+        "height": 2988,
+        "width": 5312
+    },
+    {
+        "src": "../../images12.jpg",
+        "height": 3024,
+        "width": 4032
+    },
+    {
+        "src": "../../images13.jpg",
+        "height": 4032,
+        "width": 3024
+    },
+    {
+        "src": "../../images15.jpg",
+        "height": 3744,
+        "width": 3744
+    },
+    {
+        "src": "../../sample2.jpg",
+        "height": 2251,
+        "width": 1500
+    },
+    {
+        "src": "../../images15.jpg",
+        "height": 3744,
+        "width": 3744
+    }
+    
+]
+
 
 const Grid = () => {
     return (
         <div className={styles.maincomp}>
-            <Container fluid>
-                <Row>
-                    <Col lg={3} md={4} sm={6} className={styles.imageset}>
-                        <Image className={styles.singleimage} fluid src="../../sample2.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images11.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images12.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images13.jpg" />
-                    </Col>
-                    <Col lg={3} md={4} sm={6} className={styles.imageset}>
-                        <Image className={styles.singleimage} fluid src="../../images13.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images14.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images15.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images16.jpg" />
-                    </Col>
-                    <Col lg={3} md={4} sm={6} className={styles.imageset}>
-                        <Image className={styles.singleimage} fluid src="../../images11.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images15.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images14.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images16.jpg" />
-                    </Col>
-                    <Col lg={3} md={4} sm={6} className={styles.imageset}>
-                        <Image className={styles.singleimage} fluid src="../../images16.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images14.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images15.jpg" />
-                        <Image className={styles.singleimage} fluid src="../../images12.jpg" />
-                    </Col>
-                </Row>
-            </Container>
+           <h1>Vertical Grid</h1>
 
-            <hr />
-            <hr />
-            <hr />
-            <hr />
-            <h1>Punit's Grid</h1>
+           <Gallery photos={newData} direction="column" />
 
-            <div className={styles.gridClassPunit}>
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../sample2.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images11.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images16.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid   src="../../images16.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../sample2.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images11.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images16.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid   src="../../images16.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../sample2.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images11.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images16.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images12.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images13.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images14.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid  src="../../images15.jpg" />
-            <Image className={styles.singleimagePunit} fluid   src="../../images16.jpg" />
-            </div>
+           <hr></hr>
+           <hr></hr>
+           <hr></hr>
+           <hr></hr>
+
+           <h1>Horizontal Grid</h1>
+
+           <Gallery photos={newData}/>
+
+            {/* <div className={styles.gridClassPunit}>
+                {data.map(({src})=>(<Image className={styles.singleimagePunit} fluid src={src} />))}
+            </div> */}
 
         </div>
     );
