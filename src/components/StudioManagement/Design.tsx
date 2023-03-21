@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Image, InputGroup, Nav, Navbar, Row } from "react-bootstrap";
 import styles from "./Design.module.css"
 
 const Design: FunctionComponent = () => {
@@ -65,7 +65,7 @@ const Design: FunctionComponent = () => {
                                 <div className={styles.gridstylediv}>
                                     <div className={styles.gridstyleinnerdiv}>
                                         <div className={styles.gridinnersetting}>
-                                        <i className="fa-sharp fa-solid fa-grid-2 gridicon"></i>
+                                            <i className="fa-sharp fa-solid fa-grid-2 gridicon"></i>
                                         </div>
                                         <p className={styles.stylenames}>Regular</p>
                                     </div>
@@ -79,6 +79,52 @@ const Design: FunctionComponent = () => {
                             </div>
                         </Col>
                         <Col lg={8} md={8} sm={8} className={styles.viewpoint}>
+                            <div className={styles.sidemain}>
+                                <Navbar bg="light" variant="light">
+                                    <Container>
+                                        <Nav className="me-auto">
+                                            <Nav.Link href="#home">Cover</Nav.Link>
+                                            <Nav.Link href="#pricing">Collection</Nav.Link>
+                                        </Nav>
+                                        <Nav className="">
+                                            <Nav.Link href="#home">Cover</Nav.Link>
+                                            <Nav.Link href="#pricing">Focal Point</Nav.Link>
+                                        </Nav>
+                                    </Container>
+                                </Navbar>
+                                <div className={styles.sample}>
+                                    <div
+                                        className={styles.pcscreen}
+                                        style={{
+                                            backgroundImage: `url("../../images11.jpg")`,
+                                            backgroundRepeat: 'no-repeat',
+                                            backgroundPosition: 'center',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    >
+                                        <div>
+                                            <p className={styles.maintitle}>Test Collection</p>
+                                            <p className={styles.maindate}>March 9th, 2023</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        className={styles.mobilescreen}
+                                        style={{
+                                            backgroundImage: `url("../../images11.jpg")`,
+                                            backgroundRepeat: 'no-repeat',
+                                            backgroundPosition: 'center',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    >
+                                        <div>
+                                            <p className={styles.maintitlemobile}>Test Collection</p>
+                                            <p className={styles.maindatemobile}>March 9th, 2023</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </Col>
                     </Row>
 
