@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import 'react-h5-audio-player/lib/styles.css';
 import RoutesAll from "./RoutesAll";
 import { getUserToken } from "./Utils/helper";
+import GalleryClientView from "./pages/GalleryClientView";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/view/:collectionId" element={<GalleryClientView/>}/>
         <Route path="/*" element={<RoutesAll />} /> 
       </Routes>
     </>
