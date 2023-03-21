@@ -36,7 +36,16 @@
     top: 60%;
 }
 
+.navname {
+    font-family: var(--font-poppins);
+    font-size: 0.8rem;
+}
+
 .sample {
+    background-color: #f0f0f0;
+}
+
+.sidenav {
     background-color: #f0f0f0;
 }
 
