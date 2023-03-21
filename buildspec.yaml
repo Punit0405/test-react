@@ -5,7 +5,7 @@ phases:
     commands:
       - echo REACT_APP_AWS_ACCESS_KEY=${REACT_APP_AWS_ACCESS_KEY} >> .env
       - echo REACT_APP_AWS_SECRET_KEY=${REACT_APP_AWS_SECRET_KEY} >> .env
-      - npm install
+      - npm install --force
   build:
     commands:
       - npm run build
