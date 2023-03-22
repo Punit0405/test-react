@@ -18,7 +18,7 @@ const newData = [
         "src": "../../images15.jpg",
         "height": 3744,
         "width": 3744
-    },
+    },  
     {
         "src": "../../sample2.jpg",
         "height": 2251,

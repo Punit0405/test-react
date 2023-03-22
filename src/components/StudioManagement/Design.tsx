@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Button, Col, Container, Form, Image, InputGroup, Nav, Navbar, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, FormLabel, Image, InputGroup, Nav, Navbar, Row } from "react-bootstrap";
 import styles from "./Design.module.css"
 
 const Design: FunctionComponent = () => {
@@ -16,8 +16,15 @@ const Design: FunctionComponent = () => {
                                     <Form.Label className={styles.covertitle}>Cover Title</Form.Label>
                                     <Form.Label className={styles.coverdate}>January 6th, 2023</Form.Label>
                                     <Form.Select name="status" className={styles.fontstyle}>
-                                        <option value="PUBLISHED" >Sans</option>
-                                        <option value="HIDDEN" >Serif</option>
+                                        <option value="PUBLISHED" className={styles.fontsans}>
+                                            <FormLabel>
+                                                <div>
+                                                    <Image src="../../../sans.svg" />
+                                                    Sans
+                                                </div>
+                                            </FormLabel>
+                                        </option>
+                                        <option value="HIDDEN" className={styles.fontserif}>Serif</option>
                                         <option value="PUBLISHED" >Modern</option>
                                         <option value="HIDDEN" >Timeless</option>
                                         <option value="PUBLISHED" >Bold</option>
