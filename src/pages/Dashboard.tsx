@@ -8,8 +8,11 @@ import './Calender.css'
 import CardComponent from "../components/Dashboard/CardComponent";
 import Constants from "../Config/Constants";
 import Layout from "../components/Layout";
+import moment from "moment";
 const Dashboard: FunctionComponent = () => {
   const [date, setDate] = useState(new Date());
+  const todayDate = new Date();
+  console.log(todayDate , 'sdafasf')
   const varial = "hello"
   return (
     <Layout>
@@ -166,7 +169,7 @@ const Dashboard: FunctionComponent = () => {
           <section className={styles.rightcontainer}>
             <div className={styles.upcomingBookingsTitle}>Upcoming Bookings</div>
             <div className={styles.calenderDiv}>
-              <Calender onChange={setDate} value={date} />
+              <Calender onChange={setDate} value={date} minDate={todayDate} />
 
             </div>
             <div className={styles.rightcontainerInner}>
