@@ -168,14 +168,17 @@
 }
 
 .topbar {
-    position: relative;
+    position: sticky;
     background-color: var(--color-white);
     width: 100%;
     padding: 10px 94px;
+    height: 90%;
+    top: 0;
     box-sizing: border-box;
     justify-content: flex-start;
     text-align: left;
     font-size: 12.26px;
     color: var(--color-darkslategray-100);
     font-family: var(--font-poppins);
+    z-index: 3;
 }
