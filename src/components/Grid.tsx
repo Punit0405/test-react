@@ -133,7 +133,7 @@ const Grid = () => {
         <div className={styles.maincomp}>
            <h1>Vertical Grid</h1>
 
-           <Gallery photos={newData} direction="column" />
+           <Gallery photos={newData} columns={4} direction="column" />
 
            <hr></hr>
            <hr></hr>
