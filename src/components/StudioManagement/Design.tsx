@@ -1,5 +1,8 @@
+import { width } from "@mui/system";
 import { FunctionComponent } from "react";
-import { Button, Col, Container, Form, FormLabel, Image, InputGroup, Nav, Navbar, Row } from "react-bootstrap";
+import { Button, Col, Container, Dropdown, Form, FormLabel, Image, InputGroup, Nav, Navbar, Row } from "react-bootstrap";
+import CustomDropdownItem from "./CustomDropdownItem";
+
 import styles from "./Design.module.css"
 
 const Design: FunctionComponent = () => {
@@ -37,17 +40,29 @@ const Design: FunctionComponent = () => {
                                 <div className={styles.titlediv}>
                                     <Form.Label className={styles.covertitle}>Cover Title</Form.Label>
                                     <Form.Label className={styles.coverdate}>January 6th, 2023</Form.Label>
-                                    <Form.Select name="status" className={styles.fontstyle}>
-                                        <option value="PUBLISHED" >Light</option>
-                                        <option value="HIDDEN" >Gold</option>
-                                        <option value="PUBLISHED" >Rose</option>
-                                        <option value="HIDDEN" >Terracotta</option>
-                                        <option value="PUBLISHED" >Sand</option>
-                                        <option value="HIDDEN" >Olive</option>
-                                        <option value="HIDDEN" >Agave</option>
-                                        <option value="PUBLISHED" >Sea</option>
-                                        <option value="HIDDEN" >Dark</option>
-                                    </Form.Select>
+                                    <Dropdown>
+                    
+                                        <Dropdown.Toggle variant="none" style={{width:"100%"}} size="lg" id="dropdown-basic">
+                                            <div className={styles.customDropdown}>
+                                                <span>Select Theme</span>
+                                                <i className="fa-sharp fa-regular fa-angle-down"></i>
+                                            </div>
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu style={{width:"100%"}}>
+                                            <Dropdown.Item href="#/action-1"><CustomDropdownItem color1="#FFFFFF" color2="#F5F5F5" color3="#333333"  theme="Light"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-2"><CustomDropdownItem color1="#FFFEF9" color2="#FBF8F2" color3="#9E8962"  theme="Gold"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3"><CustomDropdownItem color1="#FAF8F7" color2="#F8F3F2" color3="#9E7877"  theme="Rose"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3"><CustomDropdownItem color1="#FAF8F7" color2="#F8F3F2" color3="#9E7877"  theme="Rose"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3"><CustomDropdownItem color1="#FAF8F7" color2="#F8F3F2" color3="#9E7877"  theme="Rose"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3"><CustomDropdownItem color1="#FAF8F7" color2="#F8F3F2" color3="#9E7877"  theme="Rose"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3"><CustomDropdownItem color1="#FAF8F7" color2="#F8F3F2" color3="#9E7877"  theme="Rose"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3"><CustomDropdownItem color1="#FAF8F7" color2="#F8F3F2" color3="#9E7877"  theme="Rose"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3"><CustomDropdownItem color1="#FAF8F7" color2="#F8F3F2" color3="#9E7877"  theme="Rose"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3"><CustomDropdownItem color1="#FAF8F7" color2="#F8F3F2" color3="#9E7877"  theme="Rose"/></Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3"><CustomDropdownItem color1="#FAF8F7" color2="#F8F3F2" color3="#9E7877"  theme="Rose"/></Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
                                 </div>
                             </div>
                             <div className={styles.fontmain}>

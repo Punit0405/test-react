@@ -171,3 +171,30 @@
     margin: 7% 2%;
     background-color: #D9D9D9;
 }
+.customDropdown{
+    margin: 0% 0%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 1 rem;
+}
+
+.dropdownItemMainComp{
+    display: flex;
+    width: 100%;
+   justify-content: space-around;
+}
+.colorBallsParentDiv{
+    display: flex;
+    width: 52%;
+    justify-content: space-between;
+}
+.colorBalls{
+   height: 30px;
+   width: 30px;
+   margin: 5%;
+   border-radius: 50%;
+   border: 1px solid black;
+   justify-content: space-between;
+}
