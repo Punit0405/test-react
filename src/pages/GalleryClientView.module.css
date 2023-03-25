@@ -1,0 +1,26 @@
+.maincomp {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.titleblock {
+    /* display: flex; */
+    /* justify-content: center; */
+    text-align: center;
+}
+
+.maintitle {
+    color: white;
+    font-family: var(--font-poppins);
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.maindate {
+    color: white;
+    font-family: var(--font-poppins);
+    font-size: 1.5rem;
+    font-weight: 400;
+}

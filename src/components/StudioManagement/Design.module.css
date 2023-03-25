@@ -11,7 +11,7 @@
 }
 
 .selection {
-    padding: 2% 3%;
+    padding: 0% 3%;
 }
 
 .viewpoint {
@@ -106,7 +106,7 @@
 
 .covertitle {
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     padding-left: 5%;
     padding-top: 5%;
     margin-bottom: 0px;
@@ -116,13 +116,48 @@
 
 .coverdate {
     width: 100%;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     padding-left: 5%;
     border-bottom: 1px solid #D9D9D9;
     padding-bottom: 5%;
     margin-bottom: 0px;
 }
 
+.fontstylemain {
+    display: flex;
+}
+
+.fontsvg {
+    /* border: 2px solid red; */
+}
+
+.colorblock {
+    display: flex;
+    justify-content: space-between;
+    padding: 3% 10%;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.styletype {
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.dropdownselect {
+    border-radius: 0px;
+    border: none;
+}
+
+.dropdownselect:active {
+    border: none;
+}
+
+.dropdownname {
+    font-size: 1rem;
+    color: black;
+}
 
 .fontstyle {
     border: none;
@@ -175,7 +210,8 @@
     margin: 7% 2%;
     background-color: #D9D9D9;
 }
-.customDropdown{
+
+.customDropdown {
     margin: 0% 0%;
     display: flex;
     justify-content: space-between;
@@ -184,21 +220,43 @@
     font-size: 1 rem;
 }
 
-.dropdownItemMainComp{
+.dropdownItemMainComp {
     display: flex;
     width: 100%;
-   justify-content: space-around;
+    justify-content: space-between;
 }
-.colorBallsParentDiv{
+
+.colorBallsParentDiv {
     display: flex;
     width: 52%;
     justify-content: space-between;
 }
-.colorBalls{
-   height: 30px;
-   width: 30px;
-   margin: 5%;
-   border-radius: 50%;
-   border: 1px solid black;
-   justify-content: space-between;
+
+.colordropmain {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.colorstyle {
+    text-align: center;
+    width: 40%;
+    padding-bottom: 0px;
+}
+
+.colorBalls {
+    height: 30px;
+    width: 30px;
+    margin: 5%;
+    border-radius: 50%;
+    border: 1px solid #D9D9D9;
+    justify-content: space-between;
+}
+
+.themename {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    padding: 0% 5%;
+    font-size: 0.8rem;
 }

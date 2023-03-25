@@ -8,16 +8,15 @@ declare interface Props {
   color2: string
   color3: string
 }
-const CustomDropdownItem = ({ theme , color1 , color2 , color3 }: Props) => {
+const CustomDropdownItem = ({ theme, color1, color2, color3 }: Props) => {
   return (
     <div className={styles.dropdownItemMainComp}>
       <div className={styles.colorBallsParentDiv}>
-        <div className={styles.colorBalls} style={{background:color1}}></div>
-        <div className={styles.colorBalls}  style={{background:color2}}></div>
-        <div className={styles.colorBalls}  style={{background:color3}}></div>
+        <div className={styles.colorBalls} style={{ background: color1 }}></div>
+        <div className={styles.colorBalls} style={{ background: color2 }}></div>
+        <div className={styles.colorBalls} style={{ background: color3 }}></div>
       </div>
-
-      <span>{theme}</span>
+      <span className={styles.themename}>{theme}</span>
     </div>
   )
 }
