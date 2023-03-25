@@ -11,7 +11,7 @@ const TopBarComponent: FunctionComponent = () => {
 
     }
     return (
-        <Navbar className={styles.topbar} id="headerTopbar">
+        <Navbar className={styles.topbar}  id="headerTopbar">
             <div className={styles.artboard134x81Parent} id="innerHeader">
                 <Image fluid
                     className={styles.artboard134x81}

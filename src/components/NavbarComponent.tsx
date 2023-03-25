@@ -9,7 +9,7 @@ const NavBarComponent = () => {
     const currentRoute = location.pathname.split('/')[1] as string
 
     return (
-        <Nav id="navbar" variant="tabs" defaultActiveKey={currentRoute} className={styles.navpadding}>
+        <Nav id="navbar"  navbar variant="tabs" defaultActiveKey={currentRoute} className={`${styles.navpadding} fixed-top`}>
 
             <Nav.Link as={NavLink} to="/dashboard" eventKey="dashboard">
                 <div className={styles.home} >

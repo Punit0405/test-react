@@ -14,7 +14,11 @@
     padding: 2% 3%;
 }
 
-.viewpoint {}
+.viewpoint {
+    position: sticky;
+    height: 100%;
+    top: 20%;
+}
 
 .pcphoto {}
 

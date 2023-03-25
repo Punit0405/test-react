@@ -100,7 +100,7 @@ const Design: FunctionComponent = () => {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={8} md={8} sm={8} className={styles.viewpoint}>
+                        <Col lg={8} md={8} sm={8}  className={styles.viewpoint}>
                             <div className={styles.sidemain}>
                                 <Navbar className={styles.sidenav} variant="light">
                                     <Container>
