@@ -133,7 +133,8 @@
 .previewsection {}
 
 .maincomponent {
-    /* border: 2px solid red; */
+    position: sticky;
+    top: 10%;
     font-family: var(--font-poppins);
     padding: 0% 0%;
     margin: 4% 0%;
