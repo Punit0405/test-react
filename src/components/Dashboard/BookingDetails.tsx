@@ -2,14 +2,16 @@ import styles from "../../pages/Dashboard.module.css";
 import GoogleMapReact from 'google-map-react';
 import { width } from "@mui/system";
 import { Button } from "react-bootstrap";
+import Constants from "../../Config/Constants";
+import moment from "moment";
 
 const BookingDetails = (props:any) => {
     const {booking,setBooking} = props;
     const AnyReactComponent = ({text}:any) => <div><i style={{ margin: "0% 0%"}} className="fa-solid fa-location-dot fa-2xl setcolor"></i>{text}</div>
     const defaultProps = {
         center: {
-          lat: 22.9952744,
-          lng: 72.6194319
+          lat: booking.latitude,
+          lng: booking.longitude
         },
         zoom: 16
       };
@@ -19,20 +21,20 @@ const BookingDetails = (props:any) => {
             <div className={styles.upcomingBookingsTitle}>Upcoming Bookings Details</div>
             <div className={styles.customerDetails}>
                 <div className={styles.customerImgInfoDiv}>
-                    <img src="https://admin.snape.app/sa/clientImg/1679750612556_7cdfa083-a3a4-45f5-9f57-80a4a2207f30_progress_image_14.webp" className={styles.upcomingBookingImg} height={100} width={100} alt="" />
+                    <img src={`${Constants.adminbackendUrl}${booking.profile}`} className={styles.upcomingBookingImg} height={100} width={100} alt="" />
                     <div className={styles.customerInfo}>
-                        <p className={styles.customerName}>Kate Madix</p>
+                        <p className={styles.customerName}>{booking.clientfirstName} {booking.clientLastName}</p>
                         <p className={styles.customerPhotoShootP}>Sports Photography</p>
                     </div>
                 </div>
                 <div>
-                    <h4>R 1500</h4>
-                    <p className={styles.customerPhotoShootP}>3 Hours</p>
+                    <h4>R {booking.totalamount}</h4>
+                    <p className={styles.customerPhotoShootP}>{booking.session} Hours</p>
                 </div>
             </div>
             <div className={styles.bookingDateTimeDiv}>
                 <i className="fa-solid fa-clock"></i>
-                <span className={styles.bookingDateTimeP}>Sun,October 13th at 9:00AM</span>
+                <span className={styles.bookingDateTimeP}>{moment(booking.bookingStartTime).format("dddd, MMMM Do YYYY [at] h:mm A")}</span>
             </div>
             <div className={styles.bookingAddreessMainDiv}>
                 <div className={styles.bookingAddreessHeaderDiv}>
@@ -41,7 +43,7 @@ const BookingDetails = (props:any) => {
 
                 </div>
                 <div className={styles.bookingAddressDetailDiv}>
-                    <p>60 Crescent road, Bramley View Johannesburg, 2090</p>
+                    <p>{booking.address1},{booking.address2}</p>
                 </div>
                 <div className={styles.bookingAddressMapDiv}>
                     <GoogleMapReact
@@ -50,8 +52,8 @@ const BookingDetails = (props:any) => {
                         defaultZoom={defaultProps.zoom}
                     >
                         <AnyReactComponent
-                            lat={22.9952744}
-                            lng={72.6194319}
+                            lat={booking.latitude}
+                            lng={booking.longitude}
                             text="Location"
                         />
                     </GoogleMapReact>
