@@ -7,11 +7,13 @@ import CollectionService from "../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../Utils/constants";
 import { NotificationWithIcon } from "../Utils/helper";
 import CreateCollectionModal from "./Modal/CreateCollectionModal";
+import GetDirectLinkModal from "./Modal/GetDirectLinkModal";
 import styles from "./StudioSideBar.module.css";
 
 
 const StudioSideBar: FunctionComponent = () => {
     const [modalShow, setModalShow] = useState(false);
+    const [getLinkModalShow, setGetLinkModalShow] = useState(false);
     const { collectionId } = useParams()
     const [collection, setCollection]: any = useState([]);
     const navigate = useNavigate();
@@ -101,7 +103,7 @@ const StudioSideBar: FunctionComponent = () => {
             <div>
                 <p className={styles.datepreview}>
                     <button className={styles.previewbtn}>Preview</button>
-                    <button className={styles.publishbtn}>Publish</button>
+                    <button className={styles.publishbtn} onClick={() => setGetLinkModalShow(true)}>Share</button>
                 </p>
             </div>
             <CreateCollectionModal
@@ -113,6 +115,7 @@ const StudioSideBar: FunctionComponent = () => {
                 eventDate={collection.eventDate}
                 onSubmit={onSubmit}
             />
+            <GetDirectLinkModal show={getLinkModalShow} onHide={() => setGetLinkModalShow(false)}/>
         </div>
     );
 };
