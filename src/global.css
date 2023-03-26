@@ -667,3 +667,9 @@ a:-webkit-any-link {
   height: 650px;
   margin: auto auto;
 }
+.cancelModalBtn{
+  position: absolute;
+  right: 8%;
+  top: 0%;
+  cursor: pointer;
+}
