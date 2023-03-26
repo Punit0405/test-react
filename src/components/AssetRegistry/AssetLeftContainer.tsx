@@ -35,11 +35,11 @@ const AssetLeftContainer: FunctionComponent = () => {
           onClick={() => { handleClick(1) }}
           style={active === 1 ? activeStyle : {}}
         >
+          {
+            active === 1 ? <i className="fa-regular fa-house setsizeasset"></i> :
+              <i className="fa-regular fa-house setcolor"></i>
+          }
           <Link to="">
-            {
-              active === 1 ? <i className="fa-regular fa-house setsizeasset"></i> :
-                <i className="fa-regular fa-house setcolor"></i>
-            }
             <div className={styles.leftDivButtonText} style={active === 1 ? activeText : {}}>Dashboard</div>
           </Link>
 
