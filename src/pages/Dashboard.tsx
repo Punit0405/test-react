@@ -32,7 +32,8 @@ const Dashboard: FunctionComponent = () => {
   })
   const [recent, setRecent] = useState([])
   const [upcoming, setUpcoming] = useState([])
-  const [loader,setLoader] = useState(true);
+  const [upcomingLoader,setUpcomingLoader] = useState(true);
+  const [recentLoader,setRecentLoader] = useState(true);
 
   async function getDashboardData() {
     try {
@@ -44,6 +45,7 @@ const Dashboard: FunctionComponent = () => {
       DashboardService.getRecentCustomer().then((recentRes: any) => {
         if (recentRes && recentRes?.code === STATUS_CODE.SUCCESS) {
           setRecent(recentRes?.result?.recentCustomers)
+          setRecentLoader(false);
         }
       }).catch((err)=>{throw err})
       const currentDate = moment().format("YYYY-MM-DD")
@@ -51,7 +53,7 @@ const Dashboard: FunctionComponent = () => {
       DashboardService.getUpComingBookings(currentDate).then((upcomingRes: any) => {
         if (upcomingRes && upcomingRes?.code === STATUS_CODE.SUCCESS) {
           setUpcoming(upcomingRes?.result?.recentCustomers);
-          setLoader(false);
+          setUpcomingLoader(false);
         }
       }).catch((err)=>{throw err})
     } catch (err: any) {
@@ -66,12 +68,12 @@ const Dashboard: FunctionComponent = () => {
 
   const handleDateChange = async (changeDate: any) => {
     setDate(changeDate)
-    setLoader(true);
+    setUpcomingLoader(true);
     const viewDate = moment(changeDate).format("YYYY-MM-DD")
     DashboardService.getUpComingBookings(viewDate).then((upcomingRes: any) => {
       if (upcomingRes && upcomingRes?.code === STATUS_CODE.SUCCESS) {
         setUpcoming(upcomingRes?.result?.recentCustomers);
-        setLoader(false);
+        setUpcomingLoader(false);
       }
     })
   }
@@ -104,7 +106,7 @@ const Dashboard: FunctionComponent = () => {
               </div>
               <div className={styles.recentCustomersParent}>
                 <h3 className={styles.recentCustomers}>Recent Customers</h3>
-                {loader ? <SkeletonLoader/>:<RecentCustomers recent={recent}/>}
+                {recentLoader ? <SkeletonLoader/>:<RecentCustomers recent={recent}/>}
               </div>
             </div>
           </section>
@@ -129,7 +131,7 @@ const Dashboard: FunctionComponent = () => {
                   </button>
                 </div>
                 <div className={styles.totalCustomers}>
-                {loader ? <SkeletonLoader/>:<UpcomingBookings upcoming = {upcoming}/>}
+                {upcomingLoader ? <SkeletonLoader/>:<UpcomingBookings upcoming = {upcoming}/>}
                 </div>
               </div>
 
