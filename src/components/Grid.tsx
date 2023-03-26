@@ -131,16 +131,12 @@ const newData = [
 const Grid = () => {
     return (
         <div className={styles.maincomp}>
-            <h1>Vertical Grid</h1>
-
             <Gallery photos={newData} columns={4} direction="column" />
 
             <hr></hr>
             <hr></hr>
             <hr></hr>
             <hr></hr>
-
-            <h1>Horizontal Grid</h1>
 
             <Gallery photos={newData} />
 

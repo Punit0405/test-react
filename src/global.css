@@ -287,6 +287,10 @@ a:-webkit-any-link {
   padding-left: 15%;
 }
 
+.viewpageicon {
+  font-size: 1.3rem;
+  margin-left: 8%;
+}
 
 .allsongs .rhap_container svg {
   display: none;
@@ -667,7 +671,8 @@ a:-webkit-any-link {
   height: 650px;
   margin: auto auto;
 }
-.cancelModalBtn{
+
+.cancelModalBtn {
   position: absolute;
   right: 8%;
   top: 0%;

@@ -11,6 +11,23 @@
     text-align: center;
 }
 
+.titlediv {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+}
+
+.maintitleheading {
+    font-family: var(--font-poppins);
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.iconblock {
+    width: 30%;
+    text-align: right;
+}
+
 .maintitle {
     color: white;
     font-family: var(--font-poppins);
