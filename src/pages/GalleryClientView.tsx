@@ -19,6 +19,17 @@ const GalleryClientView = () => {
         </div>
         {/* <Image src='../../images11.jpg' /> */}
       </div>
+      <div className={styles.titlediv}>
+        <div className={styles.maintitleheading}>
+          Tebogo Wedding
+        </div>
+        <div className={styles.iconblock}>
+          <i className="fa-regular fa-heart viewpageicon"></i>
+          <i className="fa-solid fa-arrow-down-to-line viewpageicon"></i>
+          <i className="fa-solid fa-arrow-turn-down-left fa-rotate-180 viewpageicon"></i>
+          <i className="fa-regular fa-play viewpageicon"></i>
+        </div>
+      </div>
       <Grid />
     </>
 
