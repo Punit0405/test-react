@@ -48,7 +48,7 @@ const BillingComponent: any = () => {
                         <div className={styles.subtitle}>Forever</div>
                         <div className={styles.imgsvg}>
                             <div className={styles.points}>R 0</div>
-                            <ul>
+                            <ul className={styles.optionlist}>
                                 <li className={styles.points}>3GB Storage</li>
                                 <li className={styles.points}>No Royalty Music</li>
                                 <li className={styles.points}>No Video Uploads</li>
@@ -78,7 +78,7 @@ const BillingComponent: any = () => {
                         <div className={styles.subtitle}>Package</div>
                         <div className={styles.imgsvg}>
                             <div className={styles.points}>R 250 p/m</div>
-                            <ul>
+                            <ul className={styles.optionlist}>
                                 <li className={styles.points}>100GB Storage</li>
                                 <li className={styles.points}>Royalty Music</li>
                             </ul>
@@ -107,7 +107,7 @@ const BillingComponent: any = () => {
                         <div className={styles.subtitle}>Hustler</div>
                         <div className={styles.imgsvg}>
                             <div className={styles.points}>R 699 p/m</div>
-                            <ul>
+                            <ul className={styles.optionlist}>
                                 <li className={styles.points}>500GB Storage</li>
                                 <li className={styles.points}>Royalty Music</li>
                             </ul>
@@ -136,7 +136,7 @@ const BillingComponent: any = () => {
                         <div className={styles.subtitle}>Hustler</div>
                         <div className={styles.imgsvg}>
                             <div className={styles.points}>R 1099 p/m</div>
-                            <ul>
+                            <ul className={styles.optionlist}>
                                 <li className={styles.points}>1TB Storage</li>
                                 <li className={styles.points}>Royalty Music</li>
                             </ul>
