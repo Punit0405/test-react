@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from "../../pages/Dashboard.module.css";
 import Moment from "react-moment";
-import moment from 'moment'
+import moment from 'moment';
+import Constants from '../../Config/Constants';
 
 const RecentCustomers = (props:any) => {
     const {recent} = props;
@@ -16,7 +17,9 @@ const RecentCustomers = (props:any) => {
                             <img
                               className={styles.recentCustomersImg}
                               alt=""
-                              src="../mask-group1@2x.png"
+                              src={`${Constants.adminbackendUrl}${customer.profile}`}
+                              height={100}
+                              width={100}
                             />
                           </div>
 

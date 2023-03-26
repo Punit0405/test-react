@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from "../../pages/Dashboard.module.css";
 import Moment from "react-moment";
-import moment from 'moment'
+import moment from 'moment';
+import Constants from '../../Config/Constants';
 
 const UpcomingBookings = (props: any) => {
     const { upcoming } = props;
+    console.log(upcoming , 'f')
     return (
         <>
             {
@@ -14,8 +16,8 @@ const UpcomingBookings = (props: any) => {
                             <div className={styles.customerLeftDiv}>
                                 <img
                                     className={styles.customerImage}
-                                    alt=""
-                                    src="../mask-group4@2x.png"
+                                    alt="customer img"
+                                    src={`${Constants.adminbackendUrl}${customer.profile}`}
                                 />
                                 <div className={styles.customerData}>
                                     <div className={styles.customerName}>
