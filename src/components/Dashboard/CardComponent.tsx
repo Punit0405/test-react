@@ -2,7 +2,7 @@ import styles from "./CardComponent.module.css"
 
 interface Props {
     topTitle:string,
-    middleTitle:string,
+    middleTitle:number,
     bottomTitle:string,
     backgroudBox:string,
     iconImage:string,

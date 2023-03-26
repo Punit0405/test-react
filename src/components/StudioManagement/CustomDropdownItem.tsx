@@ -12,9 +12,15 @@ const CustomDropdownItem = ({ theme, color1, color2, color3 }: Props) => {
   return (
     <div className={styles.dropdownItemMainComp}>
       <div className={styles.colorBallsParentDiv}>
-        <div className={styles.colorBalls} style={{ background: color1 }}></div>
-        <div className={styles.colorBalls} style={{ background: color2 }}></div>
-        <div className={styles.colorBalls} style={{ background: color3 }}></div>
+        <svg height="40" width="40">
+          <circle cx="20" cy="20" r="15" stroke="#D9D9D9" stroke-width="1" fill={color1} />
+        </svg>
+        <svg height="40" width="40">
+          <circle cx="20" cy="20" r="15" stroke="#D9D9D9" stroke-width="1" fill={color2} />
+        </svg>
+        <svg height="40" width="40">
+          <circle cx="20" cy="20" r="15" stroke="#D9D9D9" stroke-width="1" fill={color3} />
+        </svg>
       </div>
       <span className={styles.themename}>{theme}</span>
     </div>
