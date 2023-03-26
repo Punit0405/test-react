@@ -209,6 +209,11 @@
 
 .recentCustomersImgDiv {
   height: 100%;
+  
+}
+.recentCustomersImg{
+  border: 1px solid #EC1A25;
+  border-radius: 50%;
 }
 
 
@@ -238,6 +243,8 @@
 .customerImage {
   width: 53.39px;
   height: 53.39px;
+  border: 1px solid #EC1A25;
+  border-radius: 50%;
   object-fit: cover;
 }
 
