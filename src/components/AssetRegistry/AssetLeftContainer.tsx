@@ -1,17 +1,28 @@
-import { FunctionComponent, useCallback } from "react";
+import { FunctionComponent, useCallback, useState } from "react";
 import styles from "./AssetLeftContainer.module.css";
 import $ from 'jquery';
 import { Link } from "react-router-dom";
 
+const activeStyle = {
+  backgroundColor: "var(--color-crimson)",
+  color: "white"
+}
+
+const activeText = {
+  color: "white"
+}
+
 const AssetLeftContainer: FunctionComponent = () => {
-  const onMyDevicesClick = useCallback(() => {
-    // Please sync "Add Device" to the project
-  }, []);
+
   const hideSideBar = () => {
     $("#leftContainer").css({ left: '-100%', display: "block" })
-
-
   }
+
+  async function handleClick(number: any) {
+    setActive(number)
+  }
+
+  const [active, setActive] = useState(1)
 
   return (
     <section className={`${styles.assetleftcontainer}`} id="leftContainer">
@@ -19,26 +30,46 @@ const AssetLeftContainer: FunctionComponent = () => {
 
       <div className={styles.buttoncontainres}>
 
-        <button className={styles.leftDivButton}>
-          <i className="fa-regular fa-house setcolorwhite"></i>
+        <button
+          className={styles.leftDivButtonWithoutColor}
+          onClick={() => { handleClick(1) }}
+          style={active === 1 ? activeStyle : {}}
+        >
           <Link to="">
-
-            <div className={styles.leftDivButtonTextWhite}>Dashboard</div>
+            {
+              active === 1 ? <i className="fa-regular fa-house setsizeasset"></i> :
+                <i className="fa-regular fa-house setcolor"></i>
+            }
+            <div className={styles.leftDivButtonText} style={active === 1 ? activeText : {}}>Dashboard</div>
           </Link>
 
         </button>
 
-        <button className={styles.leftDivButtonWithoutColor} onClick={onMyDevicesClick}>
-          <i className="fa-light fa-envelope setcolor"></i>
+        <button
+          className={styles.leftDivButtonWithoutColor}
+          onClick={() => { handleClick(2) }}
+          style={active === 2 ? activeStyle : {}}
+        >
+          {
+            active === 2 ? <i className="fa-light fa-envelope setsizeasset"></i> :
+              <i className="fa-light fa-envelope setcolor"></i>
+          }
           <Link to="device-list">
-            <div className={styles.leftDivButtonText}>My Devices</div>
+            <div className={styles.leftDivButtonText} style={active === 2 ? activeText : {}}>My Devices</div>
           </Link>
         </button>
 
-        <button className={styles.leftDivButtonWithoutColor}>
-          <i className="fa-regular fa-user setcolor"></i>
+        <button
+          className={styles.leftDivButtonWithoutColor}
+          onClick={() => { handleClick(3) }}
+          style={active === 3 ? activeStyle : {}}
+        >
+          {
+            active === 3 ? <i className="fa-regular fa-user setsizeasset"></i> :
+              <i className="fa-regular fa-user setcolor"></i>
+          }
           <Link to="get-cover">
-            <div className={styles.leftDivButtonText}>Get Cover</div>
+            <div className={styles.leftDivButtonText} style={active === 3 ? activeText : {}}>Get Cover</div>
           </Link>
         </button>
         <button className={styles.leftDivButtonWithoutColor}>
