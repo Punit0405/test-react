@@ -33,6 +33,7 @@ import Grid from "./components/Grid";
 import Collection from "./components/Gallery/Collection";
 import LayoutWithSideBar from "./components/LayoutWithSideBar";
 import Design from "./components/StudioManagement/Design";
+import GetCover from "./components/AssetRegistry/GetCover";
 
 
 function RoutesAll() {
@@ -58,6 +59,7 @@ function RoutesAll() {
                     <Route path="" element={<AssetDashboardMain />}></Route>
                     <Route path="device-list" element={<AssetDeviceList />}></Route>
                     <Route path="for-sale" element={<ForSaleList />}></Route>
+                    <Route path="get-cover" element={<GetCover />}></Route>
                 </Route>
                 <Route path="/music" element={<Music />} />
                 <Route path="/music/downloads" element={<MusicDownloadList />} />
