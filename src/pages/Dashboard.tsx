@@ -11,6 +11,9 @@ import { NotificationWithIcon } from "../Utils/helper";
 import DashboardService from "../api/Dashboard/dashboard";
 import Moment from "react-moment";
 import moment from 'moment'
+import SkeletonLoader from "../components/Loader/SkeletonLoader";
+import UpcomingBookings from "../components/Dashboard/UpcomingBookings";
+import RecentCustomers from "../components/Dashboard/RecentCustomers";
 const Dashboard: FunctionComponent = () => {
 
   const navigate = useNavigate();
@@ -29,6 +32,7 @@ const Dashboard: FunctionComponent = () => {
   })
   const [recent, setRecent] = useState([])
   const [upcoming, setUpcoming] = useState([])
+  const [loader,setLoader] = useState(true);
 
   async function getDashboardData() {
     try {
@@ -36,19 +40,20 @@ const Dashboard: FunctionComponent = () => {
         if (res && res?.code === STATUS_CODE.SUCCESS) {
           setSummary(res?.result)
         }
-      })
+      }).catch((err)=>{throw err})
       DashboardService.getRecentCustomer().then((recentRes: any) => {
         if (recentRes && recentRes?.code === STATUS_CODE.SUCCESS) {
           setRecent(recentRes?.result?.recentCustomers)
         }
-      })
+      }).catch((err)=>{throw err})
       const currentDate = moment().format("YYYY-MM-DD")
 
       DashboardService.getUpComingBookings(currentDate).then((upcomingRes: any) => {
         if (upcomingRes && upcomingRes?.code === STATUS_CODE.SUCCESS) {
-          setUpcoming(upcomingRes?.result?.recentCustomers)
+          setUpcoming(upcomingRes?.result?.recentCustomers);
+          setLoader(false);
         }
-      })
+      }).catch((err)=>{throw err})
     } catch (err: any) {
       if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
         NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
@@ -61,10 +66,12 @@ const Dashboard: FunctionComponent = () => {
 
   const handleDateChange = async (changeDate: any) => {
     setDate(changeDate)
+    setLoader(true);
     const viewDate = moment(changeDate).format("YYYY-MM-DD")
     DashboardService.getUpComingBookings(viewDate).then((upcomingRes: any) => {
       if (upcomingRes && upcomingRes?.code === STATUS_CODE.SUCCESS) {
-        setUpcoming(upcomingRes?.result?.recentCustomers)
+        setUpcoming(upcomingRes?.result?.recentCustomers);
+        setLoader(false);
       }
     })
   }
@@ -97,34 +104,7 @@ const Dashboard: FunctionComponent = () => {
               </div>
               <div className={styles.recentCustomersParent}>
                 <h3 className={styles.recentCustomers}>Recent Customers</h3>
-                {
-                  recent && recent.length ?
-                    recent.map((customer: any, index) => (
-                      <div className={styles.recentCustomersGrid} key={index}>
-                        <div className={styles.recentCustomerDiv}>
-                          <div className={styles.recentCustomersImgDiv}>
-                            <img
-                              className={styles.recentCustomersImg}
-                              alt=""
-                              src="../mask-group1@2x.png"
-                            />
-                          </div>
-
-                          <div className={styles.recentCustomerNameDiv}>
-                            <div className={styles.recentCustomerName}>{customer?.clientfirstName} {customer?.clientLastName}</div>
-                            <div className={styles.recentCustomerTime}>
-                              <Moment format="hh:mm A">{customer?.bookingStartTime}</Moment>
-                              -
-                              <Moment format="hh:mm A">{moment(customer?.bookingStartTime).add(customer?.session, 'h')}</Moment>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )) :
-                    <div>
-                      No Recent Customer Found
-                    </div>
-                }
+                {loader ? <SkeletonLoader/>:<RecentCustomers recent={recent}/>}
               </div>
             </div>
           </section>
@@ -149,41 +129,7 @@ const Dashboard: FunctionComponent = () => {
                   </button>
                 </div>
                 <div className={styles.totalCustomers}>
-                  {
-                    upcoming && upcoming.length ?
-                      upcoming.map((customer: any) => (
-                        <div className={styles.customerBox}>
-                          <div className={styles.customerLeftDiv}>
-                            <img
-                              className={styles.customerImage}
-                              alt=""
-                              src="../mask-group4@2x.png"
-                            />
-                            <div className={styles.customerData}>
-                              <div className={styles.customerName}>
-                                {customer.clientfirstName} {customer.clientLastName}
-                              </div>
-                              <div className={styles.customerTime}>
-                                <Moment format="hh:mm A">{customer?.bookingStartTime}</Moment>
-                                -
-                                <Moment format="hh:mm A">{moment(customer?.bookingStartTime).add(customer?.session, 'h')}</Moment>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div className={styles.rightCustomerImage}>
-                            <img
-                              className={styles.groupIcon}
-                              alt=""
-                              src="../group-103.svg"
-                            />
-                          </div>
-                        </div>
-                      )) :
-                      <div className={styles.nobooking}>
-                        No Bookings Found
-                      </div>
-                  }
+                {loader ? <SkeletonLoader/>:<UpcomingBookings upcoming = {upcoming}/>}
                 </div>
               </div>
 
