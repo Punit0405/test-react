@@ -9,7 +9,7 @@ const NavBarComponent = () => {
     const currentRoute = location.pathname.split('/')[1] as string
 
     return (
-        <Nav id="navbar"  navbar variant="tabs" defaultActiveKey={currentRoute} className={`${styles.navpadding} fixed-top`}>
+        <Nav id="navbar" navbar variant="tabs" defaultActiveKey={currentRoute} className={`${styles.navpadding} fixed-top`}>
 
             <Nav.Link as={NavLink} to="/dashboard" eventKey="dashboard">
                 <div className={styles.home} >
@@ -18,7 +18,7 @@ const NavBarComponent = () => {
                 </div>
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/studiomanagement" eventKey="studiomanagement">
+            <Nav.Link as={NavLink} to="/studiomanagement/billing" eventKey="studiomanagement">
                 <div className={styles.home}>
                     <i className="fa-regular fa-video setcolor"></i>
                     <p>Studio Management</p>

@@ -1,7 +1,8 @@
 import { FunctionComponent, useState } from "react";
 import { Image, Ratio } from "react-bootstrap";
 import AddNewDeviceModal from "../Modal/AddNewDeviceModal";
-import styles from "./GetCover.module.css";
+import styles from "./Billing.module.css";
+import BillingNav from "./BillingNav";
 
 const activeCard = {
     color: "white",
@@ -14,26 +15,24 @@ const activeBtn = {
 }
 
 
-const GetCover: any = () => {
+const BillingComponent: any = () => {
 
     async function handleClick(divno: any) {
         setActive(divno)
     }
     const [active, setActive] = useState(1)
-    const [modalShow, setModalShow] = useState(false);
 
     return (
         <div className={styles.maindiv}>
             <div className={styles.navbarcover}>
                 <div className={styles.navtitle}>
-                    Get Cover
+                    Settings
                 </div>
-                <button className={styles.addNewDevice} onClick={() => setModalShow(true)}>
-                    Add New Device
+                <button className={styles.addNewDevice} >
+                    Save & Close
                 </button>
-                <AddNewDeviceModal show={modalShow}
-                    onHide={() => setModalShow(false)} />
             </div>
+            <BillingNav />
             <div className={styles.allcards}>
                 <Ratio
                     aspectRatio="1x1"
@@ -43,19 +42,24 @@ const GetCover: any = () => {
                 >
                     <div className={styles.singlecard}>
                         <div className={styles.title}>
-                            Insurance For your Assets
+                            Just To Get You Started
                         </div>
-                        <div className={styles.subtitle}>Commercial</div>
-                        <div className={styles.subtitle}>Cover</div>
+                        <div className={styles.subtitle}>Free</div>
+                        <div className={styles.subtitle}>Forever</div>
                         <div className={styles.imgsvg}>
-                            <Image src="../../../camera.svg" />
+                            <div className={styles.points}>R 0</div>
+                            <ul>
+                                <li className={styles.points}>3GB Storage</li>
+                                <li className={styles.points}>No Royalty Music</li>
+                                <li className={styles.points}>No Video Uploads</li>
+                            </ul>
                         </div>
                         <div className={styles.btndiv}>
                             <button
                                 className={styles.addNewDevicebtn}
                                 style={active === 1 ? activeBtn : {}}
                             >
-                                Request Quote
+                                I Just Arrived
                             </button>
                         </div>
                     </div>
@@ -68,19 +72,23 @@ const GetCover: any = () => {
                 >
                     <div className={styles.singlecard}>
                         <div className={styles.title}>
-                            Insurance For your Home
+                            Okay We See You
                         </div>
-                        <div className={styles.subtitle}>Home</div>
-                        <div className={styles.subtitle}>Contents</div>
+                        <div className={styles.subtitle}>Starter</div>
+                        <div className={styles.subtitle}>Package</div>
                         <div className={styles.imgsvg}>
-                            <Image src="../../../home.svg" />
+                            <div className={styles.points}>R 250 p/m</div>
+                            <ul>
+                                <li className={styles.points}>100GB Storage</li>
+                                <li className={styles.points}>Royalty Music</li>
+                            </ul>
                         </div>
                         <div className={styles.btndiv}>
                             <button
                                 className={styles.addNewDevicebtn}
                                 style={active === 2 ? activeBtn : {}}
                             >
-                                Request Quote
+                                Start Rolling
                             </button>
                         </div>
                     </div>
@@ -93,19 +101,23 @@ const GetCover: any = () => {
                 >
                     <div className={styles.singlecard}>
                         <div className={styles.title}>
-                            Insurance For your Life
+                            Things Are Getting Serious
                         </div>
-                        <div className={styles.subtitle}>Life</div>
-                        <div className={styles.subtitle}>Cover</div>
+                        <div className={styles.subtitle}>Professional</div>
+                        <div className={styles.subtitle}>Hustler</div>
                         <div className={styles.imgsvg}>
-                            <Image src="../../../man.svg" />
+                            <div className={styles.points}>R 699 p/m</div>
+                            <ul>
+                                <li className={styles.points}>500GB Storage</li>
+                                <li className={styles.points}>Royalty Music</li>
+                            </ul>
                         </div>
                         <div className={styles.btndiv}>
                             <button
                                 className={styles.addNewDevicebtn}
                                 style={active === 3 ? activeBtn : {}}
                             >
-                                Request Quote
+                                Start Rolling
                             </button>
                         </div>
                     </div>
@@ -118,59 +130,48 @@ const GetCover: any = () => {
                 >
                     <div className={styles.singlecard}>
                         <div className={styles.title}>
-                            Insurance For your Passing
+                            The Boss Has Arrived
                         </div>
-                        <div className={styles.subtitle}>Funeral</div>
-                        <div className={styles.subtitle}>Cover</div>
+                        <div className={styles.subtitle}>Elite</div>
+                        <div className={styles.subtitle}>Hustler</div>
                         <div className={styles.imgsvg}>
-                            <Image src="../../../funeral.svg" />
+                            <div className={styles.points}>R 1099 p/m</div>
+                            <ul>
+                                <li className={styles.points}>1TB Storage</li>
+                                <li className={styles.points}>Royalty Music</li>
+                            </ul>
                         </div>
                         <div className={styles.btndiv}>
                             <button
                                 className={styles.addNewDevicebtn}
                                 style={active === 4 ? activeBtn : {}}
                             >
-                                Request Quote
+                                Start Rolling
                             </button>
                         </div>
                     </div>
                 </Ratio>
             </div>
-            <div className={styles.allcards}>
-                <Ratio
-                    aspectRatio="1x1"
-                    className={styles.maincard}
-                    style={active === 5 ? activeCard : {}}
-                    onClick={() => handleClick(5)}
-                >
-                    <div className={styles.singlecard}>
-                        <div className={styles.title}>
-                            Insurance For your Car
-                        </div>
-                        <div className={styles.subtitle}>Vehicle</div>
-                        <div className={styles.subtitle}>Cover</div>
-                        <div className={styles.imgsvg}>
-                            <Image src="../../../car.svg" />
-                        </div>
-                        <div className={styles.btndiv}>
-                            <button
-                                className={styles.addNewDevicebtn}
-                                style={active === 5 ? activeBtn : {}}
-                            >
-                                Request Quote
-                            </button>
-                        </div>
-                    </div>
-                </Ratio>
-                <Ratio aspectRatio="1x1" className={styles.maincardempty}><div></div></Ratio>
-                <Ratio aspectRatio="1x1" className={styles.maincardempty}><div></div></Ratio>
-                <Ratio aspectRatio="1x1" className={styles.maincardempty}><div></div></Ratio>
+            <div className={styles.buystorage}>
+                <div className={styles.storagetitle}>
+                    Buy Storage Only
+                </div>
+                <button className={styles.buystoragebtn} style={{ color: "white", backgroundColor: "black" }}>
+                    Buy More Storage
+                </button>
+                <button className={styles.buystoragebtn} style={{ color: "black", backgroundColor: "#E7E5E5" }}>
+                    10GB
+                </button>
+                <button className={styles.buystoragebtn} style={{ color: "black", backgroundColor: "#E7E5E5" }}>
+                    R10
+                </button>
+                <button className={styles.buystoragebtn} >
+                    Purchase
+                </button>
             </div>
-            <div className={styles.footerbottom}>
-                All Our Insurance Policies are brokered by Tsoga Afrika Insurance brokers an authorized Financial Services Provider Licence Number: 49909
-            </div>
+
         </div>
     );
 };
 
-export default GetCover;
+export default BillingComponent;

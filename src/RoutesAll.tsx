@@ -34,6 +34,9 @@ import Collection from "./components/Gallery/Collection";
 import LayoutWithSideBar from "./components/LayoutWithSideBar";
 import Design from "./components/StudioManagement/Design";
 import GetCover from "./components/AssetRegistry/GetCover";
+import StudioManagementSide from "./components/StudioManagement/StudioManagementSide";
+import BillingComponent from "./components/StudioManagement/BillingComponent";
+import Billing from "./pages/Billing";
 
 
 function RoutesAll() {
@@ -43,7 +46,9 @@ function RoutesAll() {
             <NavBarComponent />
             <Routes>
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/studiomanagement" element={<Gallery />} />
+                <Route path="/studiomanagement" element={<Billing />} >
+                    <Route path="billing" element={<BillingComponent />} />
+                </Route>
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/gallery" element={<LayoutWithSideBar />} >
                     <Route path="/gallery/newcollection" element={<AddCollection />} />
