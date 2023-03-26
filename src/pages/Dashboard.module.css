@@ -74,7 +74,7 @@
   align-items: flex-start;
   align-items: center;
   justify-content: space-between;
-  gap:17px
+  gap: 17px
 }
 
 .frameInner {
@@ -1190,6 +1190,12 @@
   align-items: center;
 }
 
+.nobooking {
+  font-family: var(--font-poppins);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 .totalCustomers {
   display: flex;
   flex-direction: column;
@@ -1420,7 +1426,7 @@
     display: flex;
     width: 40%;
     justify-content: space-between;
-  
+
   }
 
 
@@ -1429,9 +1435,9 @@
 }
 
 @media screen and (max-width: 500px) {
- 
 
- .clientsParent {
+
+  .clientsParent {
     flex-direction: column;
   }
 
@@ -1449,7 +1455,7 @@
     display: flex;
     width: 60%;
     justify-content: space-between;
-  
+
   }
 
 
@@ -1470,11 +1476,12 @@
     grid-template-columns: auto;
     grid-gap: 10px;
   }
+
   .customerLeftDiv {
     display: flex;
     width: 60%;
     justify-content: space-between;
-  
+
   }
 
 

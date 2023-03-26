@@ -135,7 +135,7 @@ const Design: FunctionComponent = () => {
                                             <Dropdown.Item href="#/action-3" className={styles.colordropmain}>
                                                 <CustomDropdownItem color1="#FAFAFA" color2="#EAECEE" color3="#93939F" theme="Sea" />
                                             </Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3" className={styles.colordropmain}>
+                                            <Dropdown.Item href="#/action-3" className={styles.colordropmain}   >
                                                 <CustomDropdownItem color1="#1E1E1E" color2="#282828" color3="#4D4D4D" theme="Dark" />
                                             </Dropdown.Item>
                                         </Dropdown.Menu>
