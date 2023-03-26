@@ -10,15 +10,15 @@ interface Props {
     children: JSX.Element;
 }
 const data = [
-    { src: "../../images15.jpg",height:0,width:0 }, { src: "../../sample2.jpg",height:0,width:0 }, { src: "../../images11.jpg",height:0,width:0 }, { src: "../../images12.jpg",height:0,width:0 },
-    {src:"../../images13.jpg",height:0,width:0},{src:"../../images14.jpg",height:0,width:0},
+    { src: "../../images15.jpg", height: 0, width: 0 }, { src: "../../sample2.jpg", height: 0, width: 0 }, { src: "../../images11.jpg", height: 0, width: 0 }, { src: "../../images12.jpg", height: 0, width: 0 },
+    { src: "../../images13.jpg", height: 0, width: 0 }, { src: "../../images14.jpg", height: 0, width: 0 },
 ];
 const newData = [
     {
         "src": "../../images15.jpg",
         "height": 3744,
         "width": 3744
-    },  
+    },
     {
         "src": "../../sample2.jpg",
         "height": 2251,
@@ -124,25 +124,24 @@ const newData = [
         "height": 3744,
         "width": 3744
     }
-    
 ]
 
 
 const Grid = () => {
     return (
         <div className={styles.maincomp}>
-           <h1>Vertical Grid</h1>
+            <h1>Vertical Grid</h1>
 
-           <Gallery photos={newData} columns={4} direction="column" />
+            <Gallery photos={newData} columns={4} direction="column" />
 
-           <hr></hr>
-           <hr></hr>
-           <hr></hr>
-           <hr></hr>
+            <hr></hr>
+            <hr></hr>
+            <hr></hr>
+            <hr></hr>
 
-           <h1>Horizontal Grid</h1>
+            <h1>Horizontal Grid</h1>
 
-           <Gallery photos={newData}/>
+            <Gallery photos={newData} />
 
             {/* <div className={styles.gridClassPunit}>
                 {data.map(({src})=>(<Image className={styles.singleimagePunit} fluid src={src} />))}
