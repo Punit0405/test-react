@@ -5,7 +5,7 @@ import moment from 'moment';
 import Constants from '../../Config/Constants';
 
 const UpcomingBookings = (props: any) => {
-    const { upcoming } = props;
+    const { upcoming ,booking, setBooking } = props;
     console.log(upcoming , 'f')
     return (
         <>
@@ -31,7 +31,7 @@ const UpcomingBookings = (props: any) => {
                                 </div>
 
                             </div>
-                            <div className={styles.rightCustomerImage}>
+                            <div className={styles.rightCustomerImage}  onClick={(e)=>setBooking(1)}>
                                 <img
                                     className={styles.groupIcon}
                                     alt=""

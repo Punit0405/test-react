@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap');
 .frameChild {
   position: absolute;
   height: 100%;
@@ -236,6 +237,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  cursor: pointer;
 
 
 }
@@ -1293,12 +1295,115 @@
   /* margin: 0% 5%; */
   padding: 0% 7%;
 }
+.upcomingBookingsMainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  box-shadow: -4px 0px 2px 0px #aaaaaa;
+  position: relative;
+  height: 110%;
+  flex-shrink: 0;
+  text-align: left;
+  font-size: var(--font-size-18xl);
+  color: var(--color1);
+  font-family: var(--font-poppins);
+  /* margin: 0% 5%; */
+}
 
 .homedashboard {
   position: relative;
   width: 100%;
   flex-direction: column;
   align-items: center;
+}
+
+.customerDetails{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10% 4%;
+  width: 100%;
+}
+
+
+.upcomingBookingImg{
+  border-radius: 10px;
+}
+.customerImgInfoDiv{
+  display: flex;
+  width: 70%;
+  align-items: center;
+  gap:4%
+}
+
+.customerInfo{
+  display: flex;
+  font-family:Roboto,Poppins;
+  font-weight: 400;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.customerName{
+  color: #3E4743;
+}
+.customerPhotoShootP{
+  color: #9EA1A0;
+}
+
+.bookingDateTimeDiv{
+  border-bottom: 1px dashed #9EA1A0;
+  display: flex;
+  margin: 0% 4%;
+  padding: 3% 0%;
+  align-items: center;
+  color: #EC1A25;
+}
+.bookingDateTimeP{
+   margin: 0% 2%;
+   letter-spacing: 1px;
+   font-weight: 300;
+   font-family: Roboto;
+
+}
+.bookingAddreessMainDiv{
+  margin: 2% 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bookingAddreessHeaderDiv{
+  display: flex;
+  align-items: center;
+  gap: 4%;
+}
+.bookingAddressDetailDiv{
+  color: #5E5D5B;
+  margin: 0% 0% 0% 8%;
+}
+.bookingAddressMapDiv{
+  height: 40vh;
+  border-bottom: 1px dashed #9EA1A0;
+  padding: 4% 0%;
+  width: 100%;
+}
+.closeBookingDetailsMainDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+  border-radius: 10px;
+  height: 100%;
+
+}
+.closeDetailsBtn{
+  background-color: #EC1A25;
+  width: 80%;
+}
+.closeDetailsBtn:hover{
+  background-color: #EC1A25;
 }
 
 

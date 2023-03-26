@@ -3,7 +3,6 @@ import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio } from "react-b
 import styles from "./Dashboard.module.css";
 import Calender from "react-calendar";
 import { useNavigate } from "react-router-dom";
-import './Calender.css'
 import CardComponent from "../components/Dashboard/CardComponent";
 import Layout from "../components/Layout";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../Utils/constants";
@@ -14,7 +13,11 @@ import moment from 'moment'
 import SkeletonLoader from "../components/Loader/SkeletonLoader";
 import UpcomingBookings from "../components/Dashboard/UpcomingBookings";
 import RecentCustomers from "../components/Dashboard/RecentCustomers";
+import CalenderContainer from "../components/Dashboard/CalenderContainer";
+import BookingDetails from "../components/Dashboard/BookingDetails";
 const Dashboard: FunctionComponent = () => {
+  const [date, setDate] = useState(new Date());
+  const [booking, setBooking] = useState(null);
 
   const navigate = useNavigate();
 
@@ -78,8 +81,7 @@ const Dashboard: FunctionComponent = () => {
     })
   }
 
-  const [date, setDate] = useState(new Date());
-  const todayDate = new Date();
+  
   return (
     <Layout>
       <>
@@ -110,33 +112,10 @@ const Dashboard: FunctionComponent = () => {
               </div>
             </div>
           </section>
-          <section className={styles.rightcontainer}>
-            <div className={styles.upcomingBookingsTitle}>Upcoming Bookings</div>
-            <div className={styles.calenderDiv}>
-              <Calender onChange={handleDateChange} value={date} minDate={todayDate} />
+          {
+            booking ? <BookingDetails booking={booking} setBooking={setBooking}/> : <CalenderContainer upcoming={upcoming} booking={booking} setBooking={setBooking} date={date} upcomingLoader={upcomingLoader} handleDateChange={handleDateChange}/>
 
-            </div>
-            <div className={styles.rightcontainerInner}>
-
-              {/* <div className={styles.upcomingBookingsParent}>
-                <div className={styles.upcomingBookings}>Upcoming Bookings</div>
-              </div> */}
-              <div className={styles.frameParent1}>
-                <div className={styles.monday16Sept2021Parent}>
-                  <div className={styles.monday16Sept}>
-                    {date.toDateString()}
-                  </div>
-                  <button className={styles.cutomersButton}>
-                    {upcoming.length} customers
-                  </button>
-                </div>
-                <div className={styles.totalCustomers}>
-                {upcomingLoader ? <SkeletonLoader/>:<UpcomingBookings upcoming = {upcoming}/>}
-                </div>
-              </div>
-
-            </div>
-          </section>
+          }
         </div>
       </>
     </Layout>
