@@ -85,19 +85,19 @@ const Design: FunctionComponent = () => {
                                     <div className={styles.colorblock}>
                                         <div className={styles.colorstyle}>
                                             <svg height="40" width="40">
-                                                <circle cx="20" cy="20" r="15" stroke="#D9D9D9" stroke-width="1" fill="#FFFFFF" />
+                                                <circle cx="20" cy="20" r="15" stroke="#D9D9D9" strokeWidth={1} fill="#FFFFFF" />
                                             </svg>
                                             <p className={styles.styletype}>Background</p>
                                         </div>
                                         <div className={styles.colorstyle}>
                                             <svg height="40" width="40">
-                                                <circle cx="20" cy="20" r="15" stroke="#D9D9D9" stroke-width="1" fill="#F5F5F5" />
+                                                <circle cx="20" cy="20" r="15" stroke="#D9D9D9" strokeWidth={1} fill="#F5F5F5" />
                                             </svg>
                                             <p className={styles.styletype}>Accent</p>
                                         </div>
                                         <div className={styles.colorstyle}>
                                             <svg height="40" width="40">
-                                                <circle cx="20" cy="20" r="15" stroke="#D9D9D9" stroke-width="1" fill="#333333" />
+                                                <circle cx="20" cy="20" r="15" stroke="#D9D9D9" strokeWidth={1} fill="#333333" />
                                             </svg>
                                             <p className={styles.styletype}>Button</p>
                                         </div>
