@@ -24,7 +24,6 @@ const CollectionSetting: FunctionComponent = () => {
             if (collectionId) {
                 const res = await CollectionService.getCollectionById(collectionId as string)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
-                    console.log(res.result?.socialSharing, '-----result---------');
                     setFirstValue({
                         name: res?.result?.name || "",
                         url: res?.result?.url || "",
