@@ -10,8 +10,8 @@ const UpcomingBookings = (props: any) => {
         <>
             {
                 upcoming?.length ?
-                    upcoming.map((customer: any) => (
-                        <div className={styles.customerBox}>
+                    upcoming.map((customer: any,index:any) => (
+                        <div className={styles.customerBox} key={index}>
                             <div className={styles.customerLeftDiv}>
                                 <img
                                     className={styles.customerImage}
