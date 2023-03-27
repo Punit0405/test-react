@@ -6,7 +6,6 @@ import Constants from '../../Config/Constants';
 
 const UpcomingBookings = (props: any) => {
     const { upcoming ,booking, setBooking } = props;
-    console.log(upcoming , 'f')
     return (
         <>
             {

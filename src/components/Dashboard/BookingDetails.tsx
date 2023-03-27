@@ -15,7 +15,6 @@ const BookingDetails = (props:any) => {
         },
         zoom: 16
       };
-    console.log(booking , "booking")
     return (
         <section className={styles.upcomingBookingsMainDiv}>
             <div className={styles.upcomingBookingsTitle}>Upcoming Bookings Details</div>
