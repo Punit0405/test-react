@@ -119,13 +119,18 @@ const CollectionSetting: FunctionComponent = () => {
             setUrl(false)
         }
         else if (event.target.name === "status") {
-            console.log(event.target.value, '-------url-------');
+            await updateData({ status: event.target.value })
+            setFormData({ ...formdata, status: event.target.value })
         }
         else if (event.target.name === "eventDate") {
-            console.log(event.target.value, '-------url-------');
+            console.log(event.target.value, '-------eventDate-------');
+            // await updateData({ eventDate: event.target.value })
+            // setFormData({ ...formdata, eventDate: event.target.value })
         }
         else if (event.target.name === "socialSharing") {
-            console.log(event.target.value, '-------url-------');
+            console.log(event.target.value, '-------socialSharing-------');
+            await updateData({ socialSharing: Boolean(event.target.value) })
+            setFormData({ ...formdata, socialSharing: event.target.value })
         }
     }
 
