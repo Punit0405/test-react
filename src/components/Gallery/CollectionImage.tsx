@@ -22,7 +22,7 @@ const CollectionImageView = ({ imageUrl, setSelect, isSelect }: Props) => {
     }
 
     return (
-        <div className={selectImg ? `${styles.outerimg} ${styles.selectImg}` : `${styles.outerimg}`} onClick={handleClick}>
+        <div className={selectImg ? `${styles.outerimg} ${styles.selectImg}` : `${styles.outerimg}`} draggable onClick={handleClick}>
             <i className="fa-sharp fa-light fa-up-down-left-right anchortag"></i>
             <div className={styles.imgblock}>
                 <div className={styles.imgdiv}>
