@@ -24,6 +24,34 @@
     margin: -3% 3%;
 }
 
+.sortbtn {
+    margin: -3% 3%;
+    padding-top: 1.5%;
+}
+
+.formbtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.navmain {
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.formdiv {
+    display: flex;
+    width: 50%;
+}
+
+.dropitem {
+    font-family: var(--font-poppins);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
 .mainname {
     font-family: var(--font-poppins);
     font-size: 1.4rem;

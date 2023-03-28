@@ -7,7 +7,6 @@ const Gallery: FunctionComponent = () => {
     return (
         <Layout>
             <>
-                <GalleryNav />
                 <GalleryGrid />
             </>
         </Layout>

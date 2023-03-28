@@ -15,6 +15,17 @@ const CollectionService = {
         }
     },
 
+    getCollectionSort: async (data?: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.get(`collection${data}`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
     getCollectionById: async (collectionId: string) => {
         try {
             const token = await getUserToken()

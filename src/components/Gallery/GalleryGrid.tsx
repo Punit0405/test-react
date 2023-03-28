@@ -8,6 +8,7 @@ import Loader from "../Loader/Loader";
 import SimpleLoader from "../Loader/SimpleLoader";
 import styles from "./GalleryGrid.module.css";
 import GalleryGridCard from "./GalleryGridCard";
+import GalleryNav from "./GalleryNav";
 
 
 const GalleryGrid: FunctionComponent = () => {
@@ -42,9 +43,10 @@ const GalleryGrid: FunctionComponent = () => {
     return (
         <>
             {loader && <SimpleLoader />}
+            <GalleryNav setCollectionSort={setCollection} setLoaderSort={setLoader} />
             <div className={styles.collectioncount}>
                 <p className={styles.collectioncountdis}>
-                    6 collections
+                    {collection.length} collections
                 </p>
             </div>
             <Row className={styles.maincomp}>
