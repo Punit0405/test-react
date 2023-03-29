@@ -297,7 +297,7 @@
 
 .bottomsection {
   display: grid;
-  height: 100vh;
+  /* height: 100vh; */
   grid-template-columns: 70% 30%;
 }
 
@@ -1105,7 +1105,7 @@
 }
 
 .upcomingBookingsTitle {
-  padding: 22px 23px;
+  padding: 17px 18px;
   font-size: 1.1rem;
 }
 
@@ -1321,7 +1321,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10% 4%;
+  margin: 3% 4%;
   width: 100%;
 }
 
@@ -1356,7 +1356,7 @@
   border-bottom: 1px dashed #9EA1A0;
   display: flex;
   margin: 0% 4%;
-  padding: 3% 0%;
+  padding: 2% 0%;
   align-items: center;
   color: #EC1A25;
 }
@@ -1383,9 +1383,9 @@
   margin: 0% 0% 0% 8%;
 }
 .bookingAddressMapDiv{
-  height: 40vh;
+  height: 25vh;
   border-bottom: 1px dashed #9EA1A0;
-  padding: 4% 0%;
+  padding: 2% 0%;
   width: 100%;
 }
 .closeBookingDetailsMainDiv{
@@ -1393,9 +1393,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10%;
+  gap: 3%;
   border-radius: 10px;
-  height: 100%;
+  margin: 1% 2%;
 
 }
 .closeDetailsBtn{
