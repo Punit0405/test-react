@@ -1,9 +1,11 @@
 import { FunctionComponent } from "react";
 import { Container, Image, Nav, Navbar, NavDropdown, Ratio } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { getNameAndProfile, getUserPassword } from "../Utils/helper";
 import styles from "./TopBarComponent.module.css";
 
 const TopBarComponent: FunctionComponent = () => {
+    const {firstName,lastName} = getNameAndProfile()
     const navigate = useNavigate();
     const logoutFunction = ()=>{
         localStorage.removeItem("accessToken");
@@ -27,7 +29,7 @@ const TopBarComponent: FunctionComponent = () => {
                         />
                     </Ratio>
                         <NavDropdown
-                        title="My Name" className={styles.navdropdown} id="collasible-nav-dropdown">
+                        title={`${firstName} ${lastName}`} className={styles.navdropdown} id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
                             Another action

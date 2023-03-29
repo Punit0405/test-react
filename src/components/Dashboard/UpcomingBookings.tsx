@@ -30,7 +30,7 @@ const UpcomingBookings = (props: any) => {
                                 </div>
 
                             </div>
-                            <div className={styles.rightCustomerImage}  onClick={(e)=>setBooking(1)}>
+                            <div className={styles.rightCustomerImage}  onClick={(e)=>setBooking(customer)}>
                                 <img
                                     className={styles.groupIcon}
                                     alt=""
