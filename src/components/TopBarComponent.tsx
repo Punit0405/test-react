@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import { Container, Image, Nav, Navbar, NavDropdown, Ratio } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { getNameAndProfile } from "../Utils/helper";
 import styles from "./TopBarComponent.module.css";
 
 const TopBarComponent: FunctionComponent = () => {
