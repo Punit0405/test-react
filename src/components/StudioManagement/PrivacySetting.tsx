@@ -1,9 +1,20 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import Constants from "../../Config/Constants";
 import styles from "./PrivacySetting.module.css"
 
 const PrivacySetting: FunctionComponent = () => {
+
+    const [passwordBtn, setPasswordBtn] = useState(false);
+
+    const handleCancel = (event: any) => {
+        setPasswordBtn(false)
+    }
+
+    const handleSave = (event: any) => {
+
+    }
+
     return (
         <>
             <div className={styles.maincomponent}>
@@ -16,10 +27,18 @@ const PrivacySetting: FunctionComponent = () => {
                                 placeholder=""
                                 aria-label="Password"
                                 aria-describedby=""
+                                name="password"
                             />
-                            <Button variant="outline-secondary" id="button-addon2">
-                                Generate
-                            </Button>
+                            {
+                                passwordBtn ?
+                                    <>
+                                        <Button variant="outline-danger" name="name" onClick={handleCancel}>Cancel</Button>
+                                        <Button variant="danger" name="name" onClick={handleSave}>Save</Button>
+                                    </> : <Button variant="outline-secondary" id="button-addon2">
+                                        Generate
+                                    </Button>
+                            }
+
                         </InputGroup>
                         <Form.Label className={styles.helpbox} muted>
                             Leave blank to make this collection public. Setting a password will require all guests to use this password in order see this collection.

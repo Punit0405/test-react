@@ -19,13 +19,12 @@ const StudioManagementSide: FunctionComponent = () => {
 
             <div className={styles.buttoncontainres}>
 
-                <button className={styles.leftDivButtonWithoutColor}>
-                    <i className="fa-regular fa-house setcolor"></i>
-                    <Link to="">
-                        <div className={styles.leftDivButtonText}>Dashboard</div>
+                <button className={styles.leftDivButton}>
+                    <i className="fa-regular fa-gear setcolor setcolorwhite"></i>
+                    <Link to="for-sale">
+                        <div className={styles.leftDivButtonTextWhite}>Dashboard</div>
                     </Link>
                 </button>
-
                 <button className={styles.leftDivButtonWithoutColor} onClick={onMyDevicesClick}>
                     <i className="fa-regular fa-user setcolor"></i>
                     <Link to="device-list">
@@ -54,12 +53,7 @@ const StudioManagementSide: FunctionComponent = () => {
                     <i className="fa-regular fa-grid-2 setcolor"></i>
                     <div className={styles.leftDivButtonText}>Templates</div>
                 </button>
-                <button className={styles.leftDivButton}>
-                    <i className="fa-regular fa-gear setcolor setcolorwhite"></i>
-                    <Link to="for-sale">
-                        <div className={styles.leftDivButtonTextWhite}>Settings</div>
-                    </Link>
-                </button>
+
             </div>
         </section>
     );

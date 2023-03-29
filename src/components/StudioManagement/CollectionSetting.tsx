@@ -6,6 +6,7 @@ import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import moment from "moment";
+import TagComp from "./TagComp";
 
 const CollectionSetting: FunctionComponent = () => {
 
@@ -123,12 +124,10 @@ const CollectionSetting: FunctionComponent = () => {
             setFormData({ ...formdata, status: event.target.value })
         }
         else if (event.target.name === "eventDate") {
-            console.log(event.target.value, '-------eventDate-------');
-            // await updateData({ eventDate: event.target.value })
-            // setFormData({ ...formdata, eventDate: event.target.value })
+            await updateData({ eventDate: event.target.value })
+            setFormData({ ...formdata, eventDate: event.target.value })
         }
         else if (event.target.name === "socialSharing") {
-            console.log(event.target.value, '-------socialSharing-------');
             await updateData({ socialSharing: Boolean(event.target.value) })
             setFormData({ ...formdata, socialSharing: event.target.value })
         }
@@ -168,6 +167,7 @@ const CollectionSetting: FunctionComponent = () => {
                             onKeyDown={(e) => e.preventDefault()}
                             value={moment(formdata.eventDate).format('yyyy-MM-DD')}
                             name="eventDate"
+                            onChange={(event: any) => { setFormData({ ...formdata, eventDate: event.target.value }) }}
                             onBlur={handleSave}
                         />
                     </div>
@@ -212,6 +212,7 @@ const CollectionSetting: FunctionComponent = () => {
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Collection Tags</Form.Label>
                         <Form.Control type="text" placeholder="" />
+                        {/* <TagComp /> */}
                         <Form.Label className={styles.helpbox} muted>
                             What kind of collection is this? Separate your tags with a comma. e.g. wedding, outdoor, summer.
                         </Form.Label>
