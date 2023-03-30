@@ -174,6 +174,9 @@ const CollectionSetting: FunctionComponent = () => {
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Collection Url</Form.Label>
                         <InputGroup>
+                            <InputGroup.Text id="basic-addon3">
+                                https://studio.snape.app/client
+                            </InputGroup.Text>
                             <Form.Control
                                 type="text"
                                 name="url"
