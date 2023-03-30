@@ -21,8 +21,6 @@ import InputBase from '@mui/material/InputBase';
 // import MenuIcon from '@mui/icons-material/Menu';
 // import SearchIcon from '@mui/icons-material/Search';
 
-
-
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -57,9 +55,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: '1ch',
+            width: '0ch',
             '&:focus': {
                 width: '20ch',
+                border: '1px solid #D9D9D9',
+                borderRadius: '10px'
             },
         },
     },
@@ -67,9 +67,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function GalleryNav(props: any): any {
 
     const navigate = useNavigate();
+    const [search, setSearch] = useState("")
 
     function handleChange(value: any) {
         getCollectionList(value)
+    }
+
+    function handleSearch(event: any) {
+        setSearch(event.target.value)
+        const searchString = `?search=${event.target.value}`
+        getCollectionList(searchString)
     }
 
     const getCollectionList = async (value: any) => {
@@ -112,6 +119,9 @@ function GalleryNav(props: any): any {
                             <StyledInputBase
                                 placeholder=""
                                 inputProps={{ 'aria-label': 'search' }}
+                                onChange={handleSearch}
+                                name="search"
+                                value={search}
                             />
                         </Search>
 
@@ -126,17 +136,17 @@ function GalleryNav(props: any): any {
                             <Dropdown.Item className={styles.navmain}>Sort by</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=createdAt&order=ASC")}>Created: New - Old</Dropdown.Item>
+                                onClick={() => handleChange("?sort=name&order=ASC")}>Name: A - Z</Dropdown.Item>
                             <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=createdAt&order=DESC")}>Created: Old - New</Dropdown.Item>
+                                onClick={() => handleChange("?sort=name&order=DESC")}>Name: Z - A</Dropdown.Item>
                             <Dropdown.Item className={styles.dropitem}
                                 onClick={() => handleChange("?sort=eventDate&order=ASC")}>Event Date: New - Old</Dropdown.Item>
                             <Dropdown.Item className={styles.dropitem}
                                 onClick={() => handleChange("?sort=eventDate&order=DESC")}>Event Date: Old - New</Dropdown.Item>
                             <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=name&order=ASC")}>Name: A - Z</Dropdown.Item>
+                                onClick={() => handleChange("?sort=createdAt&order=ASC")}>Created: New - Old</Dropdown.Item>
                             <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=name&order=DESC")}>Name: Z - A</Dropdown.Item>
+                                onClick={() => handleChange("?sort=createdAt&order=DESC")}>Created: Old - New</Dropdown.Item>
                         </DropdownButton>
                     </Form>
                 </Container>
