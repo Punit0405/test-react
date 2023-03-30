@@ -26,9 +26,10 @@ const StudioDashBoard: any = () => {
         <div className={styles.maindiv}>
             <div className={styles.navbarcover}>
                 <div className={styles.navtitle}>
-                    Studio Management Coming Soon
+                    Settings
                 </div>
             </div>
+            <BillingNav/>
             <div className={styles.allcards}>
                 <Ratio
                     aspectRatio="1x1"
