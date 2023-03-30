@@ -7,6 +7,7 @@ import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import moment from "moment";
 import TagComp from "./TagComp";
+import Constants from "../../Config/Constants";
 
 const CollectionSetting: FunctionComponent = () => {
 
@@ -115,7 +116,7 @@ const CollectionSetting: FunctionComponent = () => {
             setName(false)
         }
         else if (event.target.name === "url") {
-            const updateName = await updateData({ url: formdata.url })
+            const updateName = await updateData({ url: Constants.clientViewUrl+formdata.url })
             setFormData({ ...formdata, url: updateName })
             setUrl(false)
         }
@@ -128,8 +129,9 @@ const CollectionSetting: FunctionComponent = () => {
             setFormData({ ...formdata, eventDate: event.target.value })
         }
         else if (event.target.name === "socialSharing") {
-            await updateData({ socialSharing: Boolean(event.target.value) })
-            setFormData({ ...formdata, socialSharing: event.target.value })
+            const updatedValue =  Boolean(Number(event.target.value))
+            await updateData({ socialSharing:  updatedValue })
+            setFormData({ ...formdata, socialSharing:  updatedValue })
         }
     }
 
@@ -175,7 +177,7 @@ const CollectionSetting: FunctionComponent = () => {
                         <Form.Label className={styles.formlabel}>Collection Url</Form.Label>
                         <InputGroup>
                             <InputGroup.Text id="basic-addon3">
-                                https://studio.snape.app/client
+                                {Constants.clientViewUrl}
                             </InputGroup.Text>
                             <Form.Control
                                 type="text"
@@ -222,9 +224,9 @@ const CollectionSetting: FunctionComponent = () => {
                     </div>
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Social Sharing Buttons</Form.Label>
-                        <Form.Select name="socialSharing" onChange={handleSave} defaultValue={formdata.socialSharing === false ? "false" : "true"}>
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
+                        <Form.Select name="socialSharing" onChange={handleSave} value={formdata.socialSharing ? 1 :0}>
+                            <option value={1} >Yes</option>
+                            <option value={0}>No</option>
                         </Form.Select>
                         <Form.Label className={styles.helpbox} muted>
                             Snape gives your clients the ability to share your work everywhere.
