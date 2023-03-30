@@ -143,7 +143,7 @@ function GalleryNav(props: any): any {
                 <CreateCollectionModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
-                    createNew={true}
+                    createnew={true}
                 />
             </Navbar>
         </>

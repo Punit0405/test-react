@@ -106,7 +106,7 @@ function CreateCollectionModal(props: any) {
                             </div>
                             <div className={styles.buttondiv}>
                                 {
-                                    props.createNew ?
+                                    props.createnew ?
                                         <Button className={styles.createbtn} variant="custom" type="submit">Create</Button> :
                                         <Button className={styles.createbtn} variant="custom" type="submit">Save</Button>
                                 }
