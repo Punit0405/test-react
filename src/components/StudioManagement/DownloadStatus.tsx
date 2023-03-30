@@ -38,12 +38,14 @@ const DownloadStatus: FunctionComponent = () => {
 
     const handleSave = async (event: any) => {
         try {
+            console.log(Boolean(Number(event.target.value)), '-----value-------', typeof Boolean(Number(event.target.value)));
+
             if (collectionId) {
-                const values = { download: Boolean(event.target.value) }
+                const values = { download: Boolean(Number(event.target.value)) }
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
                     NotificationWithIcon("success", "Setting saved.")
-                    setFormData(event.target.value)
+                    setFormData(Boolean(Number(event.target.value)))
                 }
             }
         } catch (err: any) {
@@ -69,10 +71,10 @@ const DownloadStatus: FunctionComponent = () => {
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Gallery Download</Form.Label>
                         <Form.Select name="status" onChange={handleSave}
-                            defaultValue={formdata === false ? "No" : "Yes"}
+                            defaultValue={formdata === false ? "NO" : "Yes"}
                         >
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
+                            <option value={1}>Yes</option>
+                            <option value={0}>No</option>
                         </Form.Select>
                         <Form.Label className={styles.helpbox} muted>
                             Turn on to allow your clients to download from this Colection.
