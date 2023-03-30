@@ -17,7 +17,7 @@ const DownloadStatus: FunctionComponent = () => {
             if (collectionId) {
                 const res = await CollectionService.getCollectionById(collectionId as string)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
-                    setFormData(res?.result?.socialSharing as boolean || false)
+                    setFormData(res.result.download)
                     setPin(res?.result?.downloadPin || "")
                 }
             }
@@ -38,14 +38,12 @@ const DownloadStatus: FunctionComponent = () => {
 
     const handleSave = async (event: any) => {
         try {
-            console.log(Boolean(Number(event.target.value)), '-----value-------', typeof Boolean(Number(event.target.value)));
-
             if (collectionId) {
                 const values = { download: Boolean(Number(event.target.value)) }
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
                     NotificationWithIcon("success", "Setting saved.")
-                    setFormData(Boolean(Number(event.target.value)))
+                    setFormData(values.download)
                 }
             }
         } catch (err: any) {
@@ -70,10 +68,8 @@ const DownloadStatus: FunctionComponent = () => {
                     <Form.Label className={styles.sidemaintitle}>Download Status</Form.Label>
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Gallery Download</Form.Label>
-                        <Form.Select name="status" onChange={handleSave}
-                            defaultValue={formdata === false ? "NO" : "Yes"}
-                        >
-                            <option value={1}>Yes</option>
+                        <Form.Select name="status" onChange={handleSave} value={formdata ? 1 :0}>
+                            <option value={1} >Yes</option>
                             <option value={0}>No</option>
                         </Form.Select>
                         <Form.Label className={styles.helpbox} muted>

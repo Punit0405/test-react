@@ -69,7 +69,7 @@ const GalleryGridCard = ({ collectionData }: any) => {
             <CreateCollectionModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                createNew={false}
+                createnew={false}
                 id={collectionData.id}
                 name={collection.name}
                 eventDate={collection.eventDate}
