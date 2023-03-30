@@ -6,6 +6,7 @@ import styles from "./PrivacySetting.module.css"
 import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
+const passwordGeneator = require('secure-random-password');
 
 const PrivacySetting: FunctionComponent = () => {
 
@@ -19,6 +20,8 @@ const PrivacySetting: FunctionComponent = () => {
         try {
             if (collectionId) {
                 const res = await CollectionService.getCollectionById(collectionId as string)
+                console.log(res.result.password);
+                
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
                     setInitPasswod(res.result.password ? res.result?.password : "")
                     setPassword(res.result.password ? res.result?.password : "")
@@ -61,7 +64,25 @@ const PrivacySetting: FunctionComponent = () => {
         setPasswordBtn(false)
     }
 
-    const generatePassword = () => {
+    const generatePassword = async () => {
+        const userPassword = passwordGeneator.randomPassword({ length: 8, characters: [passwordGeneator.lower, passwordGeneator.upper, passwordGeneator.digits] })
+        try {
+            if (collectionId) {
+                const values = { password: userPassword }
+                const updateRes = await CollectionService.updateCollection(collectionId, values)
+                if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    NotificationWithIcon("success", "Setting saved.")
+                    setPassword(userPassword)
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+
 
     }
 
