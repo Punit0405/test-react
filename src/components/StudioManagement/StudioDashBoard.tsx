@@ -15,7 +15,7 @@ const activeBtn = {
 }
 
 
-const BillingComponent: any = () => {
+const StudioDashBoard: any = () => {
 
     async function handleClick(divno: any) {
         setActive(divno)
@@ -28,11 +28,8 @@ const BillingComponent: any = () => {
                 <div className={styles.navtitle}>
                     Settings
                 </div>
-                <button className={styles.addNewDevice} >
-                    Save & Close
-                </button>
             </div>
-            <BillingNav />
+            <BillingNav/>
             <div className={styles.allcards}>
                 <Ratio
                     aspectRatio="1x1"
@@ -174,4 +171,4 @@ const BillingComponent: any = () => {
     );
 };
 
-export default BillingComponent;
+export default StudioDashBoard;

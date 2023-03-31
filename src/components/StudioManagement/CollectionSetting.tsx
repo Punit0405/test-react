@@ -6,6 +6,8 @@ import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import moment from "moment";
+import TagComp from "./TagComp";
+import Constants from "../../Config/Constants";
 
 const CollectionSetting: FunctionComponent = () => {
 
@@ -24,7 +26,7 @@ const CollectionSetting: FunctionComponent = () => {
             if (collectionId) {
                 const res = await CollectionService.getCollectionById(collectionId as string)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
-                    console.log(res.result?.socialSharing, '-----result---------');
+                    console.log(res.result, '-----result---------');
                     setFirstValue({
                         name: res?.result?.name || "",
                         url: res?.result?.url || "",
@@ -114,18 +116,22 @@ const CollectionSetting: FunctionComponent = () => {
             setName(false)
         }
         else if (event.target.name === "url") {
-            const updateName = await updateData({ url: formdata.url })
+            const updateName = await updateData({ url: Constants.clientViewUrl+formdata.url })
             setFormData({ ...formdata, url: updateName })
             setUrl(false)
         }
         else if (event.target.name === "status") {
-            console.log(event.target.value, '-------url-------');
+            await updateData({ status: event.target.value })
+            setFormData({ ...formdata, status: event.target.value })
         }
         else if (event.target.name === "eventDate") {
-            console.log(event.target.value, '-------url-------');
+            await updateData({ eventDate: event.target.value })
+            setFormData({ ...formdata, eventDate: event.target.value })
         }
         else if (event.target.name === "socialSharing") {
-            console.log(event.target.value, '-------url-------');
+            const updatedValue =  Boolean(Number(event.target.value))
+            await updateData({ socialSharing:  updatedValue })
+            setFormData({ ...formdata, socialSharing:  updatedValue })
         }
     }
 
@@ -163,12 +169,16 @@ const CollectionSetting: FunctionComponent = () => {
                             onKeyDown={(e) => e.preventDefault()}
                             value={moment(formdata.eventDate).format('yyyy-MM-DD')}
                             name="eventDate"
+                            onChange={(event: any) => { setFormData({ ...formdata, eventDate: event.target.value }) }}
                             onBlur={handleSave}
                         />
                     </div>
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Collection Url</Form.Label>
                         <InputGroup>
+                            <InputGroup.Text id="basic-addon3">
+                                {Constants.clientViewUrl}
+                            </InputGroup.Text>
                             <Form.Control
                                 type="text"
                                 name="url"
@@ -207,15 +217,16 @@ const CollectionSetting: FunctionComponent = () => {
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Collection Tags</Form.Label>
                         <Form.Control type="text" placeholder="" />
+                        {/* <TagComp /> */}
                         <Form.Label className={styles.helpbox} muted>
                             What kind of collection is this? Separate your tags with a comma. e.g. wedding, outdoor, summer.
                         </Form.Label>
                     </div>
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Social Sharing Buttons</Form.Label>
-                        <Form.Select name="socialSharing" onChange={handleSave} defaultValue={formdata.socialSharing === false ? "false" : "true"}>
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
+                        <Form.Select name="socialSharing" onChange={handleSave} value={formdata.socialSharing ? 1 :0}>
+                            <option value={1} >Yes</option>
+                            <option value={0}>No</option>
                         </Form.Select>
                         <Form.Label className={styles.helpbox} muted>
                             Snape gives your clients the ability to share your work everywhere.

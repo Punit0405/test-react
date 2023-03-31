@@ -8,6 +8,7 @@ class Constants {
     }
     public static readonly active = "activeNavMenu"
     public static readonly adminbackendUrl = "https://admin.snape.app/sa"
+    public static readonly clientViewUrl = "https://studio.snape.app/client"
 }
 
 export default Constants;

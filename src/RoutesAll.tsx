@@ -35,8 +35,10 @@ import LayoutWithSideBar from "./components/LayoutWithSideBar";
 import Design from "./components/StudioManagement/Design";
 import GetCover from "./components/AssetRegistry/GetCover";
 import StudioManagementSide from "./components/StudioManagement/StudioManagementSide";
-import BillingComponent from "./components/StudioManagement/BillingComponent";
+import BillingComponent from "./components/StudioManagement/StudioDashBoard";
 import Billing from "./pages/Billing";
+import BillingSideBar from "./components/StudioManagement/BillingSideBar";
+import Setting from "./pages/Setting";
 
 
 function RoutesAll() {
@@ -46,6 +48,9 @@ function RoutesAll() {
             <NavBarComponent />
             <Routes>
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/settings" element={<Setting />} >
+                    <Route path="billing" element={<BillingComponent />} />
+                </Route>
                 <Route path="/studiomanagement" element={<Billing />} >
                     <Route path="billing" element={<BillingComponent />} />
                 </Route>
