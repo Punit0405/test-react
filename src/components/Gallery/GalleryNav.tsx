@@ -140,13 +140,13 @@ function GalleryNav(props: any): any {
                             <Dropdown.Item className={styles.dropitem}
                                 onClick={() => handleChange("?sort=name&order=DESC")}>Name: Z - A</Dropdown.Item>
                             <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=eventDate&order=ASC")}>Event Date: New - Old</Dropdown.Item>
+                                onClick={() => handleChange("?sort=eventDate&order=DESC")}>Event Date: New - Old</Dropdown.Item>
                             <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=eventDate&order=DESC")}>Event Date: Old - New</Dropdown.Item>
+                                onClick={() => handleChange("?sort=eventDate&order=ASC")}>Event Date: Old - New</Dropdown.Item>
                             <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=createdAt&order=ASC")}>Created: New - Old</Dropdown.Item>
+                                onClick={() => handleChange("?sort=createdAt&order=DESC")}>Created: New - Old</Dropdown.Item>
                             <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=createdAt&order=DESC")}>Created: Old - New</Dropdown.Item>
+                                onClick={() => handleChange("?sort=createdAt&order=ASC")}>Created: Old - New</Dropdown.Item>
                         </DropdownButton>
                     </Form>
                 </Container>
