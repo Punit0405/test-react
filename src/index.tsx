@@ -7,13 +7,17 @@ import "./global.css";
 import "./fontawesome/css/all.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-h5-audio-player/lib/styles.css';
+import { Provider } from "react-redux"
+import store from './redux/store'
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
 
 root.render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>
 );
 

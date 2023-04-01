@@ -5,6 +5,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./GalleryGrid.module.css";
 import Moment from "react-moment";
 import 'moment-timezone';
+import { useSelector, useDispatch } from 'react-redux'
+import { collectionAction } from "../../redux/actions/collectionAction";
 
 const GalleryGridCard = ({ collectionData }: any) => {
 
@@ -12,6 +14,7 @@ const GalleryGridCard = ({ collectionData }: any) => {
         name: collectionData.name || "",
         eventDate: collectionData.eventDate || ""
     })
+    const dispatch = useDispatch()
 
     const onSubmit = (data: any) => {
         setCollection(data)
@@ -22,6 +25,7 @@ const GalleryGridCard = ({ collectionData }: any) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
+        dispatch(collectionAction({ collection: collectionData }))
         navigate(`/gallery/collection/${collectionData?.id}`)
     }
 

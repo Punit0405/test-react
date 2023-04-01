@@ -9,7 +9,8 @@ import { NotificationWithIcon } from "../Utils/helper";
 import CreateCollectionModal from "./Modal/CreateCollectionModal";
 import GetDirectLinkModal from "./Modal/GetDirectLinkModal";
 import styles from "./StudioSideBar.module.css";
-
+import { useSelector, useDispatch } from 'react-redux'
+import { collectionAction } from "../redux/actions/collectionAction";
 
 const StudioSideBar: FunctionComponent = () => {
     const [modalShow, setModalShow] = useState(false);
@@ -17,14 +18,23 @@ const StudioSideBar: FunctionComponent = () => {
     const { collectionId } = useParams()
     const [collection, setCollection]: any = useState([]);
     const navigate = useNavigate();
+    const myState = useSelector((state: any) => state.changeCollection)
+    const dispatch = useDispatch()
 
     const getCollectionList = async () => {
         try {
             if (collectionId) {
-                const res = await CollectionService.getCollectionById(collectionId as string)
-                if (res && res?.code === STATUS_CODE.SUCCESS) {
-                    setCollection(res?.result)
+                const res = myState.collection
+                if (Object.keys(res).length !== 0) {
+                    setCollection(res)
+                } else {
+                    const res = await CollectionService.getCollectionById(collectionId as string)
+                    if (res && res?.code === STATUS_CODE.SUCCESS) {
+                        setCollection(res?.result)
+                        dispatch(collectionAction({ collection: res.result }))
+                    }
                 }
+
             }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -42,7 +52,7 @@ const StudioSideBar: FunctionComponent = () => {
 
     useEffect(() => {
         getCollectionList();
-    }, [])
+    }, [myState])
 
     return (
         <div className={styles.maincomponent}>
@@ -115,7 +125,7 @@ const StudioSideBar: FunctionComponent = () => {
                 eventDate={collection.eventDate}
                 onSubmit={onSubmit}
             />
-            <GetDirectLinkModal show={getLinkModalShow} onHide={() => setGetLinkModalShow(false)}/>
+            <GetDirectLinkModal show={getLinkModalShow} onHide={() => setGetLinkModalShow(false)} />
         </div>
     );
 };
