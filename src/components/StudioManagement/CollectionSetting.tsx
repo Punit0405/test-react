@@ -103,6 +103,7 @@ const CollectionSetting: FunctionComponent = () => {
             if (collectionId) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: updateRes.result }))
                     NotificationWithIcon("success", "Setting saved.")
                     return updateRes?.result?.name
                 }

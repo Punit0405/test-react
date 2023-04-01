@@ -51,6 +51,7 @@ const PrivacySetting: FunctionComponent = () => {
                 const values = { password }
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: updateRes.result }))
                     NotificationWithIcon("success", "Setting saved.")
                     setPasswordBtn(false)
                 }

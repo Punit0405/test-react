@@ -53,6 +53,7 @@ const DownloadStatus: FunctionComponent = () => {
                 const values = { download: Boolean(Number(event.target.value)) }
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: updateRes.result }))
                     NotificationWithIcon("success", "Setting saved.")
                     setFormData(values.download)
                 }
