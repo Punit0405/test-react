@@ -5,7 +5,7 @@ import { getNameAndProfile } from "../Utils/helper";
 import styles from "./TopBarComponent.module.css";
 
 const TopBarComponent: FunctionComponent = () => {
-    const {firstName,lastName} = getNameAndProfile()
+    const { firstName, lastName } = getNameAndProfile()
     const navigate = useNavigate();
     const logoutFunction = () => {
         localStorage.removeItem("accessToken");
@@ -29,10 +29,11 @@ const TopBarComponent: FunctionComponent = () => {
                         />
                     </Ratio>
                     <NavDropdown
+                        align="end"
                         title="My Name" className={styles.navdropdown} id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Branding</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
-                            Project
+                            Profile
                         </NavDropdown.Item>
                         <NavDropdown.Item href="/settings/billing">Billing</NavDropdown.Item>
                         <NavDropdown.Divider />
