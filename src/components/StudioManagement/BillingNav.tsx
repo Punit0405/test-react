@@ -14,7 +14,7 @@ const BillingNav: any = () => {
             </Nav.Link>
             <Nav.Link as={NavLink} to="/gallery" eventKey="gallery" >
                 <div className={styles.home}>
-                    <p>Project</p>
+                    <p>Profile</p>
                 </div>
             </Nav.Link>
             <Nav.Link as={NavLink} to="/studiomanagement/billing" eventKey="studiomanagement">
