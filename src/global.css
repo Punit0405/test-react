@@ -301,6 +301,7 @@ a:-webkit-any-link {
   font-size: 0.4rem;
   margin-left: 4%;
   margin-top: 0px;
+  display: flex;
 }
 
 .allsongs .rhap_container svg {

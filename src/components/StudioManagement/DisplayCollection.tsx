@@ -7,6 +7,8 @@ import CustomDropdownItem from "./CustomDropdownItem";
 import styles from "./Design.module.css"
 import DesignCollectionNav from "./DesignCollectionNav";
 import DesignCollectionNavMobile from "./DesignCollectionNavMobile";
+import GridVerticalMobile from "./GridVerticalMobile";
+import GridVerticalPc from "./GridVerticalPc";
 
 const DisplayCollection: FunctionComponent = () => {
     return (
@@ -19,7 +21,7 @@ const DisplayCollection: FunctionComponent = () => {
                     }}
                 >
                     <DesignCollectionNav />
-                    <Grid />
+                    <GridVerticalPc />
                 </div>
                 <div
                     className={styles.mobilescreen}
@@ -29,7 +31,7 @@ const DisplayCollection: FunctionComponent = () => {
                 >
                     <div className={styles.mobiletitlediv}>
                         <DesignCollectionNavMobile />
-                        <Grid />
+                        <GridVerticalMobile />
                     </div>
                 </div>
 
