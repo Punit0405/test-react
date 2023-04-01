@@ -4,6 +4,7 @@ import { Button, Col, Container, Dropdown, Form, FormLabel, Image, InputGroup, N
 import CustomDropdownItem from "./CustomDropdownItem";
 
 import styles from "./Design.module.css"
+import DesignSideScreen from "./DesignSideScreen";
 
 const Design: FunctionComponent = () => {
     return (
@@ -177,54 +178,7 @@ const Design: FunctionComponent = () => {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={8} md={8} sm={8} className={styles.viewpoint}>
-                            <div className={styles.sidemain}>
-                                <Navbar className={styles.sidenav} variant="light">
-                                    <Container>
-                                        <Nav className="me-auto">
-                                            <Nav.Link className={styles.navname} href="#home">Cover</Nav.Link>
-                                            <Nav.Link className={styles.navname} href="#pricing">Collection</Nav.Link>
-                                        </Nav>
-                                        <Nav className="">
-                                            <Nav.Link className={styles.navname} href="#home"><i className="fa-regular fa-image sidescreennav"></i>Cover</Nav.Link>
-                                            <Nav.Link className={styles.navname} href="#pricing"><i className="fa-solid fa-circle-dot sidescreennav"></i>Focal Point</Nav.Link>
-                                        </Nav>
-                                    </Container>
-                                </Navbar>
-                                <div className={styles.sample}>
-                                    <div
-                                        className={styles.pcscreen}
-                                        style={{
-                                            backgroundImage: `url("../../images11.jpg")`,
-                                            backgroundRepeat: 'no-repeat',
-                                            backgroundPosition: 'center',
-                                            backgroundSize: 'cover'
-                                        }}
-                                    >
-                                        <div>
-                                            <p className={styles.maintitle}>Test Collection</p>
-                                            <p className={styles.maindate}>March 9th, 2023</p>
-                                        </div>
-                                    </div>
-                                    <div
-                                        className={styles.mobilescreen}
-                                        style={{
-                                            backgroundImage: `url("../../images11.jpg")`,
-                                            backgroundRepeat: 'no-repeat',
-                                            backgroundPosition: 'center',
-                                            backgroundSize: 'cover'
-                                        }}
-                                    >
-                                        <div>
-                                            <p className={styles.maintitlemobile}>Test Collection</p>
-                                            <p className={styles.maindatemobile}>March 9th, 2023</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </Col>
+                        <DesignSideScreen />
                     </Row>
 
                 </Form>
