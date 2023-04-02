@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import { Col, Dropdown, Form, FormLabel, Image, InputGroup, Nav, Navbar, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { designAction } from "../../redux/actions/designStyle";
@@ -36,6 +36,10 @@ const subtle = {
     fontFamily: "'Montserrat', sans-serif"
 }
 
+const activeStyle = {
+    border: "1px solid crimson"
+}
+
 const light = ["#FFFFFF", "#F5F5F5", "#333333"]
 const gold = ["#FFFEFA", "#FCF8F2", "#9E8962"]
 const rose = ["#FBF8F7", "#F8F3F2", "#9E7977"]
@@ -51,6 +55,9 @@ const Design: FunctionComponent = () => {
     const [fontStyle, setFontStyle] = useState(sans)
     const [fontName, setFontName] = useState("Sans")
 
+    const [grid, setGrid] = useState("Vertical")
+    const [space, setSpace] = useState("Regular")
+
     const [backgroundStyle, setBackgroundStyle] = useState(light)
     const [backgroundName, setBackgroundName] = useState("light")
 
@@ -63,9 +70,30 @@ const Design: FunctionComponent = () => {
     const selectBackgroundStyle = (backgroundname: any, backgroundstyle: any) => {
         setBackgroundName(backgroundname)
         setBackgroundStyle(backgroundstyle)
+        dispatch(designAction({ theme: backgroundstyle }))
+    }
+
+    const setGridStyle = (styleName: any) => {
+        setGrid(styleName)
+        dispatch(designAction({ gridstyle: styleName }))
+    }
+
+    const setGridSpace = (styleName: any) => {
+        setSpace(styleName)
+        dispatch(designAction({ gridspace: styleName }))
     }
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setSideScreenStyle()
+    }, [])
+
+    function setSideScreenStyle() {
+        dispatch(designAction({ gridstyle: { grid: "Vertical" } }))
+        dispatch(designAction({ gridspace: { grid: "Regular" } }))
+        dispatch(designAction({ theme: ["#FFFFFF", "#F5F5F5", "#333333"] }))
+    }
 
     return (
         <>
@@ -216,14 +244,20 @@ const Design: FunctionComponent = () => {
                             <div className={styles.fontmain}>
                                 <Form.Label className={styles.formlabel}>Grid Style</Form.Label>
                                 <div className={styles.gridstylediv}>
-                                    <div className={styles.gridstyleinnerdiv}>
-                                        <div className={styles.gridinnersetting}>
+                                    <div
+                                        className={styles.gridstyleinnerdiv}
+                                        onClick={() => setGridStyle("Vertical")}
+                                    >
+                                        <div className={styles.gridinnersetting} style={grid === "Vertical" ? activeStyle : {}}>
                                             <i className="fa-sharp fa-solid fa-objects-column gridicon"></i>
                                         </div>
                                         <p className={styles.stylenames}>Vertical</p>
                                     </div>
-                                    <div className={styles.gridstyleinnerdiv}>
-                                        <div className={styles.gridinnersetting}>
+                                    <div
+                                        className={styles.gridstyleinnerdiv}
+                                        onClick={() => setGridStyle("Horizontal")}
+                                    >
+                                        <div className={styles.gridinnersetting} style={grid === "Horizontal" ? activeStyle : {}}>
                                             <i className="fa-sharp fa-solid fa-objects-column fa-rotate-270 gridicon"></i>
                                         </div>
                                         <p className={styles.stylenames}>Horizontal</p>
@@ -233,14 +267,19 @@ const Design: FunctionComponent = () => {
                             <div className={styles.fontmain}>
                                 <Form.Label className={styles.formlabel}>Grid Spacing</Form.Label>
                                 <div className={styles.gridstylediv}>
-                                    <div className={styles.gridstyleinnerdiv}>
-                                        <div className={styles.gridinnersetting}>
+                                    <div className={styles.gridstyleinnerdiv}
+                                        onClick={() => setGridSpace("Regular")}
+                                    >
+                                        <div className={styles.gridinnersetting} style={space === "Regular" ? activeStyle : {}}>
                                             <i className="fa-sharp fa-solid fa-grid-2 gridicon"></i>
                                         </div>
                                         <p className={styles.stylenames}>Regular</p>
                                     </div>
                                     <div className={styles.gridstyleinnerdiv}>
-                                        <div className={styles.gridinnersetting}>
+                                        <div className={styles.gridinnersetting}
+                                            onClick={() => setGridSpace("Large")}
+                                            style={space === "Large" ? activeStyle : {}}
+                                        >
                                             <i className="fa-sharp fa-solid fa-objects-column fa-rotate-270 gridicon"></i>
                                         </div>
                                         <p className={styles.stylenames}>Large</p>
@@ -252,7 +291,7 @@ const Design: FunctionComponent = () => {
                     </Row>
 
                 </Form>
-            </div>
+            </div >
         </>
     );
 };

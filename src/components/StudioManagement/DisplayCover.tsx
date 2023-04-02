@@ -26,7 +26,7 @@ const DisplayCover: FunctionComponent = () => {
                             className={styles.maintitle}
                             style={myState.coverstyle}
                         >
-                            Test Collection
+                            Test Collection 
                         </p>
                         <p
                             className={styles.maindate}

@@ -17,7 +17,6 @@ const GalleryClientView = () => {
           <p className={styles.maintitle}>Test Collection</p>
           <p className={styles.maindate}>March 9th, 2023</p>
         </div>
-        {/* <Image src='../../images11.jpg' /> */}
       </div>
       <div className={styles.titlediv}>
         <div className={styles.maintitleheading}>

@@ -12,114 +12,54 @@ const data = [
 const newData = [
     {
         "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
+        "height": 53,
+        "width": 53
     },
     {
         "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
+        "height": 80,
+        "width": 53
     },
     {
         "src": "../../images11.jpg",
-        "height": 2988,
-        "width": 5312
+        "height": 30,
+        "width": 53
     },
     {
         "src": "../../images12.jpg",
-        "height": 3024,
-        "width": 4032
+        "height": 40,
+        "width": 53
     },
     {
         "src": "../../images13.jpg",
-        "height": 4032,
-        "width": 3024
+        "height": 71,
+        "width": 53
     },
     {
         "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
+        "height": 53,
+        "width": 53
     },
     {
         "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
-    },
-    {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
-    },
-    {
-        "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
-    },
-    {
-        "src": "../../images14.jpg",
-        "height": 3787,
-        "width": 2525
-    },
-    {
-        "src": "../../images13.jpg",
-        "height": 4032,
-        "width": 3024
-    },
-    {
-        "src": "../../images14.jpg",
-        "height": 3787,
-        "width": 2525
-    },
-    {
-        "src": "../../images13.jpg",
-        "height": 4032,
-        "width": 3024
-    },
-    {
-        "src": "../../images14.jpg",
-        "height": 3787,
-        "width": 2525
-    },
-    {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
-    },
-    {
-        "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
+        "height": 80,
+        "width": 53
     },
     {
         "src": "../../images11.jpg",
-        "height": 2988,
-        "width": 5312
+        "height": 30,
+        "width": 53
     },
     {
         "src": "../../images12.jpg",
-        "height": 3024,
-        "width": 4032
+        "height": 40,
+        "width": 53
     },
     {
         "src": "../../images13.jpg",
-        "height": 4032,
-        "width": 3024
+        "height": 71,
+        "width": 53
     },
-    {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
-    },
-    {
-        "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
-    },
-    {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
-    }
 ]
 
 

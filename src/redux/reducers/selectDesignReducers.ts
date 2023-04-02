@@ -1,5 +1,8 @@
 const INITIAL_STATE: any = {
-    coverstyle: {}
+    coverstyle: {},
+    gridstyle: {},
+    gridspace: {},
+    theme: {}
 }
 
 
