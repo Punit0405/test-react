@@ -1,6 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import CollectionService from "../../api/Collection/collection";
 import FilesSevice from "../../api/Files/files";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
@@ -8,7 +9,8 @@ import SimpleLoader from "../Loader/SimpleLoader";
 import AddCollection from "./AddCollection";
 import AddPhotosNav from "./AddPhotosNav";
 import CollectionView from "./CollectionView";
-
+import { useSelector, useDispatch } from 'react-redux'
+import { collectionAction } from "../../redux/actions/collectionAction";
 
 const Collection: FunctionComponent = () => {
 
@@ -16,10 +18,15 @@ const Collection: FunctionComponent = () => {
     const [loader, setLoader] = useState(true);
     const [files, setFiles]: any = useState([]);
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const getCollectionList = async () => {
         try {
             if (collectionId) {
+                const collectionRes = await CollectionService.getCollectionById(collectionId as string)
+                if (collectionRes && collectionRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: collectionRes.result }))
+                }
                 const res = await FilesSevice.getFiles(collectionId)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
                     setLoader(false);

@@ -292,6 +292,18 @@ a:-webkit-any-link {
   margin-left: 8%;
 }
 
+.viewpageicondedesign {
+  font-size: 0.7rem;
+  margin-left: 8%;
+}
+
+.viewpageicondedesignmobile {
+  font-size: 0.4rem;
+  margin-left: 4%;
+  margin-top: 0px;
+  display: flex;
+}
+
 .allsongs .rhap_container svg {
   display: none;
 }
@@ -393,6 +405,11 @@ a:-webkit-any-link {
   margin-right: 10px;
   font-size: 1.1rem;
   margin-top: 2%;
+}
+
+.setcolorwithoutmargin {
+  color: #ec1a25;
+  font-size: 1.1rem;
 }
 
 .setsizeasset {

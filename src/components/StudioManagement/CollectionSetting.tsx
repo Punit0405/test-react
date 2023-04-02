@@ -8,10 +8,13 @@ import { NotificationWithIcon } from "../../Utils/helper";
 import moment from "moment";
 import TagComp from "./TagComp";
 import Constants from "../../Config/Constants";
+import { useSelector, useDispatch } from 'react-redux'
+import { collectionAction } from "../../redux/actions/collectionAction";
 
 const CollectionSetting: FunctionComponent = () => {
-
+    const myState = useSelector((state: any) => state.changeCollection)
     const { collectionId } = useParams()
+    const dispatch = useDispatch()
 
     let initialValue = {
         name: "",
@@ -24,24 +27,28 @@ const CollectionSetting: FunctionComponent = () => {
     const getCollectionList = async () => {
         try {
             if (collectionId) {
-                const res = await CollectionService.getCollectionById(collectionId as string)
-                if (res && res?.code === STATUS_CODE.SUCCESS) {
-                    console.log(res.result, '-----result---------');
+                const res = myState.collection
+                if (Object.keys(res).length !== 0) {
                     setFirstValue({
-                        name: res?.result?.name || "",
-                        url: res?.result?.url || "",
-                        eventDate: res?.result?.eventDate || "",
-                        status: res?.result?.status || "",
-                        socialSharing: res?.result?.socialSharing as boolean || false,
+                        name: res?.name || "",
+                        url: res?.url || "",
+                        eventDate: res?.eventDate || "",
+                        status: res?.status || "",
+                        socialSharing: res?.socialSharing as boolean || false,
                     })
 
                     setFormData({
-                        name: res?.result?.name || "",
-                        url: res?.result?.url || "",
-                        eventDate: res?.result?.eventDate || "",
-                        status: res?.result?.status || "",
-                        socialSharing: res?.result?.socialSharing as boolean || false,
+                        name: res?.name || "",
+                        url: res?.url || "",
+                        eventDate: res?.eventDate || "",
+                        status: res?.status || "",
+                        socialSharing: res?.socialSharing as boolean || false,
                     })
+                } else {
+                    const res = await CollectionService.getCollectionById(collectionId as string)
+                    if (res && res?.code === STATUS_CODE.SUCCESS) {
+                        dispatch(collectionAction({ collection: res.result }))
+                    }
                 }
             }
         } catch (err: any) {
@@ -55,7 +62,7 @@ const CollectionSetting: FunctionComponent = () => {
 
     useEffect(() => {
         getCollectionList();
-    }, [])
+    }, [myState])
 
     const [name, setName] = useState(false);
     const [url, setUrl] = useState(false);
@@ -96,6 +103,7 @@ const CollectionSetting: FunctionComponent = () => {
             if (collectionId) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: updateRes.result }))
                     NotificationWithIcon("success", "Setting saved.")
                     return updateRes?.result?.name
                 }
@@ -116,7 +124,7 @@ const CollectionSetting: FunctionComponent = () => {
             setName(false)
         }
         else if (event.target.name === "url") {
-            const updateName = await updateData({ url: Constants.clientViewUrl+formdata.url })
+            const updateName = await updateData({ url: Constants.clientViewUrl + formdata.url })
             setFormData({ ...formdata, url: updateName })
             setUrl(false)
         }
@@ -129,9 +137,9 @@ const CollectionSetting: FunctionComponent = () => {
             setFormData({ ...formdata, eventDate: event.target.value })
         }
         else if (event.target.name === "socialSharing") {
-            const updatedValue =  Boolean(Number(event.target.value))
-            await updateData({ socialSharing:  updatedValue })
-            setFormData({ ...formdata, socialSharing:  updatedValue })
+            const updatedValue = Boolean(Number(event.target.value))
+            await updateData({ socialSharing: updatedValue })
+            setFormData({ ...formdata, socialSharing: updatedValue })
         }
     }
 
@@ -224,7 +232,7 @@ const CollectionSetting: FunctionComponent = () => {
                     </div>
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Social Sharing Buttons</Form.Label>
-                        <Form.Select name="socialSharing" onChange={handleSave} value={formdata.socialSharing ? 1 :0}>
+                        <Form.Select name="socialSharing" onChange={handleSave} value={formdata.socialSharing ? 1 : 0}>
                             <option value={1} >Yes</option>
                             <option value={0}>No</option>
                         </Form.Select>

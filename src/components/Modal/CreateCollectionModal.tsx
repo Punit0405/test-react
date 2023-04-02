@@ -6,6 +6,8 @@ import { collectionValidations } from "../../Utils/validations";
 import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
+import { useSelector, useDispatch } from 'react-redux'
+import { collectionAction } from "../../redux/actions/collectionAction";
 
 function CreateCollectionModal(props: any) {
 
@@ -13,7 +15,7 @@ function CreateCollectionModal(props: any) {
         name: props?.name as string,
         eventDate: props?.eventDate as string,
     }
-
+    const dispatch = useDispatch()
     const collectionId = props?.id
 
     const navigate = useNavigate()
@@ -22,12 +24,14 @@ function CreateCollectionModal(props: any) {
             if (collectionId) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: updateRes.result }))
                     props.onSubmit(values)
                     props.onHide()
                 }
             } else {
                 const res = await CollectionService.createCollection(values)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: res.result }))
                     const createId = res?.result?.id
                     navigate(`/gallery/collection/${createId}`)
                 }

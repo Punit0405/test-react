@@ -7,20 +7,30 @@ import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import CollectionService from "../../api/Collection/collection";
 import { NotificationWithIcon } from "../../Utils/helper";
 const passwordGeneator = require('secure-random-password');
+import { useSelector, useDispatch } from 'react-redux'
+import { collectionAction } from "../../redux/actions/collectionAction";
 
 const DownloadStatus: FunctionComponent = () => {
 
     const { collectionId } = useParams()
     const [formdata, setFormData] = useState(false)
+    const myState = useSelector((state: any) => state.changeCollection)
+    const dispatch = useDispatch()
 
     const getCollectionList = async () => {
         try {
             if (collectionId) {
-                const res = await CollectionService.getCollectionById(collectionId as string)
-                if (res && res?.code === STATUS_CODE.SUCCESS) {
-                    setFormData(res.result.download)
-                    setPin(res?.result?.downloadPin || "")
+                const res = myState.collection
+                if (Object.keys(res).length !== 0) {
+                    setFormData(res.download)
+                    setPin(res?.downloadPin || "")
+                } else {
+                    const res = await CollectionService.getCollectionById(collectionId as string)
+                    if (res && res?.code === STATUS_CODE.SUCCESS) {
+                        dispatch(collectionAction({ collection: res.result }))
+                    }
                 }
+
             }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -33,7 +43,7 @@ const DownloadStatus: FunctionComponent = () => {
 
     useEffect(() => {
         getCollectionList();
-    }, [])
+    }, [myState])
 
     const [pin, setPin] = useState("")
 
@@ -43,6 +53,7 @@ const DownloadStatus: FunctionComponent = () => {
                 const values = { download: Boolean(Number(event.target.value)) }
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: updateRes.result }))
                     NotificationWithIcon("success", "Setting saved.")
                     setFormData(values.download)
                 }
