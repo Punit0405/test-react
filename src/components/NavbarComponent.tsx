@@ -18,7 +18,7 @@ const NavBarComponent = () => {
                 </div>
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/studiomanagement/billing" eventKey="studiomanagement">
+            <Nav.Link as={NavLink} to="/studiomanagement/dashboard" eventKey="studiomanagement">
                 <div className={styles.home}>
                     <i className="fa-regular fa-video setcolor"></i>
                     <p>Studio Management</p>

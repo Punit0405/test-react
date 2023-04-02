@@ -407,6 +407,11 @@ a:-webkit-any-link {
   margin-top: 2%;
 }
 
+.setcolorwithoutmargin {
+  color: #ec1a25;
+  font-size: 1.1rem;
+}
+
 .setsizeasset {
   margin-right: 10px;
   font-size: 1.1rem;
