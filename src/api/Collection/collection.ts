@@ -63,6 +63,29 @@ const CollectionService = {
         } catch (error) {
             throw error
         }
+    },
+    deleteCollectionFiles: async (collectionId: string, data: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.removeWithBody({
+                url: `collection/files/${collectionId}`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+    deleteCollection: async (collectionId: string) => {
+        try {
+            const token = await getUserToken()
+            return Service.remove(`collection/${collectionId}`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
     }
 
 }

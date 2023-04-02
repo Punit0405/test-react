@@ -25,6 +25,7 @@ const Collection: FunctionComponent = () => {
             if (collectionId) {
                 const collectionRes = await CollectionService.getCollectionById(collectionId as string)
                 if (collectionRes && collectionRes?.code === STATUS_CODE.SUCCESS) {
+                    console.log(collectionRes.result)
                     dispatch(collectionAction({ collection: collectionRes.result }))
                 }
                 const res = await FilesSevice.getFiles(collectionId)
@@ -56,7 +57,7 @@ const Collection: FunctionComponent = () => {
                 <AddPhotosNav />
                 {
                     files && files?.length ?
-                        <CollectionView collectionData={files} /> : <AddCollection />
+                    <CollectionView collectionData={files} refreshFunction={getCollectionList} /> : <AddCollection />
                 }
             </Container>
         </>

@@ -1,28 +1,39 @@
 import { Image } from "react-bootstrap";
 import styles from "./Collection.module.css";
 import { useState, useEffect } from 'react';
+import { isReadable } from "stream";
 
 interface Props {
     imageUrl: string,
     setSelect: any,
-    isSelect: boolean
+    isSelect: any,
+    selectedFiles: any,
+    fileId: number,
+    setSelectedImages: any,
 }
 
-const CollectionImageView = ({ imageUrl, setSelect, isSelect }: Props) => {
+const CollectionImageView = ({ imageUrl, setSelect, isSelect, selectedFiles, setSelectedImages, fileId }: Props) => {
 
-    const [selectImg, setSelectImg] = useState(isSelect === true ? true : false)
-
+    const [selectImg, setSelectImg] = useState(isSelect)
     const handleClick = () => {
-        if (!selectImg) {
-            setSelect(1)
+        if (!selectedFiles.includes(fileId)) {
+
+            selectedFiles.push(fileId),
+            setSelectedImages(selectedFiles);
+            setSelect()
+
         } else {
-            setSelect(-1)
+            const index = selectedFiles.indexOf(fileId)
+            console.log(index)
+            selectedFiles.splice(index, 1);
+            setSelectedImages(selectedFiles);
+            setSelect()
         }
         setSelectImg(!selectImg)
     }
 
     return (
-        <div className={selectImg ? `${styles.outerimg} ${styles.selectImg}` : `${styles.outerimg}`} draggable onClick={handleClick}>
+        <div className={isSelect ? `${styles.outerimg} ${styles.selectImg}` : `${styles.outerimg}`} draggable onClick={handleClick}>
             <i className="fa-sharp fa-light fa-up-down-left-right anchortag"></i>
             <div className={styles.imgblock}>
                 <div className={styles.imgdiv}>

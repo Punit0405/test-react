@@ -7,6 +7,13 @@ function get(url: string, headers: any) {
     headers,
   });
 }
+function remove(url: string, headers: any) {
+  return request({
+    method: "DELETE",
+    url,
+    headers,
+  });
+}
 
 function post<T = any>({ url, data }: { url?: string; data: T }, headers?: any) {
   return request({
@@ -29,7 +36,7 @@ function update<T = any>(
   });
 }
 
-function remove(url: any, data: any, headers: any) {
+function removeWithBody<T = any>({ url, data }: { url?: string; data: T }, headers?: any) {
   return request({
     method: "DELETE",
     url,
@@ -42,6 +49,7 @@ const Service = {
   get,
   post,
   update,
-  remove,
+  removeWithBody,
+  remove
 };
 export default Service;

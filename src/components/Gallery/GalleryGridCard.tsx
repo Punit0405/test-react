@@ -7,8 +7,12 @@ import Moment from "react-moment";
 import 'moment-timezone';
 import { useSelector, useDispatch } from 'react-redux'
 import { collectionAction } from "../../redux/actions/collectionAction";
+import DeleteConfirmation from "../Modal/DeleteConfirmation";
+import CollectionService from "../../api/Collection/collection";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
 
-const GalleryGridCard = ({ collectionData }: any) => {
+const GalleryGridCard = ({ collectionData ,refreshFunction }: any) => {
 
     const [collection, setCollection] = useState({
         name: collectionData.name || "",
@@ -21,6 +25,7 @@ const GalleryGridCard = ({ collectionData }: any) => {
     }
 
     const [modalShow, setModalShow] = useState(false);
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
 
     const navigate = useNavigate();
 
@@ -28,6 +33,25 @@ const GalleryGridCard = ({ collectionData }: any) => {
         dispatch(collectionAction({ collection: collectionData }))
         navigate(`/gallery/collection/${collectionData?.id}`)
     }
+    const deleteCollection= async()=>{
+        try {
+           if (collectionData?.id) {
+               const deleteRes = await CollectionService.deleteCollection(collectionData?.id)
+               if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
+                   console.log(deleteRes);
+                   refreshFunction()
+                   setModalShow(false);
+               }
+           }
+       } catch (err: any) {
+           if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+               NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+               navigate('/');
+           } else {
+               NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+           }
+       }
+       }
 
     return (
         <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
@@ -51,7 +75,7 @@ const GalleryGridCard = ({ collectionData }: any) => {
                                 <div className={styles.navtags}>Get Direct Link</div>
                             </div>
                         </NavDropdown.Item>
-                        <NavDropdown.Item >
+                        <NavDropdown.Item onClick={() => setDeleteModalShow(true)}>
                             <div className={styles.navicons}>
                                 <i className="fa-solid navicons fa-trash-can"></i>
                                 <div className={styles.navtags}>Delete Collection</div>
@@ -78,6 +102,12 @@ const GalleryGridCard = ({ collectionData }: any) => {
                 name={collection.name}
                 eventDate={collection.eventDate}
                 onSubmit={onSubmit}
+            />
+            <DeleteConfirmation 
+            show={deleteModalShow}
+            modaltext={"Are you sure want to delete collection?"}
+            onHide={() => setDeleteModalShow(false)}
+            handledeletefiles={deleteCollection as any}
             />
         </Col>
     )
