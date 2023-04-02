@@ -52,7 +52,7 @@ const GalleryGrid: FunctionComponent = () => {
             <Row className={styles.maincomp}>
                 {
                     collection && collection.map((singleCollection: any) => (
-                        <GalleryGridCard collectionData={singleCollection} key={singleCollection?.id} />
+                        <GalleryGridCard collectionData={singleCollection} refreshFunction={getCollectionList}  key={singleCollection?.id} />
                     ))
                 }
 
