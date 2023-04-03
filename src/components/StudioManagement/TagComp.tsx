@@ -25,7 +25,7 @@ const TagComp: React.FC = () => {
 
     const handleClose = (removedTag: string) => {
         const newTags = tags.filter((tag) => tag !== removedTag);
-        console.log(newTags, '-------tags----------');
+        console.log(newTags, '-------close----------');
         setTags(newTags);
     };
 
@@ -41,7 +41,7 @@ const TagComp: React.FC = () => {
         if (inputValue && tags.indexOf(inputValue) === -1) {
             setTags([...tags, inputValue]);
         }
-        console.log(inputValue, '---------inputValue------------');
+        console.log([...tags, inputValue], '---------create------------');
 
         setInputVisible(false);
         setInputValue('');
@@ -52,8 +52,12 @@ const TagComp: React.FC = () => {
     };
 
     const handleEditInputConfirm = () => {
+        console.log("edit===============");
+
         const newTags = [...tags];
         newTags[editInputIndex] = editInputValue;
+        console.log(newTags, '------newTags-----');
+
         setTags(newTags);
         setEditInputIndex(-1);
         setInputValue('');
@@ -67,6 +71,10 @@ const TagComp: React.FC = () => {
     const tagPlusStyle: React.CSSProperties = {
         background: token.colorBgContainer,
         borderStyle: 'dashed',
+        fontSize: "1rem",
+        fontFamily: "poppins",
+        height: '1.8rem',
+        padding: "4% 2%"
     };
 
     return (
@@ -92,19 +100,19 @@ const TagComp: React.FC = () => {
                         <Tag
                             key={tag}
                             closable={true}
-                            style={{ userSelect: 'none' }}
+                            style={{ userSelect: 'none', fontSize: "1rem", height: '1.8rem', padding: "5% 2%" }}
                             onClose={() => handleClose(tag)}
                         >
                             <span
+                                style={{ fontSize: "1rem", fontFamily: "poppins" }}
                                 onDoubleClick={(e) => {
-                                    if (index !== 0) {
-                                        setEditInputIndex(index);
-                                        setEditInputValue(tag);
-                                        e.preventDefault();
-                                    }
+                                    setEditInputIndex(index);
+                                    setEditInputValue(tag);
+                                    e.preventDefault();
                                 }}
                             >
                                 {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                                <i className="fa-light fa-xmark" style={{ marginLeft: "2px" }}></i>
                             </span>
                         </Tag>
                     );
@@ -117,23 +125,25 @@ const TagComp: React.FC = () => {
                     );
                 })}
             </Space>
-            {inputVisible ? (
-                <Input
-                    ref={inputRef}
-                    type="text"
-                    size="large"
-                    style={tagInputStyle}
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onBlur={handleInputConfirm}
-                    onPressEnter={handleInputConfirm}
-                />
-            ) : (
-                <Tag style={tagPlusStyle} onClick={showInput}>
-                    <PlusOutlined /> New Tag
-                </Tag>
-            )}
-        </Space>
+            {
+                inputVisible ? (
+                    <Input
+                        ref={inputRef}
+                        type="text"
+                        size="large"
+                        style={tagInputStyle}
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        onBlur={handleInputConfirm}
+                        onPressEnter={handleInputConfirm}
+                    />
+                ) : (
+                    <Tag style={tagPlusStyle} onClick={showInput} >
+                        <PlusOutlined style={{ marginTop: "0px" }} /> New Tag
+                    </Tag>
+                )
+            }
+        </Space >
     );
 };
 

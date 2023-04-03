@@ -224,8 +224,10 @@ const CollectionSetting: FunctionComponent = () => {
                     </div>
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Collection Tags</Form.Label>
-                        <Form.Control type="text" placeholder="" />
-                        {/* <TagComp /> */}
+                        {/* <Form.Control type="text" placeholder="" /> */}
+                        <div className={styles.tagdiv}>
+                            <TagComp />
+                        </div>
                         <Form.Label className={styles.helpbox} muted>
                             What kind of collection is this? Separate your tags with a comma. e.g. wedding, outdoor, summer.
                         </Form.Label>

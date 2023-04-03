@@ -19,7 +19,7 @@ const CollectionImageView = ({ imageUrl, setSelect, isSelect, selectedFiles, set
         if (!selectedFiles.includes(fileId)) {
 
             selectedFiles.push(fileId),
-            setSelectedImages(selectedFiles);
+                setSelectedImages(selectedFiles);
             setSelect()
 
         } else {

@@ -41,13 +41,13 @@ const DisplayCollection: FunctionComponent = () => {
                     <DesignCollectionNav />
                     {/* <GridVerticalPc /> */}
                     {
-                        (grid === "Vertical" && space === "Regular") ?
+                        (grid === "column" && space === "regular") ?
                             < Image fluid src="../../gridverticalregular.png" /> :
                             (
-                                (grid === "Vertical" && space === "Large") ?
+                                (grid === "column" && space === "large") ?
                                     < Image fluid src="../../gridverticallarge.png" /> :
                                     (
-                                        (grid === "Horizontal" && space === "Regular") ?
+                                        (grid === "row" && space === "regular") ?
                                             < Image fluid src="../../grridhorizontalregular.png" /> :
                                             (
                                                 < Image fluid src="../../gridhorizontallarge.png" />
@@ -66,13 +66,13 @@ const DisplayCollection: FunctionComponent = () => {
                         <DesignCollectionNavMobile />
                         {/* <GridVerticalMobile /> */}
                         {
-                            (grid === "Vertical" && space === "Regular") ?
+                            (grid === "column" && space === "regular") ?
                                 < Image fluid src="../../gridverticalregularmobile.png" /> :
                                 (
-                                    (grid === "Vertical" && space === "Large") ?
+                                    (grid === "column" && space === "large") ?
                                         < Image fluid src="../../grridverticallargemobile.png" /> :
                                         (
-                                            (grid === "Horizontal" && space === "Regular") ?
+                                            (grid === "row" && space === "regular") ?
                                                 < Image fluid src="../../grridhorizontalregularmobile.png" /> :
                                                 (
                                                     < Image fluid src="../../grridhorizontallargemobile.png" />
