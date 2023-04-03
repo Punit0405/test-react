@@ -113,16 +113,16 @@ const Design: FunctionComponent = () => {
     }
 
     const setGridStyle = (styleName: any) => {
+        setGrid(styleName)
         updateData({ gridStyle: styleName }).then(() => {
-            setGrid(styleName)
-            dispatch(designAction({ gridstyle: styleName }))
+            dispatch(designAction({ gridStyle: styleName }))
         })
 
     }
 
     const setGridSpace = (styleName: any) => {
+        setSpace(styleName)
         updateData({ gridSpacing: styleName }).then(() => {
-            setSpace(styleName)
             dispatch(designAction({ gridSpacing: styleName }))
         })
     }
@@ -165,8 +165,8 @@ const Design: FunctionComponent = () => {
                     setFontStyle(font[resData?.result?.typography] || font["Sans"])
                     setFontName(resData.result.typography || "Sans")
                     dispatch(designAction({ coverstyle: font[resData?.result?.typography] }))
-                    dispatch(designAction({ gridstyle: resData.result.gridStyle || "column" }))
-                    dispatch(designAction({ gridspace: resData.result.gridSpacing || "regular" }))
+                    dispatch(designAction({ gridStyle: resData.result.gridStyle || "column" }))
+                    dispatch(designAction({ gridSpacing: resData.result.gridSpacing || "regular" }))
                     dispatch(designAction({ theme: ["#FFFFFF", "#F5F5F5", "#333333"] }))
                 }
             }

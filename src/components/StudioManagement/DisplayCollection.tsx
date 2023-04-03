@@ -22,8 +22,8 @@ const DisplayCollection: FunctionComponent = () => {
     console.log(space, '====space====');
 
     useEffect(() => {
-        setGrid(myState.gridstyle)
-        setSpace(myState.gridspace)
+        setGrid(myState.gridStyle)
+        setSpace(myState.gridSpacing)
         setTheme(myState.theme)
     }, [myState])
 

@@ -1,7 +1,7 @@
 const INITIAL_STATE: any = {
     coverstyle: {},
-    gridstyle: {},
-    gridspace: {},
+    gridStyle: {},
+    gridSpacing: {},
     theme: {}
 }
 
