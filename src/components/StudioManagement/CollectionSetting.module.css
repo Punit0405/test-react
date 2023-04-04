@@ -23,6 +23,12 @@
     font-family: var(--font-poppins);
 }
 
+.tagdiv {
+    border: 1px solid #D9D9D9;
+    padding: 0.5% 1%;
+    border-radius: 5px;
+}
+
 .formcomp {
     margin: 2% 0%;
 }

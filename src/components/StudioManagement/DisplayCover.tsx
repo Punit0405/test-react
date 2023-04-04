@@ -4,10 +4,13 @@ import { Button, Col, Container, Dropdown, Form, FormLabel, Image, InputGroup, N
 import CustomDropdownItem from "./CustomDropdownItem";
 import { useSelector, useDispatch } from 'react-redux'
 import styles from "./Design.module.css"
+import Moment from "react-moment";
 
 const DisplayCover: FunctionComponent = () => {
 
     const myState = useSelector((state: any) => state.changeDesign)
+    const myCollection = useSelector((state: any) => state.changeCollection)
+    const collection = myCollection.collection
 
     return (
         <>
@@ -15,7 +18,7 @@ const DisplayCover: FunctionComponent = () => {
                 <div
                     className={styles.pcscreen}
                     style={{
-                        backgroundImage: `url("../../images11.jpg")`,
+                        backgroundImage: `url(${collection?.coverPhoto})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
@@ -26,20 +29,20 @@ const DisplayCover: FunctionComponent = () => {
                             className={styles.maintitle}
                             style={myState.coverstyle}
                         >
-                            Test Collection
+                            {collection?.name}
                         </p>
                         <p
                             className={styles.maindate}
                             style={myState.coverstyle}
                         >
-                            March 9th, 2023
+                            <Moment format="MMMM  Do, YYYY">{collection?.eventDate}</Moment>
                         </p>
                     </div>
                 </div>
                 <div
                     className={styles.mobilescreen}
                     style={{
-                        backgroundImage: `url("../../images11.jpg")`,
+                        backgroundImage: `url(${collection?.coverPhoto})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
@@ -50,13 +53,13 @@ const DisplayCover: FunctionComponent = () => {
                             className={styles.maintitlemobile}
                             style={myState.coverstyle}
                         >
-                            Test Collection
+                            {collection?.name}
                         </p>
                         <p
                             className={styles.maindatemobile}
                             style={myState.coverstyle}
                         >
-                            March 9th, 2023
+                            <Moment format="MMMM  Do, YYYY">{collection?.eventDate}</Moment>
                         </p>
                     </div>
                 </div>

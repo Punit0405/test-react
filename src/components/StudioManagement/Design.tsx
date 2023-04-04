@@ -1,39 +1,80 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import { Col, Dropdown, Form, FormLabel, Image, InputGroup, Nav, Navbar, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { designAction } from "../../redux/actions/designStyle";
 import CustomDropdownItem from "./CustomDropdownItem";
 import styles from "./Design.module.css"
 import DesignSideScreen from "./DesignSideScreen";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import CollectionService from "../../api/Collection/collection";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
 
-const sans = {
+const font: any = {
+
+    Sans: {
+        fontWeight: "700",
+        fontFamily: "'Montserrat', sans-serif"
+    },
+
+    Serif: {
+        fontWeight: "500",
+        fontFamily: "'Cormorant,serif'"
+    },
+
+    Modern: {
+        fontWeight: "500",
+        fontFamily: "'Tenor Sans', sans-serif"
+    },
+
+    Timeless: {
+        fontWeight: "500",
+        fontFamily: "'Spectral', serif"
+    },
+
+    Bold: {
+        fontWeight: "500",
+        fontFamily: "'Syne', sans-serif"
+    },
+
+    Subtle: {
+        fontWeight: "700",
+        fontFamily: "'Montserrat', sans-serif"
+    }
+}
+
+const Sans = {
     fontWeight: "700",
     fontFamily: "'Montserrat', sans-serif"
 }
 
-const serif = {
+const Serif = {
     fontWeight: "500",
     fontFamily: "'Cormorant,serif'"
 }
 
-const modern = {
+const Modern = {
     fontWeight: "500",
     fontFamily: "'Tenor Sans', sans-serif"
 }
 
-const timeless = {
+const Timeless = {
     fontWeight: "500",
     fontFamily: "'Spectral', serif"
 }
 
-const bold = {
+const Bold = {
     fontWeight: "500",
     fontFamily: "'Syne', sans-serif"
 }
 
-const subtle = {
+const Subtle = {
     fontWeight: "700",
     fontFamily: "'Montserrat', sans-serif"
+}
+
+const activeStyle = {
+    border: "1px solid crimson"
 }
 
 const light = ["#FFFFFF", "#F5F5F5", "#333333"]
@@ -47,25 +88,95 @@ const sea = ["#FAFAFA", "#EAECEE", "#93939F"]
 const dark = ["#1E1E1E", "#282828", "#4D4D4D"]
 
 const Design: FunctionComponent = () => {
-
-    const [fontStyle, setFontStyle] = useState(sans)
+    const { collectionId } = useParams()
+    const [fontStyle, setFontStyle] = useState(Sans)
     const [fontName, setFontName] = useState("Sans")
+
+    const [grid, setGrid] = useState("column")
+    const [space, setSpace] = useState("regular")
 
     const [backgroundStyle, setBackgroundStyle] = useState(light)
     const [backgroundName, setBackgroundName] = useState("light")
 
     const selectFontStyle = (fontname: any, styleName: any) => {
-        setFontStyle(styleName)
-        setFontName(fontname)
-        dispatch(designAction({ coverstyle: styleName }))
+        updateData({ typography: fontname }).then(() => {
+            setFontStyle(styleName)
+            setFontName(fontname)
+            dispatch(designAction({ coverstyle: styleName }))
+        })
     }
 
     const selectBackgroundStyle = (backgroundname: any, backgroundstyle: any) => {
         setBackgroundName(backgroundname)
         setBackgroundStyle(backgroundstyle)
+        dispatch(designAction({ theme: backgroundstyle }))
+    }
+
+    const setGridStyle = (styleName: any) => {
+        setGrid(styleName)
+        updateData({ gridStyle: styleName }).then(() => {
+            dispatch(designAction({ gridStyle: styleName }))
+        })
+
+    }
+
+    const setGridSpace = (styleName: any) => {
+        setSpace(styleName)
+        updateData({ gridSpacing: styleName }).then(() => {
+            dispatch(designAction({ gridSpacing: styleName }))
+        })
+    }
+
+    const updateData = async (values: any) => {
+        try {
+            if (collectionId) {
+                const updateRes = await CollectionService.updateDesign(collectionId, values)
+                console.log(updateRes, '------updateRes------');
+
+                if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    NotificationWithIcon("success", "Setting saved.")
+                    return updateRes?.result?.name
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
     }
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setSideScreenStyle()
+    }, [])
+
+    async function setSideScreenStyle() {
+        try {
+            if (collectionId) {
+                const resData = await CollectionService.getDesign(collectionId)
+                if (resData && resData?.code === STATUS_CODE.SUCCESS) {
+                    console.log(resData.result, '-------res----------');
+                    setGrid(resData?.result?.gridStyle || "column")
+                    setSpace(resData?.result?.gridSpacing || "regular")
+                    setFontStyle(font[resData?.result?.typography] || font["Sans"])
+                    setFontName(resData.result.typography || "Sans")
+                    dispatch(designAction({ coverstyle: font[resData?.result?.typography] }))
+                    dispatch(designAction({ gridStyle: resData.result.gridStyle || "column" }))
+                    dispatch(designAction({ gridSpacing: resData.result.gridSpacing || "regular" }))
+                    dispatch(designAction({ theme: ["#FFFFFF", "#F5F5F5", "#333333"] }))
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
 
     return (
         <>
@@ -98,7 +209,7 @@ const Design: FunctionComponent = () => {
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu style={{ width: "100%" }}>
-                                            <Dropdown.Item onClick={() => selectFontStyle("Sans", sans)}>
+                                            <Dropdown.Item onClick={() => selectFontStyle("Sans", font["Sans"])}>
                                                 <div className={styles.fontstylemain}>
                                                     <div className={styles.fontsvg}>
                                                         <Image src={"../../../sans.svg"} />
@@ -106,7 +217,7 @@ const Design: FunctionComponent = () => {
                                                     <div>Sans</div>
                                                 </div>
                                             </Dropdown.Item>
-                                            <Dropdown.Item onClick={() => selectFontStyle("Serif", serif)}>
+                                            <Dropdown.Item onClick={() => selectFontStyle("Serif", font["Serif"])}>
                                                 <div className={styles.fontstylemain}>
                                                     <div className={styles.fontsvg}>
                                                         <Image src="../../../sans.svg" />
@@ -114,7 +225,7 @@ const Design: FunctionComponent = () => {
                                                     <div>Serif</div>
                                                 </div>
                                             </Dropdown.Item>
-                                            <Dropdown.Item onClick={() => selectFontStyle("Modern", modern)}>
+                                            <Dropdown.Item onClick={() => selectFontStyle("Modern", font["Modern"])}>
                                                 <div className={styles.fontstylemain}>
                                                     <div className={styles.fontsvg}>
                                                         <Image src="../../../sans.svg" />
@@ -122,7 +233,7 @@ const Design: FunctionComponent = () => {
                                                     <div>Modern</div>
                                                 </div>
                                             </Dropdown.Item>
-                                            <Dropdown.Item onClick={() => selectFontStyle("Timeless", timeless)}>
+                                            <Dropdown.Item onClick={() => selectFontStyle("Timeless", font["Timeless"])}>
                                                 <div className={styles.fontstylemain}>
                                                     <div className={styles.fontsvg}>
                                                         <Image src="../../../sans.svg" />
@@ -130,7 +241,7 @@ const Design: FunctionComponent = () => {
                                                     <div>Timeless</div>
                                                 </div>
                                             </Dropdown.Item>
-                                            <Dropdown.Item onClick={() => selectFontStyle("Bold", bold)}>
+                                            <Dropdown.Item onClick={() => selectFontStyle("Bold", font["Bold"])}>
                                                 <div className={styles.fontstylemain}>
                                                     <div className={styles.fontsvg}>
                                                         <Image src="../../../sans.svg" />
@@ -138,7 +249,7 @@ const Design: FunctionComponent = () => {
                                                     <div>Bold</div>
                                                 </div>
                                             </Dropdown.Item>
-                                            <Dropdown.Item onClick={() => selectFontStyle("Subtle", subtle)}>
+                                            <Dropdown.Item onClick={() => selectFontStyle("Subtle", font["Subtle"])}>
                                                 <div className={styles.fontstylemain}>
                                                     <div className={styles.fontsvg}>
                                                         <Image src="../../../sans.svg" />
@@ -216,14 +327,20 @@ const Design: FunctionComponent = () => {
                             <div className={styles.fontmain}>
                                 <Form.Label className={styles.formlabel}>Grid Style</Form.Label>
                                 <div className={styles.gridstylediv}>
-                                    <div className={styles.gridstyleinnerdiv}>
-                                        <div className={styles.gridinnersetting}>
+                                    <div
+                                        className={styles.gridstyleinnerdiv}
+                                        onClick={() => setGridStyle("column")}
+                                    >
+                                        <div className={styles.gridinnersetting} style={grid === "column" ? activeStyle : {}}>
                                             <i className="fa-sharp fa-solid fa-objects-column gridicon"></i>
                                         </div>
                                         <p className={styles.stylenames}>Vertical</p>
                                     </div>
-                                    <div className={styles.gridstyleinnerdiv}>
-                                        <div className={styles.gridinnersetting}>
+                                    <div
+                                        className={styles.gridstyleinnerdiv}
+                                        onClick={() => setGridStyle("row")}
+                                    >
+                                        <div className={styles.gridinnersetting} style={grid === "row" ? activeStyle : {}}>
                                             <i className="fa-sharp fa-solid fa-objects-column fa-rotate-270 gridicon"></i>
                                         </div>
                                         <p className={styles.stylenames}>Horizontal</p>
@@ -233,14 +350,19 @@ const Design: FunctionComponent = () => {
                             <div className={styles.fontmain}>
                                 <Form.Label className={styles.formlabel}>Grid Spacing</Form.Label>
                                 <div className={styles.gridstylediv}>
-                                    <div className={styles.gridstyleinnerdiv}>
-                                        <div className={styles.gridinnersetting}>
+                                    <div className={styles.gridstyleinnerdiv}
+                                        onClick={() => setGridSpace("regular")}
+                                    >
+                                        <div className={styles.gridinnersetting} style={space === "regular" ? activeStyle : {}}>
                                             <i className="fa-sharp fa-solid fa-grid-2 gridicon"></i>
                                         </div>
                                         <p className={styles.stylenames}>Regular</p>
                                     </div>
                                     <div className={styles.gridstyleinnerdiv}>
-                                        <div className={styles.gridinnersetting}>
+                                        <div className={styles.gridinnersetting}
+                                            onClick={() => setGridSpace("large")}
+                                            style={space === "large" ? activeStyle : {}}
+                                        >
                                             <i className="fa-sharp fa-solid fa-objects-column fa-rotate-270 gridicon"></i>
                                         </div>
                                         <p className={styles.stylenames}>Large</p>
@@ -252,7 +374,7 @@ const Design: FunctionComponent = () => {
                     </Row>
 
                 </Form>
-            </div>
+            </div >
         </>
     );
 };

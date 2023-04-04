@@ -1,6 +1,6 @@
 .maincomp {
     margin: 0% 2%;
-    /* padding: 0% 15%; */
+    /* padding: 0% 25%; */
 }
 
 .imageset {
@@ -20,10 +20,10 @@
 }
 
 
-.gridClassPunit{
+.gridClassPunit {
     columns: 4;
     column-gap: 1%;
-    
+
 }
 
 .singleimagePunit {

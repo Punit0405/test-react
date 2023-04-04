@@ -1,37 +1,85 @@
 import { width } from "@mui/system";
-import { FunctionComponent } from "react";
-import { Button, Col, Container, Dropdown, Form, FormLabel, Image, InputGroup, Nav, Navbar, Row } from "react-bootstrap";
+import { FunctionComponent, useState, useEffect } from "react";
 import Grid from "../Grid";
 import CustomDropdownItem from "./CustomDropdownItem";
-
 import styles from "./Design.module.css"
 import DesignCollectionNav from "./DesignCollectionNav";
 import DesignCollectionNavMobile from "./DesignCollectionNavMobile";
 import GridVerticalMobile from "./GridVerticalMobile";
 import GridVerticalPc from "./GridVerticalPc";
+import { useSelector, useDispatch } from 'react-redux'
+import { Image } from "react-bootstrap";
 
 const DisplayCollection: FunctionComponent = () => {
+
+    const [grid, setGrid] = useState("Vertical")
+    const [space, setSpace] = useState("Regular")
+    const [theme, setTheme] = useState([])
+
+    const myState = useSelector((state: any) => state.changeDesign)
+
+    console.log(grid, '====grid====');
+    console.log(space, '====space====');
+
+    useEffect(() => {
+        setGrid(myState.gridStyle)
+        setSpace(myState.gridSpacing)
+        setTheme(myState.theme)
+    }, [myState])
+
+
     return (
         <>
             <div className={styles.sample}>
                 <div
                     className={styles.pcscreen}
-                    style={{
-                        backgroundColor: "black"
-                    }}
+                    style={theme && theme.length ? {
+                        backgroundColor: theme[0]
+                    } : { backgroundColor: "white" }}
                 >
+                    {/* {myState.changeDesign.gridstyle} */}
                     <DesignCollectionNav />
-                    <GridVerticalPc />
+                    {/* <GridVerticalPc /> */}
+                    {
+                        (grid === "column" && space === "regular") ?
+                            < Image fluid src="../../gridverticalregular.png" /> :
+                            (
+                                (grid === "column" && space === "large") ?
+                                    < Image fluid src="../../gridverticallarge.png" /> :
+                                    (
+                                        (grid === "row" && space === "regular") ?
+                                            < Image fluid src="../../grridhorizontalregular.png" /> :
+                                            (
+                                                < Image fluid src="../../gridhorizontallarge.png" />
+                                            )
+                                    )
+                            )
+                    }
                 </div>
                 <div
                     className={styles.mobilescreen}
-                    style={{
-                        backgroundColor: "black"
-                    }}
+                    style={theme && theme.length ? {
+                        backgroundColor: theme[0]
+                    } : { backgroundColor: "white" }}
                 >
                     <div className={styles.mobiletitlediv}>
                         <DesignCollectionNavMobile />
-                        <GridVerticalMobile />
+                        {/* <GridVerticalMobile /> */}
+                        {
+                            (grid === "column" && space === "regular") ?
+                                < Image fluid src="../../gridverticalregularmobile.png" /> :
+                                (
+                                    (grid === "column" && space === "large") ?
+                                        < Image fluid src="../../grridverticallargemobile.png" /> :
+                                        (
+                                            (grid === "row" && space === "regular") ?
+                                                < Image fluid src="../../grridhorizontalregularmobile.png" /> :
+                                                (
+                                                    < Image fluid src="../../grridhorizontallargemobile.png" />
+                                                )
+                                        )
+                                )
+                        }
                     </div>
                 </div>
 

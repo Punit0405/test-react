@@ -35,31 +35,6 @@ const newData = [
         "width": 4032
     },
     {
-        "src": "../../images13.jpg",
-        "height": 4032,
-        "width": 3024
-    },
-    {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
-    },
-    {
-        "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
-    },
-    {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
-    },
-    {
-        "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
-    },
-    {
         "src": "../../images14.jpg",
         "height": 3787,
         "width": 2525
@@ -70,49 +45,39 @@ const newData = [
         "width": 3024
     },
     {
-        "src": "../../images14.jpg",
-        "height": 3787,
-        "width": 2525
+        "src": "../../image21.jpg",
+        "height": 6000,
+        "width": 4000
     },
     {
-        "src": "../../images13.jpg",
-        "height": 4032,
-        "width": 3024
+        "src": "../../image22.jpg",
+        "height": 4000,
+        "width": 6000
     },
     {
-        "src": "../../images14.jpg",
-        "height": 3787,
-        "width": 2525
+        "src": "../../image23.jpg",
+        "height": 3456,
+        "width": 5184
     },
     {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
+        "src": "../../image24.jpg",
+        "height": 5915,
+        "width": 3935
     },
     {
-        "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
+        "src": "../../image25.jpg",
+        "height": 3264,
+        "width": 4896
     },
     {
-        "src": "../../images11.jpg",
-        "height": 2988,
-        "width": 5312
+        "src": "../../image26.jpg",
+        "height": 4000,
+        "width": 6000
     },
     {
-        "src": "../../images12.jpg",
-        "height": 3024,
-        "width": 4032
-    },
-    {
-        "src": "../../images13.jpg",
-        "height": 4032,
-        "width": 3024
-    },
-    {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
+        "src": "../../image27.jpg",
+        "height": 3566,
+        "width": 5646
     },
     {
         "src": "../../sample2.jpg",
@@ -130,14 +95,14 @@ const newData = [
 const Grid = () => {
     return (
         <div className={styles.maincomp}>
-            <Gallery photos={newData} columns={4} direction="column" />
+            <Gallery photos={newData} columns={4} direction="column" margin={15} />
 
             <hr></hr>
             <hr></hr>
             <hr></hr>
             <hr></hr>
 
-            <Gallery photos={newData} />
+            <Gallery photos={newData} margin={15} />
 
             {/* <div className={styles.gridClassPunit}>
                 {data.map(({src})=>(<Image className={styles.singleimagePunit} fluid src={src} />))}
