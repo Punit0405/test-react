@@ -2,16 +2,29 @@ import React, { useEffect, useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import type { InputRef } from 'antd';
 import { Space, Input, Tag, Tooltip, theme } from 'antd';
+import { useParams } from "react-router-dom"
+import { useSelector, useDispatch } from 'react-redux'
+import CollectionService from '../../api/Collection/collection';
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
+import { collectionAction } from '../../redux/actions/collectionAction';
+import { NotificationWithIcon } from '../../Utils/helper';
 
-const TagComp: React.FC = () => {
+interface Props {
+    tagvalue: any[]
+}
+
+const TagComp = ({ tagvalue }: Props) => {
+
     const { token } = theme.useToken();
-    const [tags, setTags] = useState(['Unremovable', 'Tag 2', 'Tag 3']);
+    const [tags, setTags] = useState(tagvalue);
     const [inputVisible, setInputVisible] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [editInputIndex, setEditInputIndex] = useState(-1);
     const [editInputValue, setEditInputValue] = useState('');
     const inputRef = useRef<InputRef>(null);
     const editInputRef = useRef<InputRef>(null);
+    const { collectionId } = useParams()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (inputVisible) {
@@ -20,12 +33,16 @@ const TagComp: React.FC = () => {
     }, [inputVisible]);
 
     useEffect(() => {
+        setTags(tagvalue)
+    }, [tagvalue])
+
+    useEffect(() => {
         editInputRef.current?.focus();
     }, [inputValue]);
 
     const handleClose = (removedTag: string) => {
         const newTags = tags.filter((tag) => tag !== removedTag);
-        console.log(newTags, '-------close----------');
+        updateData({ tags: newTags })
         setTags(newTags);
     };
 
@@ -41,8 +58,7 @@ const TagComp: React.FC = () => {
         if (inputValue && tags.indexOf(inputValue) === -1) {
             setTags([...tags, inputValue]);
         }
-        console.log([...tags, inputValue], '---------create------------');
-
+        updateData({ tags: [...tags, inputValue] })
         setInputVisible(false);
         setInputValue('');
     };
@@ -51,13 +67,29 @@ const TagComp: React.FC = () => {
         setEditInputValue(e.target.value);
     };
 
-    const handleEditInputConfirm = () => {
-        console.log("edit===============");
+    const updateData = async (values: any) => {
+        try {
+            if (collectionId) {
+                const updateRes = await CollectionService.updateCollection(collectionId, values)
+                if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: updateRes.result }))
+                    NotificationWithIcon("success", "Setting saved.")
+                    return updateRes?.result?.name
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
 
+    const handleEditInputConfirm = () => {
         const newTags = [...tags];
         newTags[editInputIndex] = editInputValue;
-        console.log(newTags, '------newTags-----');
-
+        updateData({ tags: newTags})
         setTags(newTags);
         setEditInputIndex(-1);
         setInputValue('');
@@ -66,6 +98,7 @@ const TagComp: React.FC = () => {
     const tagInputStyle: React.CSSProperties = {
         width: 78,
         verticalAlign: 'top',
+        height: '1.8rem',
     };
 
     const tagPlusStyle: React.CSSProperties = {
@@ -74,13 +107,17 @@ const TagComp: React.FC = () => {
         fontSize: "1rem",
         fontFamily: "poppins",
         height: '1.8rem',
-        padding: "4% 2%"
+        padding: "4% 2%",
+        display: 'flex', flexDirection: 'row', justifyContent: 'center',
+        margin: '2px',
+        paddingRight: '5px',
+        paddingLeft: '5px'
     };
 
     return (
         <Space size={[0, 8]} wrap >
             <Space size={[0, 8]} wrap>
-                {tags.map((tag, index) => {
+                {tags && tags.map((tag, index) => {
                     if (editInputIndex === index) {
                         return (
                             <Input
@@ -95,16 +132,23 @@ const TagComp: React.FC = () => {
                             />
                         );
                     }
-                    const isLongTag: any = tag.length > 20;
+                    const isLongTag: any = tag && tag !== null && tag.length > 20;
                     const tagElem = (
                         <Tag
                             key={tag}
                             closable={true}
-                            style={{ userSelect: 'none', fontSize: "1rem", height: '1.8rem', padding: "5% 2%" }}
+                            style={{
+                                userSelect: 'none', fontSize: "1rem", height: '1.8rem',
+                                padding: "0% 2%", display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingTop: "3px", paddingRight: '4px'
+                            }}
                             onClose={() => handleClose(tag)}
                         >
                             <span
-                                style={{ fontSize: "1rem", fontFamily: "poppins" }}
+                                style={{
+                                    fontSize: "1rem",
+                                    fontFamily: "poppins", height: '1.8rem',
+                                    marginTop: "0px", display: 'flex', flexDirection: 'row', justifyContent: 'center', marginLeft: "8px"
+                                }}
                                 onDoubleClick={(e) => {
                                     setEditInputIndex(index);
                                     setEditInputValue(tag);
@@ -112,7 +156,6 @@ const TagComp: React.FC = () => {
                                 }}
                             >
                                 {isLongTag ? `${tag.slice(0, 20)}...` : tag}
-                                <i className="fa-light fa-xmark" style={{ marginLeft: "2px" }}></i>
                             </span>
                         </Tag>
                     );
@@ -139,7 +182,7 @@ const TagComp: React.FC = () => {
                     />
                 ) : (
                     <Tag style={tagPlusStyle} onClick={showInput} >
-                        <PlusOutlined style={{ marginTop: "0px" }} /> New Tag
+                        <PlusOutlined style={{ marginTop: "2px", marginRight: '4px' }} /> New Tag
                     </Tag>
                 )
             }

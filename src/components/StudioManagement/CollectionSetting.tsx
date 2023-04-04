@@ -15,6 +15,7 @@ const CollectionSetting: FunctionComponent = () => {
     const myState = useSelector((state: any) => state.changeCollection)
     const { collectionId } = useParams()
     const dispatch = useDispatch()
+    const [tags, setTags] = useState([])
 
     let initialValue = {
         name: "",
@@ -28,6 +29,8 @@ const CollectionSetting: FunctionComponent = () => {
         try {
             if (collectionId) {
                 const res = myState.collection
+                console.log(res?.tags, '------res-------');
+                setTags(res?.tags)
                 if (Object.keys(res).length !== 0) {
                     setFirstValue({
                         name: res?.name || "",
@@ -226,7 +229,7 @@ const CollectionSetting: FunctionComponent = () => {
                         <Form.Label className={styles.formlabel}>Collection Tags</Form.Label>
                         {/* <Form.Control type="text" placeholder="" /> */}
                         <div className={styles.tagdiv}>
-                            <TagComp />
+                            <TagComp tagvalue={tags} />
                         </div>
                         <Form.Label className={styles.helpbox} muted>
                             What kind of collection is this? Separate your tags with a comma. e.g. wedding, outdoor, summer.
