@@ -100,6 +100,29 @@ const CollectionService = {
             throw error
         }
     },
+    getDesign: async (collectionId: string) => {
+        try {
+            const token = await getUserToken()
+            return Service.get(`collection/design/${collectionId}`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+    updateDesign: async (collectionId: string, data: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.update({
+                url: `collection/design/${collectionId}`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
     clientCollectionView: async (data: any) => {
         try {
             const token = await getUserToken()
