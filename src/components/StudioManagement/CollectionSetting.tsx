@@ -29,7 +29,6 @@ const CollectionSetting: FunctionComponent = () => {
         try {
             if (collectionId) {
                 const res = myState.collection
-                console.log(res?.tags, '------res-------');
                 setTags(res?.tags)
                 if (Object.keys(res).length !== 0) {
                     setFirstValue({

@@ -3,6 +3,8 @@ import { Col, Container, Nav, Navbar } from "react-bootstrap";
 import styles from "./Design.module.css"
 import DisplayCollection from "./DisplayCollection";
 import DisplayCover from "./DisplayCover";
+import ChangeCoverModal from "../Modal/ChangeCoverModal";
+import { useParams } from "react-router";
 
 const activetab = {
     borderBottom: '2px solid crimson'
@@ -10,6 +12,8 @@ const activetab = {
 
 const DesignSideScreen: FunctionComponent = () => {
     const [active, setActive] = useState(1)
+    const [modalShow, setModalShow] = useState(false);
+    const { collectionId } = useParams()
     return (
         <>
             <Col lg={8} md={8} sm={8} className={styles.viewpoint}>
@@ -36,6 +40,7 @@ const DesignSideScreen: FunctionComponent = () => {
                                 <Nav className="">
                                     <Nav.Link
                                         className={styles.navname}
+                                        onClick={() => setModalShow(true)}
                                     >
                                         <i className="fa-regular fa-image sidescreennav"></i>Cover
                                     </Nav.Link>
@@ -53,6 +58,11 @@ const DesignSideScreen: FunctionComponent = () => {
                 </div>
 
             </Col>
+            <ChangeCoverModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                collectionId={collectionId}
+            />
         </>
     );
 };

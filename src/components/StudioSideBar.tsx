@@ -21,6 +21,10 @@ const StudioSideBar: FunctionComponent = () => {
     const myState = useSelector((state: any) => state.changeCollection)
     const dispatch = useDispatch()
 
+    const handleChangeClick = () => {
+        navigate(`/gallery/design/${collectionId}`)
+    }
+
     const getCollectionList = async () => {
         try {
             if (collectionId) {
@@ -73,7 +77,7 @@ const StudioSideBar: FunctionComponent = () => {
                     <Ratio aspectRatio='16x9'>
                         <div>
                             <Image className={styles.myimage} src={collection.coverPhoto} />
-                            <div className={styles.textimage}>Change Cover</div>
+                            <div className={styles.textimage} onClick={handleChangeClick}>Change Cover</div>
                         </div>
                     </Ratio>
                 </div>
