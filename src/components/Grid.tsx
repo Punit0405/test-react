@@ -22,7 +22,7 @@ const Grid = (props:any) => {
     }
     return (
         <div className={styles.maincomp}>
-            <Gallery photos={newData} columns={4}  direction={props.gridStyle} />
+            <Gallery photos={newData} columns={4} margin={props.gridSpacing === "large" ? 8:3}  direction={props.gridStyle} />
         </div>
     );
 };
