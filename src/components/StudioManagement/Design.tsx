@@ -131,8 +131,6 @@ const Design: FunctionComponent = () => {
         try {
             if (collectionId) {
                 const updateRes = await CollectionService.updateDesign(collectionId, values)
-                console.log(updateRes, '------updateRes------');
-
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
                     NotificationWithIcon("success", "Setting saved.")
                     return updateRes?.result?.name
@@ -158,7 +156,6 @@ const Design: FunctionComponent = () => {
             if (collectionId) {
                 const resData = await CollectionService.getDesign(collectionId)
                 if (resData && resData?.code === STATUS_CODE.SUCCESS) {
-                    console.log(resData.result, '-------res----------');
                     setGrid(resData?.result?.gridStyle || "column")
                     setSpace(resData?.result?.gridSpacing || "regular")
                     setFontStyle(font[resData?.result?.typography] || font["Sans"])

@@ -64,6 +64,19 @@ const CollectionService = {
             throw error
         }
     },
+    updateCover: async (collectionId: string, data: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.update({
+                url: `collection/coverphoto/${collectionId}`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
     deleteCollectionFiles: async (collectionId: string, data: any) => {
         try {
             const token = await getUserToken()

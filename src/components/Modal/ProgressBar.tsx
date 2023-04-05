@@ -1,20 +1,21 @@
-import { useEffect, useState } from 'react';
-import styles from './SingleFileUpload.module.css'
-import { Upload } from "@aws-sdk/lib-storage";
+import React, { useEffect, useState } from 'react';
+import { Progress, Space } from 'antd';
+import { useParams } from "react-router-dom";
 import { S3 } from "@aws-sdk/client-s3";
 import Spinner from 'react-bootstrap/Spinner';
-import { ProgressBar } from 'react-bootstrap';
 import { XhrHttpHandler } from "@aws-sdk/xhr-http-handler";
 import FilesSevice from '../../api/Files/files';
-import { useParams } from "react-router-dom";
-import { NotificationWithIcon } from '../../Utils/helper';
+import { Upload } from "@aws-sdk/lib-storage";
+import CollectionService from '../../api/Collection/collection';
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
+import { useSelector, useDispatch } from 'react-redux'
+import { collectionAction } from '../../redux/actions/collectionAction';
+import { NotificationWithIcon } from '../../Utils/helper';
 
-
-function SingleFileUpload({ filedata }: any) {
+const ProgressBar: any = ({ filedata, completeupload }: any) => {
 
     const { collectionId } = useParams()
-
+    const dispatch = useDispatch()
     const [progress, setProgress] = useState(0)
     const [isCompleted, setComplete] = useState(false)
 
@@ -27,9 +28,7 @@ function SingleFileUpload({ filedata }: any) {
 
     function uploadFile(file: any) {
         if (file) {
-            console.log(file, '--------file------------');
-
-            const Key = `${collectionId}/${file.name}`
+            const Key = `${collectionId}/cover/${file.name}`
             const Bucket = 'dev-media.snape.com'
             const Body: any = file
             try {
@@ -66,52 +65,39 @@ function SingleFileUpload({ filedata }: any) {
 
     const uploadDone = async (uploadResult: any) => {
         try {
-            let reqObj: any = {
-                name: filedata?.name,
-                url: uploadResult?.Location,
-                size: filedata?.size,
-                type: "PHOTO",
-                key: uploadResult?.Key,
-                height: filedata.height,
-                width: filedata.width
+            await updateData({ coverPhoto: uploadResult?.Location })
+            completeupload()
+        } catch (error) {
+            console.log(error, '----err--------');
+        }
+    }
+
+    const updateData = async (values: any) => {
+        try {
+            if (collectionId) {
+                const updateRes = await CollectionService.updateCollection(collectionId, values)
+                if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: updateRes.result }))
+                    NotificationWithIcon("success", "Setting saved.")
+                    return updateRes?.result?.name
+                }
             }
-            let data = {
-                files: [reqObj]
-            }
-            const res = await FilesSevice.addFiles(data, collectionId)
         } catch (err: any) {
-            console.log(err, '----err--------');
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
                 NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
             } else {
                 NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
             }
         }
-
     }
 
     return (
-        <>
-            <div className={styles.maindiv}>
-                <div className={styles.music}>
-                    <div className={styles.loader}>
-                        {
-                            isCompleted ?
-                                <i className="fa-solid uploadcolor fa-check"></i> :
-                                <Spinner animation="border" variant="danger" size='sm' />
-                        }
-                    </div>
-                    <div className={styles.name}>
-                        {filedata.name}
-                    </div>
-                    <div className={styles.progesssection}>
-                        <ProgressBar striped variant="danger" animated now={progress} label={`${progress}%`} />
-                    </div>
-                    <div className={styles.filesize}>{(filedata?.size / 1024 ** 2).toFixed(2)} MB</div>
-                </div>
-            </div>
-        </>
-    );
+        <div style={{ textAlign: 'center', padding: '10%' }}>
+            <Space wrap>
+                <Progress type="dashboard" percent={progress} />
+            </Space>
+        </div>
+    )
 }
 
-export default SingleFileUpload;
+export default ProgressBar;
