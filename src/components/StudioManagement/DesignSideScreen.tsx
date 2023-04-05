@@ -1,18 +1,34 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Col, Container, Nav, Navbar } from "react-bootstrap";
 import styles from "./Design.module.css"
 import DisplayCollection from "./DisplayCollection";
 import DisplayCover from "./DisplayCover";
 import ChangeCoverModal from "../Modal/ChangeCoverModal";
 import { useParams } from "react-router";
+import FilesSevice from "../../api/Files/files";
+import { STATUS_CODE } from "../../Utils/constants";
 
 const activetab = {
     borderBottom: '2px solid crimson'
 }
 
 const DesignSideScreen: FunctionComponent = () => {
+
+    useEffect(() => {
+        getFiles()
+    }, [])
+
+    async function getFiles() {
+        const res = await FilesSevice.getFiles(collectionId)
+        if (res && res?.code === STATUS_CODE.SUCCESS) {
+            setFiles(res?.result)
+        }
+    }
+
+
     const [active, setActive] = useState(1)
     const [modalShow, setModalShow] = useState(false);
+    const [files, setFiles]: any = useState([]);
     const { collectionId } = useParams()
     return (
         <>
@@ -61,7 +77,8 @@ const DesignSideScreen: FunctionComponent = () => {
             <ChangeCoverModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                collectionId={collectionId}
+                collectionid={collectionId}
+                files={files}
             />
         </>
     );

@@ -42,6 +42,22 @@ function DragMedia() {
     const [files, setFiles] = useState<UploadableFile[]>([])
 
     const onDrop = useCallback((acceptedFiles: any, rejFiles: any) => {
+
+        acceptedFiles.forEach((file: any) => {
+            const reader = new FileReader()
+
+            reader.onabort = () => console.log('file reading was aborted')
+            reader.onerror = () => console.log('file reading has failed')
+            reader.onload = () => {
+                const image = new Image();
+                image.addEventListener('load', () => {
+                    file.height = image.height
+                    file.width = image.width
+                });
+                image.src = URL.createObjectURL(file)
+            }
+            reader.readAsArrayBuffer(file)
+        })
         const mappedAcc = acceptedFiles.map((file: any) => ({ file, errors: [] }))
         setFiles([...mappedAcc, ...rejFiles])
 

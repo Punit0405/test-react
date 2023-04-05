@@ -7,6 +7,8 @@ import { ProgressBar } from 'react-bootstrap';
 import { XhrHttpHandler } from "@aws-sdk/xhr-http-handler";
 import FilesSevice from '../../api/Files/files';
 import { useParams } from "react-router-dom";
+import { NotificationWithIcon } from '../../Utils/helper';
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
 
 
 function SingleFileUpload({ filedata }: any) {
@@ -25,6 +27,8 @@ function SingleFileUpload({ filedata }: any) {
 
     function uploadFile(file: any) {
         if (file) {
+            console.log(file, '--------file------------');
+
             const Key = `${collectionId}/${file.name}`
             const Bucket = 'dev-media.snape.com'
             const Body: any = file
@@ -67,15 +71,21 @@ function SingleFileUpload({ filedata }: any) {
                 url: uploadResult?.Location,
                 size: filedata?.size,
                 type: "PHOTO",
-                key: uploadResult?.Key
+                key: uploadResult?.Key,
+                height: filedata.height,
+                width: filedata.width
             }
             let data = {
                 files: [reqObj]
             }
             const res = await FilesSevice.addFiles(data, collectionId)
-        } catch (error) {
-            console.log(error, '----err--------');
-
+        } catch (err: any) {
+            console.log(err, '----err--------');
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
         }
 
     }

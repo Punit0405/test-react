@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import styles from "./ChangeCoverModal.module.css";
+import { useParams } from 'react-router-dom';
+import FilesSevice from '../../api/Files/files';
+import { STATUS_CODE } from '../../Utils/constants';
+import SelectCover from '../Gallery/SelectCover';
 
 function SelectCoverModal(props: any) {
-    const [fullscreen, setFullscreen]: any = useState(true);
-    const [show, setShow] = useState(false);
+
+    const { files } = props
+    console.log(files, '-----files-------');
+
+
+    const { collectionId } = useParams()
 
     return (
         <>
@@ -14,6 +22,13 @@ function SelectCoverModal(props: any) {
                     <Modal.Title className={styles.headingtitle}>Change Cover</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <div className={styles.outermain}>
+                        {
+                            files && files.length && files.map((file: any) => (
+                                <SelectCover imageUrl={file.url} />
+                            ))
+                        }
+                    </div>
 
                 </Modal.Body>
             </Modal>

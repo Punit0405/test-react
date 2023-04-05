@@ -112,6 +112,7 @@ function ChangeCoverModal(props: any) {
             <SelectCoverModal
                 show={show}
                 onHide={() => setShow(false)}
+                files={props?.files}
             />
         </Modal>
     );

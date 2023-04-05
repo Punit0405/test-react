@@ -30,6 +30,14 @@
     width: 100%;
 }
 
+.outermain {
+    margin: 0% 0%;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
 .searchbtn {
     margin: -3% 3%;
 }
