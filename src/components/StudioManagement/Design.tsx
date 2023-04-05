@@ -131,8 +131,6 @@ const Design: FunctionComponent = () => {
         try {
             if (collectionId) {
                 const updateRes = await CollectionService.updateDesign(collectionId, values)
-                console.log(updateRes, '------updateRes------');
-
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
                     NotificationWithIcon("success", "Setting saved.")
                     return updateRes?.result?.name

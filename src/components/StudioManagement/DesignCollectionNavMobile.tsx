@@ -2,10 +2,17 @@ import React from 'react'
 import { Image } from 'react-bootstrap'
 import styles from './Design.module.css'
 
-const DesignCollectionNavMobile = () => {
+const DesignCollectionNavMobile = ({ theme }: any) => {
     return (
         <>
-            <div className={styles.titledivmobile}>
+            <div
+                className={styles.titledivmobile}
+                style={theme && theme[0] === '#1E1E1E' ? {
+                    color: 'white'
+                } :
+                    {}
+                }
+            >
                 <div className={styles.maintitleheadingmobile}>
                     Tebogo Wedding
                 </div>

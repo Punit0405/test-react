@@ -65,7 +65,6 @@ const ProgressBar: any = ({ filedata, completeupload }: any) => {
 
     const uploadDone = async (uploadResult: any) => {
         try {
-            console.log(uploadResult?.Location, '-----uploadResult?.Location-------');
             await updateData({ coverPhoto: uploadResult?.Location })
             completeupload()
         } catch (error) {

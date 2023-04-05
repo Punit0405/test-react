@@ -18,9 +18,6 @@ const DisplayCollection: FunctionComponent = () => {
 
     const myState = useSelector((state: any) => state.changeDesign)
 
-    console.log(grid, '====grid====');
-    console.log(space, '====space====');
-
     useEffect(() => {
         setGrid(myState.gridStyle)
         setSpace(myState.gridSpacing)
@@ -35,10 +32,12 @@ const DisplayCollection: FunctionComponent = () => {
                     className={styles.pcscreen}
                     style={theme && theme.length ? {
                         backgroundColor: theme[0]
-                    } : { backgroundColor: "white" }}
+                    } : 
+                    { backgroundColor: "white" }
+                }
                 >
                     {/* {myState.changeDesign.gridstyle} */}
-                    <DesignCollectionNav />
+                    <DesignCollectionNav theme={theme}/>
                     {/* <GridVerticalPc /> */}
                     {
                         (grid === "column" && space === "regular") ?
@@ -63,7 +62,7 @@ const DisplayCollection: FunctionComponent = () => {
                     } : { backgroundColor: "white" }}
                 >
                     <div className={styles.mobiletitlediv}>
-                        <DesignCollectionNavMobile />
+                        <DesignCollectionNavMobile  theme={theme}/>
                         {/* <GridVerticalMobile /> */}
                         {
                             (grid === "column" && space === "regular") ?
