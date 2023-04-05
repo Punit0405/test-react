@@ -9,105 +9,20 @@ import Gallery from "react-photo-gallery";
 interface Props {
     children: JSX.Element;
 }
-const data = [
-    { src: "../../images15.jpg", height: 0, width: 0 }, { src: "../../sample2.jpg", height: 0, width: 0 }, { src: "../../images11.jpg", height: 0, width: 0 }, { src: "../../images12.jpg", height: 0, width: 0 },
-    { src: "../../images13.jpg", height: 0, width: 0 }, { src: "../../images14.jpg", height: 0, width: 0 },
-];
-const newData = [
-    {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
-    },
-    {
-        "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
-    },
-    {
-        "src": "../../images11.jpg",
-        "height": 2988,
-        "width": 5312
-    },
-    {
-        "src": "../../images12.jpg",
-        "height": 3024,
-        "width": 4032
-    },
-    {
-        "src": "../../images14.jpg",
-        "height": 3787,
-        "width": 2525
-    },
-    {
-        "src": "../../images13.jpg",
-        "height": 4032,
-        "width": 3024
-    },
-    {
-        "src": "../../image21.jpg",
-        "height": 6000,
-        "width": 4000
-    },
-    {
-        "src": "../../image22.jpg",
-        "height": 4000,
-        "width": 6000
-    },
-    {
-        "src": "../../image23.jpg",
-        "height": 3456,
-        "width": 5184
-    },
-    {
-        "src": "../../image24.jpg",
-        "height": 5915,
-        "width": 3935
-    },
-    {
-        "src": "../../image25.jpg",
-        "height": 3264,
-        "width": 4896
-    },
-    {
-        "src": "../../image26.jpg",
-        "height": 4000,
-        "width": 6000
-    },
-    {
-        "src": "../../image27.jpg",
-        "height": 3566,
-        "width": 5646
-    },
-    {
-        "src": "../../sample2.jpg",
-        "height": 2251,
-        "width": 1500
-    },
-    {
-        "src": "../../images15.jpg",
-        "height": 3744,
-        "width": 3744
+
+const Grid = (props:any) => {
+    const images = props.imagesArr ? props.imagesArr:[];
+    const newData = [];
+    for(const image of images){
+        newData.push({
+            src:image.url,
+            height:image.height,
+            width:image.width
+        })
     }
-]
-
-
-const Grid = () => {
     return (
         <div className={styles.maincomp}>
-            <Gallery photos={newData} columns={4} direction="column" margin={15} />
-
-            <hr></hr>
-            <hr></hr>
-            <hr></hr>
-            <hr></hr>
-
-            <Gallery photos={newData} margin={15} />
-
-            {/* <div className={styles.gridClassPunit}>
-                {data.map(({src})=>(<Image className={styles.singleimagePunit} fluid src={src} />))}
-            </div> */}
-
+            <Gallery photos={newData} columns={4} margin={props.gridSpacing === "large" ? 8:3}  direction={props.gridStyle} />
         </div>
     );
 };
