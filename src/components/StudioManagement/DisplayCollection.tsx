@@ -14,7 +14,7 @@ const DisplayCollection: FunctionComponent = () => {
 
     const [grid, setGrid] = useState("Vertical")
     const [space, setSpace] = useState("Regular")
-    const [theme, setTheme] = useState([])
+    const [theme, setTheme] = useState({ id: 1, name: 'light', background: '#FFFFFF', accent: '#F5F5F5', button: '#333333' })
 
     const myState = useSelector((state: any) => state.changeDesign)
 
@@ -30,14 +30,14 @@ const DisplayCollection: FunctionComponent = () => {
             <div className={styles.sample}>
                 <div
                     className={styles.pcscreen}
-                    style={theme && theme.length ? {
-                        backgroundColor: theme[0]
-                    } : 
-                    { backgroundColor: "white" }
-                }
+                    style={theme ? {
+                        backgroundColor: theme.background
+                    } :
+                        { backgroundColor: "white" }
+                    }
                 >
                     {/* {myState.changeDesign.gridstyle} */}
-                    <DesignCollectionNav theme={theme}/>
+                    <DesignCollectionNav theme={theme} />
                     {/* <GridVerticalPc /> */}
                     {
                         (grid === "column" && space === "regular") ?
@@ -57,12 +57,12 @@ const DisplayCollection: FunctionComponent = () => {
                 </div>
                 <div
                     className={styles.mobilescreen}
-                    style={theme && theme.length ? {
-                        backgroundColor: theme[0]
+                    style={theme ? {
+                        backgroundColor: theme.background
                     } : { backgroundColor: "white" }}
                 >
                     <div className={styles.mobiletitlediv}>
-                        <DesignCollectionNavMobile  theme={theme}/>
+                        <DesignCollectionNavMobile theme={theme} />
                         {/* <GridVerticalMobile /> */}
                         {
                             (grid === "column" && space === "regular") ?

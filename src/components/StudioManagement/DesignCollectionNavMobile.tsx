@@ -7,7 +7,7 @@ const DesignCollectionNavMobile = ({ theme }: any) => {
         <>
             <div
                 className={styles.titledivmobile}
-                style={theme && theme[0] === '#1E1E1E' ? {
+                style={theme && theme?.background === '#1E1E1E' ? {
                     color: 'white'
                 } :
                     {}

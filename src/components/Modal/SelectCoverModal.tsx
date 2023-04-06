@@ -10,11 +10,7 @@ import SelectCover from '../Gallery/SelectCover';
 function SelectCoverModal(props: any) {
 
     const { files } = props
-    console.log(files, '-----files-------');
-
-
     const { collectionId } = useParams()
-
     return (
         <>
             <Modal  {...props} fullscreen={true}>
@@ -25,7 +21,13 @@ function SelectCoverModal(props: any) {
                     <div className={styles.outermain}>
                         {
                             files && files.length && files.map((file: any) => (
-                                <SelectCover imageUrl={file.url} />
+                                <SelectCover
+                                    key={file?.id}
+                                    imageUrl={file?.url}
+                                    collectionid={collectionId}
+                                    onHide={props?.onHide}
+                                    mainhide={props?.mainhide}
+                                />
                             ))
                         }
                     </div>
