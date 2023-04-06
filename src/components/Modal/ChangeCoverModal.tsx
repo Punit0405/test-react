@@ -114,7 +114,7 @@ function ChangeCoverModal(props: any) {
                 onHide={() => setShow(false)}
                 files={props?.files}
                 collectionid={props.collectionid}
-                mainHide={props.onHide}
+                mainhide={props.onHide}
             />
         </Modal>
     );

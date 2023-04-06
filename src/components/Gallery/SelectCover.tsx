@@ -12,10 +12,10 @@ interface Props {
     imageUrl: string,
     collectionid: any,
     onHide: any,
-    mainHide: any
+    mainhide: any
 }
 
-const SelectCover = ({ imageUrl, collectionid, onHide, mainHide }: Props) => {
+const SelectCover = ({ imageUrl, collectionid, onHide, mainhide }: Props) => {
 
     const dispatch = useDispatch()
 
@@ -23,7 +23,7 @@ const SelectCover = ({ imageUrl, collectionid, onHide, mainHide }: Props) => {
         try {
             if (collectionid) {
                 onHide()
-                mainHide()
+                mainhide()
                 const updateRes = await CollectionService.updateCollection(collectionid, { coverPhoto: imageUrl })
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
                     dispatch(collectionAction({ collection: updateRes.result }))

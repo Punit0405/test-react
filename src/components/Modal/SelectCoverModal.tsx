@@ -22,10 +22,11 @@ function SelectCoverModal(props: any) {
                         {
                             files && files.length && files.map((file: any) => (
                                 <SelectCover
-                                    imageUrl={file.url}
+                                    key={file?.id}
+                                    imageUrl={file?.url}
                                     collectionid={collectionId}
-                                    onHide={props.onHide}
-                                    mainHide={props.mainHide}
+                                    onHide={props?.onHide}
+                                    mainhide={props?.mainhide}
                                 />
                             ))
                         }
