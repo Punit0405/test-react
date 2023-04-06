@@ -126,8 +126,8 @@ const CollectionSetting: FunctionComponent = () => {
             setName(false)
         }
         else if (event.target.name === "url") {
-            const updateName = await updateData({ url: Constants.clientViewUrl + formdata.url })
-            setFormData({ ...formdata, url: updateName })
+            const updateName = await updateData({ url: Constants.clientViewUrl + formdata.url , slug : formdata.url })
+            setFormData({ ...formdata, url: updateName.url })
             setUrl(false)
         }
         else if (event.target.name === "status") {

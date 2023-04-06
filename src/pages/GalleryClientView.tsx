@@ -7,15 +7,20 @@ import { useStepContext } from '@mui/material'
 import PasswordModal from '../components/Modal/PasswordModal'
 import { NotificationWithIcon } from '../Utils/helper'
 import { VALIDATIONS } from '../Utils/constants'
+import { useParams } from 'react-router-dom'
+import { FastField } from 'formik'
 
 const GalleryClientView = () => {
   const [myState,setmystate] = useState(null);
   const[basicCollectionDetails,setBasicCollectionDetails] = useState<any>({});
   const [modalShow, setModalShow] = useState(false);
+  const [collectionFound , setCollectionFoung] = useState(true)
+  const params = useParams();
+  console.log(params , "parms")
   const getCollectionDetails = async(password?:string)=>{
     try {
       const data:any = {
-        url:"www.snape.app/collectionv12",
+        url:params.slug,
       }
       if(password){
         data["password"]=password
@@ -40,6 +45,9 @@ const GalleryClientView = () => {
       if(error.status===400){
         setModalShow(true);
       }
+      if(error.status===404){
+        setCollectionFoung(false);
+      }
       NotificationWithIcon("error", error?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
 
     }
@@ -55,7 +63,10 @@ const GalleryClientView = () => {
 
 console.log(basicCollectionDetails)
   return (
-    <>
+
+   <>
+    {
+      collectionFound ?  <>
       <div className={styles.maincomp}
         style={{
           backgroundImage: `url(${basicCollectionDetails?.coverPhoto})`,
@@ -88,7 +99,9 @@ console.log(basicCollectionDetails)
        onHide={() => setModalShow(false)}
        onSubmit={passwordHandle}ˀ
        />
-    </>
+    </> : <>Collection Not Found</>
+    }
+   </>
 
   )
 }
