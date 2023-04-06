@@ -123,6 +123,19 @@ const CollectionService = {
             throw error
         }
     },
+    clientCollectionView: async (data: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.post({
+                url: `client`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
 
 }
 
