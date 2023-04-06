@@ -13,6 +13,11 @@ const changeDesign = (state = INITIAL_STATE, action: any) => {
                 ...state,
                 ...action.payload
             };
+        case "setAllDesign":
+            return {
+                ...state,
+                ...action.payload
+            }
         default:
             return state;
     }

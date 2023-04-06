@@ -7,7 +7,7 @@ const DesignCollectionNav = ({ theme }: any) => {
         <>
             <div
                 className={styles.titlediv1}
-                style={theme && theme[0] === '#1E1E1E' ? {
+                style={theme && theme?.background === '#1E1E1E' ? {
                     color: 'white'
                 } :
                     {}
