@@ -19,7 +19,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/view/:collectionId" element={<GalleryClientView/>}/>
+        <Route path="/view/:slug" element={<GalleryClientView/>}/>
         <Route path="/*" element={<RoutesAll />} /> 
       </Routes>
     </>
