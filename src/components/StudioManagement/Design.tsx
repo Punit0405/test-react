@@ -183,7 +183,7 @@ const Design: FunctionComponent = () => {
                         coverstyle: font[resData?.result?.typography],
                         gridStyle: resData.result.gridStyle || "column",
                         gridSpacing: resData.result.gridSpacing || "regular",
-                        theme: resData?.result?.theme
+                        theme: resData?.result?.theme || font["Sans"]
                     }))
                 }
             }
