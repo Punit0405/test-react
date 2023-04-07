@@ -1,53 +1,3 @@
-.collectionbtn {
-    font-family: var(--font-poppins);
-    font-size: 0.9rem;
-    font-weight: 400;
-    width: 150px;
-    background-color: crimson;
-    color: white;
-    margin: 0% 2%;
-}
-
-.collectionbtn:hover {
-    background-color: crimson;
-    color: white;
-}
-
-.collectionbtn:hover {
-    background-color: crimson;
-    color: white;
-}
-
-.searchbtn {
-    margin: -3% 3%;
-}
-
-.mainname {
-    font-family: var(--font-poppins);
-    font-size: 1.5rem;
-    font-weight: 500;
-}
-
-.maincomp {
-    margin: 1% 0%;
-}
-
-.collectioncount {}
-
-.outermain {
-    margin: 0% 0%;
-    display: flex;
-    justify-content: left;
-    flex-wrap: wrap;
-    overflow: hidden;
-}
-
-.imgcontainer {
-    /* border: 2px solid red; */
-    height: 158px;
-    width: 100px;
-}
-
 .imgblock {
     display: flex;
     flex-direction: column;
@@ -55,14 +5,6 @@
     padding: 0px 0px;
     height: 158px;
     width: 102px;
-}
-
-.tagicon {
-    position: absolute;
-    z-index: -1;
-    height: 20px;
-    text-align: left;
-    border: 2px solid red;
 }
 
 .imgdiv {
@@ -88,9 +30,6 @@
     position: relative;
 }
 
-.outerimg:hover {
-    opacity: 0.5;
-}
 
 .setbutton {
     text-align: center;
@@ -100,106 +39,6 @@
     /* justify-content: center; */
 }
 
-.selectImg {
-    border: 1px solid crimson;
-}
-
-.anchorImg {
-    border: 2px solid red !important;
-}
-
-.addmedia {
-    text-align: center;
-    padding: 20% 0%;
-    border: 2ps solid red;
-}
-
-.nomedia {
-    font-family: var(--font-poppins);
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: rgb(88, 88, 88);
-}
-
-
-.collectionbtn:hover,
-.dragbtn:hover {
-    background-color: crimson;
-    color: white;
-}
-
-.collectionbtn:hover,
-.dragbtn:hover {
-    background-color: crimson;
-    color: white;
-}
-
-.dragbtn {
-    background-color: crimson;
-    color: white;
-    font-family: var(--font-poppins);
-    font-size: 0.9rem;
-    font-weight: 400;
-}
-
-.totalmedia {
-    display: flex;
-    justify-content: flex-start;
-    height: 20%;
-}
-
-.totalcount {
-    font-family: var(--font-poppins);
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-right: 3%;
-}
-
-.selectCount {
-    font-family: var(--font-poppins);
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-right: 8%;
-    width: 15%;
-}
-
-.selectOption {
-    font-family: var(--font-poppins);
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-right: 8%;
-    color: crimson;
-    cursor: pointer;
-}
-
-.btnset {
-    padding: 1% 2%;
-    margin-left: 3px;
-    color: black;
-    background-color: #D9D9D9;
-    font-family: var(--font-poppins);
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.selectbtn {
-    width: 50%;
-    display: flex;
-    justify-content: right;
-}
-
-.totalSelectionDiv {
-    display: flex;
-    justify-content: left;
-    width: 50%;
-}
-
-.selectphotonav {
-    display: flex;
-    justify-content: space-between;
-    height: 20%;
-}
-
 .imgdiv {
     /* height: 100px; */
     overflow: hidden;
@@ -207,4 +46,57 @@
 
 .myimage {
     width: 100%;
+}
+
+
+
+
+
+
+.containermain {
+    position: relative;
+    margin-top: 50px;
+    width: 500px;
+    height: 300px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.5s ease;
+}
+
+.outerimg:hover .overlay {
+    display: block;
+    background: rgba(0, 0, 0, .5);
+}
+
+/* img {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    left: 0;
+  } */
+
+.button {
+    position: absolute;
+    /* width: 500px; */
+    cursor: pointer;
+    left: 17%;
+    color: white;
+    border: solid 1px white;
+    padding: 4% 10%;
+    z-index: +2;
+    /* top: 180px; */
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+
+.outerimg:hover .button {
+    opacity: 1;
 }

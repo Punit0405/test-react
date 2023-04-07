@@ -20,7 +20,7 @@ function SelectCoverModal(props: any) {
                 <Modal.Body>
                     <div className={styles.outermain}>
                         {
-                            files && files.length && files.map((file: any) => (
+                            (files && files.length ) ? files.map((file: any) => (
                                 <SelectCover
                                     key={file?.id}
                                     imageUrl={file?.url}
@@ -28,7 +28,8 @@ function SelectCoverModal(props: any) {
                                     onHide={props?.onHide}
                                     mainhide={props?.mainhide}
                                 />
-                            ))
+                            )):
+                            <></>
                         }
                     </div>
 
