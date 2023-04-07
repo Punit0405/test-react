@@ -44,8 +44,10 @@ const SelectCover = ({ imageUrl, collectionid, onHide, mainhide }: Props) => {
         <div className={styles.outerimg} >
             <div className={styles.imgblock}>
                 <div className={styles.imgdiv}>
+                    <div className={styles.overlay}></div>
                     <Image className={styles.myimage} src={imageUrl} />
-                    <Button className={styles.setbutton} onClick={handleClick} variant="outline-danger">Select</Button>
+                    <div className={styles.button} onClick={handleClick}>Select</div>
+                    {/* <Button className={styles.setbutton} onClick={handleClick} variant="outline-danger">Select</Button> */}
                 </div>
             </div>
         </div>
