@@ -8,7 +8,7 @@ class Constants {
     }
     public static readonly active = "activeNavMenu"
     public static readonly adminbackendUrl = "https://admin.snape.app/sa"
-    public static readonly clientViewUrl = "https://studio.snape.app/client/"
+    public static readonly clientViewUrl = "http://snape-react-app.s3-website-us-east-1.amazonaws.com/view/"
     public static readonly fonts:any = {
         Sans: {
             fontWeight: "700",
