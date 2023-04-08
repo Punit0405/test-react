@@ -211,12 +211,12 @@ const CollectionSetting: FunctionComponent = () => {
                         <Form.Label className={styles.formlabel} >Collection Status</Form.Label>
                         {
                             formdata.status === "UNPUBLISH" ?
-                                <Form.Select name="status" defaultValue="PUBLISHED" onChange={handleSave} disabled>
-                                    <option value="PUBLISHED" >Publihsed</option>
+                                <Form.Select name="status" defaultValue="PUBLISH" onChange={handleSave} disabled>
+                                    <option value="PUBLISH" >Publish</option>
                                     <option value="HIDDEN" >Hidden</option>
                                 </Form.Select> :
-                                <Form.Select name="status" defaultValue={formdata.status === "PUBLISHED" ? "PUBLISHED" : "HIDDEN"} onChange={handleSave}>
-                                    <option value="PUBLISHED" >Publihsed</option>
+                                <Form.Select name="status" defaultValue={formdata.status === "PUBLISH" ? "PUBLISH" : "HIDDEN"} onChange={handleSave}>
+                                    <option value="PUBLISH" >Publish</option>
                                     <option value="HIDDEN" >Hidden</option>
                                 </Form.Select>
                         }

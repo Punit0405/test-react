@@ -196,3 +196,23 @@
 .myimage {
     width: 100%;
 }
+
+.imageGalleryDiv{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  backdrop-filter: blur(1px);
+  background-color: rgba(152, 152, 152, 0.747);
+  -webkit-backdrop-filter: blur(5px);  
+}
+
+.imageGalleyPadding{
+    padding: 3% 0%;
+}

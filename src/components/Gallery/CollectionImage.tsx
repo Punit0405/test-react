@@ -24,7 +24,6 @@ const CollectionImageView = ({ imageUrl, setSelect, isSelect, selectedFiles, set
 
         } else {
             const index = selectedFiles.indexOf(fileId)
-            console.log(index)
             selectedFiles.splice(index, 1);
             setSelectedImages(selectedFiles);
             setSelect()

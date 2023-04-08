@@ -108,7 +108,6 @@ const DonwloadMusicList: FunctionComponent = () => {
                                 rewind: backwardButton
                             }}
                             src={currentMusicSrc}
-                            onPlay={e => console.log("onPlay")}
                             onListen={playingFunction}
                         />
                     </div>
