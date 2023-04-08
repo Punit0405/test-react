@@ -9,6 +9,7 @@ import { NotificationWithIcon } from "../../Utils/helper";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { useNavigate } from "react-router-dom";
 import CollectionService from "../../api/Collection/collection";
+import ImageGallery from 'react-image-gallery';
 
 
 interface Props {
@@ -22,7 +23,9 @@ const CollectionView = ({ collectionData ,refreshFunction }: Props) => {
     const myState = useSelector((state: any) => state.changeCollection);
     const photosLength = myState.collection.photos < 9 ? '0' + myState.collection.photos : myState.collection.photos
     const videosLength = myState.collection.videos < 9 ? '0' + myState.collection.videos : myState.collection.videos
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
+    const [galleryPhotos, setGalleryPhotos] = useState<any>([]);
+    const [isViewOpen, setIsViewOpen] = useState(false);
     const [selectAll, setSelectAll] = useState(false);
     const [selectedImages, setSelectedImages] = useState([]);
     const setSelection = () => {
@@ -39,9 +42,22 @@ const CollectionView = ({ collectionData ,refreshFunction }: Props) => {
         setSelectedImages([]);
         setCount(0);
     }
+    const blurFunc = ()=>{
+        setIsViewOpen(false)
+        console.log("bluriing")
+    }
 
     const handleDeleteFiles = ()=>{
         setModalShow(true);
+    }
+    const showPhotos = ()=>{
+        const photosData = [];
+        for(const photo of selectedImages){
+            const arr = collectionData.filter((image:any)=>image.id===photo);
+            photosData.push(arr[0]);
+        }
+        setGalleryPhotos(photosData);
+        setIsViewOpen(true);
     }
     const deleteFiles= async()=>{
      try {
@@ -79,7 +95,7 @@ const CollectionView = ({ collectionData ,refreshFunction }: Props) => {
                                     <p className={styles.selectOption} onClick={handleClear}>Clear Selection</p>
                                 </div>
                                 <div className={styles.selectbtn}>
-                                    <Button variant="custom" className={styles.btnset}><i className="fa-solid selecticon fa-magnifying-glass"></i></Button>
+                                    <Button variant="custom" className={styles.btnset} onClick={showPhotos}> <i className="fa-solid selecticon fa-magnifying-glass"></i></Button>
                                     <Button variant="custom" className={styles.btnset}><i className="fa-solid selecticon fa-up-from-bracket"></i></Button>
                                     <Button variant="custom" className={styles.btnset} onClick={handleDeleteFiles}><i className="fa-solid selecticon fa-trash-can"></i></Button>
                                     <Button variant="custom" className={styles.btnset}><i className="fa-solid selecticon fa-ellipsis"></i></Button>
@@ -103,6 +119,17 @@ const CollectionView = ({ collectionData ,refreshFunction }: Props) => {
                     modaltext={"Are you sure want to delete selected files ?"}
                     onHide={() => setModalShow(false)}
                     />
+                <div className={styles.imageGalleryDiv} onBlur={blurFunc} style={{display:isViewOpen?"block":"none"}}>
+                <i className="fa-sharp fa-regular fa-circle-xmark fa-2xl cancelImageBtn" onClick={blurFunc} style={{cursor: "pointer"}}></i>
+                <div className={styles.imageGalleyPadding}>
+                <ImageGallery  items={galleryPhotos.map((image:any)=>{
+                return {
+                 original:image.url,
+                 thumbnail:image.url        
+                }
+            })} showThumbnails={false} showNav showFullscreenButton={false} showBullets={false} showPlayButton={false} showIndex={true}  />
+                </div>
+                </div>
                 </Container>
             </div>
         </>
