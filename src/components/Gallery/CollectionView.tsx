@@ -46,10 +46,8 @@ const CollectionView = ({ collectionData ,refreshFunction }: Props) => {
     const deleteFiles= async()=>{
      try {
         if (myState.collection.id) {
-            console.log(myState.collection.id)
             const deleteRes = await CollectionService.deleteCollectionFiles(myState.collection.id, {ids:selectedImages})
             if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
-                console.log(deleteRes);
                 refreshFunction()
                 setModalShow(false);
             }

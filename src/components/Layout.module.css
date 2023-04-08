@@ -31,3 +31,10 @@
     break-inside: avoid;
 
 }
+
+.ImageGalleryDiv{
+  padding: 3% 0%;
+}
+.ImageGalleryMainDiv{
+  /* border: 2px solid red; */
+}

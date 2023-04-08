@@ -38,7 +38,6 @@ const GalleryGridCard = ({ collectionData ,refreshFunction }: any) => {
            if (collectionData?.id) {
                const deleteRes = await CollectionService.deleteCollection(collectionData?.id)
                if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
-                   console.log(deleteRes);
                    refreshFunction()
                    setModalShow(false);
                }
@@ -90,7 +89,7 @@ const GalleryGridCard = ({ collectionData ,refreshFunction }: any) => {
                     <p className={styles.details}>{collectionData?.photos} Photos</p>
                     <p className={styles.details}>{collectionData?.videos} Videos</p>
                     <p className={styles.details}>{
-                        collectionData && collectionData?.status === "UNPUBLISH" ? "Unpublish" : "Published"
+                        collectionData && collectionData?.status === "HIDDEN" ? "Hidden" : "Published"
                     }</p>
                 </div>
             </div>

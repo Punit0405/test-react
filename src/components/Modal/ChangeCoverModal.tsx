@@ -42,7 +42,6 @@ function ChangeCoverModal(props: any) {
 
     const onDrop = useCallback((acceptedFiles: any, rejFiles: any) => {
         const mappedAcc = acceptedFiles.map((file: any) => ({ file, errors: [] }))
-        console.log(mappedAcc, '-----mappedAcc-------', rejFiles);
         setFiles([...mappedAcc, ...rejFiles])
     }, [])
 
