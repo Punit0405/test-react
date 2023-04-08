@@ -54,7 +54,10 @@ const Grid = (props:any) => {
                  originalTitle:image.src
                 
                 }
-            })} swipingTransitionDuration={3}  useTranslate3D slideDuration={2}  slideInterval={1000} startIndex={currentImage} autoPlay={clientState.isSlideShow} showNav={true} lazyLoad/>
+            })} swipingTransitionDuration={3}  
+             slideDuration={500} 
+             slideInterval={1000} 
+             startIndex={currentImage} autoPlay={clientState.isSlideShow} showNav={true} lazyLoad/>
             </div>
             </div>
             :

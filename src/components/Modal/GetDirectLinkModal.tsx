@@ -1,7 +1,11 @@
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import styles from "./GetDirectLInk.module.css";
+import Constants from "../../Config/Constants";
 
 function GetDirectLinkModal(props: any) {
+    console.log(props.collection  , "mystate")
+    const collectionURl = Constants.clientViewUrl+props.collection.collection.url;
+    console.log(collectionURl)
     return (
         <Modal
             {...props}
@@ -25,10 +29,12 @@ function GetDirectLinkModal(props: any) {
                                 <Form.Control
                                     type="text"
                                     name="url"
-                                    value={"https://www.snape.app/"}
+                                    value={collectionURl}
                                     disabled
                                 />
-                                <Button variant="outline-secondary" id="button-addon2">
+                                <Button variant="outline-secondary" id="button-addon2"
+                                onClick={() => {navigator.clipboard.writeText(collectionURl)}}
+                                >
                                     Copy
                                 </Button>
                             </InputGroup>
