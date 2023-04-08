@@ -169,7 +169,6 @@ const Design: FunctionComponent = () => {
             if (collectionId) {
                 const resData = await CollectionService.getDesign(collectionId)
                 if (resData && resData?.code === STATUS_CODE.SUCCESS) {
-                    console.log(resData?.result, '-------resData?.result--------');
                     setBackgroundStyle(resData?.result?.theme || light)
                     setGrid(resData?.result?.gridStyle || "column")
                     setSpace(resData?.result?.gridSpacing || "regular")

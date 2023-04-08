@@ -58,7 +58,6 @@ const ProgressBar: any = ({ filedata, completeupload }: any) => {
                 });
 
             } catch (e) {
-                console.log(e);
             }
         }
     }
@@ -68,7 +67,6 @@ const ProgressBar: any = ({ filedata, completeupload }: any) => {
             await updateData({ coverPhoto: uploadResult?.Location })
             completeupload()
         } catch (error) {
-            console.log(error, '----err--------');
         }
     }
 

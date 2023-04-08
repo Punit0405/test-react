@@ -71,6 +71,7 @@
     "devDependencies": {
         "@types/google-map-react": "^2.1.7",
         "@types/jquery": "^3.5.16",
-        "@types/react-calendar": "^3.9.0"
+        "@types/react-calendar": "^3.9.0",
+        "@types/react-image-gallery": "^1.2.0"
     }
 }

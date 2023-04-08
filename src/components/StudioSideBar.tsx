@@ -129,7 +129,7 @@ const StudioSideBar: FunctionComponent = () => {
                 eventDate={collection.eventDate}
                 onSubmit={onSubmit}
             />
-            <GetDirectLinkModal show={getLinkModalShow} onHide={() => setGetLinkModalShow(false)} />
+            <GetDirectLinkModal show={getLinkModalShow} collection = {myState} onHide={() => setGetLinkModalShow(false)} />
         </div>
     );
 };

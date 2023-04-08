@@ -27,8 +27,6 @@ function SingleFileUpload({ filedata }: any) {
 
     function uploadFile(file: any) {
         if (file) {
-            console.log(file, '--------file------------');
-
             const Key = `${collectionId}/${file.name}`
             const Bucket = 'dev-media.snape.com'
             const Body: any = file
@@ -59,7 +57,6 @@ function SingleFileUpload({ filedata }: any) {
                 });
 
             } catch (e) {
-                console.log(e);
             }
         }
     }
@@ -80,7 +77,6 @@ function SingleFileUpload({ filedata }: any) {
             }
             const res = await FilesSevice.addFiles(data, collectionId)
         } catch (err: any) {
-            console.log(err, '----err--------');
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
                 NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
             } else {
