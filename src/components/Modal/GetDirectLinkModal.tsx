@@ -1,11 +1,24 @@
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import styles from "./GetDirectLInk.module.css";
 import Constants from "../../Config/Constants";
+import { useState } from "react";
 
 function GetDirectLinkModal(props: any) {
     console.log(props.collection  , "mystate")
     const collectionURl = Constants.clientViewUrl+props.collection.collection.url;
+    const downloadPin = props.collection.collection.downloadPin;
+    console.log(downloadPin , "pinn")
+    const [urlText,setUrlText] = useState("Copy");
+    const [downloadPinText,setDownloadPinText] = useState("Copy");
     console.log(collectionURl)
+    const copyUrlText = ()=>{
+       navigator.clipboard.writeText(collectionURl);
+       setUrlText("Copied");
+    }
+    const copyDownloadPin = ()=>{
+       navigator.clipboard.writeText(downloadPin);
+       setDownloadPinText("Copied");
+    }
     return (
         <Modal
             {...props}
@@ -33,9 +46,9 @@ function GetDirectLinkModal(props: any) {
                                     disabled
                                 />
                                 <Button variant="outline-secondary" id="button-addon2"
-                                onClick={() => {navigator.clipboard.writeText(collectionURl)}}
+                                onClick={copyUrlText}
                                 >
-                                    Copy
+                                 {urlText}
                                 </Button>
                             </InputGroup>
                             <p className={styles.modalPara}>Share this unique URL for this collection with your client.</p>
@@ -50,11 +63,11 @@ function GetDirectLinkModal(props: any) {
                                 <Form.Control
                                     type="text"
                                     name="download"
-                                    value={4563}
+                                    value={downloadPin}
                                     disabled
                                 />
-                                <Button variant="outline-secondary" id="button-addon2">
-                                    Copy
+                                <Button variant="outline-secondary" onClick={copyDownloadPin} id="button-addon2">
+                                    {downloadPinText}
                                 </Button>
                             </InputGroup>
                             <p className={styles.modalPara}>Share this 4-digit PIN with your client to allow them to download from the collection. You may turn
