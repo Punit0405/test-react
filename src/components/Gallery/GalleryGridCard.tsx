@@ -12,7 +12,7 @@ import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 
-const GalleryGridCard = ({ collectionData ,refreshFunction }: any) => {
+const GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
 
     const [collection, setCollection] = useState({
         name: collectionData.name || "",
@@ -33,25 +33,25 @@ const GalleryGridCard = ({ collectionData ,refreshFunction }: any) => {
         dispatch(collectionAction({ collection: collectionData }))
         navigate(`/gallery/collection/${collectionData?.id}`)
     }
-    const deleteCollection= async()=>{
+    const deleteCollection = async () => {
         try {
-           if (collectionData?.id) {
-               const deleteRes = await CollectionService.deleteCollection(collectionData?.id)
-               if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
-                   console.log(deleteRes);
-                   refreshFunction()
-                   setModalShow(false);
-               }
-           }
-       } catch (err: any) {
-           if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
-               NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
-               navigate('/');
-           } else {
-               NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
-           }
-       }
-       }
+            if (collectionData?.id) {
+                const deleteRes = await CollectionService.deleteCollection(collectionData?.id)
+                if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
+                    console.log(deleteRes);
+                    refreshFunction()
+                    setModalShow(false);
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+                navigate('/');
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
 
     return (
         <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
@@ -62,7 +62,9 @@ const GalleryGridCard = ({ collectionData ,refreshFunction }: any) => {
                 <div className={styles.outertitle}>
                     <p className={styles.title}>{collection.name}</p>
                     <NavDropdown
-                        title={<i className="fa-regular fa-ellipsis setcolorgallery galleryicon"></i>} className={styles.navdropdown} id="collasible-nav-dropdown gallerydropdown">
+                        align="end"
+                        title={<i className="fa-regular fa-ellipsis setcolorgallery galleryicon"></i>}
+                        className={styles.navdropdown} id="collasible-nav-dropdown gallerydropdown">
                         <NavDropdown.Item onClick={() => setModalShow(true)} >
                             <div className={styles.navicons}>
                                 <i className="fa-sharp fa-regular navicons fa-pencil"></i>
@@ -103,11 +105,11 @@ const GalleryGridCard = ({ collectionData ,refreshFunction }: any) => {
                 eventDate={collection.eventDate}
                 onSubmit={onSubmit}
             />
-            <DeleteConfirmation 
-            show={deleteModalShow}
-            modaltext={"Are you sure want to delete collection?"}
-            onHide={() => setDeleteModalShow(false)}
-            handledeletefiles={deleteCollection as any}
+            <DeleteConfirmation
+                show={deleteModalShow}
+                modaltext={"Are you sure want to delete collection?"}
+                onHide={() => setDeleteModalShow(false)}
+                handledeletefiles={deleteCollection as any}
             />
         </Col>
     )

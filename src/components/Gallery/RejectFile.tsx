@@ -1,6 +1,10 @@
 import styles from './SingleFileUpload.module.css'
 
-function RejectFile({ filedata }: any, { errors }: any) {
+function RejectFile({ filedata }: any, { fileerror }: any) {
+
+    console.log(fileerror, '---errors-------');
+    console.log(filedata, '-----filedata------');
+
 
     return (
         <>
@@ -13,7 +17,9 @@ function RejectFile({ filedata }: any, { errors }: any) {
                         {filedata.name}
                     </div>
                     <div className={styles.progesssection}>
-                        File type not allowed
+                        {
+                            fileerror && fileerror.length ? fileerror[0] : ' File type not allowed'
+                        }
                     </div>
                     <div className={styles.filesize}>Size</div>
                 </div>
