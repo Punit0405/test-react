@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom'
 import { FastField } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { clientGalleryViewAction } from '../redux/actions/clientGalleryViewAction'
+import Constants from '../Config/Constants'
 
 const GalleryClientView = () => {
   const [myState, setmystate] = useState(null);
@@ -82,13 +83,14 @@ const GalleryClientView = () => {
               display:clientState.isViewOpen ? "none" : "flex"
             }}>
             <div className={styles.titleblock} style={{
-              display:clientState.isViewOpen ? "none" : "block"
+              display:clientState.isViewOpen ? "none" : "block",
+              fontFamily:`${Constants.fonts[basicCollectionDetails.typography]?.fontFamily}`
             }}>
               <p className={styles.maintitle}>{basicCollectionDetails?.name}</p>
               <p className={styles.maindate}>March 9th, 2023</p>
             </div>
           </div> : <></>
-          <div className={styles.titlediv}>
+          <div className={styles.titlediv} >
             <div className={styles.maintitleheading}>
               {basicCollectionDetails?.name}
             </div>
