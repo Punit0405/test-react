@@ -48,13 +48,7 @@ function DragMedia() {
     const [errFileName, setErrFileName] = useState<UploadableFile[]>([])
     const [allFiles, setAllFiles] = useState([""])
     useEffect(() => {
-        getFileNames().then((data: any) => {
-            console.log("===============");
-
-            setAllFiles(data)
-        })
-        // return {
-        // }
+        getFileNames()
     }, [])
 
     async function getFileNames() {
@@ -62,8 +56,7 @@ function DragMedia() {
             if (collectionId) {
                 const fileRes = await FilesSevice.getFileName(collectionId)
                 if (fileRes && fileRes?.code === STATUS_CODE.SUCCESS) {
-                    // setAllFiles(fileRes.result)
-                    return fileRes.result
+                    setAllFiles(fileRes.result)
                     // dispatch(setFilesName({ files: fileRes.result }))
                 }
             }
@@ -137,6 +130,8 @@ function DragMedia() {
 
     const handleState = () => {
         setFiles([])
+        setErrFileName([])
+        getFileNames()
     }
 
     const [duplicateDrop, setDuplicateDrop] = useState(false)
