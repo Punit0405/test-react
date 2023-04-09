@@ -46,7 +46,7 @@ const StudioSideBar: FunctionComponent = () => {
     }
 
     const setPreview = () => {
-        
+
     }
 
     const getCollectionList = async () => {
@@ -101,7 +101,9 @@ const StudioSideBar: FunctionComponent = () => {
                     <Ratio aspectRatio='16x9'>
                         <div>
                             <Image className={styles.myimage} src={collection.coverPhoto} />
-                            <div className={styles.textimage} onClick={handleChangeClick}>Change Cover</div>
+                            <div className={styles.textimage} onClick={handleChangeClick}>
+                                <i className="fa-solid sidebarselecticon fa-image"></i> Change Cover
+                            </div>
                         </div>
                     </Ratio>
                 </div>

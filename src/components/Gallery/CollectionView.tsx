@@ -197,17 +197,17 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
                                         <Dropdown.Item className={styles.dropitem}
                                             disabled={count > 1 ? true : false}
                                             onClick={() => handleDownload()}>
-                                            <i className="fa-solid selecticon fa-download"></i> Download
+                                            <i className="fa-solid navselecticon fa-download"></i> Download
                                         </Dropdown.Item>
                                         <Dropdown.Item className={styles.dropitem}
                                             disabled={count > 1 ? true : false}
                                             onClick={() => handleMakeCover()}>
-                                            <i className="fa-solid selecticon fa-pen-to-square"></i> Make Cover
+                                            <i className="fa-solid navselecticon fa-image"></i> Make Cover
                                         </Dropdown.Item>
                                         <Dropdown.Item className={styles.dropitem}
                                             disabled={count > 1 ? true : false}
                                             onClick={() => handleRename()}>
-                                            <i className="fa-solid selecticon fa-pen-to-square"></i> Rename
+                                            <i className="fa-solid navselecticon fa-pen-to-square"></i> Rename
                                         </Dropdown.Item>
                                     </DropdownButton>
                                     <DropdownButton
