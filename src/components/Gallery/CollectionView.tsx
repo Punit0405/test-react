@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "./Collection.module.css";
 import CollectionImageView from "./CollectionImage";
 import { useState } from 'react';
@@ -14,10 +14,10 @@ import ImageGallery from 'react-image-gallery';
 
 interface Props {
     collectionData: any,
-    refreshFunction:any
+    refreshFunction: any
 }
 
-const CollectionView = ({ collectionData ,refreshFunction }: Props) => {
+const CollectionView = ({ collectionData, refreshFunction }: Props) => {
     const navigate = useNavigate();
     const [modalShow, setModalShow] = useState(false);
     const myState = useSelector((state: any) => state.changeCollection);
@@ -42,40 +42,44 @@ const CollectionView = ({ collectionData ,refreshFunction }: Props) => {
         setSelectedImages([]);
         setCount(0);
     }
-    const blurFunc = ()=>{
+    const blurFunc = () => {
         setIsViewOpen(false)
-        console.log("bluriing")
     }
 
-    const handleDeleteFiles = ()=>{
+    const handleDeleteFiles = () => {
         setModalShow(true);
     }
-    const showPhotos = ()=>{
+    const showPhotos = () => {
         const photosData = [];
-        for(const photo of selectedImages){
-            const arr = collectionData.filter((image:any)=>image.id===photo);
+        for (const photo of selectedImages) {
+            const arr = collectionData.filter((image: any) => image.id === photo);
             photosData.push(arr[0]);
         }
         setGalleryPhotos(photosData);
         setIsViewOpen(true);
     }
-    const deleteFiles= async()=>{
-     try {
-        if (myState.collection.id) {
-            const deleteRes = await CollectionService.deleteCollectionFiles(myState.collection.id, {ids:selectedImages})
-            if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
-                refreshFunction()
-                setModalShow(false);
+    const deleteFiles = async () => {
+        try {
+            if (myState.collection.id) {
+                const deleteRes = await CollectionService.deleteCollectionFiles(myState.collection.id, { ids: selectedImages })
+                if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
+                    refreshFunction()
+                    setSelectedImages([])
+                    setCount(0)
+                    setModalShow(false);
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+                navigate('/');
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
             }
         }
-    } catch (err: any) {
-        if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
-            NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
-            navigate('/');
-        } else {
-            NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
-        }
     }
+    const handleChange = (value: any) => {
+
     }
 
     return (
@@ -96,10 +100,44 @@ const CollectionView = ({ collectionData ,refreshFunction }: Props) => {
                                 </div>
                                 <div className={styles.selectbtn}>
                                     <Button variant="custom" className={styles.btnset} onClick={showPhotos}> <i className="fa-solid selecticon fa-magnifying-glass"></i></Button>
-                                    <Button variant="custom" className={styles.btnset}><i className="fa-solid selecticon fa-up-from-bracket"></i></Button>
                                     <Button variant="custom" className={styles.btnset} onClick={handleDeleteFiles}><i className="fa-solid selecticon fa-trash-can"></i></Button>
-                                    <Button variant="custom" className={styles.btnset}><i className="fa-solid selecticon fa-ellipsis"></i></Button>
-                                    <Button variant="custom" className={styles.btnset}>Sort <i className="fa-solid selecticon fa-arrow-up-arrow-down"></i></Button>
+                                    {/* <Button
+                                        variant="custom"
+                                        className={styles.btnset}
+                                    ><i className="fa-solid selecticon fa-ellipsis"></i>
+                                    </Button> */}
+                                    <DropdownButton
+                                        id="dropdown-basic-button"
+                                        className={styles.dropbtnset}
+                                        title={<i className="fa-solid selecticon fa-ellipsis"></i>}
+                                        variant="custom"
+                                    >
+                                        <Dropdown.Item className={styles.dropitem}
+                                            onClick={() => handleChange("?sort=name&order=ASC")}>
+                                            <i className="fa-solid selecticon fa-download"></i> Download
+                                        </Dropdown.Item>
+                                        <Dropdown.Item className={styles.dropitem}
+                                            onClick={() => handleChange("?sort=name&order=DESC")}>
+                                            <i className="fa-solid selecticon fa-pen-to-square"></i> Make Cover
+                                        </Dropdown.Item>
+                                        <Dropdown.Item className={styles.dropitem}
+                                            onClick={() => handleChange("?sort=name&order=DESC")}>
+                                            <i className="fa-solid selecticon fa-pen-to-square"></i> Rename
+                                        </Dropdown.Item>
+                                    </DropdownButton>
+                                    <DropdownButton
+                                        id="dropdown-basic-button"
+                                        className={styles.dropbtnset}
+                                        title={<i className="fa-solid selecticon fa-arrow-up-arrow-down"></i>}
+                                        variant="custom"
+                                    >
+                                        <Dropdown.Item className={styles.navmain}>Sort by</Dropdown.Item>
+                                        <Dropdown.Divider />
+                                        <Dropdown.Item className={styles.dropitem}
+                                            onClick={() => handleChange("?sort=name&order=ASC")}>Name: A - Z</Dropdown.Item>
+                                        <Dropdown.Item className={styles.dropitem}
+                                            onClick={() => handleChange("?sort=name&order=DESC")}>Name: Z - A</Dropdown.Item>
+                                    </DropdownButton>
                                 </div>
                             </div>
                     }
@@ -114,24 +152,24 @@ const CollectionView = ({ collectionData ,refreshFunction }: Props) => {
 
                     </div>
                     <DeleteConfirmation
-                    show={modalShow}
-                    handledeletefiles={deleteFiles as any}
-                    modaltext={"Are you sure want to delete selected files ?"}
-                    onHide={() => setModalShow(false)}
+                        show={modalShow}
+                        handledeletefiles={deleteFiles as any}
+                        modaltext={"Are you sure want to delete selected files ?"}
+                        onHide={() => setModalShow(false)}
                     />
-                <div className={styles.imageGalleryDiv} onBlur={blurFunc} style={{display:isViewOpen?"block":"none"}}>
-                <i className="fa-sharp fa-regular fa-circle-xmark fa-2xl cancelImageBtn" onClick={blurFunc} style={{cursor: "pointer"}}></i>
-                <div className={styles.imageGalleyPadding}>
-                <ImageGallery  items={galleryPhotos.map((image:any)=>{
-                return {
-                 original:image.url,
-                 thumbnail:image.url        
-                }
-            })} showThumbnails={false} showNav showFullscreenButton={false} showBullets={false} showPlayButton={false} showIndex={true}  />
-                </div>
-                </div>
-                </Container>
-            </div>
+                    <div className={styles.imageGalleryDiv} onBlur={blurFunc} style={{ display: isViewOpen ? "block" : "none" }}>
+                        <i className="fa-sharp fa-regular fa-circle-xmark fa-2xl cancelImageBtn" onClick={blurFunc} style={{ cursor: "pointer" }}></i>
+                        <div className={styles.imageGalleyPadding}>
+                            <ImageGallery items={galleryPhotos.map((image: any) => {
+                                return {
+                                    original: image.url,
+                                    thumbnail: image.url
+                                }
+                            })} showThumbnails={false} showNav showFullscreenButton={false} showBullets={false} showPlayButton={false} showIndex={true} />
+                        </div>
+                    </div>
+                </Container >
+            </div >
         </>
     );
 };

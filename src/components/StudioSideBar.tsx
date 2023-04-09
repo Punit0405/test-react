@@ -45,6 +45,10 @@ const StudioSideBar: FunctionComponent = () => {
         }
     }
 
+    const setPreview = () => {
+        
+    }
+
     const getCollectionList = async () => {
         try {
             if (collectionId) {
@@ -143,7 +147,7 @@ const StudioSideBar: FunctionComponent = () => {
                                 <button className={styles.publishbtn} onClick={() => setGetLinkModalShow(true)}>Share</button>
                             </> :
                             <>
-                                <button className={styles.previewbtn}>Preview</button>
+                                <button className={styles.previewbtn} onClick={() => setPreview()}>Preview</button>
                                 <button className={styles.publishbtn} onClick={() => setPublishCollectionModal(true)}>Publish</button>
                             </>
                     }
