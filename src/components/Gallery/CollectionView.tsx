@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { useEffect } from "react";
 import { Button, Container, Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "./Collection.module.css";
 import CollectionImageView from "./CollectionImage";
@@ -12,6 +12,8 @@ import CollectionService from "../../api/Collection/collection";
 import ImageGallery from 'react-image-gallery';
 import { collectionAction } from "../../redux/actions/collectionAction";
 import { saveAs } from 'file-saver'
+import FileRenameModal from "../Modal/FileRenameModal";
+import FilesSevice from "../../api/Files/files";
 interface Props {
     collectionData: any,
     refreshFunction: any
@@ -21,18 +23,23 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
     const dispatch = useDispatch()
     const { collectionId } = useParams()
     const navigate = useNavigate();
-    const [modalShow, setModalShow] = useState(false);
+    const [renameModalShow, setRenameModalShow] = useState(false);
     const myState = useSelector((state: any) => state.changeCollection);
     const photosLength = myState.collection.photos < 9 ? '0' + myState.collection.photos : myState.collection.photos
     const videosLength = myState.collection.videos < 9 ? '0' + myState.collection.videos : myState.collection.videos
     const [count, setCount] = useState(0);
     const [galleryPhotos, setGalleryPhotos] = useState<any>([]);
     const [isViewOpen, setIsViewOpen] = useState(false);
-    const [selectAll, setSelectAll] = useState(false);
+    const [allFileName, setAllFilesName] = useState(false);
     const [selectedImages, setSelectedImages] = useState([]);
+    const [modalShow, setModalShow] = useState(false);
     const setSelection = () => {
         setCount(selectedImages.length)
     }
+
+    useEffect(() => {
+        getFileNames()
+    }, [])
 
     const handleSelect = () => {
         const fileArr = collectionData.map((file: any) => file.id);
@@ -97,6 +104,24 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
         }
     }
 
+    async function getFileNames() {
+        try {
+            if (collectionId) {
+                const fileRes = await FilesSevice.getFileName(collectionId)
+                if (fileRes && fileRes?.code === STATUS_CODE.SUCCESS) {
+                    setAllFilesName(fileRes.result)
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
+
+
     const getDetailsFromId = async (collectionId: any) => {
         const [fullData] = collectionData.filter((image: any) => image.id === collectionId);
         return fullData
@@ -109,6 +134,16 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
                 saveAs(fullData.url, fullData.name)
                 setSelectedImages([])
                 setCount(0)
+            }
+        } catch (error) {
+            console.log(error, '-----err---------');
+        }
+    }
+
+    const handleRename = async () => {
+        try {
+            if (selectedImages && selectedImages.length) {
+                setRenameModalShow(true)
             }
         } catch (error) {
             console.log(error, '-----err---------');
@@ -171,7 +206,7 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
                                         </Dropdown.Item>
                                         <Dropdown.Item className={styles.dropitem}
                                             disabled={count > 1 ? true : false}
-                                            onClick={() => handleChange("?sort=name&order=DESC")}>
+                                            onClick={() => handleRename()}>
                                             <i className="fa-solid selecticon fa-pen-to-square"></i> Rename
                                         </Dropdown.Item>
                                     </DropdownButton>
@@ -219,6 +254,14 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
                         </div>
                     </div>
                 </Container >
+                <FileRenameModal
+                    show={renameModalShow}
+                    onHide={() => setRenameModalShow(false)}
+                    id={collectionId}
+                    filenames={allFileName}
+                    fileid={selectedImages[0]}
+                    collectiondata={collectionData}
+                />
             </div >
         </>
     );
