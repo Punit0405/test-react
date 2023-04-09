@@ -11,10 +11,12 @@ import GetDirectLinkModal from "./Modal/GetDirectLinkModal";
 import styles from "./StudioSideBar.module.css";
 import { useSelector, useDispatch } from 'react-redux'
 import { collectionAction } from "../redux/actions/collectionAction";
+import PublishCollectionModal from "./Modal/PublishCollectionModal";
 
 const StudioSideBar: FunctionComponent = () => {
     const [modalShow, setModalShow] = useState(false);
     const [getLinkModalShow, setGetLinkModalShow] = useState(false);
+    const [publishCollectionModal, setPublishCollectionModal] = useState(false);
     const { collectionId } = useParams()
     const [collection, setCollection]: any = useState([]);
     const navigate = useNavigate();
@@ -23,6 +25,24 @@ const StudioSideBar: FunctionComponent = () => {
 
     const handleChangeClick = () => {
         navigate(`/gallery/design/${collectionId}`)
+    }
+
+    const publishCollection = async () => {
+        console.log("-----------");
+        try {
+            if (collectionId) {
+                const res = await CollectionService.updateCollection(collectionId as string, { status: "PUBLISH" })
+                if (res && res?.code === STATUS_CODE.SUCCESS) {
+                    NotificationWithIcon("success", "Your collection has been published.")
+                    setCollection(res?.result)
+                    dispatch(collectionAction({ collection: res.result }))
+                    setPublishCollectionModal(false)
+                }
+            }
+        } catch (error) {
+            console.log("error", error)
+            NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+        }
     }
 
     const getCollectionList = async () => {
@@ -116,8 +136,18 @@ const StudioSideBar: FunctionComponent = () => {
             </Nav>
             <div>
                 <p className={styles.datepreview}>
-                    <button className={styles.previewbtn}>Preview</button>
-                    <button className={styles.publishbtn} onClick={() => setGetLinkModalShow(true)}>Share</button>
+                    {
+                        collection.status === "PUBLISH" ?
+                            <>
+                                <button className={styles.previewbtn}>View</button>
+                                <button className={styles.publishbtn} onClick={() => setGetLinkModalShow(true)}>Share</button>
+                            </> :
+                            <>
+                                <button className={styles.previewbtn}>Preview</button>
+                                <button className={styles.publishbtn} onClick={() => setPublishCollectionModal(true)}>Publish</button>
+                            </>
+                    }
+                    {/* <button className={styles.publishbtn} onClick={() => setGetLinkModalShow(true)}>View</button> */}
                 </p>
             </div>
             <CreateCollectionModal
@@ -129,7 +159,15 @@ const StudioSideBar: FunctionComponent = () => {
                 eventDate={collection.eventDate}
                 onSubmit={onSubmit}
             />
-            <GetDirectLinkModal show={getLinkModalShow} collection = {myState} onHide={() => setGetLinkModalShow(false)} />
+            <PublishCollectionModal
+                show={publishCollectionModal}
+                onHide={() => setPublishCollectionModal(false)}
+                publishcollection={publishCollection}
+                id={collection.id}
+            />
+            <GetDirectLinkModal
+                show={getLinkModalShow}
+                collection={myState} onHide={() => setGetLinkModalShow(false)} />
         </div>
     );
 };

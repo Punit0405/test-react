@@ -16,6 +16,7 @@
 .maincomp {
     margin: 5% 0%;
     padding: 3% 20%;
+    font-family: var(--font-poppins);
 }
 
 .formlabel {
@@ -50,13 +51,13 @@
     font-size: 0.9rem;
     font-weight: 400;
     width: 150px;
-    background-color:crimson;
+    background-color: crimson;
     color: white;
     margin: 2% 2%;
 }
 
 .cancelbtn:hover {
-    background-color:rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
     color: white;
 }
 
