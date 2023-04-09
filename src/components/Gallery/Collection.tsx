@@ -11,7 +11,6 @@ import AddPhotosNav from "./AddPhotosNav";
 import CollectionView from "./CollectionView";
 import { useSelector, useDispatch } from 'react-redux'
 import { collectionAction } from "../../redux/actions/collectionAction";
-import { setFilesName } from "../../redux/actions/setFileAction";
 
 const Collection: FunctionComponent = () => {
 

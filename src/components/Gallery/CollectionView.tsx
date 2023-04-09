@@ -3,21 +3,23 @@ import { Button, Container, Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "./Collection.module.css";
 import CollectionImageView from "./CollectionImage";
 import { useState } from 'react';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import DeleteConfirmation from "../Modal/DeleteConfirmation";
 import { NotificationWithIcon } from "../../Utils/helper";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CollectionService from "../../api/Collection/collection";
 import ImageGallery from 'react-image-gallery';
-
-
+import { collectionAction } from "../../redux/actions/collectionAction";
+import { saveAs } from 'file-saver'
 interface Props {
     collectionData: any,
     refreshFunction: any
 }
 
 const CollectionView = ({ collectionData, refreshFunction }: Props) => {
+    const dispatch = useDispatch()
+    const { collectionId } = useParams()
     const navigate = useNavigate();
     const [modalShow, setModalShow] = useState(false);
     const myState = useSelector((state: any) => state.changeCollection);
@@ -82,6 +84,56 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
 
     }
 
+    const handleMakeCover = async () => {
+        try {
+            if (selectedImages && selectedImages.length) {
+                const fullData = await getDetailsFromId(selectedImages[0])
+                updateData({ coverPhoto: fullData.url })
+                setSelectedImages([])
+                setCount(0)
+            }
+        } catch (error) {
+            console.log(error, '-----error---------');
+        }
+    }
+
+    const getDetailsFromId = async (collectionId: any) => {
+        const [fullData] = collectionData.filter((image: any) => image.id === collectionId);
+        return fullData
+    }
+
+    const handleDownload = async () => {
+        try {
+            if (selectedImages && selectedImages.length) {
+                const fullData = await getDetailsFromId(selectedImages[0])
+                saveAs(fullData.url, fullData.name)
+                setSelectedImages([])
+                setCount(0)
+            }
+        } catch (error) {
+            console.log(error, '-----err---------');
+        }
+    }
+
+    const updateData = async (values: any) => {
+        try {
+            if (collectionId) {
+                const updateRes = await CollectionService.updateCollection(collectionId, values)
+                if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(collectionAction({ collection: updateRes.result }))
+                    NotificationWithIcon("success", "Setting saved.")
+                    return updateRes?.result?.name
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
+
     return (
         <>
             <div className={styles.maincomp}>
@@ -101,11 +153,6 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
                                 <div className={styles.selectbtn}>
                                     <Button variant="custom" className={styles.btnset} onClick={showPhotos}> <i className="fa-solid selecticon fa-magnifying-glass"></i></Button>
                                     <Button variant="custom" className={styles.btnset} onClick={handleDeleteFiles}><i className="fa-solid selecticon fa-trash-can"></i></Button>
-                                    {/* <Button
-                                        variant="custom"
-                                        className={styles.btnset}
-                                    ><i className="fa-solid selecticon fa-ellipsis"></i>
-                                    </Button> */}
                                     <DropdownButton
                                         id="dropdown-basic-button"
                                         className={styles.dropbtnset}
@@ -113,14 +160,17 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
                                         variant="custom"
                                     >
                                         <Dropdown.Item className={styles.dropitem}
-                                            onClick={() => handleChange("?sort=name&order=ASC")}>
+                                            disabled={count > 1 ? true : false}
+                                            onClick={() => handleDownload()}>
                                             <i className="fa-solid selecticon fa-download"></i> Download
                                         </Dropdown.Item>
                                         <Dropdown.Item className={styles.dropitem}
-                                            onClick={() => handleChange("?sort=name&order=DESC")}>
+                                            disabled={count > 1 ? true : false}
+                                            onClick={() => handleMakeCover()}>
                                             <i className="fa-solid selecticon fa-pen-to-square"></i> Make Cover
                                         </Dropdown.Item>
                                         <Dropdown.Item className={styles.dropitem}
+                                            disabled={count > 1 ? true : false}
                                             onClick={() => handleChange("?sort=name&order=DESC")}>
                                             <i className="fa-solid selecticon fa-pen-to-square"></i> Rename
                                         </Dropdown.Item>

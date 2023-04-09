@@ -1,13 +1,5 @@
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
-import { useNavigate } from "react-router";
 import styles from "./DeleteConfirmation.module.css";
-import { Formik } from "formik";
-import { collectionValidations } from "../../Utils/validations";
-import CollectionService from "../../api/Collection/collection";
-import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
-import { NotificationWithIcon } from "../../Utils/helper";
-import { useSelector, useDispatch } from 'react-redux'
-import { collectionAction } from "../../redux/actions/collectionAction";
 
 function DeleteConfirmation(props: any) {
     return (

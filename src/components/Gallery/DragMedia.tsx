@@ -57,7 +57,6 @@ function DragMedia() {
                 const fileRes = await FilesSevice.getFileName(collectionId)
                 if (fileRes && fileRes?.code === STATUS_CODE.SUCCESS) {
                     setAllFiles(fileRes.result)
-                    // dispatch(setFilesName({ files: fileRes.result }))
                 }
             }
         } catch (err: any) {
@@ -70,8 +69,6 @@ function DragMedia() {
     }
 
     const myState = useSelector((state: any) => state.setFiles)
-    // const myFiles = myState.files
-    // console.log(myFiles, '-----myState--------');
     const [files, setFiles] = useState<UploadableFile[]>([])
 
     const onDrop = useCallback((acceptedFiles: any, rejFiles: any) => {
@@ -93,7 +90,6 @@ function DragMedia() {
         })
         const mappedAcc = acceptedFiles.map((file: any) => {
             if (file.name) {
-                console.log(allFiles, '-------allFiles------');
                 if (allFiles.includes(file.name)) {
                     setErrFileName((preFile: any) => [...preFile, { file, errors: [] }])
                     return { file, errors: ['Duplicate file'] }
