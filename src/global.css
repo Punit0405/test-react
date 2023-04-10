@@ -386,6 +386,16 @@ a:-webkit-any-link {
   font-size: 0.7rem;
 }
 
+.navselecticon {
+  font-size: 1rem;
+  margin-right: 2px;
+}
+
+.sidebarselecticon{
+  font-size: 0.7rem;
+  margin-right: 2px;
+}
+
 .navicons {
   margin-top: 3%;
   width: 18%;
@@ -704,6 +714,14 @@ a:-webkit-any-link {
 
 .cancelImageBtn {
   margin: 2% 1.3%;
+  float: right;
+  color: #000000;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 3;
+}
+.clientDownloadBtn {
+  margin: 2% 3.3%;
   float: right;
   color: #000000;
   font-size: 2rem;

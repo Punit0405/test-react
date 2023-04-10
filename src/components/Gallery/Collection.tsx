@@ -56,7 +56,7 @@ const Collection: FunctionComponent = () => {
                 <AddPhotosNav />
                 {
                     files && files?.length ?
-                    <CollectionView collectionData={files} refreshFunction={getCollectionList} /> : <AddCollection />
+                        <CollectionView collectionData={files} refreshFunction={getCollectionList} /> : <AddCollection />
                 }
             </Container>
         </>

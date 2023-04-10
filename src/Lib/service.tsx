@@ -1,6 +1,5 @@
-import request from "./request";
-
-function get(url: string, headers: any) {
+import { request, requestWithHeaders } from "./request";
+ function get(url: string, headers: any) {
   return request({
     method: "GET",
     url,
@@ -44,12 +43,23 @@ function removeWithBody<T = any>({ url, data }: { url?: string; data: T }, heade
     headers,
   });
 }
+function downloadPost<T = any>({ url, data }: { url?: string; data: T }, headers?: any) {
+  return requestWithHeaders({
+    method: "POST",
+    url,
+    data,
+    headers,
+    responseType:"blob"
+
+  });
+}
 
 const Service = {
   get,
   post,
   update,
   removeWithBody,
-  remove
+  remove,
+  downloadPost
 };
 export default Service;

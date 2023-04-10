@@ -28,7 +28,6 @@ const StudioSideBar: FunctionComponent = () => {
     }
 
     const publishCollection = async () => {
-        console.log("-----------");
         try {
             if (collectionId) {
                 const res = await CollectionService.updateCollection(collectionId as string, { status: "PUBLISH" })
@@ -43,6 +42,10 @@ const StudioSideBar: FunctionComponent = () => {
             console.log("error", error)
             NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
         }
+    }
+
+    const setPreview = () => {
+
     }
 
     const getCollectionList = async () => {
@@ -97,7 +100,9 @@ const StudioSideBar: FunctionComponent = () => {
                     <Ratio aspectRatio='16x9'>
                         <div>
                             <Image className={styles.myimage} src={collection.coverPhoto} />
-                            <div className={styles.textimage} onClick={handleChangeClick}>Change Cover</div>
+                            <div className={styles.textimage} onClick={handleChangeClick}>
+                                <i className="fa-solid sidebarselecticon fa-image"></i> Change Cover
+                            </div>
                         </div>
                     </Ratio>
                 </div>
@@ -143,7 +148,7 @@ const StudioSideBar: FunctionComponent = () => {
                                 <button className={styles.publishbtn} onClick={() => setGetLinkModalShow(true)}>Share</button>
                             </> :
                             <>
-                                <button className={styles.previewbtn}>Preview</button>
+                                <button className={styles.previewbtn} onClick={() => setPreview()}>Preview</button>
                                 <button className={styles.publishbtn} onClick={() => setPublishCollectionModal(true)}>Publish</button>
                             </>
                     }

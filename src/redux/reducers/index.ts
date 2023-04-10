@@ -5,7 +5,7 @@ import clientCollectionViewReducer from './clietGalleryViewReducers'
 clientCollectionViewReducer
 
 const rootReducer = combineReducers({
-    changeCollection, changeDesign,clientCollectionViewReducer
+    changeCollection, changeDesign, clientCollectionViewReducer
 })
 
 export default rootReducer

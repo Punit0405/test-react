@@ -38,7 +38,6 @@ const GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
             if (collectionData?.id) {
                 const deleteRes = await CollectionService.deleteCollection(collectionData?.id)
                 if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
-                    console.log(deleteRes);
                     refreshFunction()
                     setModalShow(false);
                 }

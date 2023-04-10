@@ -57,6 +57,25 @@ const GalleryClientView = () => {
 
     }
   }
+
+  const donwloadCollection= async()=>{
+    try {
+    const a = document.createElement("a");
+    a.style.display = "none";
+    document.body.appendChild(a);
+    const response = await CollectionService.downloadCollection({pin:"2083"},30);
+    const blobFile = new Blob([response?.data],{type: "application/zip"});
+    const url = window.URL.createObjectURL(blobFile);
+    a.href = url;
+    a.setAttribute("download", response.headers.filename); 
+    a.click();
+    window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.log(error)
+    }
+    
+
+  }
   const passwordHandle = async (password: string) => {
     getCollectionDetails(password);
     setModalShow(false)
@@ -96,7 +115,7 @@ const GalleryClientView = () => {
             </div>
             <div className={styles.iconblock}>
               <i className="fa-regular fa-heart viewpageicon"></i>
-              <i className="fa-solid fa-arrow-down-to-line viewpageicon"></i>
+              <i className="fa-solid fa-arrow-down-to-line viewpageicon" onClick={donwloadCollection} style={{ cursor: "pointer" }}></i>
               <i className="fa-solid fa-arrow-turn-down-left fa-rotate-180 viewpageicon"></i>
               <i className="fa-regular fa-play viewpageicon" onClick={startSlideShowFuunc} style={{ cursor: "pointer" }}></i>
             </div>

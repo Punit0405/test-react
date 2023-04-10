@@ -1,11 +1,16 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import styles from "./DragMedia.module.css";
 import SingleFileUpload from './SingleFileUpload';
 import DagPhotoNav from './DragPhotoNav';
 import RejectFile from './RejectFile';
 import UploadDoneNav from './UploadDoneNav';
+import FilesSevice from '../../api/Files/files';
+import { useParams } from 'react-router-dom';
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
+import { NotificationWithIcon } from '../../Utils/helper';
+import { useSelector } from 'react-redux';
 
 const baseStyle = {
     display: 'flex',
@@ -39,8 +44,32 @@ export interface UploadableFile {
 }
 function DragMedia() {
 
-    const [files, setFiles] = useState<UploadableFile[]>([])
+    const { collectionId } = useParams()
+    const [errFileName, setErrFileName] = useState<UploadableFile[]>([])
+    const [allFiles, setAllFiles] = useState([""])
+    useEffect(() => {
+        getFileNames()
+    }, [])
 
+    async function getFileNames() {
+        try {
+            if (collectionId) {
+                const fileRes = await FilesSevice.getFileName(collectionId)
+                if (fileRes && fileRes?.code === STATUS_CODE.SUCCESS) {
+                    setAllFiles(fileRes.result)
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
+
+    const myState = useSelector((state: any) => state.setFiles)
+    const [files, setFiles] = useState<UploadableFile[]>([])
     const onDrop = useCallback((acceptedFiles: any, rejFiles: any) => {
 
         acceptedFiles.forEach((file: any) => {
@@ -58,10 +87,19 @@ function DragMedia() {
             }
             reader.readAsArrayBuffer(file)
         })
-        const mappedAcc = acceptedFiles.map((file: any) => ({ file, errors: [] }))
+        const mappedAcc = acceptedFiles.map((file: any) => {
+            if (file.name) {
+                if (allFiles.includes(file.name)) {
+                    setErrFileName((preFile: any) => [...preFile, { file, errors: [] }])
+                    return { file, errors: ['Duplicate file'] }
+                }
+                else {
+                    return { file, errors: [] }
+                }
+            }
+        })
         setFiles([...mappedAcc, ...rejFiles])
-
-    }, [])
+    }, [allFiles])
 
     const {
         getRootProps,
@@ -87,6 +125,19 @@ function DragMedia() {
 
     const handleState = () => {
         setFiles([])
+        setErrFileName([])
+        getFileNames()
+    }
+
+    const [duplicateDrop, setDuplicateDrop] = useState(false)
+    const handleDuplicateChange = (event: any) => {
+        setDuplicateDrop(Boolean(Number(event.target.value)))
+    }
+
+    const handleReplace = () => {
+        if (duplicateDrop) {
+            setFiles(errFileName)
+        }
     }
 
     return (
@@ -96,10 +147,52 @@ function DragMedia() {
                     files.length ?
                         <>
                             <UploadDoneNav handleSetChange={handleState} />
+                            {
+                                errFileName && errFileName.length ?
+                                    <div className={styles.errormain}>
+                                        <div className={styles.dropnav}>
+                                            <Form.Group className={styles.dropdownset}>
+                                                <Form.Select
+                                                    id="disabledSelect"
+                                                    className={styles.dropmain}
+                                                    onChange={handleDuplicateChange}
+                                                    value={duplicateDrop ? 1 : 0}
+                                                >
+                                                    <option className={styles.dropoption} value={0}>
+                                                        Skip duplicates
+                                                    </option>
+                                                    <option className={styles.dropoption} value={1}>
+                                                        Replace duplicates
+                                                    </option>
+                                                </Form.Select>
+                                            </Form.Group>
+                                        </div>
+                                        <div>
+                                            <div className={styles.errordiv}>
+                                                <div className={styles.titlemain}>
+                                                    Errors:
+                                                </div>
+                                                {
+                                                    errFileName.map((errfile: any) => (
+                                                        <div className={styles.errfile}>
+                                                            {errfile?.file?.name}
+                                                        </div>
+                                                    ))
+
+                                                }
+                                            </div>
+                                            <div className={styles.retrybtn}>
+                                                <button className={styles.retry} onClick={handleReplace}>
+                                                    Retry Errors
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div> : <></>
+                            }
                             {files.map((file: any, index: any) => (
                                 file?.errors?.length === 0 ?
                                     <SingleFileUpload filedata={file.file} key={index} /> :
-                                    <RejectFile filedata={file.file} error={file.errors} key={index} />
+                                    <RejectFile filedata={file.file} fileerror={file.errors} key={index} />
                             ))}
                         </>
                         :

@@ -1,10 +1,6 @@
 import styles from './SingleFileUpload.module.css'
 
-function RejectFile({ filedata }: any, { fileerror }: any) {
-
-    console.log(fileerror, '---errors-------');
-    console.log(filedata, '-----filedata------');
-
+function RejectFile({ filedata, fileerror }: any) {
 
     return (
         <>
@@ -21,7 +17,7 @@ function RejectFile({ filedata }: any, { fileerror }: any) {
                             fileerror && fileerror.length ? fileerror[0] : ' File type not allowed'
                         }
                     </div>
-                    <div className={styles.filesize}>Size</div>
+                    <div className={styles.filesize}>{(filedata?.size / 1024 ** 2).toFixed(2)} MB</div>
                 </div>
             </div>
         </>
