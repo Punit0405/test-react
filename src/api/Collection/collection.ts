@@ -136,6 +136,32 @@ const CollectionService = {
             throw error
         }
     },
+    downloadFile: async (data: any,id:any) => {
+        try {
+            const token = await getUserToken()
+            return Service.downloadPost({
+                url: `client/download-file/${id}`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+    downloadCollection: async (data: any,id:any) => {
+        try {
+            const token = await getUserToken()
+            return Service.downloadPost({
+                url: `client/download-collection/${id}`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
 
 }
 

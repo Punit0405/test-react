@@ -28,7 +28,6 @@ const StudioSideBar: FunctionComponent = () => {
     }
 
     const publishCollection = async () => {
-        console.log("-----------");
         try {
             if (collectionId) {
                 const res = await CollectionService.updateCollection(collectionId as string, { status: "PUBLISH" })

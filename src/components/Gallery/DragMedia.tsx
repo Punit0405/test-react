@@ -70,7 +70,6 @@ function DragMedia() {
 
     const myState = useSelector((state: any) => state.setFiles)
     const [files, setFiles] = useState<UploadableFile[]>([])
-
     const onDrop = useCallback((acceptedFiles: any, rejFiles: any) => {
 
         acceptedFiles.forEach((file: any) => {

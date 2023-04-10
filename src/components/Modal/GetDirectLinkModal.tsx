@@ -4,13 +4,10 @@ import Constants from "../../Config/Constants";
 import { useState } from "react";
 
 function GetDirectLinkModal(props: any) {
-    console.log(props.collection  , "mystate")
     const collectionURl = Constants.clientViewUrl+props.collection.collection.url;
     const downloadPin = props.collection.collection.downloadPin;
-    console.log(downloadPin , "pinn")
     const [urlText,setUrlText] = useState("Copy");
     const [downloadPinText,setDownloadPinText] = useState("Copy");
-    console.log(collectionURl)
     const copyUrlText = ()=>{
        navigator.clipboard.writeText(collectionURl);
        setUrlText("Copied");

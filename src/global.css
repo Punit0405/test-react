@@ -720,3 +720,12 @@ a:-webkit-any-link {
   cursor: pointer;
   z-index: 3;
 }
+.clientDownloadBtn {
+  margin: 2% 3.3%;
+  float: right;
+  color: #000000;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 3;
+}
+
