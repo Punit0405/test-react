@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
 const client = axios.create({
-    baseURL: 'http://localhost:3000/api/v1/',
+    baseURL: 'http://3.87.142.14:3000/api/v1/',
 });
 
 export const request = (options: AxiosRequestConfig) => {
