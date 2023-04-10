@@ -12,6 +12,7 @@ import styles from "./StudioSideBar.module.css";
 import { useSelector, useDispatch } from 'react-redux'
 import { collectionAction } from "../redux/actions/collectionAction";
 import PublishCollectionModal from "./Modal/PublishCollectionModal";
+import Constants from "../Config/Constants";
 
 const StudioSideBar: FunctionComponent = () => {
     const [modalShow, setModalShow] = useState(false);
@@ -45,7 +46,8 @@ const StudioSideBar: FunctionComponent = () => {
     }
 
     const setPreview = () => {
-
+        const clientUrl = Constants.clientViewUrl + collection.url
+        console.log(clientUrl, '-----clientUrl--------');
     }
 
     const getCollectionList = async () => {
@@ -144,11 +146,19 @@ const StudioSideBar: FunctionComponent = () => {
                     {
                         collection.status === "PUBLISH" ?
                             <>
-                                <button className={styles.previewbtn}>View</button>
+                                <button className={styles.previewbtn} >
+                                    <a className={styles.prreviewbtnset} href={Constants.clientViewUrl + collection.url} target="_blank">
+                                        View
+                                    </a>
+                                </button>
                                 <button className={styles.publishbtn} onClick={() => setGetLinkModalShow(true)}>Share</button>
                             </> :
                             <>
-                                <button className={styles.previewbtn} onClick={() => setPreview()}>Preview</button>
+                                <button className={styles.previewbtn} >
+                                    <a className={styles.prreviewbtnset} href={Constants.clientViewUrl + collection.url} target="_blank">
+                                        Preview
+                                    </a>
+                                </button>
                                 <button className={styles.publishbtn} onClick={() => setPublishCollectionModal(true)}>Publish</button>
                             </>
                     }

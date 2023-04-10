@@ -69,6 +69,10 @@
     border-radius: 5px;
 }
 
+.prreviewbtnset {
+    color: white !important;
+}
+
 .previewbtn,
 .publishbtn {
     width: 100%;
