@@ -29,12 +29,13 @@ const ProgressBar: any = ({ filedata, completeupload }: any) => {
     function uploadFile(file: any) {
         if (file) {
             const Key = `${collectionId}/cover/${file.name}`
-            const Bucket = 'dev-media.snape.com'
+            const Bucket = 'dev-snape-media'
             const Body: any = file
             try {
                 const s3 = new S3({
                     requestHandler: new XhrHttpHandler({}),
                     region: 'us-east-1',
+                    endpoint:'https://s3.wasabisys.com',
                     credentials: {
                         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY as string,
                         secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY as string
