@@ -12,6 +12,7 @@ import { FastField } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { clientGalleryViewAction } from '../redux/actions/clientGalleryViewAction'
 import Constants from '../Config/Constants'
+import Moment from 'react-moment'
 
 const GalleryClientView = () => {
   const [myState, setmystate] = useState(null);
@@ -58,22 +59,22 @@ const GalleryClientView = () => {
     }
   }
 
-  const donwloadCollection= async()=>{
+  const donwloadCollection = async () => {
     try {
-    const a = document.createElement("a");
-    a.style.display = "none";
-    document.body.appendChild(a);
-    const response = await CollectionService.downloadCollection({pin:"2083"},30);
-    const blobFile = new Blob([response?.data],{type: "application/zip"});
-    const url = window.URL.createObjectURL(blobFile);
-    a.href = url;
-    a.setAttribute("download", response.headers.filename); 
-    a.click();
-    window.URL.revokeObjectURL(url);
+      const a = document.createElement("a");
+      a.style.display = "none";
+      document.body.appendChild(a);
+      const response = await CollectionService.downloadCollection({ pin: "2083" }, 30);
+      const blobFile = new Blob([response?.data], { type: "application/zip" });
+      const url = window.URL.createObjectURL(blobFile);
+      a.href = url;
+      a.setAttribute("download", response.headers.filename);
+      a.click();
+      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.log(error)
     }
-    
+
 
   }
   const passwordHandle = async (password: string) => {
@@ -93,20 +94,22 @@ const GalleryClientView = () => {
     <>
       {
         collectionFound ? <>
-          <div  className={styles.maincomp}
+          <div className={styles.maincomp}
             style={{
               backgroundImage: `url(${basicCollectionDetails?.coverPhoto})`,
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               backgroundSize: 'cover',
-              display:clientState.isViewOpen ? "none" : "flex"
+              display: clientState.isViewOpen ? "none" : "flex"
             }}>
             <div className={styles.titleblock} style={{
-              display:clientState.isViewOpen ? "none" : "block",
-              fontFamily:`${Constants.fonts[basicCollectionDetails.typography]?.fontFamily}`
+              display: clientState.isViewOpen ? "none" : "block",
+              fontFamily: `${Constants.fonts[basicCollectionDetails.typography]?.fontFamily}`
             }}>
               <p className={styles.maintitle}>{basicCollectionDetails?.name}</p>
-              <p className={styles.maindate}>March 9th, 2023</p>
+              <p className={styles.maindate}>
+                <Moment format="MMMM  Do, YYYY">{basicCollectionDetails?.eventDate}</Moment>
+              </p>
             </div>
           </div> : <></>
           <div className={styles.titlediv} >
