@@ -12,8 +12,6 @@
     justify-content: space-between;
 }
 
-.outermain {}
-
 .datepreview {
     display: flex;
     justify-content: space-between;
@@ -36,8 +34,6 @@
     font-size: 0.8rem;
     /* border: 2px solid red; */
 }
-
-.settingtab {}
 
 .coverbtn {
     background-color: rgba(0, 0, 0, 0.377);
@@ -67,6 +63,10 @@
     color: white;
     border: none;
     border-radius: 5px;
+}
+
+.prreviewbtnset {
+    color: white !important;
 }
 
 .previewbtn,
@@ -130,8 +130,6 @@
     font-size: 0.7rem;
     cursor: pointer;
 }
-
-.previewsection {}
 
 .maincomponent {
     position: sticky;
