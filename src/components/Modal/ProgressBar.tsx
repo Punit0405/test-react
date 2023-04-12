@@ -34,8 +34,8 @@ const ProgressBar: any = ({ filedata, completeupload }: any) => {
             try {
                 const s3 = new S3({
                     requestHandler: new XhrHttpHandler({}),
-                    region: 'us-east-1',
-                    endpoint:'https://s3.wasabisys.com',
+                    region: process.env.REACT_APP_WASABI_REGION,
+                    endpoint:process.env.REACT_APP_WASABI_ENDPOINT,
                     credentials: {
                         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY as string,
                         secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY as string
