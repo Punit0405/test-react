@@ -6,17 +6,20 @@ import CollectionService from '../api/Collection/collection'
 import { useStepContext } from '@mui/material'
 import PasswordModal from '../components/Modal/PasswordModal'
 import { NotificationWithIcon } from '../Utils/helper'
-import { VALIDATIONS } from '../Utils/constants'
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../Utils/constants'
 import { useParams } from 'react-router-dom'
 import { FastField } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { clientGalleryViewAction } from '../redux/actions/clientGalleryViewAction'
 import Constants from '../Config/Constants'
+import Moment from 'react-moment'
+import PinModal from '../components/Modal/PinModal'
 
 const GalleryClientView = () => {
   const [myState, setmystate] = useState(null);
   const [basicCollectionDetails, setBasicCollectionDetails] = useState<any>({});
   const [modalShow, setModalShow] = useState(false);
+  const [pinModalShow, setPinModalShow] = useState(false);
   const [collectionFound, setCollectionFoung] = useState(true)
   const [startSlideShow, setStartSlideShow] = useState(false)
   const clientState = useSelector((state: any) => state.clientCollectionViewReducer);
@@ -58,22 +61,29 @@ const GalleryClientView = () => {
     }
   }
 
-  const donwloadCollection= async()=>{
+  const donwloadCollection = async (pin: any) => {
     try {
-    const a = document.createElement("a");
-    a.style.display = "none";
-    document.body.appendChild(a);
-    const response = await CollectionService.downloadCollection({pin:"2083"},30);
-    const blobFile = new Blob([response?.data],{type: "application/zip"});
-    const url = window.URL.createObjectURL(blobFile);
-    a.href = url;
-    a.setAttribute("download", response.headers.filename); 
-    a.click();
-    window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.log(error)
+      const a = document.createElement("a");
+      a.style.display = "none";
+      document.body.appendChild(a);
+      const response = await CollectionService.downloadCollection({ pin: pin }, 30);
+      setPinModalShow(false)
+      NotificationWithIcon("success", "Collection downloading.")
+      const blobFile = new Blob([response?.data], { type: "application/zip" });
+      const url = window.URL.createObjectURL(blobFile);
+      a.href = url;
+      a.setAttribute("download", response.headers.filename);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (err: any) {
+      setPinModalShow(false)
+      if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+        NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+      } else {
+        NotificationWithIcon("error", "Invalid pin" || VALIDATIONS.SOMETHING_WENT_WRONG)
+      }
     }
-    
+
 
   }
   const passwordHandle = async (password: string) => {
@@ -93,20 +103,22 @@ const GalleryClientView = () => {
     <>
       {
         collectionFound ? <>
-          <div  className={styles.maincomp}
+          <div className={styles.maincomp}
             style={{
               backgroundImage: `url(${basicCollectionDetails?.coverPhoto})`,
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               backgroundSize: 'cover',
-              display:clientState.isViewOpen ? "none" : "flex"
+              display: clientState.isViewOpen ? "none" : "flex"
             }}>
             <div className={styles.titleblock} style={{
-              display:clientState.isViewOpen ? "none" : "block",
-              fontFamily:`${Constants.fonts[basicCollectionDetails.typography]?.fontFamily}`
+              display: clientState.isViewOpen ? "none" : "block",
+              fontFamily: `${Constants.fonts[basicCollectionDetails.typography]?.fontFamily}`
             }}>
               <p className={styles.maintitle}>{basicCollectionDetails?.name}</p>
-              <p className={styles.maindate}>March 9th, 2023</p>
+              <p className={styles.maindate}>
+                <Moment format="MMMM  Do, YYYY">{basicCollectionDetails?.eventDate}</Moment>
+              </p>
             </div>
           </div> : <></>
           <div className={styles.titlediv} >
@@ -115,7 +127,7 @@ const GalleryClientView = () => {
             </div>
             <div className={styles.iconblock}>
               <i className="fa-regular fa-heart viewpageicon"></i>
-              <i className="fa-solid fa-arrow-down-to-line viewpageicon" onClick={donwloadCollection} style={{ cursor: "pointer" }}></i>
+              <i className="fa-solid fa-arrow-down-to-line viewpageicon" onClick={() => setPinModalShow(true)} style={{ cursor: "pointer" }}></i>
               <i className="fa-solid fa-arrow-turn-down-left fa-rotate-180 viewpageicon"></i>
               <i className="fa-regular fa-play viewpageicon" onClick={startSlideShowFuunc} style={{ cursor: "pointer" }}></i>
             </div>
@@ -128,6 +140,11 @@ const GalleryClientView = () => {
             show={modalShow}
             onHide={() => setModalShow(false)}
             onSubmit={passwordHandle} ˀ
+          />
+          <PinModal
+            show={pinModalShow}
+            onHide={() => setPinModalShow(false)}
+            downloadfunction={donwloadCollection}
           />
         </> : <>Collection Not Found</>
       }
