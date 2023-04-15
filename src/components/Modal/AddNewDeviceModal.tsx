@@ -17,7 +17,6 @@ function AddNewDeviceModal(props: any) {
         deviceAmount: "" as string
     }
 
-    const navigate = useNavigate()
     const [loader, setLoader] = useState<boolean>(false);
 
     const handleSubmit = async (values: any) => {

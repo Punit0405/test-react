@@ -60,7 +60,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div >4</div>
+              <div className={styles.deviceNumber}>4</div>
             </div>
             <i className="fa-solid fa-2xl fa-display"></i>
           </div>
@@ -69,7 +69,7 @@ const AssetDashboardMain: FunctionComponent = () => {
         <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div >4</div>
+              <div className={styles.deviceNumber}>4</div>
             </div>
             <i className="fa-regular fa-2xl fa-circle-dollar setcolor"></i>
           </div>
@@ -78,7 +78,7 @@ const AssetDashboardMain: FunctionComponent = () => {
         <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div >4</div>
+              <div className={styles.deviceNumber}>4</div>
             </div>
             <i className="fa-sharp  fa-2xl  fa-regular fa-arrow-up-from-line setcolor"></i>
           </div>
@@ -87,7 +87,7 @@ const AssetDashboardMain: FunctionComponent = () => {
         <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div >4</div>
+              <div className={styles.deviceNumber}>4</div>
             </div>
             <i className="fa-regular fa-lock-keyhole  fa-2xl  setcolor"></i>
           </div>
