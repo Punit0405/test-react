@@ -16,7 +16,19 @@ const AssetRegistryService = {
         } catch (error) {
             throw error;
         }
-    }
+    },
+    getDeviceList: async (data: any) => {
+        const token = await getUserToken()
+        try {
+            return await Service.get('asset',
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    },
 }
 
 export default AssetRegistryService;

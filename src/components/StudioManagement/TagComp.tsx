@@ -58,9 +58,12 @@ const TagComp = ({ tagvalue }: Props) => {
         if (inputValue && tags.indexOf(inputValue) === -1) {
             setTags([...tags, inputValue]);
         }
-        updateData({ tags: [...tags, inputValue] })
-        setInputVisible(false);
-        setInputValue('');
+        console.log(inputValue, '----inputValue-----');
+        if (inputValue.trim() !== '') {
+            updateData({ tags: [...tags, inputValue] })
+            setInputVisible(false);
+            setInputValue('');
+        }
     };
 
     const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,11 +90,14 @@ const TagComp = ({ tagvalue }: Props) => {
     }
 
     const handleEditInputConfirm = () => {
-        const newTags = [...tags];
-        newTags[editInputIndex] = editInputValue;
-        updateData({ tags: newTags})
-        setTags(newTags);
-        setEditInputIndex(-1);
+        if (editInputValue.trim() !== '') {
+            const newTags = [...tags];
+            newTags[editInputIndex] = editInputValue;
+            console.log(editInputValue, '----inputValue-----');
+            updateData({ tags: newTags })
+            setTags(newTags);
+            setEditInputIndex(-1);
+        }
         setInputValue('');
     };
 

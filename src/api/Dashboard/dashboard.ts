@@ -32,6 +32,16 @@ const DashboardService = {
             throw error
         }
     },
+    getUserStorage: async () => {
+        try {
+            const token = getUserToken()
+            return Service.get(`agent/get-remaining-space`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 export default DashboardService

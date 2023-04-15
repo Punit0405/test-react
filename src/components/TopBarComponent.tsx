@@ -1,38 +1,78 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Button, Container, Image, Nav, Navbar, NavDropdown, OverlayTrigger, Popover, Ratio } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { getNameAndProfile } from "../Utils/helper";
+import { NotificationWithIcon, getNameAndProfile } from "../Utils/helper";
 import styles from "./TopBarComponent.module.css";
 import { Doughnut } from 'react-chartjs-2';
+import AssetRegisteryChartComp from "./AssetRegistry/AssetRegisteryChartComp";
+import DashboardService from "../api/Dashboard/dashboard";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../Utils/constants";
 
 const TopBarComponent: FunctionComponent = () => {
     const { firstName, lastName } = getNameAndProfile()
+    const [storage, setStorage]: any = useState({})
+    const [graph, setGraph]: any = useState({})
     const navigate = useNavigate();
     const logoutFunction = () => {
         localStorage.removeItem("accessToken");
         navigate("/");
-
     }
     const data = {
         labels: [
-            'Cell Phone',
-            'Camera',
-            'Screen',
-            'Printer'
+            'Total',
+            'Used'
         ],
         datasets: [{
             label: 'Summary Section',
-            data: [30, 34, 6, 30],
+            data: [70, 30],
             backgroundColor: [
                 '#EC1A25',
-                '#F9B91B',
-                '#FF569A',
-                '#252525'
+                '#D9D9D9',
             ],
             hoverOffset: 10,
 
         }]
     };
+    useEffect(() => {
+        getUserStorage()
+    }, [])
+
+
+    const getUserStorage = async () => {
+        try {
+            const res = await DashboardService.getUserStorage()
+            if (res && res?.code === STATUS_CODE.SUCCESS) {
+                setStorage(res?.result)
+                setGraph({
+                    labels: [
+                        'Total',
+                        'Used'
+                    ],
+                    datasets: [{
+                        label: 'Summary Section',
+                        data: [
+                            res?.result?.usedSpace / res?.result?.totalAllowedSpace,
+                            res?.result?.remainingSpace / res?.result?.totalAllowedSpace
+                        ],
+                        backgroundColor: [
+                            '#EC1A25',
+                            '#D9D9D9',
+                        ],
+                        hoverOffset: 10,
+
+                    }]
+                })
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+                navigate('/');
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
+
     return (
         <Navbar className={styles.topbar} id="headerTopbar">
             <div className={styles.artboard134x81Parent} id="innerHeader">
@@ -64,8 +104,35 @@ const TopBarComponent: FunctionComponent = () => {
                             overlay={
                                 <Popover id={`popover-positioned-left`}>
                                     <Popover.Header as="h3">Storage Usage</Popover.Header>
-                                    <Popover.Body>
-                                        <Doughnut data={data} />
+                                    <Popover.Body className={styles.storagemain}>
+                                        <div>
+                                            <Doughnut data={graph} />
+                                        </div>
+                                        <div className={styles.categorysection}>
+                                            <div className={styles.cellphoneParent}>
+                                                <AssetRegisteryChartComp percentage="3.00 GB" backgroundColor="#F9B91B" categoryTitle="Total Storage" />
+                                            </div>
+                                            <div className={styles.cellphoneParent}>
+                                                <AssetRegisteryChartComp
+                                                    percentage={`${((storage.usedSpace / storage.totalAllowedSpace) * 100).toFixed(2)}%`}
+                                                    backgroundColor="#EC1A25"
+                                                    categoryTitle="Used" />
+                                                <AssetRegisteryChartComp
+                                                    percentage={`${storage.usedSpace} GB`}
+                                                    backgroundColor="#EC1A25"
+                                                    categoryTitle="Used" />
+                                            </div>
+                                            <div className={styles.cellphoneParent}>
+                                                <AssetRegisteryChartComp
+                                                    percentage={`${((storage.remainingSpace / storage.totalAllowedSpace) * 100).toFixed(2)}%`}
+                                                    backgroundColor="#D9D9D9"
+                                                    categoryTitle="Remaining" />
+                                                <AssetRegisteryChartComp
+                                                    percentage={storage.remainingSpace > 3000 ? '3.00 GB' : `${storage.remainingSpace} GB`}
+                                                    backgroundColor="#D9D9D9"
+                                                    categoryTitle="Remaining" />
+                                            </div>
+                                        </div>
                                     </Popover.Body>
                                 </Popover>
                             }
