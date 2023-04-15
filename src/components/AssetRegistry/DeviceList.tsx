@@ -1,43 +1,82 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import AssetActiveComp from "./AssetActiveComp";
 import AssetNavBar from "./AssetNavBar";
 import AssetTableNameComp from "./AssetTableNameComp";
 import styles from "./DeviceList.module.css";
 import DeviceListRowComponent from "./DeviceListRowComponent";
+import AssetRegistryService from "../../api/asset-registry/assetRegistry";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
+import { useNavigate } from "react-router-dom";
+import Moment from "react-moment";
 
+const AssetDeviceList: any = () => {
 
+  const deviceListName: any = {
+    CELL_PHONE: "Cell Phone",
+    CAMERA: "Camera",
+    SCREEN: "Screen",
+    PRINTER: "Printer"
+  }
 
-const AssetDeviceList: FunctionComponent = () => {
+  const navigate = useNavigate();
+
+  const [list, setList]: any = useState([])
+
+  useEffect(() => {
+    getList()
+  }, [])
+
+  const getList = async () => {
+    try {
+      const res = await AssetRegistryService.getDeviceList("data")
+      if (res && res?.code === STATUS_CODE.SUCCESS) {
+        setList(res?.result)
+      }
+    } catch (err: any) {
+      if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+        NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+        navigate('/');
+      } else {
+        NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+      }
+    }
+  }
+
   return (
     <section className={styles.rightcontainer}>
       <AssetNavBar navTitle="My Devices" />
-  
-     <div className={styles.deviceListComp}>
-    <Table  striped >
-      <thead>
-        <tr className={styles.tableHeading}>
-          <td>File Name</td>
-          <td>File Items</td>
-          <td>Last Modified</td>
-          <td>Device Status</td>
-        </tr>
-      </thead>
-      <tbody>
-        <DeviceListRowComponent deviceName="CamCo" deviceType="Camera" status="Active"  lastModified="20 mins ago"/>
-        <DeviceListRowComponent deviceName="Universe" deviceType="Screen" status="Lost"  lastModified="0 mins ago"/>
-        <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale"  lastModified="10 days ago"/>
-        <DeviceListRowComponent deviceName="CamCo" deviceType="Camera" status="Active"  lastModified="20 mins ago"/>
-        <DeviceListRowComponent deviceName="Universe" deviceType="Screen" status="Lost"  lastModified="0 mins ago"/>
-        <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale"  lastModified="10 days ago"/>
-        <DeviceListRowComponent deviceName="CamCo" deviceType="Camera" status="Active"  lastModified="20 mins ago"/>
-        <DeviceListRowComponent deviceName="Universe" deviceType="Screen" status="Lost"  lastModified="0 mins ago"/>
-        <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale"  lastModified="10 days ago"/>
-      </tbody>
-    </Table>
-     </div>
-      
-      
+
+      <div className={styles.deviceListComp}>
+        <Table striped >
+          <thead>
+            <tr className={styles.tableHeading}>
+              <td>File Name</td>
+              <td>File Items</td>
+              <td>Last Modified</td>
+              <td>Device Status</td>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              list && list.length ? list.map((product: any) => (
+                <DeviceListRowComponent
+                  deviceName={product?.nickName}
+                  deviceType={deviceListName[product?.type]}
+                  status={product?.status}
+                  lastModified={product?.updatedAt}
+                />
+              ))
+                :
+                <>
+                </>
+            }
+          </tbody>
+        </Table>
+      </div>
+
+
     </section>
   );
 };

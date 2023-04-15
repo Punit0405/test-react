@@ -10,6 +10,14 @@
     font-size: 1rem;
 }
 
+.cellphoneParent {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .stroageBtn {
     margin-left: 2%;
 }

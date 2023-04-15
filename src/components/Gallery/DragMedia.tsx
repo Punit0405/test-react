@@ -7,10 +7,11 @@ import DagPhotoNav from './DragPhotoNav';
 import RejectFile from './RejectFile';
 import UploadDoneNav from './UploadDoneNav';
 import FilesSevice from '../../api/Files/files';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
 import { NotificationWithIcon } from '../../Utils/helper';
 import { useSelector } from 'react-redux';
+import DashboardService from '../../api/Dashboard/dashboard';
 
 const baseStyle = {
     display: 'flex',
@@ -47,8 +48,31 @@ function DragMedia() {
     const { collectionId } = useParams()
     const [errFileName, setErrFileName] = useState<UploadableFile[]>([])
     const [allFiles, setAllFiles] = useState([""])
+    const [storage, setStorage]: any = useState({})
+    const navigate = useNavigate();
+
+    const getUserStorage = async () => {
+        try {
+            const res = await DashboardService.getUserStorage()
+            if (res && res?.code === STATUS_CODE.SUCCESS) {
+                setStorage(res?.result)
+                if (res?.result?.remainingSpace < 10) {
+                    navigate(`/gallery/collection/${collectionId}`)
+                    NotificationWithIcon("error", "You don't have enough storage")
+                }
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+                navigate('/');
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
     useEffect(() => {
         getFileNames()
+        getUserStorage()
     }, [])
 
     async function getFileNames() {
@@ -72,9 +96,11 @@ function DragMedia() {
     const [files, setFiles] = useState<UploadableFile[]>([])
     const onDrop = useCallback((acceptedFiles: any, rejFiles: any) => {
 
-        acceptedFiles.forEach((file: any) => {
-            const reader = new FileReader()
+        let totalSize = 0
 
+        acceptedFiles.forEach((file: any) => {
+            totalSize = totalSize + file?.size
+            const reader = new FileReader()
             reader.onabort = () => console.log('file reading was aborted')
             reader.onerror = () => console.log('file reading has failed')
             reader.onload = () => {
@@ -87,17 +113,27 @@ function DragMedia() {
             }
             reader.readAsArrayBuffer(file)
         })
-        const mappedAcc = acceptedFiles.map((file: any) => {
-            if (file.name) {
-                if (allFiles.includes(file.name)) {
-                    setErrFileName((preFile: any) => [...preFile, { file, errors: [] }])
-                    return { file, errors: ['Duplicate file'] }
+        totalSize = (totalSize / 1024 ** 2)
+        let mappedAcc = []
+        if (totalSize > storage?.remainingSpace) {
+            mappedAcc = acceptedFiles.map((file: any) => {
+                if (file.name) {
+                    return { file, errors: ['Storage full'] }
                 }
-                else {
-                    return { file, errors: [] }
+            })
+        } else {
+            mappedAcc = acceptedFiles.map((file: any) => {
+                if (file.name) {
+                    if (allFiles.includes(file.name)) {
+                        setErrFileName((preFile: any) => [...preFile, { file, errors: [] }])
+                        return { file, errors: ['Duplicate file'] }
+                    }
+                    else {
+                        return { file, errors: [] }
+                    }
                 }
-            }
-        })
+            })
+        }
         setFiles([...mappedAcc, ...rejFiles])
     }, [allFiles])
 
