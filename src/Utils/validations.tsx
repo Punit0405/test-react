@@ -20,4 +20,19 @@ const collectionValidations = Yup.object().shape({
         .required(Constants.VALIDATIONS.DATE_REQUIRED)
 });
 
-export { loginValidations, collectionValidations }
+const assetDeviceValidation = Yup.object().shape({
+    type: Yup.string()
+        .trim()
+        .required(Constants.VALIDATIONS.NAME_REQUIRED),
+    nickName: Yup.string()
+        .trim()
+        .required(Constants.VALIDATIONS.DEVICE_NAME_REQUIRED),
+    deviceID: Yup.string()
+        .trim()
+        .required(Constants.VALIDATIONS.IMEI_NUMBER_REQUIRED),
+    deviceAmount: Yup.number()
+        .min(1, "Must be more than 1 ")
+        .required(Constants.VALIDATIONS.AMOUNT_REQUIRED)
+})
+
+export { loginValidations, collectionValidations, assetDeviceValidation }

@@ -28,7 +28,7 @@ function SingleFileUpload({ filedata }: any) {
     function uploadFile(file: any) {
         if (file) {
             const Key = `${collectionId}/${file.name}`
-            const Bucket = 'dev-snape-media'
+            const Bucket = process.env.REACT_APP_AWS_BUCKET_NAME
             const Body: any = file
             try {
                 const s3 = new S3({

@@ -54,7 +54,7 @@ const LoginForm: FunctionComponent = () => {
         validationSchema={loginValidations}>
         {({
           handleSubmit,
-          handleChange,
+          handleChange, 
           values,
           touched,
           isValid,
@@ -92,7 +92,7 @@ const LoginForm: FunctionComponent = () => {
                 type="password"
                 onChange={handleChange}
                 value={values.password}
-                isValid={touched.email && !errors.email}
+                isValid={touched.password && !errors.password}
                 isInvalid={!!errors.password}
               />
               <Form.Control.Feedback type="invalid">

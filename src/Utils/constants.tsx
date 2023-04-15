@@ -8,6 +8,9 @@ export const VALIDATIONS = Object.freeze({
     LASTNAME_REQUIRED: "Please enter lastname",
     EMAIL_REQUIRED: "Please enter email",
     NAME_REQUIRED: "Please enter name",
+    DEVICE_NAME_REQUIRED: "Please enter device name",
+    IMEI_NUMBER_REQUIRED: "Please enter IMEI number",
+    AMOUNT_REQUIRED: "Please enter amount",
     DATE_REQUIRED: "Please select date",
     INVALID_EMAIL: "Please enter valid email",
     CONTACT_REQUIRED: "Please enter contact number",
@@ -57,11 +60,11 @@ export const FIRST_NAME = "firstName";
 export const LAST_NAME = "lastName";
 export const PROFILE = "profile";
 
-export const MESSAGE={
-    UNAUTHORIZED:'Unauthorized user'
+export const MESSAGE = {
+    UNAUTHORIZED: 'Unauthorized user'
 }
 
 export const STATUS_CODE = {
     SUCCESS: 200,
-    UNAUTHORIZED:401,
+    UNAUTHORIZED: 401,
 }
