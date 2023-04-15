@@ -3,6 +3,13 @@
 .devicesListed {
   top: 24px;
   line-height: 21.67px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.deviceNumber {
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .devicesListedParent,
@@ -261,18 +268,19 @@
   display: flex;
   justify-content: flex-end;
 }
-.rightcontainer{
+
+.rightcontainer {
   display: flex;
   justify-content: flex-end;
 }
 
-.categorysection{
+.categorysection {
   display: flex;
   justify-content: center;
   margin: 0% 2%;
 }
 
-.priceBox{
+.priceBox {
   display: flex;
   width: 50%;
   justify-content: space-between;
@@ -287,11 +295,12 @@
   font-size: 1rem;
 }
 
-.priceBox p{
+.priceBox p {
   margin: 0% 5%;
 
 }
-.priceBox h3{
+
+.priceBox h3 {
   font-size: 1.4rem;
   margin: 0% 5%;
 }
@@ -321,7 +330,7 @@
   font-family: var(--font-poppins);
 }
 
-.chartDiv{
+.chartDiv {
   display: flex;
 }
 

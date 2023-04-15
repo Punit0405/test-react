@@ -3,10 +3,10 @@ import AssetNavBar from "./AssetNavBar";
 import styles from "./AssetDashboardMain.module.css";
 import { PieChart } from 'react-minimal-pie-chart';
 import { Doughnut } from 'react-chartjs-2';
-import {Chart, ArcElement} from 'chart.js'
+import { Chart, ArcElement } from 'chart.js'
 import AssetRegisteryChartComp from "./AssetRegisteryChartComp";
 Chart.register(ArcElement);
- {/* <PieChart
+{/* <PieChart
         paddingAngle={1}
         animate={true}
         radius={50}
@@ -60,34 +60,34 @@ const AssetDashboardMain: FunctionComponent = () => {
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div >4</div>
+              <div className={styles.deviceNumber}>4</div>
             </div>
             <i className="fa-solid fa-2xl fa-display"></i>
           </div>
         </div>
         <div className={styles.deviceCard2}>
-        <div className={styles.frameParent}>
+          <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div >4</div>
+              <div className={styles.deviceNumber}>4</div>
             </div>
             <i className="fa-regular fa-2xl fa-circle-dollar setcolor"></i>
           </div>
         </div>
         <div className={styles.deviceCard2}>
-        <div className={styles.frameParent}>
+          <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div >4</div>
+              <div className={styles.deviceNumber}>4</div>
             </div>
             <i className="fa-sharp  fa-2xl  fa-regular fa-arrow-up-from-line setcolor"></i>
           </div>
         </div>
         <div className={styles.deviceCard2}>
-        <div className={styles.frameParent}>
+          <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div >4</div>
+              <div className={styles.deviceNumber}>4</div>
             </div>
             <i className="fa-regular fa-lock-keyhole  fa-2xl  setcolor"></i>
           </div>
@@ -99,22 +99,22 @@ const AssetDashboardMain: FunctionComponent = () => {
           <h3>R 36000</h3>
         </div>
         <div className={styles.chartDiv}>
-        <div>
-       <Doughnut data={data}/>
-      </div>
-        <div className={styles.categorysection}>
-          <div className={styles.cellphoneParent}>
-           <AssetRegisteryChartComp percentage="30%" backgroundColor="#EC1A25" categoryTitle="Cell Phone"/>
-           <AssetRegisteryChartComp percentage="34%"  backgroundColor="#F9B91B" categoryTitle="Camera"/>
+          <div>
+            <Doughnut data={data} />
           </div>
-          <div className={styles.cellphoneParent}>
-           <AssetRegisteryChartComp percentage="6%"  backgroundColor="#FF569A"  categoryTitle="Screen"/>
-           <AssetRegisteryChartComp percentage="30%"  backgroundColor="#252525"  categoryTitle="Printer"/>
-          
+          <div className={styles.categorysection}>
+            <div className={styles.cellphoneParent}>
+              <AssetRegisteryChartComp percentage="30%" backgroundColor="#EC1A25" categoryTitle="Cell Phone" />
+              <AssetRegisteryChartComp percentage="34%" backgroundColor="#F9B91B" categoryTitle="Camera" />
+            </div>
+            <div className={styles.cellphoneParent}>
+              <AssetRegisteryChartComp percentage="6%" backgroundColor="#FF569A" categoryTitle="Screen" />
+              <AssetRegisteryChartComp percentage="30%" backgroundColor="#252525" categoryTitle="Printer" />
+
+            </div>
           </div>
         </div>
-        </div>
-       
+
       </div>
     </section>
   );
