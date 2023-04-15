@@ -1,8 +1,9 @@
 import { FunctionComponent } from "react";
-import { Container, Image, Nav, Navbar, NavDropdown, Ratio } from "react-bootstrap";
+import { Button, Container, Image, Nav, Navbar, NavDropdown, OverlayTrigger, Popover, Ratio } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { getNameAndProfile } from "../Utils/helper";
 import styles from "./TopBarComponent.module.css";
+import { Doughnut } from 'react-chartjs-2';
 
 const TopBarComponent: FunctionComponent = () => {
     const { firstName, lastName } = getNameAndProfile()
@@ -12,6 +13,26 @@ const TopBarComponent: FunctionComponent = () => {
         navigate("/");
 
     }
+    const data = {
+        labels: [
+            'Cell Phone',
+            'Camera',
+            'Screen',
+            'Printer'
+        ],
+        datasets: [{
+            label: 'Summary Section',
+            data: [30, 34, 6, 30],
+            backgroundColor: [
+                '#EC1A25',
+                '#F9B91B',
+                '#FF569A',
+                '#252525'
+            ],
+            hoverOffset: 10,
+
+        }]
+    };
     return (
         <Navbar className={styles.topbar} id="headerTopbar">
             <div className={styles.artboard134x81Parent} id="innerHeader">
@@ -36,6 +57,21 @@ const TopBarComponent: FunctionComponent = () => {
                             Profile
                         </NavDropdown.Item>
                         <NavDropdown.Item href="/settings/billing">Billing</NavDropdown.Item>
+                        <OverlayTrigger
+                            trigger="focus"
+                            key='left'
+                            placement='left'
+                            overlay={
+                                <Popover id={`popover-positioned-left`}>
+                                    <Popover.Header as="h3">Storage Usage</Popover.Header>
+                                    <Popover.Body>
+                                        <Doughnut data={data} />
+                                    </Popover.Body>
+                                </Popover>
+                            }
+                        >
+                            <Button variant="custom" className={styles.stroageBtn}>View Storage</Button>
+                        </OverlayTrigger>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={() => logoutFunction()}>
                             Log out

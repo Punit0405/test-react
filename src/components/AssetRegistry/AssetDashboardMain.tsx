@@ -3,10 +3,10 @@ import AssetNavBar from "./AssetNavBar";
 import styles from "./AssetDashboardMain.module.css";
 import { PieChart } from 'react-minimal-pie-chart';
 import { Doughnut } from 'react-chartjs-2';
-import {Chart, ArcElement} from 'chart.js'
+import { Chart, ArcElement } from 'chart.js'
 import AssetRegisteryChartComp from "./AssetRegisteryChartComp";
 Chart.register(ArcElement);
- {/* <PieChart
+{/* <PieChart
         paddingAngle={1}
         animate={true}
         radius={50}
@@ -66,7 +66,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           </div>
         </div>
         <div className={styles.deviceCard2}>
-        <div className={styles.frameParent}>
+          <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
               <div className={styles.deviceNumber}>4</div>
@@ -75,7 +75,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           </div>
         </div>
         <div className={styles.deviceCard2}>
-        <div className={styles.frameParent}>
+          <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
               <div className={styles.deviceNumber}>4</div>
@@ -84,7 +84,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           </div>
         </div>
         <div className={styles.deviceCard2}>
-        <div className={styles.frameParent}>
+          <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
               <div className={styles.deviceNumber}>4</div>
@@ -99,22 +99,22 @@ const AssetDashboardMain: FunctionComponent = () => {
           <h3>R 36000</h3>
         </div>
         <div className={styles.chartDiv}>
-        <div>
-       <Doughnut data={data}/>
-      </div>
-        <div className={styles.categorysection}>
-          <div className={styles.cellphoneParent}>
-           <AssetRegisteryChartComp percentage="30%" backgroundColor="#EC1A25" categoryTitle="Cell Phone"/>
-           <AssetRegisteryChartComp percentage="34%"  backgroundColor="#F9B91B" categoryTitle="Camera"/>
+          <div>
+            <Doughnut data={data} />
           </div>
-          <div className={styles.cellphoneParent}>
-           <AssetRegisteryChartComp percentage="6%"  backgroundColor="#FF569A"  categoryTitle="Screen"/>
-           <AssetRegisteryChartComp percentage="30%"  backgroundColor="#252525"  categoryTitle="Printer"/>
-          
+          <div className={styles.categorysection}>
+            <div className={styles.cellphoneParent}>
+              <AssetRegisteryChartComp percentage="30%" backgroundColor="#EC1A25" categoryTitle="Cell Phone" />
+              <AssetRegisteryChartComp percentage="34%" backgroundColor="#F9B91B" categoryTitle="Camera" />
+            </div>
+            <div className={styles.cellphoneParent}>
+              <AssetRegisteryChartComp percentage="6%" backgroundColor="#FF569A" categoryTitle="Screen" />
+              <AssetRegisteryChartComp percentage="30%" backgroundColor="#252525" categoryTitle="Printer" />
+
+            </div>
           </div>
         </div>
-        </div>
-       
+
       </div>
     </section>
   );

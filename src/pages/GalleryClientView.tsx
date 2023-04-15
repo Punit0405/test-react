@@ -67,6 +67,8 @@ const GalleryClientView = () => {
       a.style.display = "none";
       document.body.appendChild(a);
       const response = await CollectionService.downloadCollection({ pin: pin }, 30);
+      console.log(response, '-------response-----------');
+
       setPinModalShow(false)
       NotificationWithIcon("success", "Collection downloading.")
       const blobFile = new Blob([response?.data], { type: "application/zip" });

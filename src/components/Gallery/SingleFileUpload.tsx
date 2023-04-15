@@ -34,14 +34,14 @@ function SingleFileUpload({ filedata }: any) {
                 const s3 = new S3({
                     requestHandler: new XhrHttpHandler({}),
                     region: process.env.REACT_APP_WASABI_REGION,
-                    endpoint:process.env.REACT_APP_WASABI_ENDPOINT,
+                    endpoint: process.env.REACT_APP_WASABI_ENDPOINT,
                     credentials: {
                         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY as string,
                         secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY as string
                     }
 
                 })
-                console.log(s3 ,"s3")
+                console.log(s3, "s3")
                 const parallelUploads3 = new Upload({
                     client: s3,
                     params: { Bucket, Key, Body },
@@ -68,7 +68,7 @@ function SingleFileUpload({ filedata }: any) {
             let reqObj: any = {
                 name: filedata?.name,
                 url: uploadResult?.Location,
-                size: filedata?.size,
+                size: Number((filedata?.size / 1024 ** 2).toFixed(2)),
                 type: "PHOTO",
                 key: uploadResult?.Key,
                 height: filedata.height,
