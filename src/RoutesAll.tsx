@@ -50,10 +50,10 @@ function RoutesAll() {
             <Routes>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/settings" element={<Setting />} >
-                    <Route path="billing" element={<BillingComponent/>} />
+                    <Route path="billing" element={<BillingComponent />} />
                 </Route>
                 <Route path="/studiomanagement" element={<Billing />} >
-                    <Route path="dashboard" element={<StudioDashBoard/>} />
+                    <Route path="dashboard" element={<StudioDashBoard />} />
                 </Route>
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/gallery" element={<LayoutWithSideBar />} >
@@ -71,6 +71,7 @@ function RoutesAll() {
                     <Route path="device-list" element={<AssetDeviceList />}></Route>
                     <Route path="for-sale" element={<ForSaleList />}></Route>
                     <Route path="get-cover" element={<GetCover />}></Route>
+                    <Route path="for-rent" element={<ForSaleList />}></Route>
                 </Route>
                 <Route path="/music" element={<Music />} />
                 <Route path="/music/downloads" element={<MusicDownloadList />} />

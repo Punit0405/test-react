@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { Button, Container, Image, Nav, Navbar, NavDropdown, OverlayTrigger, Popover, Ratio } from "react-bootstrap";
+import { Button, Container, Image, Nav, Navbar, NavDropdown, OverlayTrigger, Popover, Ratio, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { NotificationWithIcon, getNameAndProfile } from "../Utils/helper";
 import styles from "./TopBarComponent.module.css";
@@ -7,6 +7,7 @@ import { Doughnut } from 'react-chartjs-2';
 import AssetRegisteryChartComp from "./AssetRegistry/AssetRegisteryChartComp";
 import DashboardService from "../api/Dashboard/dashboard";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../Utils/constants";
+import SimpleLoader from "./Loader/SimpleLoader";
 
 const TopBarComponent: FunctionComponent = () => {
     const { firstName, lastName } = getNameAndProfile()
@@ -34,7 +35,7 @@ const TopBarComponent: FunctionComponent = () => {
         }]
     };
     useEffect(() => {
-        getUserStorage()
+        // getUserStorage()
     }, [])
 
 
@@ -105,34 +106,42 @@ const TopBarComponent: FunctionComponent = () => {
                                 <Popover id={`popover-positioned-left`}>
                                     <Popover.Header as="h3">Storage Usage</Popover.Header>
                                     <Popover.Body className={styles.storagemain}>
-                                        <div>
-                                            <Doughnut data={graph} />
-                                        </div>
-                                        <div className={styles.categorysection}>
-                                            <div className={styles.cellphoneParent}>
-                                                <AssetRegisteryChartComp percentage="3.00 GB" backgroundColor="#F9B91B" categoryTitle="Total Storage" />
-                                            </div>
-                                            <div className={styles.cellphoneParent}>
-                                                <AssetRegisteryChartComp
-                                                    percentage={`${((storage.usedSpace / storage.totalAllowedSpace) * 100).toFixed(2)}%`}
-                                                    backgroundColor="#EC1A25"
-                                                    categoryTitle="Used" />
-                                                <AssetRegisteryChartComp
-                                                    percentage={storage?.usedSpace ? `${(storage?.usedSpace).toFixed(2)} MB` : '0.00 MB'}
-                                                    backgroundColor="#EC1A25"
-                                                    categoryTitle="Used" />
-                                            </div>
-                                            <div className={styles.cellphoneParent}>
-                                                <AssetRegisteryChartComp
-                                                    percentage={`${((storage.remainingSpace / storage.totalAllowedSpace) * 100).toFixed(2)}%`}
-                                                    backgroundColor="#D9D9D9"
-                                                    categoryTitle="Remaining" />
-                                                <AssetRegisteryChartComp
-                                                    percentage={storage.remainingSpace > 3000 ? '3.00 GB' : `${(storage.remainingSpace)} MB`}
-                                                    backgroundColor="#D9D9D9"
-                                                    categoryTitle="Remaining" />
-                                            </div>
-                                        </div>
+                                        {
+                                            storage && storage?.usedSpace ?
+                                                < div >
+                                                    <div>
+                                                        <Doughnut data={graph} />
+                                                    </div>
+                                                    <div className={styles.categorysection}>
+                                                        <div className={styles.cellphoneParent}>
+                                                            <AssetRegisteryChartComp percentage="3.00 GB" backgroundColor="#F9B91B" categoryTitle="Total Storage" />
+                                                        </div>
+                                                        <div className={styles.cellphoneParent}>
+                                                            <AssetRegisteryChartComp
+                                                                percentage={`${((storage.usedSpace / storage.totalAllowedSpace) * 100).toFixed(2)}%`}
+                                                                backgroundColor="#EC1A25"
+                                                                categoryTitle="Used" />
+                                                            <AssetRegisteryChartComp
+                                                                percentage={storage?.usedSpace ? `${(storage?.usedSpace).toFixed(2)} MB` : '0.00 MB'}
+                                                                backgroundColor="#EC1A25"
+                                                                categoryTitle="Used" />
+                                                        </div>
+                                                        <div className={styles.cellphoneParent}>
+                                                            <AssetRegisteryChartComp
+                                                                percentage={`${((storage.remainingSpace / storage.totalAllowedSpace) * 100).toFixed(2)}%`}
+                                                                backgroundColor="#D9D9D9"
+                                                                categoryTitle="Remaining" />
+                                                            <AssetRegisteryChartComp
+                                                                percentage={storage.remainingSpace > 3000 ? '3.00 GB' : `${(storage.remainingSpace)} MB`}
+                                                                backgroundColor="#D9D9D9"
+                                                                categoryTitle="Remaining" />
+                                                        </div>
+                                                    </div>
+                                                </div> :
+                                                <div>
+                                                    <Spinner animation="grow" />
+                                                </div>
+                                        }
                                     </Popover.Body>
                                 </Popover>
                             }
@@ -145,7 +154,7 @@ const TopBarComponent: FunctionComponent = () => {
                         </NavDropdown.Item>
                     </NavDropdown>
                 </div>
-            </div>
+            </div >
         </Navbar >
 
     );
