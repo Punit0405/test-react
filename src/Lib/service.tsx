@@ -43,7 +43,7 @@ function removeWithBody<T = any>({ url, data }: { url?: string; data: T }, heade
     headers,
   });
 }
-function downloadPost<T = any>({ url, data }: { url?: string; data: T }, headers?: any) {
+function downloadPost<T = any>({ url, data }: { url?: string; data: T }, headers?: any, setDownloadPer?: any) {
   return requestWithHeaders({
     method: "POST",
     url,
@@ -51,9 +51,7 @@ function downloadPost<T = any>({ url, data }: { url?: string; data: T }, headers
     headers,
     responseType: "blob",
     onDownloadProgress: (progressEvent) => {
-      console.log("---------test-----");
-      console.log("====progressEvent=====", progressEvent);
-      console.log("==============");
+      setDownloadPer(progressEvent?.loaded)
     }
   });
 }

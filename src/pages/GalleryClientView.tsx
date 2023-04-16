@@ -22,6 +22,7 @@ const GalleryClientView = () => {
   const [pinModalShow, setPinModalShow] = useState(false);
   const [collectionFound, setCollectionFoung] = useState(true)
   const [startSlideShow, setStartSlideShow] = useState(false)
+  const [downloadPer, setDownloadPer] = useState(0)
   const clientState = useSelector((state: any) => state.clientCollectionViewReducer);
   const dispatch = useDispatch();
   const params = useParams();
@@ -61,22 +62,28 @@ const GalleryClientView = () => {
     }
   }
 
+  console.log(downloadPer, '------downloadPer-------');
+
+
   const donwloadCollection = async (pin: any) => {
     try {
       const a = document.createElement("a");
       a.style.display = "none";
       document.body.appendChild(a);
-      const response = await CollectionService.downloadCollection({ pin: pin }, basicCollectionDetails?.id);
+      const response = CollectionService.downloadCollection({ pin: pin }, basicCollectionDetails?.id, setDownloadPer)
+        .then((data: any) => {
+          console.log(data, '----data------')
+        });
       console.log(response, '-------response-----------');
 
-      setPinModalShow(false)
-      NotificationWithIcon("success", "Collection downloading.")
-      const blobFile = new Blob([response?.data], { type: "application/zip" });
-      const url = window.URL.createObjectURL(blobFile);
-      a.href = url;
-      a.setAttribute("download", response.headers.filename);
-      a.click();
-      window.URL.revokeObjectURL(url);
+      // setPinModalShow(false)
+      // NotificationWithIcon("success", "Collection downloading.")
+      // const blobFile = new Blob([response?.data], { type: "application/zip" });
+      // const url = window.URL.createObjectURL(blobFile);
+      // a.href = url;
+      // a.setAttribute("download", response.headers.filename);
+      // a.click();
+      // window.URL.revokeObjectURL(url);
     } catch (err: any) {
       setPinModalShow(false)
       if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
