@@ -118,7 +118,7 @@ const TopBarComponent: FunctionComponent = () => {
                                                     backgroundColor="#EC1A25"
                                                     categoryTitle="Used" />
                                                 <AssetRegisteryChartComp
-                                                    percentage={`${storage.usedSpace} MB`}
+                                                    percentage={storage?.usedSpace ? `${(storage?.usedSpace).toFixed(2)} MB` : '0.00 MB'}
                                                     backgroundColor="#EC1A25"
                                                     categoryTitle="Used" />
                                             </div>
@@ -128,7 +128,7 @@ const TopBarComponent: FunctionComponent = () => {
                                                     backgroundColor="#D9D9D9"
                                                     categoryTitle="Remaining" />
                                                 <AssetRegisteryChartComp
-                                                    percentage={storage.remainingSpace > 3000 ? '3.00 GB' : `${storage.remainingSpace} MB`}
+                                                    percentage={storage.remainingSpace > 3000 ? '3.00 GB' : `${(storage.remainingSpace)} MB`}
                                                     backgroundColor="#D9D9D9"
                                                     categoryTitle="Remaining" />
                                             </div>
