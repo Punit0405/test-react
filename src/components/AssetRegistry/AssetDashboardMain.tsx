@@ -1,37 +1,23 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import AssetNavBar from "./AssetNavBar";
 import styles from "./AssetDashboardMain.module.css";
 import { PieChart } from 'react-minimal-pie-chart';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js'
 import AssetRegisteryChartComp from "./AssetRegisteryChartComp";
+import AssetRegistryService from "../../api/asset-registry/assetRegistry";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
+import { useNavigate } from "react-router-dom";
 Chart.register(ArcElement);
-{/* <PieChart
-        paddingAngle={1}
-        animate={true}
-        radius={50}
-      onClick={(_, index) => {
-        setSelected(index === selected ? undefined : index);
-      }}
-      onMouseOver={(_, index) => {
-        setHovered(index);
-      }}
-      onMouseOut={() => {
-        setHovered(undefined);
-      }}
-        data={[
-         { title: 'Cell Phone', value: 30, color: '#EC1A25' },
-         { title: 'Camera', value: 34, color: '#F9B91B' },
-         { title: 'Screen', value: 6, color: '#FF569A' },
-         { title: 'Printer', value: 30, color: '#252525' },
-         ]}
-/> */}
-
-
 
 const AssetDashboardMain: FunctionComponent = () => {
   const [selected, setSelected] = useState<number | undefined>(0);
   const [hovered, setHovered] = useState<number | undefined>(undefined);
+  const [totalAmount, setTotalAmount] = useState(0)
+  const [summary, setSummary] = useState({ active: '0', sale: '0', lost: '0', rent: '0' })
+  const [categoryData, setCategoryData] = useState([])
+  const navigate = useNavigate();
   const data = {
     labels: [
       'Cell Phone',
@@ -52,6 +38,43 @@ const AssetDashboardMain: FunctionComponent = () => {
 
     }]
   };
+
+  const getDashboardData = async () => {
+    try {
+      const res = await AssetRegistryService.getDashBoardData()
+      if (res && res?.code === STATUS_CODE.SUCCESS) {
+        setCategoryData(res?.result?.categoryData)
+        setSummary(res?.result?.summary)
+        setTotalAmount(res?.result?.totalAssetAmount)
+        const summaryInfo: any = {}
+
+        const activeObj = (res?.result?.summary).find((obj: any) => obj.status === 'Active')
+        summaryInfo.active = activeObj?.devices ? activeObj?.devices : '0'
+        const saleObj = (res?.result?.summary).find((obj: any) => obj.status === 'For Sale')
+        summaryInfo.sale = saleObj?.devices ? saleObj?.devices : '0'
+        const lostObj = (res?.result?.summary).find((obj: any) => obj.status === 'Lost')
+        summaryInfo.lost = lostObj?.devices ? lostObj?.devices : '0'
+        const rentObj = (res?.result?.summary).find((obj: any) => obj.status === 'For Rent')
+        summaryInfo.rent = rentObj?.devices ? rentObj?.devices : '0'
+        setSummary(summaryInfo)
+
+
+
+      }
+    } catch (err: any) {
+      if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+        NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+        navigate('/');
+      } else {
+        NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+      }
+    }
+  }
+
+  useEffect(() => {
+    getDashboardData()
+  }, [])
+
   return (
     <section className={styles.rightcontainer}>
       <AssetNavBar navTitle="Dashboard" />
@@ -60,7 +83,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div className={styles.deviceNumber}>4</div>
+              <div className={styles.deviceNumber}>{summary?.active}</div>
             </div>
             <i className="fa-solid fa-2xl fa-display"></i>
           </div>
@@ -68,8 +91,8 @@ const AssetDashboardMain: FunctionComponent = () => {
         <div className={styles.deviceCard2}>
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
-              <div className={styles.devicesListed}>Devices Listed</div>
-              <div className={styles.deviceNumber}>4</div>
+              <div className={styles.devicesListed}>Devices For Sale</div>
+              <div className={styles.deviceNumber}>{summary?.lost}</div>
             </div>
             <i className="fa-regular fa-2xl fa-circle-dollar setcolor"></i>
           </div>
@@ -77,8 +100,8 @@ const AssetDashboardMain: FunctionComponent = () => {
         <div className={styles.deviceCard2}>
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
-              <div className={styles.devicesListed}>Devices Listed</div>
-              <div className={styles.deviceNumber}>4</div>
+              <div className={styles.devicesListed}>Devices Rented Out</div>
+              <div className={styles.deviceNumber}>{summary?.rent}</div>
             </div>
             <i className="fa-sharp  fa-2xl  fa-regular fa-arrow-up-from-line setcolor"></i>
           </div>
@@ -86,8 +109,8 @@ const AssetDashboardMain: FunctionComponent = () => {
         <div className={styles.deviceCard2}>
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
-              <div className={styles.devicesListed}>Devices Listed</div>
-              <div className={styles.deviceNumber}>4</div>
+              <div className={styles.devicesListed}>Devices Lost</div>
+              <div className={styles.deviceNumber}>{summary?.sale}</div>
             </div>
             <i className="fa-regular fa-lock-keyhole  fa-2xl  setcolor"></i>
           </div>
@@ -96,7 +119,7 @@ const AssetDashboardMain: FunctionComponent = () => {
       <div className={styles.summarySection}>
         <div className={styles.priceBox}>
           <p>Total Device Value</p>
-          <h3>R 36000</h3>
+          <h3>R {totalAmount}</h3>
         </div>
         <div className={styles.chartDiv}>
           <div>

@@ -33,6 +33,18 @@ const AssetRegistryService = {
             throw error;
         }
     },
+    getDashBoardData: async () => {
+        const token = await getUserToken()
+        try {
+            return await Service.get('asset/dashboard',
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default AssetRegistryService;

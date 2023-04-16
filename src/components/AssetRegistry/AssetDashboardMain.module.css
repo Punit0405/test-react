@@ -3,7 +3,7 @@
 .devicesListed {
   top: 24px;
   line-height: 21.67px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
@@ -15,7 +15,7 @@
 .devicesListedParent,
 .vectorIcon {
   position: relative;
-  width: 82px;
+  width: 100px;
   height: 56.18px;
   flex-shrink: 0;
 }
