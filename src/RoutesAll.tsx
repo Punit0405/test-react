@@ -71,7 +71,7 @@ function RoutesAll() {
                     <Route path="device-list" element={<AssetDeviceList />}></Route>
                     <Route path="for-sale" element={<ForSaleList />}></Route>
                     <Route path="get-cover" element={<GetCover />}></Route>
-                    <Route path="get-rent" element={<GetCover />}></Route>
+                    <Route path="for-rent" element={<GetCover />}></Route>
                 </Route>
                 <Route path="/music" element={<Music />} />
                 <Route path="/music/downloads" element={<MusicDownloadList />} />
