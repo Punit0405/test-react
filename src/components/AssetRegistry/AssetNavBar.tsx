@@ -27,8 +27,11 @@ const AssetNavBar = ({ navTitle }: Props) => {
       <button className={styles.addNewDevice} onClick={() => setModalShow(true)}>
         Add New Device
       </button>
-      <AddNewDeviceModal show={modalShow}
-        onHide={() => setModalShow(false)} />
+      <AddNewDeviceModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        createnew={true}
+      />
 
     </div>
   );

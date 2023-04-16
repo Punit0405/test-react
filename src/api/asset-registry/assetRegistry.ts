@@ -44,6 +44,19 @@ const AssetRegistryService = {
         } catch (error) {
             throw error;
         }
+    },
+    updateDevice: async (deviceId: string, data: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.update({
+                url: `asset/${deviceId}`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
     }
 }
 

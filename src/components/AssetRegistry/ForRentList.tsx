@@ -65,10 +65,7 @@ const ForRentList: FunctionComponent = () => {
             {
               list && list.length ? list.map((product: any) => (
                 <DeviceListRowComponent
-                  deviceName={product?.nickName}
-                  deviceType={deviceListName[product?.type]}
-                  status={product?.status}
-                  lastModified={product?.updatedAt}
+                  product={product}
                 />
               ))
                 :

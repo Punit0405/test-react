@@ -11,22 +11,26 @@ import { NotificationWithIcon } from "../../Utils/helper";
 function AddNewDeviceModal(props: any) {
 
     let formInitialValues = {
-        type: "CELL_PHONE" as string,
-        nickName: "" as string,
-        deviceID: "" as string,
-        deviceAmount: "" as string
+        type: props?.details?.type ? props?.details?.type : "CELL_PHONE" as string,
+        nickName: props?.details?.nickName ? props?.details?.nickName as string : "" as string,
+        deviceID: props?.details?.deviceID ? props?.details?.deviceID as string : "" as string,
+        deviceAmount: props?.details?.deviceAmount ? props?.details?.deviceAmount as string : "" as string
     }
 
     const [loader, setLoader] = useState<boolean>(false);
 
     const handleSubmit = async (values: any) => {
-        setLoader(true);
         try {
-            const res = await AssetRegistryService.createDevice(values)
-            if (res && res?.code === STATUS_CODE.SUCCESS) {
-                setLoader(false);
-                NotificationWithIcon("success", "Device added")
-                props.onHide()
+            if (props?.createnew) {
+                setLoader(true);
+                const res = await AssetRegistryService.createDevice(values)
+                if (res && res?.code === STATUS_CODE.SUCCESS) {
+                    setLoader(false);
+                    NotificationWithIcon("success", "Device added")
+                    props.onHide()
+                }
+            } else {
+                props.updateDevice(values)
             }
         } catch (err: any) {
             setLoader(false);
@@ -134,7 +138,9 @@ function AddNewDeviceModal(props: any) {
                                 {
                                     loader ?
                                         <Button className={styles.createbtn} variant="custom" disabled type="submit">Adding...</Button> :
-                                        <Button className={styles.createbtn} variant="custom" type="submit">Add</Button>
+                                        props.createnew ?
+                                            <Button className={styles.createbtn} variant="custom" type="submit">Add</Button> :
+                                            <Button className={styles.createbtn} variant="custom" type="submit">Save</Button>
                                 }
                             </div>
 

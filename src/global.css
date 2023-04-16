@@ -233,6 +233,10 @@ a:-webkit-any-link {
   cursor: pointer;
 }
 
+.assetellipsis {
+  cursor: pointer;
+}
+
 .ant-spin-dot-item {
   background-color: #ec1a25 !important;
   font-size: 2rem !important;
@@ -391,12 +395,19 @@ a:-webkit-any-link {
   margin-right: 2px;
 }
 
-.sidebarselecticon{
+.sidebarselecticon {
   font-size: 0.7rem;
   margin-right: 2px;
 }
 
 .navicons {
+  margin-top: 3%;
+  width: 18%;
+  margin-left: -3%;
+  font-size: 0.9rem;
+}
+
+.assetediticons {
   margin-top: 3%;
   width: 18%;
   margin-left: -3%;
@@ -720,6 +731,7 @@ a:-webkit-any-link {
   cursor: pointer;
   z-index: 3;
 }
+
 .clientDownloadBtn {
   margin: 2% 3.3%;
   float: right;
@@ -728,4 +740,3 @@ a:-webkit-any-link {
   cursor: pointer;
   z-index: 3;
 }
-
