@@ -233,6 +233,24 @@ a:-webkit-any-link {
   cursor: pointer;
 }
 
+a:-webkit-any-link:active {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+a:-webkit-any-link:hover {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+a:-webkit-any-link:focus {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
 .assetellipsis {
   cursor: pointer;
 }
@@ -412,6 +430,10 @@ a:-webkit-any-link {
   width: 18%;
   margin-left: -3%;
   font-size: 0.9rem;
+}
+
+.topdrop {
+  margin: 3px;
 }
 
 @media screen and (max-width: 1000px) {

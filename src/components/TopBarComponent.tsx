@@ -92,7 +92,12 @@ const TopBarComponent: FunctionComponent = () => {
                     </Ratio>
                     <NavDropdown
                         align="end"
-                        title={`${firstName} ${lastName}`} className={styles.navdropdown} id="collasible-nav-dropdown">
+                        title={
+                            <div className={styles.topdrop}>
+                                <div>{firstName} {lastName}</div>
+                                <i className="fa-solid fa-caret-down topdrop"></i>
+                            </div>}
+                        className={styles.navdropdown} id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Branding</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
                             Profile
