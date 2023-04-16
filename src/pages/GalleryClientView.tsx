@@ -66,7 +66,7 @@ const GalleryClientView = () => {
       const a = document.createElement("a");
       a.style.display = "none";
       document.body.appendChild(a);
-      const response = await CollectionService.downloadCollection({ pin: pin }, 30);
+      const response = await CollectionService.downloadCollection({ pin: pin }, basicCollectionDetails?.id);
       console.log(response, '-------response-----------');
 
       setPinModalShow(false)

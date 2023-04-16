@@ -1,5 +1,5 @@
 import { request, requestWithHeaders } from "./request";
- function get(url: string, headers: any) {
+function get(url: string, headers: any) {
   return request({
     method: "GET",
     url,
@@ -49,8 +49,12 @@ function downloadPost<T = any>({ url, data }: { url?: string; data: T }, headers
     url,
     data,
     headers,
-    responseType:"blob"
-
+    responseType: "blob",
+    onDownloadProgress: (progressEvent) => {
+      console.log("---------test-----");
+      console.log("====progressEvent=====", progressEvent);
+      console.log("==============");
+    }
   });
 }
 
