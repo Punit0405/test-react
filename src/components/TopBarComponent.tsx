@@ -34,7 +34,7 @@ const TopBarComponent: FunctionComponent = () => {
         }]
     };
     useEffect(() => {
-        getUserStorage()
+        // getUserStorage()
     }, [])
 
 

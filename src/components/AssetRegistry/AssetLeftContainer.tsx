@@ -30,58 +30,77 @@ const AssetLeftContainer: FunctionComponent = () => {
 
       <div className={styles.buttoncontainres}>
 
-        <button
-          className={styles.leftDivButtonWithoutColor}
-          onClick={() => { handleClick(1) }}
-          style={active === 1 ? activeStyle : {}}
-        >
-          {
-            active === 1 ? <i className="fa-regular fa-house setsizeasset"></i> :
-              <i className="fa-regular fa-house setcolor"></i>
-          }
-          <Link to="">
+        <Link to="" className={styles.btndiv}>
+          <button
+            className={styles.leftDivButtonWithoutColor}
+            onClick={() => { handleClick(1) }}
+            style={active === 1 ? activeStyle : {}}
+          >
+            {
+              active === 1 ? <i className="fa-regular fa-house setsizeasset"></i> :
+                <i className="fa-regular fa-house setcolor"></i>
+            }
             <div className={styles.leftDivButtonText} style={active === 1 ? activeText : {}}>Dashboard</div>
-          </Link>
 
-        </button>
+          </button>
+        </Link>
 
-        <button
-          className={styles.leftDivButtonWithoutColor}
-          onClick={() => { handleClick(2) }}
-          style={active === 2 ? activeStyle : {}}
-        >
-          {
-            active === 2 ? <i className="fa-light fa-envelope setsizeasset"></i> :
-              <i className="fa-light fa-envelope setcolor"></i>
-          }
-          <Link to="device-list">
+        <Link to="device-list" className={styles.btndiv}>
+          <button
+            className={styles.leftDivButtonWithoutColor}
+            onClick={() => { handleClick(2) }}
+            style={active === 2 ? activeStyle : {}}
+          >
+            {
+              active === 2 ? <i className="fa-light fa-envelope setsizeasset"></i> :
+                <i className="fa-light fa-envelope setcolor"></i>
+            }
             <div className={styles.leftDivButtonText} style={active === 2 ? activeText : {}}>My Devices</div>
-          </Link>
-        </button>
+          </button>
+        </Link>
 
-        <button
-          className={styles.leftDivButtonWithoutColor}
-          onClick={() => { handleClick(3) }}
-          style={active === 3 ? activeStyle : {}}
-        >
-          {
-            active === 3 ? <i className="fa-regular fa-user setsizeasset"></i> :
-              <i className="fa-regular fa-user setcolor"></i>
-          }
-          <Link to="get-cover">
+        <Link to="get-cover" className={styles.btndiv}>
+          <button
+            className={styles.leftDivButtonWithoutColor}
+            onClick={() => { handleClick(3) }}
+            style={active === 3 ? activeStyle : {}}
+          >
+            {
+              active === 3 ? <i className="fa-regular fa-user setsizeasset"></i> :
+                <i className="fa-regular fa-user setcolor"></i>
+            }
             <div className={styles.leftDivButtonText} style={active === 3 ? activeText : {}}>Get Cover</div>
-          </Link>
-        </button>
-        <button className={styles.leftDivButtonWithoutColor}>
-          <i className="fa-regular fa-circle-dollar setcolor"></i>
-          <Link to="for-sale">
-            <div className={styles.leftDivButtonText}>Products For Sale</div>
-          </Link>
-        </button>
-        <button className={styles.leftDivButtonWithoutColor}>
-          <i className="fa-regular fa-grid-2 setcolor"></i>
-          <div className={styles.leftDivButtonText}>Products For Rent</div>
-        </button>
+          </button>
+        </Link>
+        <Link to="for-sale" className={styles.btndiv}>
+          <button
+            className={styles.leftDivButtonWithoutColor}
+            onClick={() => { handleClick(4) }}
+            style={active === 4 ? activeStyle : {}}
+          >
+            {
+              active === 4 ?
+                <i className="fa-regular fa-circle-dollar setsizeasset"></i> :
+                <i className="fa-regular fa-circle-dollar setcolor"></i>
+            }
+
+            <div className={styles.leftDivButtonText} style={active === 4 ? activeText : {}}>Products For Sale</div>
+          </button>
+        </Link>
+        <Link to="for-rent" className={styles.btndiv}>
+          <button
+            className={styles.leftDivButtonWithoutColor}
+            onClick={() => { handleClick(5) }}
+            style={active === 5 ? activeStyle : {}}
+          >
+            {
+              active === 5 ?
+                <i className="fa-regular fa-grid-2 setsizeasset"></i> :
+                <i className="fa-regular fa-grid-2 setcolor"></i>
+            }
+            <div className={styles.leftDivButtonText} style={active === 5 ? activeText : {}}>Products For Rent</div>
+          </button>
+        </Link>
       </div>
     </section>
   );
