@@ -1,14 +1,52 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import AssetActiveComp from "./AssetActiveComp";
 import AssetNavBar from "./AssetNavBar";
 import AssetTableNameComp from "./AssetTableNameComp";
 import styles from "./DeviceList.module.css";
 import DeviceListRowComponent from "./DeviceListRowComponent";
+import AssetRegistryService from "../../api/asset-registry/assetRegistry";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
+import { useNavigate } from "react-router-dom";
 
 
 
 const ForSaleList: FunctionComponent = () => {
+
+  const deviceListName: any = {
+    CELL_PHONE: "Cell Phone",
+    CAMERA: "Camera",
+    SCREEN: "Screen",
+    PRINTER: "Printer"
+  }
+
+  const navigate = useNavigate();
+
+
+  const [list, setList]: any = useState([])
+
+  useEffect(() => {
+    getList()
+  }, [])
+
+  const getList = async () => {
+    try {
+      const res = await AssetRegistryService.getDeviceList("For Sale")
+      if (res && res?.code === STATUS_CODE.SUCCESS) {
+        setList(res?.result)
+      }
+    } catch (err: any) {
+      if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+        NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+        navigate('/');
+      } else {
+        NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+      }
+    }
+  }
+
+
   return (
     <section className={styles.rightcontainer}>
       <AssetNavBar navTitle="My Devices" />
@@ -24,15 +62,19 @@ const ForSaleList: FunctionComponent = () => {
             </tr>
           </thead>
           <tbody>
-            <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale" lastModified="10 days ago" />
-            <DeviceListRowComponent deviceName="iPhone 14 Pro Max" deviceType="Phone" status="For Sale" lastModified="10 days ago" />
-            <DeviceListRowComponent deviceName="Samsung OLED" deviceType="Screen" status="For Sale" lastModified="10 days ago" />
-            <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale" lastModified="10 days ago" />
-            <DeviceListRowComponent deviceName="iPhone 14 Pro Max" deviceType="Phone" status="For Sale" lastModified="10 days ago" />
-            <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale" lastModified="10 days ago" />
-            <DeviceListRowComponent deviceName="iPhone 14 Pro Max" deviceType="Phone" status="For Sale" lastModified="10 days ago" />
-            <DeviceListRowComponent deviceName="Samsung OLED" deviceType="Screen" status="For Sale" lastModified="10 days ago" />
-            <DeviceListRowComponent deviceName="Canon 60D" deviceType="Camera" status="For Sale" lastModified="10 days ago" />
+            {
+              list && list.length ? list.map((product: any) => (
+                <DeviceListRowComponent
+                  deviceName={product?.nickName}
+                  deviceType={deviceListName[product?.type]}
+                  status={product?.status}
+                  lastModified={product?.updatedAt}
+                />
+              ))
+                :
+                <>
+                </>
+            }
           </tbody>
         </Table>
       </div>

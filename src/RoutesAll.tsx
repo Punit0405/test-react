@@ -40,6 +40,7 @@ import BillingSideBar from "./components/StudioManagement/BillingSideBar";
 import Setting from "./pages/Setting";
 import BillingComponent from "./components/StudioManagement/BillingComponent";
 import StudioDashBoard from "./components/StudioManagement/StudioDashBoard";
+import ForRentList from "./components/AssetRegistry/ForRentList";
 
 
 function RoutesAll() {
@@ -71,7 +72,7 @@ function RoutesAll() {
                     <Route path="device-list" element={<AssetDeviceList />}></Route>
                     <Route path="for-sale" element={<ForSaleList />}></Route>
                     <Route path="get-cover" element={<GetCover />}></Route>
-                    <Route path="for-rent" element={<ForSaleList />}></Route>
+                    <Route path="for-rent" element={<ForRentList />}></Route>
                 </Route>
                 <Route path="/music" element={<Music />} />
                 <Route path="/music/downloads" element={<MusicDownloadList />} />

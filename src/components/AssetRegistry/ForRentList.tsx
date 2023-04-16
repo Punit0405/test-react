@@ -7,11 +7,12 @@ import styles from "./DeviceList.module.css";
 import DeviceListRowComponent from "./DeviceListRowComponent";
 import AssetRegistryService from "../../api/asset-registry/assetRegistry";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
-import { NotificationWithIcon } from "../../Utils/helper";
 import { useNavigate } from "react-router-dom";
-import Moment from "react-moment";
+import { NotificationWithIcon } from "../../Utils/helper";
 
-const AssetDeviceList: any = () => {
+
+
+const ForRentList: FunctionComponent = () => {
 
   const deviceListName: any = {
     CELL_PHONE: "Cell Phone",
@@ -22,6 +23,7 @@ const AssetDeviceList: any = () => {
 
   const navigate = useNavigate();
 
+
   const [list, setList]: any = useState([])
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const AssetDeviceList: any = () => {
 
   const getList = async () => {
     try {
-      const res = await AssetRegistryService.getDeviceList()
+      const res = await AssetRegistryService.getDeviceList("For Rent")
       if (res && res?.code === STATUS_CODE.SUCCESS) {
         setList(res?.result)
       }
@@ -43,6 +45,7 @@ const AssetDeviceList: any = () => {
       }
     }
   }
+
 
   return (
     <section className={styles.rightcontainer}>
@@ -81,4 +84,4 @@ const AssetDeviceList: any = () => {
   );
 };
 
-export default AssetDeviceList;
+export default ForRentList;
