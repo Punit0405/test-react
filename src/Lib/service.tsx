@@ -1,5 +1,5 @@
 import { request, requestWithHeaders } from "./request";
- function get(url: string, headers: any) {
+function get(url: string, headers: any) {
   return request({
     method: "GET",
     url,
@@ -43,14 +43,16 @@ function removeWithBody<T = any>({ url, data }: { url?: string; data: T }, heade
     headers,
   });
 }
-function downloadPost<T = any>({ url, data }: { url?: string; data: T }, headers?: any) {
+function downloadPost<T = any>({ url, data }: { url?: string; data: T }, headers?: any, setDownloadPer?: any) {
   return requestWithHeaders({
     method: "POST",
     url,
     data,
     headers,
-    responseType:"blob"
-
+    responseType: "blob",
+    onDownloadProgress: (progressEvent) => {
+      setDownloadPer(progressEvent?.loaded)
+    }
   });
 }
 

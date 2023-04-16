@@ -1,37 +1,22 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import AssetNavBar from "./AssetNavBar";
 import styles from "./AssetDashboardMain.module.css";
 import { PieChart } from 'react-minimal-pie-chart';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js'
 import AssetRegisteryChartComp from "./AssetRegisteryChartComp";
+import AssetRegistryService from "../../api/asset-registry/assetRegistry";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
+import { useNavigate } from "react-router-dom";
 Chart.register(ArcElement);
-{/* <PieChart
-        paddingAngle={1}
-        animate={true}
-        radius={50}
-      onClick={(_, index) => {
-        setSelected(index === selected ? undefined : index);
-      }}
-      onMouseOver={(_, index) => {
-        setHovered(index);
-      }}
-      onMouseOut={() => {
-        setHovered(undefined);
-      }}
-        data={[
-         { title: 'Cell Phone', value: 30, color: '#EC1A25' },
-         { title: 'Camera', value: 34, color: '#F9B91B' },
-         { title: 'Screen', value: 6, color: '#FF569A' },
-         { title: 'Printer', value: 30, color: '#252525' },
-         ]}
-/> */}
-
-
 
 const AssetDashboardMain: FunctionComponent = () => {
   const [selected, setSelected] = useState<number | undefined>(0);
   const [hovered, setHovered] = useState<number | undefined>(undefined);
+  const [totalAmount, setTotalAmount] = useState(0)
+  const [summary, setSummary] = useState({ active: '0', sale: '0', lost: '0', rent: '0' })
+  const navigate = useNavigate();
   const data = {
     labels: [
       'Cell Phone',
@@ -52,6 +37,58 @@ const AssetDashboardMain: FunctionComponent = () => {
 
     }]
   };
+  const [categoryData, setCategoryData]: any = useState({})
+  const [graphData, setGraphData] = useState(data)
+
+  const getDashboardData = async () => {
+    try {
+      const res = await AssetRegistryService.getDashBoardData()
+      if (res && res?.code === STATUS_CODE.SUCCESS) {
+        setCategoryData(res?.result?.categoryData)
+        setSummary(res?.result?.summary)
+        setTotalAmount(res?.result?.totalAssetAmount)
+        setGraphData(
+          {
+            labels: [
+              'Cell Phone',
+              'Camera',
+              'Screen',
+              'Printer'
+            ],
+            datasets: [{
+              label: 'Summary Section',
+              data: [
+                res?.result?.categoryData?.cell_phone,
+                res?.result?.categoryData?.camera,
+                res?.result?.categoryData?.screen,
+                res?.result?.categoryData?.printer
+              ],
+              backgroundColor: [
+                '#EC1A25',
+                '#F9B91B',
+                '#FF569A',
+                '#252525'
+              ],
+              hoverOffset: 10,
+
+            }]
+          }
+        )
+      }
+    } catch (err: any) {
+      if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+        NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+        navigate('/');
+      } else {
+        NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+      }
+    }
+  }
+
+  useEffect(() => {
+    getDashboardData()
+  }, [])
+
   return (
     <section className={styles.rightcontainer}>
       <AssetNavBar navTitle="Dashboard" />
@@ -60,7 +97,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div className={styles.deviceNumber}>4</div>
+              <div className={styles.deviceNumber}>{summary?.active ? summary?.active : 0}</div>
             </div>
             <i className="fa-solid fa-2xl fa-display"></i>
           </div>
@@ -68,8 +105,8 @@ const AssetDashboardMain: FunctionComponent = () => {
         <div className={styles.deviceCard2}>
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
-              <div className={styles.devicesListed}>Devices Listed</div>
-              <div className={styles.deviceNumber}>4</div>
+              <div className={styles.devicesListed}>Devices For Sale</div>
+              <div className={styles.deviceNumber}>{summary?.lost ? summary?.lost : 0}</div>
             </div>
             <i className="fa-regular fa-2xl fa-circle-dollar setcolor"></i>
           </div>
@@ -77,8 +114,8 @@ const AssetDashboardMain: FunctionComponent = () => {
         <div className={styles.deviceCard2}>
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
-              <div className={styles.devicesListed}>Devices Listed</div>
-              <div className={styles.deviceNumber}>4</div>
+              <div className={styles.devicesListed}>Devices Rented Out</div>
+              <div className={styles.deviceNumber}>{summary?.rent ? summary?.rent : 0}</div>
             </div>
             <i className="fa-sharp  fa-2xl  fa-regular fa-arrow-up-from-line setcolor"></i>
           </div>
@@ -86,8 +123,8 @@ const AssetDashboardMain: FunctionComponent = () => {
         <div className={styles.deviceCard2}>
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
-              <div className={styles.devicesListed}>Devices Listed</div>
-              <div className={styles.deviceNumber}>4</div>
+              <div className={styles.devicesListed}>Devices Lost</div>
+              <div className={styles.deviceNumber}>{summary?.sale ? summary?.sale : 0}</div>
             </div>
             <i className="fa-regular fa-lock-keyhole  fa-2xl  setcolor"></i>
           </div>
@@ -96,20 +133,28 @@ const AssetDashboardMain: FunctionComponent = () => {
       <div className={styles.summarySection}>
         <div className={styles.priceBox}>
           <p>Total Device Value</p>
-          <h3>R 36000</h3>
+          <h3>R {totalAmount}</h3>
         </div>
         <div className={styles.chartDiv}>
           <div>
-            <Doughnut data={data} />
+            <Doughnut data={graphData} />
           </div>
           <div className={styles.categorysection}>
             <div className={styles.cellphoneParent}>
-              <AssetRegisteryChartComp percentage="30%" backgroundColor="#EC1A25" categoryTitle="Cell Phone" />
-              <AssetRegisteryChartComp percentage="34%" backgroundColor="#F9B91B" categoryTitle="Camera" />
+              <AssetRegisteryChartComp
+                percentage={categoryData?.cell_phone ? `${categoryData?.cell_phone}%` : '0%'}
+                backgroundColor="#EC1A25" categoryTitle="Cell Phone" />
+              <AssetRegisteryChartComp
+                percentage={categoryData?.camera ? `${categoryData?.camera}%` : '0%'}
+                backgroundColor="#F9B91B" categoryTitle="Camera" />
             </div>
             <div className={styles.cellphoneParent}>
-              <AssetRegisteryChartComp percentage="6%" backgroundColor="#FF569A" categoryTitle="Screen" />
-              <AssetRegisteryChartComp percentage="30%" backgroundColor="#252525" categoryTitle="Printer" />
+              <AssetRegisteryChartComp
+                percentage={categoryData?.screen ? `${categoryData?.screen}%` : '0%'}
+                backgroundColor="#FF569A" categoryTitle="Screen" />
+              <AssetRegisteryChartComp
+                percentage={categoryData?.printer ? `${categoryData?.printer}%` : '0%'}
+                backgroundColor="#252525" categoryTitle="Printer" />
 
             </div>
           </div>

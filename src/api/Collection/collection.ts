@@ -136,7 +136,7 @@ const CollectionService = {
             throw error
         }
     },
-    downloadFile: async (data: any,id:any) => {
+    downloadFile: async (data: any, id: any) => {
         try {
             const token = await getUserToken()
             return Service.downloadPost({
@@ -149,15 +149,15 @@ const CollectionService = {
             throw error
         }
     },
-    downloadCollection: async (data: any,id:any) => {
+    downloadCollection: async (data: any, id: any, setDownloadPer: any) => {
         try {
             const token = await getUserToken()
             return Service.downloadPost({
                 url: `client/download-collection/${id}`,
-                data: data
+                data: data,
             }, {
                 authorization: token,
-            })
+            }, setDownloadPer)
         } catch (error) {
             throw error
         }

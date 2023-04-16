@@ -17,10 +17,14 @@ const AssetRegistryService = {
             throw error;
         }
     },
-    getDeviceList: async (data: any) => {
+    getDeviceList: async (data?: any) => {
         const token = await getUserToken()
         try {
-            return await Service.get('asset',
+            let url = 'asset'
+            if (data) {
+                url = `asset?status=${data}`
+            }
+            return await Service.get(url,
                 {
                     authorization: token,
                 }
@@ -29,6 +33,31 @@ const AssetRegistryService = {
             throw error;
         }
     },
+    getDashBoardData: async () => {
+        const token = await getUserToken()
+        try {
+            return await Service.get('asset/dashboard',
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    },
+    updateDevice: async (deviceId: string, data: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.update({
+                url: `asset/${deviceId}`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 export default AssetRegistryService;

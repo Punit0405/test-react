@@ -233,6 +233,28 @@ a:-webkit-any-link {
   cursor: pointer;
 }
 
+a:-webkit-any-link:active {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+a:-webkit-any-link:hover {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+a:-webkit-any-link:focus {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.assetellipsis {
+  cursor: pointer;
+}
+
 .ant-spin-dot-item {
   background-color: #ec1a25 !important;
   font-size: 2rem !important;
@@ -391,7 +413,7 @@ a:-webkit-any-link {
   margin-right: 2px;
 }
 
-.sidebarselecticon{
+.sidebarselecticon {
   font-size: 0.7rem;
   margin-right: 2px;
 }
@@ -401,6 +423,17 @@ a:-webkit-any-link {
   width: 18%;
   margin-left: -3%;
   font-size: 0.9rem;
+}
+
+.assetediticons {
+  margin-top: 3%;
+  width: 18%;
+  margin-left: -3%;
+  font-size: 0.9rem;
+}
+
+.topdrop {
+  margin: 3px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -720,6 +753,7 @@ a:-webkit-any-link {
   cursor: pointer;
   z-index: 3;
 }
+
 .clientDownloadBtn {
   margin: 2% 3.3%;
   float: right;
@@ -728,4 +762,3 @@ a:-webkit-any-link {
   cursor: pointer;
   z-index: 3;
 }
-

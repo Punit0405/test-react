@@ -22,6 +22,7 @@ const GalleryClientView = () => {
   const [pinModalShow, setPinModalShow] = useState(false);
   const [collectionFound, setCollectionFoung] = useState(true)
   const [startSlideShow, setStartSlideShow] = useState(false)
+  const [downloadPer, setDownloadPer] = useState(0)
   const clientState = useSelector((state: any) => state.clientCollectionViewReducer);
   const dispatch = useDispatch();
   const params = useParams();
@@ -61,14 +62,15 @@ const GalleryClientView = () => {
     }
   }
 
+  console.log(downloadPer, '------downloadPer-------');
+
+
   const donwloadCollection = async (pin: any) => {
     try {
       const a = document.createElement("a");
       a.style.display = "none";
       document.body.appendChild(a);
-      const response = await CollectionService.downloadCollection({ pin: pin }, 30);
-      console.log(response, '-------response-----------');
-
+      const response = await CollectionService.downloadCollection({ pin: pin }, basicCollectionDetails?.id, setDownloadPer)
       setPinModalShow(false)
       NotificationWithIcon("success", "Collection downloading.")
       const blobFile = new Blob([response?.data], { type: "application/zip" });
