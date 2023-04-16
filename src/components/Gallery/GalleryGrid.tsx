@@ -51,9 +51,12 @@ const GalleryGrid: FunctionComponent = () => {
             </div>
             <Row className={styles.maincomp}>
                 {
-                    collection && collection.map((singleCollection: any) => (
-                        <GalleryGridCard collectionData={singleCollection} refreshFunction={getCollectionList}  key={singleCollection?.id} />
-                    ))
+                    collection && collection.length ? collection.map((singleCollection: any) => (
+                        <GalleryGridCard collectionData={singleCollection} refreshFunction={getCollectionList} key={singleCollection?.id} />
+                    )) :
+                        <div className={styles.nocollection}>
+                            No collection found
+                        </div>
                 }
 
             </Row>
