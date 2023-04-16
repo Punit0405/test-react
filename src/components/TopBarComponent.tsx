@@ -118,7 +118,7 @@ const TopBarComponent: FunctionComponent = () => {
                                                     backgroundColor="#EC1A25"
                                                     categoryTitle="Used" />
                                                 <AssetRegisteryChartComp
-                                                    percentage={`${storage.usedSpace} GB`}
+                                                    percentage={`${storage.usedSpace} MB`}
                                                     backgroundColor="#EC1A25"
                                                     categoryTitle="Used" />
                                             </div>
@@ -128,7 +128,7 @@ const TopBarComponent: FunctionComponent = () => {
                                                     backgroundColor="#D9D9D9"
                                                     categoryTitle="Remaining" />
                                                 <AssetRegisteryChartComp
-                                                    percentage={storage.remainingSpace > 3000 ? '3.00 GB' : `${storage.remainingSpace} GB`}
+                                                    percentage={storage.remainingSpace > 3000 ? '3.00 GB' : `${storage.remainingSpace} MB`}
                                                     backgroundColor="#D9D9D9"
                                                     categoryTitle="Remaining" />
                                             </div>
@@ -137,7 +137,7 @@ const TopBarComponent: FunctionComponent = () => {
                                 </Popover>
                             }
                         >
-                            <Button variant="custom" className={styles.stroageBtn}>View Storage</Button>
+                            <Button variant="custom" onClick={getUserStorage} className={styles.stroageBtn}>View Storage</Button>
                         </OverlayTrigger>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={() => logoutFunction()}>
