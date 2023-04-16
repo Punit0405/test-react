@@ -16,7 +16,6 @@ const AssetDashboardMain: FunctionComponent = () => {
   const [hovered, setHovered] = useState<number | undefined>(undefined);
   const [totalAmount, setTotalAmount] = useState(0)
   const [summary, setSummary] = useState({ active: '0', sale: '0', lost: '0', rent: '0' })
-  const [categoryData, setCategoryData] = useState([])
   const navigate = useNavigate();
   const data = {
     labels: [
@@ -38,6 +37,8 @@ const AssetDashboardMain: FunctionComponent = () => {
 
     }]
   };
+  const [categoryData, setCategoryData]: any = useState({})
+  const [graphData, setGraphData] = useState(data)
 
   const getDashboardData = async () => {
     try {
@@ -46,20 +47,33 @@ const AssetDashboardMain: FunctionComponent = () => {
         setCategoryData(res?.result?.categoryData)
         setSummary(res?.result?.summary)
         setTotalAmount(res?.result?.totalAssetAmount)
-        const summaryInfo: any = {}
+        setGraphData(
+          {
+            labels: [
+              'Cell Phone',
+              'Camera',
+              'Screen',
+              'Printer'
+            ],
+            datasets: [{
+              label: 'Summary Section',
+              data: [
+                res?.result?.categoryData?.cell_phone,
+                res?.result?.categoryData?.camera,
+                res?.result?.categoryData?.screen,
+                res?.result?.categoryData?.printer
+              ],
+              backgroundColor: [
+                '#EC1A25',
+                '#F9B91B',
+                '#FF569A',
+                '#252525'
+              ],
+              hoverOffset: 10,
 
-        const activeObj = (res?.result?.summary).find((obj: any) => obj.status === 'Active')
-        summaryInfo.active = activeObj?.devices ? activeObj?.devices : '0'
-        const saleObj = (res?.result?.summary).find((obj: any) => obj.status === 'For Sale')
-        summaryInfo.sale = saleObj?.devices ? saleObj?.devices : '0'
-        const lostObj = (res?.result?.summary).find((obj: any) => obj.status === 'Lost')
-        summaryInfo.lost = lostObj?.devices ? lostObj?.devices : '0'
-        const rentObj = (res?.result?.summary).find((obj: any) => obj.status === 'For Rent')
-        summaryInfo.rent = rentObj?.devices ? rentObj?.devices : '0'
-        setSummary(summaryInfo)
-
-
-
+            }]
+          }
+        )
       }
     } catch (err: any) {
       if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -83,7 +97,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Listed</div>
-              <div className={styles.deviceNumber}>{summary?.active}</div>
+              <div className={styles.deviceNumber}>{summary?.active ? summary?.active : 0}</div>
             </div>
             <i className="fa-solid fa-2xl fa-display"></i>
           </div>
@@ -92,7 +106,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices For Sale</div>
-              <div className={styles.deviceNumber}>{summary?.lost}</div>
+              <div className={styles.deviceNumber}>{summary?.lost ? summary?.lost : 0}</div>
             </div>
             <i className="fa-regular fa-2xl fa-circle-dollar setcolor"></i>
           </div>
@@ -101,7 +115,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Rented Out</div>
-              <div className={styles.deviceNumber}>{summary?.rent}</div>
+              <div className={styles.deviceNumber}>{summary?.rent ? summary?.rent : 0}</div>
             </div>
             <i className="fa-sharp  fa-2xl  fa-regular fa-arrow-up-from-line setcolor"></i>
           </div>
@@ -110,7 +124,7 @@ const AssetDashboardMain: FunctionComponent = () => {
           <div className={styles.frameParent}>
             <div className={styles.devicesListedParent}>
               <div className={styles.devicesListed}>Devices Lost</div>
-              <div className={styles.deviceNumber}>{summary?.sale}</div>
+              <div className={styles.deviceNumber}>{summary?.sale ? summary?.sale : 0}</div>
             </div>
             <i className="fa-regular fa-lock-keyhole  fa-2xl  setcolor"></i>
           </div>
@@ -123,16 +137,24 @@ const AssetDashboardMain: FunctionComponent = () => {
         </div>
         <div className={styles.chartDiv}>
           <div>
-            <Doughnut data={data} />
+            <Doughnut data={graphData} />
           </div>
           <div className={styles.categorysection}>
             <div className={styles.cellphoneParent}>
-              <AssetRegisteryChartComp percentage="30%" backgroundColor="#EC1A25" categoryTitle="Cell Phone" />
-              <AssetRegisteryChartComp percentage="34%" backgroundColor="#F9B91B" categoryTitle="Camera" />
+              <AssetRegisteryChartComp
+                percentage={categoryData?.cell_phone ? `${categoryData?.cell_phone}%` : '0%'}
+                backgroundColor="#EC1A25" categoryTitle="Cell Phone" />
+              <AssetRegisteryChartComp
+                percentage={categoryData?.camera ? `${categoryData?.camera}%` : '0%'}
+                backgroundColor="#F9B91B" categoryTitle="Camera" />
             </div>
             <div className={styles.cellphoneParent}>
-              <AssetRegisteryChartComp percentage="6%" backgroundColor="#FF569A" categoryTitle="Screen" />
-              <AssetRegisteryChartComp percentage="30%" backgroundColor="#252525" categoryTitle="Printer" />
+              <AssetRegisteryChartComp
+                percentage={categoryData?.screen ? `${categoryData?.screen}%` : '0%'}
+                backgroundColor="#FF569A" categoryTitle="Screen" />
+              <AssetRegisteryChartComp
+                percentage={categoryData?.printer ? `${categoryData?.printer}%` : '0%'}
+                backgroundColor="#252525" categoryTitle="Printer" />
 
             </div>
           </div>
