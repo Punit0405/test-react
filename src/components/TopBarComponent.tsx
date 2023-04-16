@@ -8,35 +8,50 @@ import AssetRegisteryChartComp from "./AssetRegistry/AssetRegisteryChartComp";
 import DashboardService from "../api/Dashboard/dashboard";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../Utils/constants";
 import SimpleLoader from "./Loader/SimpleLoader";
+import { useDispatch, useSelector } from "react-redux";
+import { storageAction } from "../redux/actions/dashboardAction";
+import { log } from "console";
 
 const TopBarComponent: FunctionComponent = () => {
     const { firstName, lastName } = getNameAndProfile()
     const [storage, setStorage]: any = useState({})
     const [graph, setGraph]: any = useState({})
     const navigate = useNavigate();
+    const myState = useSelector((state: any) => state?.changeStorage)
+    const dispatch = useDispatch()
     const logoutFunction = () => {
         localStorage.removeItem("accessToken");
         navigate("/");
     }
-    const data = {
-        labels: [
-            'Total',
-            'Used'
-        ],
-        datasets: [{
-            label: 'Summary Section',
-            data: [70, 30],
-            backgroundColor: [
-                '#EC1A25',
-                '#D9D9D9',
-            ],
-            hoverOffset: 10,
-
-        }]
-    };
     useEffect(() => {
-        // getUserStorage()
+        getUserStorage()
     }, [])
+
+    useEffect(() => {
+        setReduxStorage()
+    }, [myState])
+
+    const setReduxStorage = () => {
+        setGraph({
+            labels: [
+                'Total',
+                'Used'
+            ],
+            datasets: [{
+                label: 'Summary Section',
+                data: [
+                    myState?.storage?.usedSpace / myState?.storage?.totalAllowedSpace,
+                    myState?.storage?.remainingSpace / myState?.storage?.totalAllowedSpace
+                ],
+                backgroundColor: [
+                    '#EC1A25',
+                    '#D9D9D9',
+                ],
+                hoverOffset: 10,
+
+            }]
+        })
+    }
 
 
     const getUserStorage = async () => {
@@ -44,25 +59,7 @@ const TopBarComponent: FunctionComponent = () => {
             const res = await DashboardService.getUserStorage()
             if (res && res?.code === STATUS_CODE.SUCCESS) {
                 setStorage(res?.result)
-                setGraph({
-                    labels: [
-                        'Total',
-                        'Used'
-                    ],
-                    datasets: [{
-                        label: 'Summary Section',
-                        data: [
-                            res?.result?.usedSpace / res?.result?.totalAllowedSpace,
-                            res?.result?.remainingSpace / res?.result?.totalAllowedSpace
-                        ],
-                        backgroundColor: [
-                            '#EC1A25',
-                            '#D9D9D9',
-                        ],
-                        hoverOffset: 10,
-
-                    }]
-                })
+                dispatch(storageAction({ storage: res?.result }))
             }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
