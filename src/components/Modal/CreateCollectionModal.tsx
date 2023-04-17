@@ -6,14 +6,15 @@ import { collectionValidations } from "../../Utils/validations";
 import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { collectionAction } from "../../redux/actions/collectionAction";
+import moment from "moment";
 
 function CreateCollectionModal(props: any) {
 
     let formInitialValues = {
         name: props?.name as string,
-        eventDate: props?.eventDate as string,
+        eventDate: props?.eventdate as string,
     }
     const dispatch = useDispatch()
     const collectionId = props?.id
@@ -97,7 +98,7 @@ function CreateCollectionModal(props: any) {
                                         <Form.Control
                                             type="date"
                                             name="eventDate"
-                                            value={values.eventDate}
+                                            value={moment(values.eventDate).format('yyyy-MM-DD')}
                                             onChange={handleChange}
                                             isValid={touched.eventDate && !errors.eventDate}
                                             isInvalid={!!errors.eventDate}
@@ -110,7 +111,7 @@ function CreateCollectionModal(props: any) {
                             </div>
                             <div className={styles.buttondiv}>
                                 {
-                                    props.createnew ?
+                                    props.createnew === "true" ?
                                         <Button className={styles.createbtn} variant="custom" type="submit">Create</Button> :
                                         <Button className={styles.createbtn} variant="custom" type="submit">Save</Button>
                                 }

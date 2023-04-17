@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Button, Container, Image, Row, Col, Nav, NavItem, Ratio, NavDropdown } from "react-bootstrap";
+import { Image, Col, Ratio, NavDropdown } from "react-bootstrap";
 import CreateCollectionModal from "../Modal/CreateCollectionModal";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./GalleryGrid.module.css";
 import Moment from "react-moment";
 import 'moment-timezone';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { collectionAction } from "../../redux/actions/collectionAction";
 import DeleteConfirmation from "../Modal/DeleteConfirmation";
 import CollectionService from "../../api/Collection/collection";
@@ -15,8 +15,8 @@ import { NotificationWithIcon } from "../../Utils/helper";
 const GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
 
     const [collection, setCollection] = useState({
-        name: collectionData.name || "",
-        eventDate: collectionData.eventDate || ""
+        name: collectionData?.name || "",
+        eventDate: collectionData?.eventDate || ""
     })
     const dispatch = useDispatch()
 
@@ -98,10 +98,10 @@ const GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
             <CreateCollectionModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                createnew={false}
+                createnew="false"
                 id={collectionData.id}
                 name={collection.name}
-                eventDate={collection.eventDate}
+                eventdate={collection.eventDate}
                 onSubmit={onSubmit}
             />
             <DeleteConfirmation

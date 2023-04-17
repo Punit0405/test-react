@@ -4,12 +4,10 @@ import { useNavigate } from "react-router-dom";
 import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import Loader from "../Loader/Loader";
-import SimpleLoader from "../Loader/SimpleLoader";
 import styles from "./GalleryGrid.module.css";
 import GalleryGridCard from "./GalleryGridCard";
 import GalleryNav from "./GalleryNav";
-
+import CollectionLoader from "../Loader/CollectionLoader";
 
 const GalleryGrid: FunctionComponent = () => {
 
@@ -42,24 +40,30 @@ const GalleryGrid: FunctionComponent = () => {
     }, [])
     return (
         <>
-            {loader && <SimpleLoader />}
             <GalleryNav setCollectionSort={setCollection} setLoaderSort={setLoader} />
             <div className={styles.collectioncount}>
                 <p className={styles.collectioncountdis}>
                     {collection.length} collections
                 </p>
             </div>
-            <Row className={styles.maincomp}>
-                {
-                    collection && collection.length ? collection.map((singleCollection: any) => (
-                        <GalleryGridCard collectionData={singleCollection} refreshFunction={getCollectionList} key={singleCollection?.id} />
-                    )) :
-                        <div className={styles.nocollection}>
-                            No collection found
-                        </div>
-                }
+            {loader ?
+                <CollectionLoader /> :
+                <Row className={styles.maincomp}>
+                    {
+                        collection && collection.length ? collection.map((singleCollection: any) => (
+                            <GalleryGridCard
+                                collectionData={singleCollection}
+                                refreshFunction={getCollectionList}
+                                key={singleCollection?.id}
+                            />
+                        )) :
+                            <div className={styles.nocollection}>
+                                No collection found
+                            </div>
+                    }
 
-            </Row>
+                </Row>
+            }
         </>
     );
 };

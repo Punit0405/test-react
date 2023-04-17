@@ -168,10 +168,10 @@ const StudioSideBar: FunctionComponent = () => {
             <CreateCollectionModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                createnew={false}
+                createnew="false"
                 id={collection.id}
                 name={collection.name}
-                eventDate={collection.eventDate}
+                eventdate={collection.eventDate}
                 onSubmit={onSubmit}
             />
             <PublishCollectionModal
