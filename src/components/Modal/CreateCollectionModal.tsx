@@ -1,4 +1,4 @@
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import styles from "./CreateCollectionModal.module.css";
 import { Formik } from "formik";
@@ -9,6 +9,7 @@ import { NotificationWithIcon } from "../../Utils/helper";
 import { useDispatch } from 'react-redux'
 import { collectionAction } from "../../redux/actions/collectionAction";
 import moment from "moment";
+import { useState } from "react";
 
 function CreateCollectionModal(props: any) {
 
@@ -19,12 +20,16 @@ function CreateCollectionModal(props: any) {
     const dispatch = useDispatch()
     const collectionId = props?.id
 
+    const [loader, setLoader] = useState(false)
+
     const navigate = useNavigate()
     const handleSubmit = async (values: any) => {
+        setLoader(true)
         try {
             if (collectionId) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
+                    setLoader(false)
                     dispatch(collectionAction({ collection: updateRes.result }))
                     props.onSubmit(values)
                     props.onHide()
@@ -32,6 +37,7 @@ function CreateCollectionModal(props: any) {
             } else {
                 const res = await CollectionService.createCollection(values)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
+                    setLoader(false)
                     dispatch(collectionAction({ collection: res.result }))
                     const createId = res?.result?.id
                     navigate(`/gallery/collection/${createId}`)
@@ -108,12 +114,37 @@ function CreateCollectionModal(props: any) {
                                         </Form.Control.Feedback>
                                     </InputGroup>
                                 </Form.Group>
+                                {loader}
                             </div>
                             <div className={styles.buttondiv}>
                                 {
-                                    props.createnew === "true" ?
-                                        <Button className={styles.createbtn} variant="custom" type="submit">Create</Button> :
-                                        <Button className={styles.createbtn} variant="custom" type="submit">Save</Button>
+                                    props.createnew === "true" ? (
+                                        loader ?
+                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />{'  '}
+                                                Creating...
+                                            </Button> :
+                                            < Button className={styles.createbtn} variant="custom" type="submit">Create</Button>
+                                    ) : (
+                                        loader ?
+                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />{'  '}
+                                                Saving...
+                                            </Button> :
+                                            < Button className={styles.createbtn} variant="custom" type="submit">Save</Button>
+                                    )
                                 }
                                 <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>
                             </div>
@@ -121,7 +152,7 @@ function CreateCollectionModal(props: any) {
                     )}
                 </Formik>
             </Modal.Body>
-        </Modal>
+        </Modal >
     );
 }
 

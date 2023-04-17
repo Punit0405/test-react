@@ -12,7 +12,7 @@ import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 
-const GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
+const  GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
 
     const [collection, setCollection] = useState({
         name: collectionData?.name || "",
