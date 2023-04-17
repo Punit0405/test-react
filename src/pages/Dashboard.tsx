@@ -35,8 +35,8 @@ const Dashboard: FunctionComponent = () => {
   })
   const [recent, setRecent] = useState([])
   const [upcoming, setUpcoming] = useState([])
-  const [upcomingLoader,setUpcomingLoader] = useState(true);
-  const [recentLoader,setRecentLoader] = useState(true);
+  const [upcomingLoader, setUpcomingLoader] = useState(true);
+  const [recentLoader, setRecentLoader] = useState(true);
 
   async function getDashboardData() {
     try {
@@ -44,13 +44,13 @@ const Dashboard: FunctionComponent = () => {
         if (res && res?.code === STATUS_CODE.SUCCESS) {
           setSummary(res?.result)
         }
-      }).catch((err)=>{throw err})
+      }).catch((err) => { throw err })
       DashboardService.getRecentCustomer().then((recentRes: any) => {
         if (recentRes && recentRes?.code === STATUS_CODE.SUCCESS) {
           setRecent(recentRes?.result?.recentCustomers)
           setRecentLoader(false);
         }
-      }).catch((err)=>{throw err})
+      }).catch((err) => { throw err })
       const currentDate = moment().format("YYYY-MM-DD")
 
       DashboardService.getUpComingBookings(currentDate).then((upcomingRes: any) => {
@@ -58,7 +58,7 @@ const Dashboard: FunctionComponent = () => {
           setUpcoming(upcomingRes?.result?.recentCustomers);
           setUpcomingLoader(false);
         }
-      }).catch((err)=>{throw err})
+      }).catch((err) => { throw err })
     } catch (err: any) {
       if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
         NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
@@ -81,7 +81,7 @@ const Dashboard: FunctionComponent = () => {
     })
   }
 
-  
+
   return (
     <Layout>
       <>
@@ -108,12 +108,24 @@ const Dashboard: FunctionComponent = () => {
               </div>
               <div className={styles.recentCustomersParent}>
                 <h3 className={styles.recentCustomers}>Recent Customers</h3>
-                {recentLoader ? <SkeletonLoader/>:<RecentCustomers recent={recent}/>}
+                {recentLoader ? <SkeletonLoader /> : <RecentCustomers recent={recent} />}
               </div>
             </div>
           </section>
           {
-            booking ? <BookingDetails booking={booking} setBooking={setBooking}/> : <CalenderContainer upcoming={upcoming} booking={booking} setBooking={setBooking} date={date} upcomingLoader={upcomingLoader} handleDateChange={handleDateChange}/>
+            booking ?
+              <BookingDetails
+                booking={booking}
+                setBooking={setBooking} 
+                /> :
+              <CalenderContainer
+                upcoming={upcoming}
+                booking={booking}
+                setBooking={setBooking}
+                date={date}
+                upcomingLoader={upcomingLoader}
+                handleDateChange={handleDateChange}
+              />
 
           }
         </div>

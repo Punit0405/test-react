@@ -148,7 +148,11 @@ const TopBarComponent: FunctionComponent = () => {
                                 </Popover>
                             }
                         >
-                            <Button variant="custom" onClick={getUserStorage} className={styles.stroageBtn}>View Storage</Button>
+                            <Button variant="custom"
+                                onClick={getUserStorage}
+                                className={styles.stroageBtn}>
+                                View Storage
+                            </Button>
                         </OverlayTrigger>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={() => logoutFunction()}>
