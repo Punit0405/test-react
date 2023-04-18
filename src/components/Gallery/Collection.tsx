@@ -5,11 +5,10 @@ import CollectionService from "../../api/Collection/collection";
 import FilesSevice from "../../api/Files/files";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import SimpleLoader from "../Loader/SimpleLoader";
 import AddCollection from "./AddCollection";
 import AddPhotosNav from "./AddPhotosNav";
 import CollectionView from "./CollectionView";
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { collectionAction } from "../../redux/actions/collectionAction";
 import GalleryLoader from "../Loader/GalleryLoader";
 
@@ -57,7 +56,11 @@ const Collection: FunctionComponent = () => {
                 {
                     loader ? <GalleryLoader /> :
                         files && files?.length ?
-                            <CollectionView collectionData={files} refreshFunction={getCollectionList} /> : <AddCollection />
+                            <CollectionView
+                                collectionData={files}
+                                refreshFunction={getCollectionList}
+                            /> :
+                            <AddCollection />
                 }
             </Container>
         </>

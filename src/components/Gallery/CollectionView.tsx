@@ -70,7 +70,7 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
     const deleteFiles = async () => {
         try {
             if (myState.collection.id) {
-                const deleteRes = await CollectionService.deleteCollectionFiles(myState.collection.id, { ids: selectedImages })
+                const deleteRes = await CollectionService.deleteCollectionFiles(myState?.collection?.id, { ids: selectedImages })
                 if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
                     refreshFunction()
                     setSelectedImages([])
@@ -95,7 +95,7 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
         try {
             if (selectedImages && selectedImages.length) {
                 const fullData = await getDetailsFromId(selectedImages[0])
-                updateData({ coverPhoto: fullData.url })
+                updateData({ coverPhoto: fullData?.url })
                 setSelectedImages([])
                 setCount(0)
             }
@@ -131,7 +131,7 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
         try {
             if (selectedImages && selectedImages.length) {
                 const fullData = await getDetailsFromId(selectedImages[0])
-                saveAs(fullData.url, fullData.name)
+                saveAs(fullData?.url, fullData?.name)
                 setSelectedImages([])
                 setCount(0)
             }
@@ -155,7 +155,7 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
             if (collectionId) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
-                    dispatch(collectionAction({ collection: updateRes.result }))
+                    dispatch(collectionAction({ collection: updateRes?.result }))
                     NotificationWithIcon("success", "Setting saved.")
                     return updateRes?.result?.name
                 }
