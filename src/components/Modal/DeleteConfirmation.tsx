@@ -1,4 +1,4 @@
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal, Spinner } from "react-bootstrap";
 import styles from "./DeleteConfirmation.module.css";
 import { useState } from 'react';
 
@@ -27,7 +27,16 @@ function DeleteConfirmation(props: any) {
                 <div className={styles.buttondiv}>
                     {
                         deleteloader ?
-                            <Button className={styles.createbtn} onClick={handleDelete} variant="custom" type="submit" disabled>Deleting...</Button> :
+                            <Button className={styles.createbtn} onClick={handleDelete} variant="custom" type="submit" disabled>
+                                <Spinner
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />{'  '}
+                                Deleting...
+                            </Button> :
                             <Button className={styles.createbtn} onClick={handleDelete} variant="custom" type="submit">Delete</Button>
 
                     }

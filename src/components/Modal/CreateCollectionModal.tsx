@@ -14,7 +14,7 @@ import { useState } from "react";
 function CreateCollectionModal(props: any) {
 
     let formInitialValues = {
-        name: props?.name as string,
+        name: props?.name as string || "",
         eventDate: props?.eventdate as string,
     }
     const dispatch = useDispatch()
