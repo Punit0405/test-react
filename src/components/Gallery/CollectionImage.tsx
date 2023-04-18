@@ -1,7 +1,6 @@
 import { Image } from "react-bootstrap";
 import styles from "./Collection.module.css";
-import { useState, useEffect } from 'react';
-import { isReadable } from "stream";
+import { useState } from 'react';
 
 interface Props {
     imageUrl: string,
@@ -17,7 +16,6 @@ const CollectionImageView = ({ imageUrl, setSelect, isSelect, selectedFiles, set
     const [selectImg, setSelectImg] = useState(isSelect)
     const handleClick = () => {
         if (!selectedFiles.includes(fileId)) {
-
             selectedFiles.push(fileId),
                 setSelectedImages(selectedFiles);
             setSelect()
