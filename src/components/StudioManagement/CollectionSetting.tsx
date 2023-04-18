@@ -1,5 +1,5 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import { Button, Collapse, Form, InputGroup } from "react-bootstrap";
+import { Button, Collapse, Form, InputGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 import styles from "./CollectionSetting.module.css"
 import { useParams } from "react-router-dom"
 import CollectionService from "../../api/Collection/collection";
@@ -10,6 +10,7 @@ import TagComp from "./TagComp";
 import Constants from "../../Config/Constants";
 import { useSelector, useDispatch } from 'react-redux'
 import { collectionAction } from "../../redux/actions/collectionAction";
+
 
 const CollectionSetting: FunctionComponent = () => {
     const myState = useSelector((state: any) => state.changeCollection)
@@ -24,6 +25,13 @@ const CollectionSetting: FunctionComponent = () => {
         status: "",
         socialSharing: false
     }
+
+    const renderTooltip = (props: any) => (
+        <Tooltip id="button-tooltip" {...props}>
+            {Constants.clientViewUrl}
+        </Tooltip>
+    );
+
 
     const getCollectionList = async () => {
         try {
@@ -126,7 +134,7 @@ const CollectionSetting: FunctionComponent = () => {
             setName(false)
         }
         else if (event.target.name === "url") {
-            const updateName = await updateData({ url: Constants.clientViewUrl + formdata.url , slug : formdata.url })
+            const updateName = await updateData({ url: Constants.clientViewUrl + formdata.url, slug: formdata.url })
             setFormData({ ...formdata, url: updateName.url })
             setUrl(false)
         }
@@ -186,9 +194,15 @@ const CollectionSetting: FunctionComponent = () => {
                     <div className={styles.formcomp}>
                         <Form.Label className={styles.formlabel}>Collection Url</Form.Label>
                         <InputGroup>
-                            <InputGroup.Text id="basic-addon3">
-                                {Constants.clientViewUrl}
-                            </InputGroup.Text>
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltip}
+                            >
+                                <InputGroup.Text id="basic-addon3">
+                                    {Constants.clientViewUrl.slice(7, 24)}...
+                                </InputGroup.Text>
+                            </OverlayTrigger>
                             <Form.Control
                                 type="text"
                                 name="url"
