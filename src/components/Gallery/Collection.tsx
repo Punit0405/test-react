@@ -11,6 +11,7 @@ import AddPhotosNav from "./AddPhotosNav";
 import CollectionView from "./CollectionView";
 import { useSelector, useDispatch } from 'react-redux'
 import { collectionAction } from "../../redux/actions/collectionAction";
+import GalleryLoader from "../Loader/GalleryLoader";
 
 const Collection: FunctionComponent = () => {
 
@@ -51,12 +52,12 @@ const Collection: FunctionComponent = () => {
 
     return (
         <>
-            {loader && <SimpleLoader />}
             <Container fluid >
                 <AddPhotosNav />
                 {
-                    files && files?.length ?
-                        <CollectionView collectionData={files} refreshFunction={getCollectionList} /> : <AddCollection />
+                    loader ? <GalleryLoader /> :
+                        files && files?.length ?
+                            <CollectionView collectionData={files} refreshFunction={getCollectionList} /> : <AddCollection />
                 }
             </Container>
         </>
