@@ -9,12 +9,16 @@ import FilesSevice from '../../api/Files/files';
 import { useParams } from "react-router-dom";
 import { NotificationWithIcon } from '../../Utils/helper';
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { storageAction } from '../../redux/actions/dashboardAction';
 
 
 function SingleFileUpload({ filedata }: any) {
 
-    const { collectionId } = useParams()
+    const myState = useSelector((state: any) => state.changeCollection)
 
+    const { collectionId } = useParams()
+    const dispatch = useDispatch()
     const [progress, setProgress] = useState(0)
     const [isCompleted, setComplete] = useState(false)
 
@@ -78,6 +82,9 @@ function SingleFileUpload({ filedata }: any) {
                 files: [reqObj]
             }
             const res = await FilesSevice.addFiles(data, collectionId)
+            if (res && res?.code === STATUS_CODE.SUCCESS) {
+                dispatch(storageAction({ storage: res?.result }))
+            }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
                 NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)

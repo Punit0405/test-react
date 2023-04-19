@@ -14,6 +14,7 @@ import { collectionAction } from "../../redux/actions/collectionAction";
 import { saveAs } from 'file-saver'
 import FileRenameModal from "../Modal/FileRenameModal";
 import FilesSevice from "../../api/Files/files";
+import { storageAction } from "../../redux/actions/dashboardAction";
 interface Props {
     collectionData: any,
     refreshFunction: any
@@ -72,6 +73,7 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
             if (myState.collection.id) {
                 const deleteRes = await CollectionService.deleteCollectionFiles(myState?.collection?.id, { ids: selectedImages })
                 if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(storageAction({ storage: deleteRes?.result }))
                     refreshFunction()
                     setSelectedImages([])
                     setCount(0)
