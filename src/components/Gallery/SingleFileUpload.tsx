@@ -31,7 +31,7 @@ function SingleFileUpload({ filedata }: any) {
 
     function uploadFile(file: any) {
         if (file) {
-            const Key = `${collectionId}/${file.name}`
+            const Key = `${collectionId}/${filedata?.name.replace(/[!@#$%^()&*]/g, "")}`
             const Bucket = process.env.REACT_APP_AWS_BUCKET_NAME
             const Body: any = file
             try {
@@ -45,7 +45,7 @@ function SingleFileUpload({ filedata }: any) {
                     }
 
                 })
-                console.log(s3, "s3")
+
                 const parallelUploads3 = new Upload({
                     client: s3,
                     params: { Bucket, Key, Body },
@@ -70,7 +70,7 @@ function SingleFileUpload({ filedata }: any) {
     const uploadDone = async (uploadResult: any) => {
         try {
             let reqObj: any = {
-                name: filedata?.name,
+                name: filedata?.name.replace(/[!@#$%^()&*]/g, ""),
                 url: uploadResult?.Location,
                 size: Number((filedata?.size / 1024 ** 2).toFixed(2)),
                 type: "PHOTO",
