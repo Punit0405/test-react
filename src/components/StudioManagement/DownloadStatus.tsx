@@ -16,6 +16,7 @@ const DownloadStatus: FunctionComponent = () => {
     const [formdata, setFormData] = useState(false)
     const myState = useSelector((state: any) => state.changeCollection)
     const dispatch = useDispatch()
+    const [errmsg, setErrmsg] = useState("")
 
     const getCollectionList = async () => {
         try {
@@ -24,9 +25,12 @@ const DownloadStatus: FunctionComponent = () => {
                 if (Object.keys(res).length !== 0) {
                     setFormData(res.download)
                     setPin(res?.downloadPin || "")
+                    setInitPin(res?.downloadPin || "")
                 } else {
                     const res = await CollectionService.getCollectionById(collectionId as string)
                     if (res && res?.code === STATUS_CODE.SUCCESS) {
+                        setPin(res?.result?.downloadPin || "")
+                        setInitPin(res?.result?.downloadPin || "")
                         dispatch(collectionAction({ collection: res.result }))
                     }
                 }
@@ -45,17 +49,19 @@ const DownloadStatus: FunctionComponent = () => {
         getCollectionList();
     }, [myState])
 
-    const [pin, setPin] = useState("")
-
-    const handleSave = async (event: any) => {
+    const updateCollection = async (values: any) => {
         try {
-            if (collectionId) {
-                const values = { download: Boolean(Number(event.target.value)) }
+            if (collectionId && (pin.length === 4)) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
                     dispatch(collectionAction({ collection: updateRes.result }))
                     NotificationWithIcon("success", "Setting saved.")
-                    setFormData(values.download)
+                    setFormData(updateRes?.result?.download)
+                    setPin(updateRes?.result?.downloadPin || "")
+                    setInitPin(updateRes?.result?.downloadPin || "")
+                    // if (event.target.name === 'pin') {
+                    // setPasswordBtn(false)
+                    // }
                 }
             }
         } catch (err: any) {
@@ -65,7 +71,26 @@ const DownloadStatus: FunctionComponent = () => {
                 NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
             }
         }
+    }
 
+    const [pin, setPin] = useState("")
+    const [passwordBtn, setPasswordBtn] = useState(false);
+    const [iniPin, setInitPin] = useState("")
+    const handleSave = async (event: any) => {
+        let values
+        if (event.target.name === 'status') {
+            values = { download: Boolean(Number(event.target.value)) }
+            await updateCollection(values)
+        } else if (event.target.name === 'pin') {
+            if (pin.length !== 4) {
+                setErrmsg("Enter 4 digits pin.")
+            } else {
+                setErrmsg("")
+                values = { downloadPin: pin }
+                await updateCollection(values)
+                setPasswordBtn(false)
+            }
+        }
     }
 
     const generatePassword = async () => {
@@ -85,6 +110,20 @@ const DownloadStatus: FunctionComponent = () => {
             } else {
                 NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
             }
+        }
+    }
+
+    const handleCancel = () => {
+        setPin("")
+        setPasswordBtn(false)
+    }
+
+    const handleChange = (event: any) => {
+        setPin(event.target.value)
+        if (event.target.value !== iniPin) {
+            setPasswordBtn(true)
+        } else if (pin && event.target.value === iniPin) {
+            setPasswordBtn(false)
         }
     }
 
@@ -110,14 +149,22 @@ const DownloadStatus: FunctionComponent = () => {
                                 placeholder=""
                                 name="pin"
                                 value={pin}
-                                aria-label="Password"
-                                aria-describedby=""
-                                disabled
+                                onChange={handleChange}
                             />
-                            <Button variant="outline-secondary" id="button-addon2" onClick={generatePassword}>
-                                Generate
-                            </Button>
+                            {
+                                passwordBtn ?
+                                    <>
+                                        <Button variant="outline-danger" name="name" onClick={handleCancel}>Cancel</Button>
+                                        <Button variant="danger" name="pin" onClick={handleSave}>Save</Button>
+                                    </> :
+                                    <Button variant="outline-secondary" id="button-addon2" onClick={generatePassword}>
+                                        Generate
+                                    </Button>
+                            }
                         </InputGroup>
+                        <Form.Control.Feedback type="invalid">
+                            <p>{errmsg}</p>
+                        </Form.Control.Feedback>
                     </div>
 
                 </Form>
