@@ -229,7 +229,7 @@ const CollectionView = ({ collectionData, refreshFunction }: Props) => {
                             </div>
                     }
 
-                    <div className={styles.outermain}>
+                    <div className={styles.collectionoutermain}>
                         {
                             collectionData && collectionData.length &&
                             collectionData.map((file: any) => (
