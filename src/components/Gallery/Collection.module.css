@@ -40,7 +40,15 @@
     justify-content: left;
     flex-wrap: wrap;
     overflow: hidden;
-    height: 60vh;
+}
+
+.collectionoutermain{
+    margin: 0% 0%;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    overflow: hidden;
+    max-height: 60vh;
     overflow-y: scroll;
 }
 
