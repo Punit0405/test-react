@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect } from "react";
 import { useState } from "react";
 import { Image, Nav, Ratio } from "react-bootstrap";
 import Moment from "react-moment";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams ,NavLink} from "react-router-dom";
 import CollectionService from "../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../Utils/constants";
 import { NotificationWithIcon } from "../Utils/helper";
@@ -109,10 +109,15 @@ const StudioSideBar: FunctionComponent = () => {
                     </Ratio>
                 </div>
             </div>
-            <div className={styles.settingtab}>
-                <button className={styles.settingbtn}>
+            <div className={styles.settingtab} id="sidebar-nav">
+                <Nav variant="tabs"  defaultActiveKey="image" >
+                <Nav.Link as={NavLink}  eventKey="image"  to = {`/gallery/collection/${collectionId}`} className={styles.settingbtn}>
+                    <i className="fa-light setcolorsidesettingset fa-image"></i>
+                </Nav.Link>
+                <Nav.Link as={NavLink}  eventKey="setting" to = {`/gallery/collection-setting/${collectionId}`} className={styles.settingbtn}>
                     <i className="fa-light setcolorsidesettingset fa-gear"></i>
-                </button>
+                </Nav.Link>
+                </Nav>
             </div>
             <p className={styles.settings}>Settings</p>
             <Nav defaultActiveKey="/home" className="flex-column">
