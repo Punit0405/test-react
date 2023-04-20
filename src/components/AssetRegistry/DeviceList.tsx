@@ -28,9 +28,9 @@ const AssetDeviceList: any = () => {
     getList()
   }, [])
 
-  const getList = async () => {
+  const getList = async (query?: any) => {
     try {
-      const res = await AssetRegistryService.getDeviceList()
+      const res = await AssetRegistryService.getDeviceList("", query)
       if (res && res?.code === STATUS_CODE.SUCCESS) {
         setList(res?.result)
       }
@@ -46,7 +46,7 @@ const AssetDeviceList: any = () => {
 
   return (
     <section className={styles.rightcontainer}>
-      <AssetNavBar navTitle="My Devices" />
+      <AssetNavBar navTitle="My Devices" setdevicelist={getList} />
 
       <div className={styles.deviceListComp}>
         <Table striped >
@@ -62,6 +62,7 @@ const AssetDeviceList: any = () => {
             {
               list && list.length ? list.map((product: any) => (
                 <DeviceListRowComponent
+                  key={product.id}
                   product={product}
                 />
               ))

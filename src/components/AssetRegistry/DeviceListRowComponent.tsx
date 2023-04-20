@@ -7,7 +7,7 @@ import AssetRegistryService from '../../api/asset-registry/assetRegistry';
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
 import { NotificationWithIcon } from '../../Utils/helper';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddNewDeviceModal from '../Modal/AddNewDeviceModal';
 interface Props {
   product: any
@@ -22,9 +22,11 @@ const DeviceListRowComponent = ({ product }: Props) => {
     "PRINTER": "Printer",
   }
 
-  const [deviceInfo, setDeviceInfo] = useState(product)
+  const [deviceInfo, setDeviceInfo]: any = useState()
   const [modalShow, setModalShow] = useState(false);
-
+  useEffect(() => {
+    setDeviceInfo(product)
+  }, [product])
   const navigate = useNavigate()
 
   const updateDevice = async (data: any) => {

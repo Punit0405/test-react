@@ -19,6 +19,10 @@
   justify-content: space-between;
 }
 
+.sortbtn {
+  margin-left: 3%;
+}
+
 .frameParent {
   width: 60%;
   flex-shrink: 0;
