@@ -5,7 +5,6 @@
 }
 
 .navdropdown {
-    color: red !important;
     font-family: poppins;
     font-size: 1rem;
 }
@@ -198,4 +197,35 @@
     color: var(--color-darkslategray-100);
     font-family: var(--font-poppins);
     z-index: 4;
+}
+
+@media screen and (max-width: 1170px) {
+    .artboard134x81 {
+        width: 15%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .artboard134x81 {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+   
+    .artboard134x81 {
+        width: 30%;
+    }
+}
+@media screen and (max-width: 600px) {
+   
+    .artboard134x81 {
+        width: 40%;
+    }
+}
+@media screen and (max-width: 530px) {
+   
+    .topbar {
+        padding: 10px 20px;
+    }
 }
