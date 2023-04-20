@@ -15,13 +15,17 @@ const AssetNavBar = ({ navTitle, setdevicelist }: Props) => {
   }
 
   const handleChange = (value: any) => {
-    setdevicelist(value)
+    if (setdevicelist) {
+      setdevicelist(value)
+    }
   }
 
   const handleSearchValue = (event: any) => {
     setSearch(event.target.value)
     let value = `search=${event.target.value}`
-    setdevicelist(value)
+    if (setdevicelist) {
+      setdevicelist(value)
+    }
   }
 
   const [modalShow, setModalShow] = useState(false);
