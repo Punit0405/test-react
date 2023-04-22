@@ -41,6 +41,7 @@ import Setting from "./pages/Setting";
 import BillingComponent from "./components/StudioManagement/BillingComponent";
 import StudioDashBoard from "./components/StudioManagement/StudioDashBoard";
 import ForRentList from "./components/AssetRegistry/ForRentList";
+import InsuranceQuoteComponent from "./components/AssetRegistry/InsuranceQuote";
 
 
 function RoutesAll() {
@@ -72,6 +73,7 @@ function RoutesAll() {
                     <Route path="device-list" element={<AssetDeviceList />}></Route>
                     <Route path="for-sale" element={<ForSaleList />}></Route>
                     <Route path="get-cover" element={<GetCover />}></Route>
+                    <Route path="get-cover/:id" element={<InsuranceQuoteComponent/>}></Route>
                     <Route path="for-rent" element={<ForRentList />}></Route>
                 </Route>
                 <Route path="/music" element={<Music />} />

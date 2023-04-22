@@ -30,9 +30,9 @@ const ForSaleList: FunctionComponent = () => {
     getList()
   }, [])
 
-  const getList = async () => {
+  const getList = async (query?: any) => {
     try {
-      const res = await AssetRegistryService.getDeviceList("For Sale")
+      const res = await AssetRegistryService.getDeviceList("For Sale", query)
       if (res && res?.code === STATUS_CODE.SUCCESS) {
         setList(res?.result)
       }
@@ -49,7 +49,7 @@ const ForSaleList: FunctionComponent = () => {
 
   return (
     <section className={styles.rightcontainer}>
-      <AssetNavBar navTitle="My Devices" />
+      <AssetNavBar navTitle="Sale Devices" setdevicelist={getList} />
 
       <div className={styles.deviceListComp}>
         <Table striped >
@@ -65,6 +65,7 @@ const ForSaleList: FunctionComponent = () => {
             {
               list && list.length ? list.map((product: any) => (
                 <DeviceListRowComponent
+                  key={product.id}
                   product={product}
                 />
               ))

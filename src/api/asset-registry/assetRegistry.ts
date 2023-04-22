@@ -17,12 +17,15 @@ const AssetRegistryService = {
             throw error;
         }
     },
-    getDeviceList: async (data?: any) => {
+    getDeviceList: async (data?: any, query?: any) => {
         const token = await getUserToken()
         try {
-            let url = 'asset'
-            if (data) {
-                url = `asset?status=${data}`
+            let url = 'asset?'
+            if (data !== "") {
+                url = `asset?status=${data}&`
+            }
+            if (query && query !== "") {
+                url = url + query
             }
             return await Service.get(url,
                 {

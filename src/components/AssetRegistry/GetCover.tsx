@@ -2,6 +2,7 @@ import { FunctionComponent, useState } from "react";
 import { Image, Ratio } from "react-bootstrap";
 import AddNewDeviceModal from "../Modal/AddNewDeviceModal";
 import styles from "./GetCover.module.css";
+import { Link } from "react-router-dom";
 
 const activeCard = {
     color: "white",
@@ -51,12 +52,12 @@ const GetCover: any = () => {
                             <Image src="../../../camera.svg" />
                         </div>
                         <div className={styles.btndiv}>
-                            <button
+                            <Link to = "/asset-registry/get-cover/commercial"
                                 className={styles.addNewDevicebtn}
                                 style={active === 1 ? activeBtn : {}}
                             >
                                 Request Quote
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </Ratio>
@@ -76,12 +77,12 @@ const GetCover: any = () => {
                             <Image src="../../../home.svg" />
                         </div>
                         <div className={styles.btndiv}>
-                            <button
+                            <Link to="/asset-registry/get-cover/home"
                                 className={styles.addNewDevicebtn}
                                 style={active === 2 ? activeBtn : {}}
                             >
                                 Request Quote
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </Ratio>
@@ -101,12 +102,12 @@ const GetCover: any = () => {
                             <Image src="../../../man.svg" />
                         </div>
                         <div className={styles.btndiv}>
-                            <button
+                            <Link to ="/asset-registry/get-cover/life"
                                 className={styles.addNewDevicebtn}
                                 style={active === 3 ? activeBtn : {}}
                             >
                                 Request Quote
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </Ratio>
@@ -126,12 +127,12 @@ const GetCover: any = () => {
                             <Image src="../../../funeral.svg" />
                         </div>
                         <div className={styles.btndiv}>
-                            <button
+                            <Link to="/asset-registry/get-cover/home"
                                 className={styles.addNewDevicebtn}
                                 style={active === 4 ? activeBtn : {}}
                             >
                                 Request Quote
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </Ratio>
@@ -153,12 +154,12 @@ const GetCover: any = () => {
                             <Image src="../../../car.svg" />
                         </div>
                         <div className={styles.btndiv}>
-                            <button
+                            <Link to="/asset-registry/get-cover/vehicle"
                                 className={styles.addNewDevicebtn}
                                 style={active === 5 ? activeBtn : {}}
                             >
                                 Request Quote
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </Ratio>
