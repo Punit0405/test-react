@@ -9,6 +9,7 @@ import AssetRegistryService from "../../api/asset-registry/assetRegistry";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import { useNavigate } from "react-router-dom";
+import AssetRegistryLoader from "../Loader/AssetRegistryLoader";
 
 
 
@@ -25,6 +26,7 @@ const ForSaleList: FunctionComponent = () => {
 
 
   const [list, setList]: any = useState([])
+  const [loader, setLoader] = useState(false)
 
   useEffect(() => {
     getList()
@@ -32,8 +34,10 @@ const ForSaleList: FunctionComponent = () => {
 
   const getList = async (query?: any) => {
     try {
+      setLoader(true)
       const res = await AssetRegistryService.getDeviceList("For Sale", query)
       if (res && res?.code === STATUS_CODE.SUCCESS) {
+        setLoader(false)
         setList(res?.result)
       }
     } catch (err: any) {
@@ -61,19 +65,24 @@ const ForSaleList: FunctionComponent = () => {
               <td>Device Status</td>
             </tr>
           </thead>
-          <tbody>
-            {
-              list && list.length ? list.map((product: any) => (
-                <DeviceListRowComponent
-                  key={product.id}
-                  product={product}
-                />
-              ))
-                :
-                <>
-                </>
-            }
-          </tbody>
+          {
+            loader ?
+              <AssetRegistryLoader />
+              :
+              <tbody>
+                {
+                  list && list.length ? list.map((product: any) => (
+                    <DeviceListRowComponent
+                      key={product.id}
+                      product={product}
+                    />
+                  ))
+                    :
+                    <>
+                    </>
+                }
+              </tbody>
+          }
         </Table>
       </div>
 
