@@ -41,8 +41,10 @@ const AssetNavBar = ({ navTitle, setdevicelist }: Props) => {
 
   return (
     <div className={styles.assetnavbar}>
-      <div className={styles.openSidebar} onClick={displaySideBar}> <i className="fa-solid  fa-bars"></i></div>
-      <div className={styles.dashboard}>{navTitle}</div>
+      <div className={styles.navbartoogle}>
+        <div className={styles.openSidebar} onClick={displaySideBar}> <i className="fa-solid  fa-bars"></i></div>
+        <div className={styles.dashboard}>{navTitle}</div>
+      </div>
       <div className={styles.frameParent}>
         <input
           className={styles.frameChild}
@@ -51,7 +53,6 @@ const AssetNavBar = ({ navTitle, setdevicelist }: Props) => {
           value={search}
           onChange={handleSearchValue}
         />
-
         <DropdownButton
           id="dropdown-basic-button"
           className={styles.sortbtn}
@@ -75,9 +76,11 @@ const AssetNavBar = ({ navTitle, setdevicelist }: Props) => {
             onClick={() => handleChange("sort=deviceAmount&order=ASC&")}>Device Amount : High - Low</Dropdown.Item>
         </DropdownButton>
       </div>
-      <button className={styles.addNewDevice} onClick={() => setModalShow(true)}>
-        Add New Device
-      </button>
+      <div className={styles.addbtn}>
+        <button className={styles.addNewDevice} onClick={() => setModalShow(true)}>
+          Add New Device
+        </button>
+      </div>
       <AddNewDeviceModal
         show={modalShow}
         onHide={() => setModalShow(false)}

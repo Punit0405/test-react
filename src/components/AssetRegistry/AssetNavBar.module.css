@@ -71,4 +71,35 @@
   .openSidebar {
     display: block;
   }
+
+}
+
+@media screen and (max-width: 900px) {
+  .assetnavbar {
+    display: block;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .navbartoogle {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .frameParent {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .addNewDevice {
+    border: solid black;
+    text-align: right;
+    margin-top: 3%;
+  }
+
+  .addbtn {
+    display: flex;
+    justify-content: right;
+  }
 }
