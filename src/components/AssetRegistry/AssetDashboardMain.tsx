@@ -133,7 +133,7 @@ const AssetDashboardMain: FunctionComponent = () => {
       </div>
       <div className={styles.summarySection}>
         <Row>
-          <Col sm={12} lg={6} md={6}>
+          <Col sm={12} lg={6} md={6} className="mb-5">
             <div className={styles.priceBox}>
               <p>Total Device Value</p>
               <h3>R {totalAmount}</h3>

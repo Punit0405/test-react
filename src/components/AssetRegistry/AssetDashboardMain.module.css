@@ -266,11 +266,6 @@
 }
 
 
-.summarySection {
-  /* display: flex;
-  justify-content: flex-end; */
-}
-
 .rightcontainer {
   display: flex;
   justify-content: flex-end;
@@ -368,5 +363,12 @@
   .cardssection {
     grid-template-columns: auto;
     grid-gap: 53px;
+  }
+  .summarySection {
+    /* align-self: stretch; */
+    
+    padding: var(--padding-sm);
+  
+    /* border: solid red; */
   }
 }
