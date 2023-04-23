@@ -84,6 +84,7 @@
   .navbartoogle {
     display: flex;
     justify-content: space-between;
+    padding: 0% 2%;
   }
 
   .frameParent {
@@ -93,7 +94,8 @@
   }
 
   .addNewDevice {
-    border: solid black;
+    /* border: solid black; */
+    margin-right: 2%;
     text-align: right;
     margin-top: 3%;
   }
