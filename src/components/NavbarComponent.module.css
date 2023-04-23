@@ -243,6 +243,11 @@
     .navpadding {
         margin: 0% 0%;
     }
+
+    .navmainname {
+        display: none;
+    }
+
 }
 
 @media screen and (max-width: 1330px) {
