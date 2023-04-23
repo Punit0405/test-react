@@ -9,6 +9,7 @@ import AssetRegistryService from "../../api/asset-registry/assetRegistry";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import { useNavigate } from "react-router-dom";
+import { Col, Ratio, Row } from "react-bootstrap";
 Chart.register(ArcElement);
 
 const AssetDashboardMain: FunctionComponent = () => {
@@ -131,34 +132,45 @@ const AssetDashboardMain: FunctionComponent = () => {
         </div>
       </div>
       <div className={styles.summarySection}>
-        <div className={styles.priceBox}>
-          <p>Total Device Value</p>
-          <h3>R {totalAmount}</h3>
-        </div>
-        <div className={styles.chartDiv}>
-          <div>
-            <Doughnut data={graphData} />
-          </div>
-          <div className={styles.categorysection}>
-            <div className={styles.cellphoneParent}>
-              <AssetRegisteryChartComp
-                percentage={categoryData?.cell_phone ? `${categoryData?.cell_phone}%` : '0%'}
-                backgroundColor="#EC1A25" categoryTitle="Cell Phone" />
-              <AssetRegisteryChartComp
-                percentage={categoryData?.camera ? `${categoryData?.camera}%` : '0%'}
-                backgroundColor="#F9B91B" categoryTitle="Camera" />
+        <Row>
+          <Col sm={12} lg={6} md={6}>
+            <div className={styles.priceBox}>
+              <p>Total Device Value</p>
+              <h3>R {totalAmount}</h3>
             </div>
-            <div className={styles.cellphoneParent}>
-              <AssetRegisteryChartComp
-                percentage={categoryData?.screen ? `${categoryData?.screen}%` : '0%'}
-                backgroundColor="#FF569A" categoryTitle="Screen" />
-              <AssetRegisteryChartComp
-                percentage={categoryData?.printer ? `${categoryData?.printer}%` : '0%'}
-                backgroundColor="#252525" categoryTitle="Printer" />
-
+          </Col>
+          <Col sm={12} lg={6} md={6}>
+            <div className={styles.chartDiv}>
+              <Row>
+                <Col sm={12} lg={6} md={6}>
+                  <div className={styles.graphFigure}>
+                    <Doughnut data={graphData} />
+                  </div>
+                </Col>
+                <Col sm={12} lg={6} md={6}>
+                  <div className={styles.categorysection}>
+                    <div className={styles.cellphoneParent}>
+                      <AssetRegisteryChartComp
+                        percentage={categoryData?.cell_phone ? `${categoryData?.cell_phone}%` : '0%'}
+                        backgroundColor="#EC1A25" categoryTitle="Cell Phone" />
+                      <AssetRegisteryChartComp
+                        percentage={categoryData?.camera ? `${categoryData?.camera}%` : '0%'}
+                        backgroundColor="#F9B91B" categoryTitle="Camera" />
+                    </div>
+                    <div className={styles.cellphoneParent}>
+                      <AssetRegisteryChartComp
+                        percentage={categoryData?.screen ? `${categoryData?.screen}%` : '0%'}
+                        backgroundColor="#FF569A" categoryTitle="Screen" />
+                      <AssetRegisteryChartComp
+                        percentage={categoryData?.printer ? `${categoryData?.printer}%` : '0%'}
+                        backgroundColor="#252525" categoryTitle="Printer" />
+                    </div>
+                  </div>
+                </Col>
+              </Row>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
 
       </div>
     </section>
