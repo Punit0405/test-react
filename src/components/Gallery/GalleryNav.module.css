@@ -9,6 +9,14 @@
     /* margin: -3% 3%; */
     margin-right: 10px;
 }
+.rightNavDiv{
+    display: flex;
+}
+.innerDiv{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
 
 .collectionbtn:hover {
     background-color: crimson;
@@ -72,6 +80,20 @@
         background-color: crimson;
         color: white;
         margin-right: 3%;
+    }
+
+}
+@media screen and (max-width: 713px) {
+
+    .rightNavDiv{
+        display: flex;
+    }
+    .innerDiv{
+        flex-direction: column;
+    }
+    .mainname{
+        justify-self: center;
+        align-self: center;
     }
 
 }

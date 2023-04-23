@@ -105,9 +105,9 @@ function GalleryNav(props: any): any {
     return (
         <>
             <Navbar className={styles.maincomp}>
-                <Container fluid>
+                <div className={styles.innerDiv}>
                     <Navbar.Brand className={styles.mainname}>Collections</Navbar.Brand>
-                    <Form className="d-flex">
+                    <div className={styles.rightNavDiv}>
                         <Button className={styles.collectionbtn} onClick={() => setModalShow(true)} variant="custom">New Collection</Button>
                         {/* <Button className={styles.searchbtn} variant="custom">
                             <i className="fa-regular fa-magnifying-glass"></i>
@@ -148,8 +148,8 @@ function GalleryNav(props: any): any {
                             <Dropdown.Item className={styles.dropitem}
                                 onClick={() => handleChange("?sort=createdAt&order=ASC")}>Created: Old - New</Dropdown.Item>
                         </DropdownButton>
-                    </Form>
-                </Container>
+                    </div>
+                </div>
                 <CreateCollectionModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
