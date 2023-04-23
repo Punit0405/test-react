@@ -3,6 +3,8 @@ import styles from "./AssetNavBar.module.css";
 import $ from 'jquery';
 import AddNewDeviceModal from "../Modal/AddNewDeviceModal";
 import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Route, useNavigate } from "react-router-dom";
+import AssetDeviceList from "./DeviceList";
 
 interface Props {
   navTitle: string,
@@ -11,12 +13,18 @@ interface Props {
 const AssetNavBar = ({ navTitle, setdevicelist }: Props) => {
   const displaySideBar = () => {
     $("#leftContainer").css({ left: '0%', display: "block" })
-
   }
+
+  const navigate = useNavigate()
 
   const handleChange = (value: any) => {
     if (setdevicelist) {
       setdevicelist(value)
+    } else {
+      console.log("======here======");
+      // navigate("device-list")
+      <Route path="device-list" element={<AssetDeviceList />} />
+      return <AssetDeviceList />
     }
   }
 

@@ -10,8 +10,11 @@ import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import { useNavigate } from "react-router-dom";
 import Moment from "react-moment";
+import AssetRegistryLoader from "../Loader/AssetRegistryLoader";
 
 const AssetDeviceList: any = () => {
+
+  const [loader, setLoader] = useState(false)
 
   const deviceListName: any = {
     CELL_PHONE: "Cell Phone",
@@ -30,8 +33,10 @@ const AssetDeviceList: any = () => {
 
   const getList = async (query?: any) => {
     try {
+      setLoader(true)
       const res = await AssetRegistryService.getDeviceList("", query)
       if (res && res?.code === STATUS_CODE.SUCCESS) {
+        setLoader(false)
         setList(res?.result)
       }
     } catch (err: any) {
@@ -58,19 +63,24 @@ const AssetDeviceList: any = () => {
               <td>Device Status</td>
             </tr>
           </thead>
-          <tbody>
-            {
-              list && list.length ? list.map((product: any) => (
-                <DeviceListRowComponent
-                  key={product.id}
-                  product={product}
-                />
-              ))
-                :
-                <>
-                </>
-            }
-          </tbody>
+          {
+            loader ?
+              <AssetRegistryLoader />
+              :
+              <tbody>
+                {
+                  list && list.length ? list.map((product: any) => (
+                    <DeviceListRowComponent
+                      key={product.id}
+                      product={product}
+                    />
+                  ))
+                    :
+                    <>
+                    </>
+                }
+              </tbody>
+          }
         </Table>
       </div>
 
