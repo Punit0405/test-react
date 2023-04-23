@@ -91,7 +91,7 @@ const TopBarComponent: FunctionComponent = () => {
                         align="end"
                         title={
                             <div className={styles.topdrop}>
-                                <div>{firstName} {lastName}</div>
+                                <div className={styles.userName}>{firstName} {lastName}</div>
                                 <i className="fa-solid fa-caret-down topdrop"></i>
                             </div>}
                         className={styles.navdropdown} id="collasible-nav-dropdown">
