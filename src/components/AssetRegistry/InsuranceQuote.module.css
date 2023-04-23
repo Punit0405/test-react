@@ -11,10 +11,10 @@
     font-family: var(--font-poppins);
     display: flex;
     justify-content: flex-start;
-    
+
 }
 
-.requestQuoteDiv{
+.requestQuoteDiv {
     height: 100%;
     width: 100%;
 }
