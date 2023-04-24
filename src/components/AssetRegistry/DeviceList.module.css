@@ -11,12 +11,15 @@
     font-family: var(--font-poppins);
     display: flex;
     justify-content: flex-start;
-    
+
 }
-.deviceListComp{
+
+.deviceListComp {
     width: 100%;
+    overflow-x: scroll;
 }
-.tableHeading{
+
+.tableHeading {
     font-size: 0.76rem;
     font-weight: 400;
     color: #A3A3A3;

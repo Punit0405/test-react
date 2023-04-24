@@ -42,8 +42,15 @@ const AssetNavBar = ({ navTitle, setdevicelist }: Props) => {
   return (
     <div className={styles.assetnavbar}>
       <div className={styles.navbartoogle}>
-        <div className={styles.openSidebar} onClick={displaySideBar}> <i className="fa-solid  fa-bars"></i></div>
-        <div className={styles.dashboard}>{navTitle}</div>
+        <div className={styles.restoogle}>
+          <div className={styles.openSidebar} onClick={displaySideBar}> <i className="fa-solid  fa-bars"></i></div>
+          <div className={styles.dashboard}>{navTitle}</div>
+        </div>
+        <div className={styles.addbtnmobile}>
+          <button className={styles.addNewDeviceNew} onClick={() => setModalShow(true)}>
+            Add New Device
+          </button>
+        </div>
       </div>
       <div className={styles.frameParent}>
         <input
