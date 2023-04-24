@@ -41,7 +41,7 @@ const AddPhotosNav: FunctionComponent = () => {
 
     return (
         <Navbar className={styles.maincomp}>
-            <Container fluid>
+            <Container fluid className={styles.galleryaddnav}>
                 <Navbar.Brand className={styles.mainname}>Gallery</Navbar.Brand>
                 <Form className="d-flex">
                     <Button className={styles.collectionbtn} onClick={checkStorage} variant="custom">Add Photos</Button>

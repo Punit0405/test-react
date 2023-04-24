@@ -42,7 +42,7 @@
     overflow: hidden;
 }
 
-.collectionoutermain{
+.collectionoutermain {
     margin: 0% 0%;
     display: flex;
     justify-content: left;
@@ -219,6 +219,28 @@
     display: flex;
     justify-content: space-between;
     height: 20%;
+}
+
+@media screen and (max-width: 575px) {
+
+    .selectphotonav {
+        /* border: solid red; */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .totalSelectionDiv {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .selectbtn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
 }
 
 .imgdiv {

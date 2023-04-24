@@ -14,7 +14,7 @@ const UploadDoneNav = (props: any) => {
 
     return (
         <Navbar className={styles.maincomp}>
-            <Container fluid>
+            <Container fluid className={styles.galleryaddnav}>
                 <Navbar.Brand className={styles.mainname}>Add Photos to Highlights</Navbar.Brand>
                 <Form className={styles.btnsetting}>
                     <div className={styles.widthset} onClick={handleClick}>
