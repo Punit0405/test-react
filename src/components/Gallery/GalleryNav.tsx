@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dropdown, DropdownButton, InputGroup } from 'react-bootstrap';
+import { Dropdown, DropdownButton, InputGroup, Nav, Offcanvas } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -104,58 +104,74 @@ function GalleryNav(props: any): any {
 
     return (
         <>
-            <Navbar className={styles.maincomp}>
-                <div className={styles.innerDiv}>
+            <Navbar className={styles.maincomp} key="sm" expand="sm">
+                <Container fluid>
+                    {/* <div className={styles.innerDiv}> */}
                     <Navbar.Brand className={styles.mainname}>Collections</Navbar.Brand>
-                    <div className={styles.rightNavDiv}>
-                        <Button className={styles.collectionbtn} onClick={() => setModalShow(true)} variant="custom">New Collection</Button>
-                        {/* <Button className={styles.searchbtn} variant="custom">
-                            <i className="fa-regular fa-magnifying-glass"></i>
-                        </Button> */}
-                        <Search>
-                            <SearchIconWrapper>
-                                <i className="fa-regular fa-magnifying-glass"></i>
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder=""
-                                inputProps={{ 'aria-label': 'search' }}
-                                onChange={handleSearch}
-                                name="search"
-                                value={search}
-                            />
-                        </Search>
-
-                        {/* //?sort=name&order=ASC */}
-                        <DropdownButton
-                            id="dropdown-basic-button"
-                            className={styles.sortbtn}
-                            align="end"
-                            variant="custom"
-                            title={<i className="fa-regular fa-arrow-right-arrow-left"></i>}
-                        >
-                            <Dropdown.Item className={styles.navmain}>Sort by</Dropdown.Item>
-                            <Dropdown.Divider />
-                            <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=name&order=ASC")}>Name: A - Z</Dropdown.Item>
-                            <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=name&order=DESC")}>Name: Z - A</Dropdown.Item>
-                            <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=eventDate&order=DESC")}>Event Date: New - Old</Dropdown.Item>
-                            <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=eventDate&order=ASC")}>Event Date: Old - New</Dropdown.Item>
-                            <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=createdAt&order=DESC")}>Created: New - Old</Dropdown.Item>
-                            <Dropdown.Item className={styles.dropitem}
-                                onClick={() => handleChange("?sort=createdAt&order=ASC")}>Created: Old - New</Dropdown.Item>
-                        </DropdownButton>
-                    </div>
-                </div>
-                <CreateCollectionModal
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                    createnew="true"
-                />
-            </Navbar>
+                    <Nav.Link className={styles.respoaddbtn}>
+                        <Button className={styles.collectionbtn} onClick={() => setModalShow(true)} variant="custom">
+                            New Collection
+                        </Button>
+                    </Nav.Link>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav" className={styles.rightNavDiv}>
+                        <Nav className={styles.innernav}>
+                            {/* <div className={styles.rightNavDiv}> */}
+                            <Nav.Link className={styles.resposcreenaddbtn}>
+                                <Button className={styles.collectionbtn} onClick={() => setModalShow(true)} variant="custom">
+                                    New Collection
+                                </Button>
+                            </Nav.Link>
+                            <Nav.Link className={styles.navlinksearch}>
+                                <Search className={styles.searchmain}>
+                                    <SearchIconWrapper>
+                                        <i className="fa-regular fa-magnifying-glass"></i>
+                                    </SearchIconWrapper>
+                                    <StyledInputBase
+                                        placeholder=""
+                                        inputProps={{ 'aria-label': 'search' }}
+                                        onChange={handleSearch}
+                                        name="search"
+                                        value={search}
+                                    />
+                                </Search>
+                            </Nav.Link>
+                            {/* //?sort=name&order=ASC */}
+                            <Nav.Link className={styles.navlinksort}>
+                                <DropdownButton
+                                    id="dropdown-basic-button"
+                                    className={styles.sortbtn}
+                                    align="end"
+                                    variant="custom"
+                                    title={<i className="fa-regular fa-arrow-right-arrow-left"></i>}
+                                >
+                                    <Dropdown.Item className={styles.navmain}>Sort by</Dropdown.Item>
+                                    <Dropdown.Divider />
+                                    <Dropdown.Item className={styles.dropitem}
+                                        onClick={() => handleChange("?sort=name&order=ASC")}>Name: A - Z</Dropdown.Item>
+                                    <Dropdown.Item className={styles.dropitem}
+                                        onClick={() => handleChange("?sort=name&order=DESC")}>Name: Z - A</Dropdown.Item>
+                                    <Dropdown.Item className={styles.dropitem}
+                                        onClick={() => handleChange("?sort=eventDate&order=DESC")}>Event Date: New - Old</Dropdown.Item>
+                                    <Dropdown.Item className={styles.dropitem}
+                                        onClick={() => handleChange("?sort=eventDate&order=ASC")}>Event Date: Old - New</Dropdown.Item>
+                                    <Dropdown.Item className={styles.dropitem}
+                                        onClick={() => handleChange("?sort=createdAt&order=DESC")}>Created: New - Old</Dropdown.Item>
+                                    <Dropdown.Item className={styles.dropitem}
+                                        onClick={() => handleChange("?sort=createdAt&order=ASC")}>Created: Old - New</Dropdown.Item>
+                                </DropdownButton>
+                            </Nav.Link>
+                            {/* </div> */}
+                        </Nav>
+                    </Navbar.Collapse>
+                    {/* </div> */}
+                    <CreateCollectionModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                        createnew="true"
+                    />
+                </Container>
+            </Navbar >
         </>
     );
 }

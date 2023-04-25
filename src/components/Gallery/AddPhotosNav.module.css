@@ -88,8 +88,19 @@
 
     .galleryaddnav {
         /* border: solid red; */
-        display: flex;
-        flex-direction: column;
+        /* display: flex;
+        flex-direction: column; */
+    }
+
+    .mainname {
+        font-size: 1.1rem;
+        font-weight: 450;
+    }
+
+    .collectionbtn {
+        font-size: 0.7rem;
+        font-weight: 350;
+        width: 100px;
     }
 
 }
