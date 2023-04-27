@@ -1,5 +1,6 @@
 .maincomp {
     margin: 0% 2%;
+    height: 88vh;
     /* padding: 0% 25%; */
 }
 
@@ -33,8 +34,24 @@
 }
 
 .ImageGalleryDiv{
-  padding: 3% 0%;
+  /* padding: 3% 0%; */
+  width: 100%;
 }
+.ImageGalleryInnerDiv{
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100%;
+width: 100%;
+
+}
+@media screen and (max-width: 600px) {
+   
+    .ImageGalleryInnerDiv{
+        height: 60%;
+    }
+  }
+
 .ImageGalleryMainDiv{
-  /* border: 2px solid red; */
+    height: 100%;
 }

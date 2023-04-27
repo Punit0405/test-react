@@ -7,7 +7,7 @@ import Gallery from "react-photo-gallery";
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 import { truncate } from "fs/promises";
-import { useDispatch, useSelector } from "react-redux";
+import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
 import { clientGalleryViewAction } from "../redux/actions/clientGalleryViewAction";
 import CollectionService from "../api/Collection/collection";
 
@@ -24,6 +24,15 @@ const Grid = (props:any) => {
     const imageGalleryRef = useRef<any>(null)
     const clientState = useSelector((state: any) => state.clientCollectionViewReducer);
     const newData:any = [];
+    const getColumnNumbers = ()=>{
+      if(screen.width < 400){
+        return 2;
+      }else if(screen.width < 600){
+        return 3;
+      }else{
+        return 4;
+      }
+    }
     for(const image of images){
         newData.push({
             src:image.url,
@@ -63,29 +72,29 @@ const Grid = (props:any) => {
    
     return (
         <div className={styles.maincomp}>
-
             {clientState.isViewOpen?
-            <div className={styles.ImageGalleryMainDiv}>
-            <i className="fa-sharp fa-regular fa-circle-xmark fa-2xl cancelImageBtn" onClick={closeLightbox} style={{cursor: "pointer"}}></i>
-            <i className="fa-regular fa-arrow-down-to-line fa-2xl clientDownloadBtn " onClick={e=>downloadFile(currentImage)}></i>
+            <div className={styles.ImageGalleryMainDiv} >
+            <i className="fx-sharp fa-regular fa-circle-xmark fa-xl cancelImageBtn" onClick={closeLightbox} style={{cursor: "pointer"}}></i>
+            <i className="fa-regular fa-arrow-down-to-line fa-xl clientDownloadBtn " onClick={e=>downloadFile(currentImage)}></i>
+            <div className={styles.ImageGalleryInnerDiv}>
             <div className={styles.ImageGalleryDiv}>
             <ImageGallery items={newData.map((image:any)=>{
                 return {
                  original:image.src,
                  thumbnail:image.src,
-                 description:image.src,
                  originalTitle:image.src
-                
                 }
             })} swipingTransitionDuration={3}  
              slideDuration={500} 
              ref={imageGalleryRef}
-             slideInterval={1000} 
+             slideInterval={3000}
+             showThumbnails={false}
              startIndex={currentImage} autoPlay={clientState.isSlideShow} showNav={true} lazyLoad/>
             </div>
             </div>
+            </div>
             :
-            <Gallery photos={newData} onClick={openLightbox} columns={4} margin={props.gridSpacing === "large" ? 8:3}  direction={props.gridStyle} />
+            <Gallery photos={newData} onClick={openLightbox} columns={getColumnNumbers()} margin={props.gridSpacing === "large" ? 8:3}  direction={props.gridStyle} />
             }
            
         
