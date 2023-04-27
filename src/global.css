@@ -762,10 +762,32 @@ a:-webkit-any-link:focus {
 }
 
 .clientDownloadBtn {
-  margin: 2% 3.3%;
+  margin: 2% 2%;
   float: right;
   color: #000000;
   font-size: 2rem;
   cursor: pointer;
   z-index: 3;
+}
+
+
+@media screen and (max-width: 600px) {
+  .cancelImageBtn {
+    margin: 20% 1%;
+    float: right;
+    color: #000000;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .clientDownloadBtn {
+    margin: 20% 3%;
+    float: right;
+    color: #000000;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 3;
+  }
+  
 }
