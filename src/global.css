@@ -234,8 +234,14 @@ body {
   border: none;
 }
 
-#studio-sidebar .ant-menu-item .ant-menu-item-icon {
+#studio-sidebar .ant-menu-item .ant-menu-title-content .ant-menu-item-icon {
   color: var(--color-crimson);
+  margin-top: -5px;
+}
+
+#studio-sidebar .ant-menu-item-selected .ant-menu-title-content .ant-menu-title-content {
+  margin-top: 2px;
+  color: white !important;
 }
 
 #studio-sidebar .ant-menu-item {
@@ -275,6 +281,16 @@ body {
 }
 
 #studio-sidebar .ant-menu-submenu-selected .ant-menu-sub .ant-menu-item-selected {
+  color: black !important;
+  background-color: rgb(231, 231, 231);
+}
+
+#studio-sidebar .ant-menu-submenu-selected .ant-menu-sub .ant-menu-item-selected .ant-menu-title-content{
+  color: black !important;
+  background-color: rgb(231, 231, 231);
+}
+
+#studio-sidebar .ant-menu-submenu-selected .ant-menu-sub .ant-menu-item-selected .ant-menu-title-content .ant-menu-item-icon{
   color: black !important;
   background-color: rgb(231, 231, 231);
 }

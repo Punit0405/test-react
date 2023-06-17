@@ -53,7 +53,7 @@ function RoutesAll() {
                     <Route path="billing" element={<BillingComponent />} />
                 </Route>
                 <Route path="/studiomanagement" element={<StudioLayout />} >
-                    <Route path="dashboard" element={<StudioDashBoard />} />
+                    <Route path="*" element={<StudioDashBoard />} />
                     <Route path="for-sale" element={<StudioDashBoard />} />
                 </Route>
                 <Route path="/gallery" element={<Gallery />} />
