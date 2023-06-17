@@ -81,7 +81,7 @@ const StudioManagementSide: FunctionComponent = () => {
                 >
                     <Menu.Item key="invoices">
                         <Link to="invoices">
-                            <i className="fa-regular fa-circle-dollar ant-menu-item-icon"></i>
+                            <i className="fa-regular fa-file-invoice ant-menu-item-icon"></i>
                             <span className="ant-menu-title-content">Invoices</span>
                         </Link>
                     </Menu.Item>
@@ -93,13 +93,13 @@ const StudioManagementSide: FunctionComponent = () => {
                     </Menu.Item>
                     <Menu.Item key="questionnaires">
                         <Link to="questionnaires">
-                            <i className="fa-regular fa-circle-dollar ant-menu-item-icon"></i>
+                            <i className="fa-regular fa-question ant-menu-item-icon"></i>
                             <span className="ant-menu-title-content">Questionnaires</span>
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="contracts">
                         <Link to="contracts">
-                            <i className="fa-regular fa-circle-dollar ant-menu-item-icon"></i>
+                            <i className="fa-regular fa-signature ant-menu-item-icon"></i>
                             <span className="ant-menu-title-content">Contracts</span>
                         </Link>
                     </Menu.Item>
@@ -115,14 +115,14 @@ const StudioManagementSide: FunctionComponent = () => {
                 >
                     <Menu.Item key="speciality">
                         <Link to="speciality">
-                            <i className="fa-regular fa-circle-dollar ant-menu-item-icon"></i>
+                            <i className="fa-regular fa-star ant-menu-item-icon"></i>
                             <span className="ant-menu-title-content">Speciality</span>
                         </Link>
                     </Menu.Item>
-                    <Menu.Item key="calender">
-                        <Link to="calender">
-                            <i className="fa-regular fa-circle-dollar ant-menu-item-icon"></i>
-                            <span className="ant-menu-title-content">Calender</span>
+                    <Menu.Item key="calendar">
+                        <Link to="calendar">
+                            <i className="fa-regular fa-calendar ant-menu-item-icon"></i>
+                            <span className="ant-menu-title-content">Calendar</span>
                         </Link>
                     </Menu.Item>
                 </SubMenu>
