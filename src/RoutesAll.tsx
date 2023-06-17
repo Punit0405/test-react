@@ -34,14 +34,12 @@ import Collection from "./components/Gallery/Collection";
 import LayoutWithSideBar from "./components/LayoutWithSideBar";
 import Design from "./components/StudioManagement/Design";
 import GetCover from "./components/AssetRegistry/GetCover";
-import StudioManagementSide from "./components/StudioManagement/StudioManagementSide";
-import Billing from "./pages/Billing";
-import BillingSideBar from "./components/StudioManagement/BillingSideBar";
+import StudioLayout from "./pages/StudioLayout";
 import Setting from "./pages/Setting";
 import BillingComponent from "./components/StudioManagement/BillingComponent";
-import StudioDashBoard from "./components/StudioManagement/StudioDashBoard";
 import ForRentList from "./components/AssetRegistry/ForRentList";
 import InsuranceQuoteComponent from "./components/AssetRegistry/InsuranceQuote";
+import StudioDashBoard from "./components/StudioSettings/StudioDashBoard";
 
 
 function RoutesAll() {
@@ -54,8 +52,9 @@ function RoutesAll() {
                 <Route path="/settings" element={<Setting />} >
                     <Route path="billing" element={<BillingComponent />} />
                 </Route>
-                <Route path="/studiomanagement" element={<Billing />} >
+                <Route path="/studiomanagement" element={<StudioLayout />} >
                     <Route path="dashboard" element={<StudioDashBoard />} />
+                    <Route path="for-sale" element={<StudioDashBoard />} />
                 </Route>
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/gallery" element={<LayoutWithSideBar />} >
@@ -73,7 +72,7 @@ function RoutesAll() {
                     <Route path="device-list" element={<AssetDeviceList />}></Route>
                     <Route path="for-sale" element={<ForSaleList />}></Route>
                     <Route path="get-cover" element={<GetCover />}></Route>
-                    <Route path="get-cover/:id" element={<InsuranceQuoteComponent/>}></Route>
+                    <Route path="get-cover/:id" element={<InsuranceQuoteComponent />}></Route>
                     <Route path="for-rent" element={<ForRentList />}></Route>
                 </Route>
                 <Route path="/music" element={<Music />} />

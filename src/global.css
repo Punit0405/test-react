@@ -234,6 +234,51 @@ body {
   border: none;
 }
 
+#studio-sidebar .ant-menu-item .ant-menu-item-icon {
+  color: var(--color-crimson);
+}
+
+#studio-sidebar .ant-menu-item {
+  font-family: var(--font-poppins);
+  font-weight: 450;
+}
+
+#studio-sidebar .ant-menu-submenu {
+  font-family: var(--font-poppins);
+  font-weight: 450;
+}
+
+#studio-sidebar .ant-menu-item-selected {
+  color: white !important;
+  background-color: var(--color-crimson);
+}
+
+#studio-sidebar .ant-menu-item-selected .ant-menu-item-icon {
+  color: white !important;
+}
+
+#studio-sidebar .ant-menu-submenu .ant-menu-submenu-title .ant-menu-item-icon {
+  color: var(--color-crimson);
+}
+
+#studio-sidebar .ant-menu-submenu-selected .ant-menu-submenu-title {
+  color: white !important;
+  background-color: var(--color-crimson);
+}
+
+#studio-sidebar .ant-menu-submenu-selected .ant-menu-submenu-title .ant-menu-item-icon {
+  color: white !important;
+}
+
+#studio-sidebar .ant-menu-submenu-selected .ant-menu-sub {
+  background-color: white;
+}
+
+#studio-sidebar .ant-menu-submenu-selected .ant-menu-sub .ant-menu-item-selected {
+  color: black !important;
+  background-color: rgb(231, 231, 231);
+}
+
 a:-webkit-any-link {
   text-decoration: none;
   color: rgb(0, 0, 0);
@@ -454,7 +499,7 @@ a:-webkit-any-link:focus {
   color: #ec1a25;
   margin-right: 10px;
   font-size: 1.1rem;
-  margin-top: 2%;
+  /* margin-top: 2%; */
 }
 
 .setcolorwithoutmargin {
@@ -483,7 +528,7 @@ a:-webkit-any-link:focus {
   color: white;
   margin-left: 2px;
   font-size: 1rem;
-  margin-top: -1%;
+  /* margin-top: -1%; */
   margin-right: 0px;
 }
 
@@ -780,7 +825,7 @@ a:-webkit-any-link:focus {
     cursor: pointer;
     z-index: 10;
   }
-  
+
   .clientDownloadBtn {
     margin: 20% 3%;
     float: right;
@@ -789,5 +834,5 @@ a:-webkit-any-link:focus {
     cursor: pointer;
     z-index: 3;
   }
-  
+
 }
