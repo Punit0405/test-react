@@ -285,13 +285,13 @@ body {
   background-color: rgb(231, 231, 231);
 }
 
-#studio-sidebar .ant-menu-submenu-selected .ant-menu-sub .ant-menu-item-selected .ant-menu-title-content{
+#studio-sidebar .ant-menu-submenu-selected .ant-menu-sub .ant-menu-item-selected .ant-menu-title-content {
   color: black !important;
   background-color: rgb(231, 231, 231);
 }
 
-#studio-sidebar .ant-menu-submenu-selected .ant-menu-sub .ant-menu-item-selected .ant-menu-title-content .ant-menu-item-icon{
-  color: black !important;
+#studio-sidebar .ant-menu-submenu-selected .ant-menu-sub .ant-menu-item-selected .ant-menu-title-content .ant-menu-item-icon {
+  color: var(--color-crimson) !important;
   background-color: rgb(231, 231, 231);
 }
 

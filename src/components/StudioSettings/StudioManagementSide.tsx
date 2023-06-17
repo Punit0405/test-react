@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import type { MenuProps } from 'antd';
@@ -39,6 +39,16 @@ const items: MenuItem[] = [
 ];
 
 const StudioManagementSide: FunctionComponent = () => {
+    const [openKeys, setOpenKeys] = useState(['dashboard']);
+    const rootSubmenuKeys = ['dashboard', 'clients', 'documents', 'bookings', 'payments', 'templates'];
+    const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
+        const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+        if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
+            setOpenKeys(keys);
+        } else {
+            setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+        }
+    };
     return (
         <Sider
             breakpoint="lg"
@@ -56,6 +66,8 @@ const StudioManagementSide: FunctionComponent = () => {
                 id="studio-sidebar"
                 mode="inline"
                 defaultSelectedKeys={['dashboard']}
+                openKeys={openKeys}
+                onOpenChange={onOpenChange}
             // items={items}
             >
                 <Menu.Item key="dashboard">
