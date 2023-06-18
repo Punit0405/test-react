@@ -22,7 +22,7 @@ const DashboardSpeciality: any = () => {
                 <Ratio aspectRatio="1x1" className={styles.outerimg} >
                     <div className={styles.imgdiv}>
                         <div className={styles.overlay}></div>
-                        <Image className={styles.myimage} src="../../../sample2.jpg" />
+                        <Image className={styles.myimage} src="../../../sample2.jpg" roundedCircle />
                         <div className={styles.button} >Family</div>
                     </div>
                 </Ratio>
