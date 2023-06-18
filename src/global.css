@@ -555,6 +555,13 @@ a:-webkit-any-link:focus {
   cursor: pointer;
 }
 
+.specialediticon {
+  font-size: 0.9rem;
+  color: var(--color-crimson);
+  cursor: pointer;
+  margin-top: 2px;
+}
+
 .galleryicon {
   margin-top: 5%;
   font-family: var(--font-poppins);

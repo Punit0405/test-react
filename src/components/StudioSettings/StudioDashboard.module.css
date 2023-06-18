@@ -15,13 +15,36 @@
     font-size: 1.2rem;
 }
 
+.titlename {
+    margin-top: 4%;
+}
+
+.tableRow {
+    padding: 50% 0%;
+    font-size: 0.9rem;
+    font-family: var(--font-poppins);
+    text-align: center;
+}
+
+.tableData {
+    padding: 50% 0%;
+}
+
+.tableDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.5vw;
+}
+
+
 .buystoragebtn {
     color: black;
     cursor: pointer;
     border: 0;
     background-color: white;
     padding: 5% 5%;
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.267);
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.267);
     border-radius: 24px;
     width: 100%;
     margin-right: 1%;

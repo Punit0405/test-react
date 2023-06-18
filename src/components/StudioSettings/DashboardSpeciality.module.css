@@ -7,8 +7,21 @@
 }
 
 .specialmain {
-    margin-top: 4%;
+    margin: 4% 0%;
     display: flex;
+}
+
+.editspecial {
+    font-size: 0.8rem;
+    display: block;
+    color: var(--color-crimson);
+    cursor: pointer;
+    font-weight: 550;
+    font-family: var(--font-poppins);
+}
+
+.editname {
+    margin-left: 1%;
 }
 
 .outerimg {
@@ -19,8 +32,8 @@
     flex-direction: column;
     text-align: center;
     position: relative;
-    max-width: 100px;
-    max-height: 100px;
+    /* max-width: 90px; */
+    /* max-height: 90px; */
 }
 
 
@@ -75,6 +88,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 0.8rem;
+    font-family: var(--font-poppins);
+    font-weight: 300;
 }
 
 .outerimg .button {
