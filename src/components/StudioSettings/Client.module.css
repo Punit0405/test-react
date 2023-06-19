@@ -2,6 +2,13 @@
     font-weight: 500;
     margin-left: 5px;
     font-family: var(--font-poppins);
+    font-size: 1.1rem;
+}
+
+.titlemain {
+    font-weight: 500;
+    font-family: var(--font-poppins);
+    font-size: 1.1rem;
 }
 
 .maindiv {
@@ -13,6 +20,28 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.datetitle {
+    margin-bottom: 1%;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.amount {
+    font-weight: 500;
+    font-size: 1.4rem;
+    font-family: var(--font-poppins);
+}
+
+.upcomingmain {
+    margin-top: 2.4%;
+    padding: 3% 0%;
+    border-top: 1px solid rgba(0, 0, 0, 0.116);
+}
+
+.title {
+    margin-top: 3%;
 }
 
 .tableRow {

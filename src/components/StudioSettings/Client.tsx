@@ -42,11 +42,18 @@ const Client: any = () => {
             </Table>
             <Row className={styles.clientpayment}>
                 <Col xl={8} lg={8}>
-                    <h6>Payments</h6>
-                    <ClientPayment />
+                    <h6 className={styles.titlemain}>Payments</h6>
+                    <div className={styles.upcomingmain}>
+                        <h6 className={styles.datetitle}>Total Received</h6>
+                        <h6 className={styles.amount}>R0.00</h6>
+                    </div>
+                    <h6 className={styles.titlemain}>Documents</h6>
+                    <div className={styles.upcomingmain}>
+                        
+                    </div>
                 </Col>
                 <Col xl={4} lg={4}>
-                    <h6>Upcoming Sessions</h6>
+                    <h6 className={styles.titlemain}>Upcoming Sessions</h6>
                     <DashboardUpcoming />
                 </Col>
             </Row>
