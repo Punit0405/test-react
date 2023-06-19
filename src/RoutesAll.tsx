@@ -40,6 +40,7 @@ import BillingComponent from "./components/StudioManagement/BillingComponent";
 import ForRentList from "./components/AssetRegistry/ForRentList";
 import InsuranceQuoteComponent from "./components/AssetRegistry/InsuranceQuote";
 import StudioDashBoard from "./components/StudioSettings/StudioDashBoard";
+import ClientDashboard from "./components/StudioSettings/ClientDashboard";
 
 
 function RoutesAll() {
@@ -53,6 +54,7 @@ function RoutesAll() {
                     <Route path="billing" element={<BillingComponent />} />
                 </Route>
                 <Route path="/studiomanagement" element={<StudioLayout />} >
+                    <Route path="clients" element={<ClientDashboard />} />
                     <Route path="*" element={<StudioDashBoard />} />
                     <Route path="for-sale" element={<StudioDashBoard />} />
                 </Route>
