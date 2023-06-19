@@ -23,7 +23,7 @@ const Client: any = () => {
                                 <Image
                                     className={styles.imgStyle}
                                     alt="customer img"
-                                    src={`../../../sample2.jpg`}
+                                    src={`../../../special.png`}
                                 />
                                 Sample Client
                             </div>
