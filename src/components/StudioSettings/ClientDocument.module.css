@@ -30,6 +30,35 @@
     align-items: center;
 }
 
+.invoicemain {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.invoicename {
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.tableamount,
+.tabledate {
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgb(99, 99, 99);
+}
+
+.invoiceinner {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 30px;
+}
+
 .imgStyle {
     height: 50px;
     width: 50px;

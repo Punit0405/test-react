@@ -14,7 +14,15 @@ const ClientDocument: any = () => {
                                     alt="customer img"
                                     src={`../../../home1.svg`}
                                 />
-                                <div>Invoice#001</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div className={styles.invoicemain}>
+                                <div className={styles.invoicename}>Invoice#001</div>
+                                <div className={styles.invoiceinner}>
+                                    <div className={styles.tableamount}>R0.00</div>
+                                    <div className={styles.tabledate}>7 March 2023</div>
+                                </div>
                             </div>
                         </td>
                         <td className={styles.tableData}>
@@ -29,7 +37,15 @@ const ClientDocument: any = () => {
                                     alt="customer img"
                                     src={`../../../home1.svg`}
                                 />
-                                <div>Invoice#001</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div className={styles.invoicemain}>
+                                <div className={styles.invoicename}>Invoice#001</div>
+                                <div className={styles.invoiceinner}>
+                                    <div className={styles.tableamount}>R0.00</div>
+                                    <div className={styles.tabledate}>7 March 2023</div>
+                                </div>
                             </div>
                         </td>
                         <td className={styles.tableData}>
