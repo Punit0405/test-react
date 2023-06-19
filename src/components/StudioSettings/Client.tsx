@@ -1,7 +1,7 @@
 import { Col, Image, Row, Table } from 'react-bootstrap';
 import styles from './Client.module.css'
 import DashboardUpcoming from './DashboardUpcoming';
-import ClientPayment from './ClientPayment';
+import ClientDocument from './ClientDocument';
 
 const Client: any = () => {
     return (
@@ -48,8 +48,8 @@ const Client: any = () => {
                         <h6 className={styles.amount}>R0.00</h6>
                     </div>
                     <h6 className={styles.titlemain}>Documents</h6>
-                    <div className={styles.upcomingmain}>
-                        
+                    <div className={styles.upcomingmain1}>
+                        <ClientDocument />
                     </div>
                 </Col>
                 <Col xl={4} lg={4}>
