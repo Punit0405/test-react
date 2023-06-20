@@ -35,4 +35,17 @@ const assetDeviceValidation = Yup.object().shape({
         .required(Constants.VALIDATIONS.AMOUNT_REQUIRED)
 })
 
-export { loginValidations, collectionValidations, assetDeviceValidation }
+const addClientValidation = Yup.object().shape({
+    name: Yup.string()
+        .trim()
+        .required(Constants.VALIDATIONS.NAME_REQUIRED),
+    email: Yup.string()
+        .trim()
+        .required(Constants.VALIDATIONS.DEVICE_NAME_REQUIRED)
+        .matches(Constants.EMAIL_REGEX, Constants.VALIDATIONS.INVALID_EMAIL),
+    phone: Yup.number()
+        .min(1, "phone number must be more than 1 ")
+        .required(Constants.VALIDATIONS.AMOUNT_REQUIRED)
+})
+
+export { loginValidations, collectionValidations, assetDeviceValidation, addClientValidation }

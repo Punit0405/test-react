@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from './ClientDashboard.module.css'
-import { Button } from "react-bootstrap";
 import ClientList from "./ClientList";
+import AddNewClientModal from "../Modal/AddNewClientModal";
 
 const ClientDashboard: any = () => {
 
@@ -20,12 +20,16 @@ const ClientDashboard: any = () => {
                         value={search}
                     // onChange={handleSearchValue}
                     />
-                    <Button className={styles.addNewDevice}>
+                    <button className={styles.addNewDevice} onClick={() => setModalShow(true)}>
                         New Client
-                    </Button>
+                    </button>
                 </div>
             </div>
             <ClientList />
+            <AddNewClientModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
         </div>
     )
 
