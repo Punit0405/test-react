@@ -4,6 +4,7 @@ import styles from "./StudioDashboard.module.css";
 const CreateOptions: any = () => {
     return (
         <Row className={styles.creatediv}>
+            
             <Col xl={3} lg={3} md={6} sm={12}>
                 <button className={styles.buystoragebtn}>
                     <i className={`fa-regular fa-plus fa-xl setcolorwithoutmargin ${styles.addbtn}`}>
