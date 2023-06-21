@@ -43,7 +43,6 @@ import StudioDashBoard from "./components/StudioSettings/StudioDashBoard";
 import ClientDashboard from "./components/StudioSettings/ClientDashboard";
 import Client from "./components/StudioSettings/Client";
 
-
 function RoutesAll() {
     return (
         <>
