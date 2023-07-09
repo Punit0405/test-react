@@ -577,6 +577,13 @@ a:-webkit-any-link:focus {
   margin-top: 2px;
 }
 
+.specialediticonsingle {
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
 .galleryicon {
   margin-top: 5%;
   font-family: var(--font-poppins);

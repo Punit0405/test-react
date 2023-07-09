@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import styles from "./DashboardSpeciality.module.css";
-import { Button, Col, Image, Ratio, Row } from "react-bootstrap";
+import { Col, Image, Ratio, Row } from "react-bootstrap";
 
 const DashboardSpeciality: any = () => {
     return (

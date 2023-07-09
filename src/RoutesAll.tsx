@@ -44,6 +44,7 @@ import ClientDashboard from "./components/StudioSettings/ClientDashboard";
 import Client from "./components/StudioSettings/Client";
 import Questionnaires from "./components/StudioSettings/Questionnaires";
 import Templates from "./components/StudioSettings/Templates";
+import Speciality from "./components/StudioSettings/Speciality";
 
 function RoutesAll() {
     return (
@@ -60,6 +61,7 @@ function RoutesAll() {
                     <Route path="clients/:clientId" element={<Client />} />
                     <Route path="questionnaires" element={<Questionnaires />} />
                     <Route path="templates" element={<Templates />} />
+                    <Route path="speciality" element={<Speciality />} />
                     <Route path="*" element={<StudioDashBoard />} />
                     <Route path="for-sale" element={<StudioDashBoard />} />
                 </Route>

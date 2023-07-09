@@ -48,6 +48,12 @@ const addClientValidation = Yup.object().shape({
         .required(Constants.VALIDATIONS.AMOUNT_REQUIRED)
 })
 
+const addSpecilityValidation = Yup.object().shape({
+    name: Yup.string()
+        .trim()
+        .required(Constants.VALIDATIONS.NAME_REQUIRED),
+})
+
 const sendQuestionnarieEmail = Yup.object().shape({
     name: Yup.string()
         .trim()
@@ -64,4 +70,4 @@ const sendQuestionnarieEmail = Yup.object().shape({
         .required(Constants.VALIDATIONS.NAME_REQUIRED),
 })
 
-export { loginValidations, collectionValidations, assetDeviceValidation, addClientValidation, sendQuestionnarieEmail }
+export { loginValidations, collectionValidations, assetDeviceValidation, addClientValidation, sendQuestionnarieEmail, addSpecilityValidation }
