@@ -1,0 +1,99 @@
+.maindiv {
+    margin: 0% 0%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-top: 0%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.maincomp {
+    padding: 0% 2%;
+}
+
+.assetnavbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    font-size: var(--font-size-29xl);
+    color: var(--color-black);
+    font-family: var(--font-poppins);
+    margin: 0% 1%
+}
+
+.dashboard {
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.sidenav {
+    margin-top: 3%;
+}
+
+.navname {
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-top: 3px solid white;
+    margin-right: 15%;
+}
+
+.navname:hover {
+    border-top: 3px solid white;
+}
+
+.tableRow {
+    padding: 60% 0%;
+    font-size: 0.9rem;
+    font-family: var(--font-poppins);
+    text-align: center;
+}
+
+.tableData {
+    padding: 100% 0%;
+    margin: 10px 0px;
+    height: 5vw;
+}
+
+.videoname {
+    font-size: 0.9rem;
+    font-weight: 450;
+    margin-left: 5px;
+    color: var(--color-crimson);
+    font-family: var(--font-poppins);
+}
+
+.tableDiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    font-family: var(--font-poppins);
+    font-weight: 400;
+}
+
+.titlediv {
+    font-size: 0.9rem;
+    font-family: var(--font-poppins);
+    font-weight: 400;
+    color: #838383;
+    margin-top: 3%;
+}
+
+.nameDiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.imgStyle {
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    margin-right: 15px;
+}
