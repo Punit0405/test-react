@@ -4,17 +4,17 @@ import Constants from "../../Config/Constants";
 import { useState } from "react";
 
 function GetDirectLinkModal(props: any) {
-    const collectionURl = Constants.clientViewUrl+props.collection.collection.url;
-    const downloadPin = props.collection.collection.downloadPin;
-    const [urlText,setUrlText] = useState("Copy");
-    const [downloadPinText,setDownloadPinText] = useState("Copy");
-    const copyUrlText = ()=>{
-       navigator.clipboard.writeText(collectionURl);
-       setUrlText("Copied");
+    const collectionURl = Constants.clientViewUrl + props?.collection?.collection?.url || "";
+    const downloadPin = props.collection?.collection?.downloadPin || "";
+    const [urlText, setUrlText] = useState("Copy");
+    const [downloadPinText, setDownloadPinText] = useState("Copy");
+    const copyUrlText = () => {
+        navigator.clipboard.writeText(collectionURl);
+        setUrlText("Copied");
     }
-    const copyDownloadPin = ()=>{
-       navigator.clipboard.writeText(downloadPin);
-       setDownloadPinText("Copied");
+    const copyDownloadPin = () => {
+        navigator.clipboard.writeText(downloadPin);
+        setDownloadPinText("Copied");
     }
     return (
         <Modal
@@ -43,9 +43,9 @@ function GetDirectLinkModal(props: any) {
                                     disabled
                                 />
                                 <Button variant="outline-secondary" id="button-addon2"
-                                onClick={copyUrlText}
+                                    onClick={copyUrlText}
                                 >
-                                 {urlText}
+                                    {urlText}
                                 </Button>
                             </InputGroup>
                             <p className={styles.modalPara}>Share this unique URL for this collection with your client.</p>
