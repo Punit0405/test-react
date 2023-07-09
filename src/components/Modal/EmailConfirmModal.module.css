@@ -1,0 +1,17 @@
+.maindiv {
+    text-align: center;
+}
+
+.title {
+    font-family: var(--font-poppins);
+    font-size: 1.3rem;
+    font-weight: 450;
+    margin: 2% 0%;
+}
+
+.subtitle {
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 2% 0%;
+}

@@ -52,7 +52,7 @@
     font-family: var(--font-poppins);
     color: var(--color-white);
     border: 0;
-    padding: 2% 4%;
+    padding: 4% 4%;
     background-color: var(--color-crimson);
     border-radius: var(--br-2xs);
     width: 15vw;

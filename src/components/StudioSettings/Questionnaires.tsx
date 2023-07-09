@@ -1,13 +1,11 @@
 import { useState } from "react";
 import styles from './Questionnaires.module.css'
-import ClientList from "./ClientList";
-import AddNewClientModal from "../Modal/AddNewClientModal";
 import QuestionnairesList from "./QuestionnairesList";
+import AddQuestionnaires from "../Modal/AddQuestionnaires";
 
 const Questionnaires: any = () => {
 
     const [modalShow, setModalShow] = useState(false);
-    const [search, setSearch] = useState("");
 
     return (
         <div className={styles.maindiv}>
@@ -20,7 +18,7 @@ const Questionnaires: any = () => {
                 </div>
             </div>
             <QuestionnairesList />
-            <AddNewClientModal
+            <AddQuestionnaires
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />
