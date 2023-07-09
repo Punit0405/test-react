@@ -14,35 +14,35 @@ const NavBarComponent = () => {
             <Nav.Link as={NavLink} to="/dashboard" eventKey="dashboard">
                 <div className={styles.home} >
                     <i className="fa-regular fa-house setcolor"></i>
-                    <p className={styles.navmainname}>Home</p>
+                    <span className={styles.navmainname}>Home</span>
                 </div>
             </Nav.Link>
 
             <Nav.Link as={NavLink} to="/studiomanagement/dashboard" eventKey="studiomanagement">
                 <div className={styles.home}>
                     <i className="fa-regular fa-video setcolor"></i>
-                    <p className={styles.navmainname}>Studio Management</p>
+                    <span className={styles.navmainname}>Studio Management</span>
                 </div>
             </Nav.Link>
 
             <Nav.Link as={NavLink} to="/gallery" eventKey="gallery" >
                 <div className={styles.home}>
                     <i className="fa-regular setcolor fa-grid-2"></i>
-                    <p className={styles.navmainname}>Gallery</p>
+                    <span className={styles.navmainname}>Gallery</span>
                 </div>
             </Nav.Link>
 
             <Nav.Link eventKey="asset-registry" as={NavLink} to="/asset-registry" >
                 <div className={styles.home}>
                     <i className="fa-regular fa-folder setcolor"></i>
-                    <p className={styles.navmainname}>Asset Registry</p>
+                    <span className={styles.navmainname}>Asset Registry</span>
                 </div>
             </Nav.Link>
 
             <Nav.Link eventKey="music" as={NavLink} to="/music">
                 <div className={styles.home}>
                     <i className="fa-regular fa-circle-play setcolor"></i>
-                    <p className={styles.navmainname}>Music</p>
+                    <span className={styles.navmainname}>Music</span>
                 </div>
             </Nav.Link>
 

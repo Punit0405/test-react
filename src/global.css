@@ -217,10 +217,15 @@ body {
 }
 
 .nav.nav-tabs .nav-link.active {
-  /* border: 2px solid red; */
   border: none;
   border-radius: 0px;
   border-top: 4px solid #ec1a25;
+}
+
+.nav.nav-tabs .nav-link {
+  border: none;
+  border-radius: 0px;
+  border-top: 4px solid white;
 }
 
 #sidebar-nav .nav.nav-tabs .nav-link.active {
