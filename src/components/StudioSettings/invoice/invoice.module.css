@@ -1,0 +1,58 @@
+.invoiceTitle {
+    color: var(--4, #080B23);
+    font-family: Poppins;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    width: 429px;
+    height: 48px;
+}
+
+.invoiceInput {
+    border-radius: 5px;
+    border: 2px solid #EFEFEF;
+    width: 486px;
+    height: 64px;
+    flex-shrink: 0;
+    color: #C4C4C4;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.invoiceButton {
+    width: 240px;
+    height: 51px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #C4C4C4;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 42px;
+}
+
+.invoiceBack {
+    color: #EC1A25;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 136px;
+}
+
+.invoiceSvg {
+    fill: #EC1A25;
+    stroke-width: 1px;
+    stroke: #EC1A25;
+    width: 8px;
+    height: 16px;
+    flex-shrink: 0;
+}
