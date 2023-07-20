@@ -1,5 +1,6 @@
 import styles from "./DashboardSpeciality.module.css";
 import { Col, Image, Ratio, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const DashboardSpeciality: any = () => {
     return (
@@ -67,12 +68,14 @@ const DashboardSpeciality: any = () => {
 
 
             </Row>
+            <Link to="speciality">
             <div className={styles.editspecial}>
                 <i className="fa-regular fa-pen specialediticon"></i>
                 <span className={styles.editname}>
                     Edit My Specialities
                 </span>
             </div>
+            </Link>
         </>
     )
 }

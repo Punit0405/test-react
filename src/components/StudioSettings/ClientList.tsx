@@ -1,7 +1,11 @@
 import { Image, Ratio, Table } from "react-bootstrap"
 import styles from './ClientList.module.css'
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 const ClientList: any = () => {
+
+    const navigate = useNavigate();
 
     return (
         <div>
@@ -15,7 +19,7 @@ const ClientList: any = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className={styles.tableRow}>
+                    <tr className={styles.tableRow} onClick={()=>{navigate("1")}}>
                         <td className={styles.tableData}>
                             <div className={styles.nameDiv}>
                                 <Image
@@ -36,7 +40,7 @@ const ClientList: any = () => {
                             <div className={styles.tableDiv}>6 March 2023</div>
                         </td>
                     </tr>
-                    <tr className={styles.tableRow}>
+                    <tr className={styles.tableRow} onClick={()=>{navigate("1")}}>
                         <td className={styles.tableData}>
                             <div className={styles.nameDiv}>
                                 <Image
