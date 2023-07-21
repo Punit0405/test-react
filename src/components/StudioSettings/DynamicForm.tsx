@@ -2,7 +2,12 @@ import { Formik, FieldArray, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Switch } from 'antd';
 import styles from './DynamicForm.module.css'
+import { useNavigate } from 'react-router-dom';
+
 const DynamicForm = () => {
+
+  const navigate = useNavigate();
+
   const initialValues = {
     fields: [{ type: '', question: '', options: [], required: false }],
   };  
@@ -171,7 +176,7 @@ const DynamicForm = () => {
               {({ push, remove }) => (
                 <div>
                    <div className={styles.uperdiv}>
-      <button className={styles.backdiv}>
+      <button className={styles.backdiv} onClick={() => navigate(-1)}>
                 <i className="fa-solid fa-chevron-left"></i><span>Back</span>
             </button>
             <button className={styles.addNewDevice} type="submit">
