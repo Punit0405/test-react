@@ -45,6 +45,7 @@ import Client from "./components/StudioSettings/Client";
 import Questionnaires from "./components/StudioSettings/Questionnaires";
 import Templates from "./components/StudioSettings/Templates";
 import Speciality from "./components/StudioSettings/Speciality";
+import DynamicForm from "./components/StudioSettings/DynamicForm"
 
 function RoutesAll() {
     return (
@@ -61,6 +62,7 @@ function RoutesAll() {
                     <Route path="clients/:clientId" element={<Client />} />
                     <Route path="questionnaires" element={<Questionnaires />} />
                     <Route path="templates" element={<Templates />} />
+                    <Route path="templates/photo-template" element={<DynamicForm />} />
                     <Route path="speciality" element={<Speciality />} />
                     <Route path="*" element={<StudioDashBoard />} />
                     <Route path="for-sale" element={<StudioDashBoard />} />

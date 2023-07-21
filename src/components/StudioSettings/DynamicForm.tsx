@@ -1,7 +1,7 @@
 import { Formik, FieldArray, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Switch } from 'antd';
-
+import styles from './DynamicForm.module.css'
 const DynamicForm = () => {
   const initialValues = {
     fields: [{ type: '', question: '', options: [], required: false }],
@@ -39,6 +39,7 @@ const DynamicForm = () => {
 
     return (
       <Switch
+        className={styles.tooglebtn}
         checked={field.value}
         onChange={handleChange}
       />
@@ -48,13 +49,15 @@ const DynamicForm = () => {
   const renderFormFields = (values: any, push: any, remove: any) => {
     return values.fields.map((field: any, index: any) => {
       return (
-        <div key={index}>
-          <label htmlFor={`fields.${index}.type`}>Field Type</label>
+        <div key={index} className={styles.optiondiv}>
+          <div className={styles.selectdiv}>
+            <div>          
           <Field
             as="select"
             name={`fields.${index}.type`}
             id={`fields.${index}.type`}
             validate={(value: any) => !value && 'Type is required'}
+            className={styles.optionset}
           >
             <option value="">Select type of question</option>
             <option value="text">Short Question</option>
@@ -63,6 +66,17 @@ const DynamicForm = () => {
             <option value="file">Upload</option>
           </Field>
           <ErrorMessage name={`fields.${index}.type`} component="div" />
+          </div>
+          <div className={styles.querightdiv}>
+          <div className={styles.requireddiv}>
+          <Field name={`fields.${index}.required`} component={ToggleSwitch} />
+          <span  className={styles.tglbtn}>Required</span>
+            </div>
+          <button className={styles.removebtn} type="button" onClick={() => handleRemoveField(remove, index)}>
+          <i className="fa-solid fa-trash addquebtn"></i>
+          </button>          
+          </div>
+          </div>
 
           {field.type && (
             <>
@@ -75,9 +89,8 @@ const DynamicForm = () => {
                   validate={(value: any) =>
                     !value ? 'Question is required' : ''
                   }
-                  style={{ border: 'none' }}
-                />
-                <Field name={`fields.${index}.required`} component={ToggleSwitch} />
+                  className={styles.quemain}
+                />            
 
               </div>
               {
@@ -88,9 +101,10 @@ const DynamicForm = () => {
                         <div>
                           {field.options.map((option: any, optionIndex: any) => (
                             <div key={optionIndex}>
-                              <Field type="checkbox" name={`fields.${index}.optionscheck.${optionIndex}`} />
+                              <Field type="checkbox" className={styles.checkboxbtn} name={`fields.${index}.optionscheck.${optionIndex}`} />
                               <Field
                                 type="text"
+                                className={styles.checkname}
                                 name={`fields.${index}.options.${optionIndex}`}
                                 placeholder={`Option${optionIndex}`}
                                 validate={(value: any) =>
@@ -103,8 +117,9 @@ const DynamicForm = () => {
                                 onClick={() =>
                                   removeOption(optionIndex)
                                 }
+                                className={styles.addoptionbtn}
                               >
-                                Remove Option
+                                <i className="fa-solid fa-trash addquebtn"></i>
                               </button>
                             </div>
                           ))}
@@ -114,39 +129,37 @@ const DynamicForm = () => {
                             onClick={() =>
                               handleAddOption(pushOption, index)
                             }
+                            className={styles.addoptionbtn}
                           >
-                            Add Option
+                            <i className="fa-solid fa-plus addquebtn"></i><span className={styles.addquename}>Add Option</span>
                           </button>
                         </div>
                       )}
                     </FieldArray>
                   </> :
+                  field.type==='file'?
                   <Field
-                    type={field.type}
-                    name={`fields.${index}.answer`}
-                    id={`fields.${index}.answer`}
-                    placeholder="Client's answer"
-                    readOnly
-                    validate={(value: any) =>
-                      (field.type === 'radio' || field.type === 'dropdown') && !value ? 'Label is required' : ''
-                    }
-                  />
+                  type="file"
+                  name={`fields.${index}.file`}
+                  id={`fields.${index}.file`}
+                  placeholder="Enter Question"
+                  className={styles.filemain}
+                />       
+                :
+                  <></>
               }
               <ErrorMessage name={`fields.${index}.question`} component="div" />
             </>
           )}
           <br></br>
-          <button type="button" onClick={() => handleRemoveField(remove, index)}>
-            Remove Field
-          </button>
+          
         </div>
       );
     });
   };
 
   return (
-    <div>
-      <h1>Dynamic Form</h1>
+    <div className={styles.maincomp}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -157,16 +170,41 @@ const DynamicForm = () => {
             <FieldArray name="fields">
               {({ push, remove }) => (
                 <div>
+                   <div className={styles.uperdiv}>
+      <button className={styles.backdiv}>
+                <i className="fa-solid fa-chevron-left"></i><span>Back</span>
+            </button>
+            <button className={styles.addNewDevice} type="submit">
+                        Save Template
+                    </button>
+      </div>
+      <div className={styles.maintitle}>
+        <div className={styles.title}>
+        Photography Questionnaire
+        </div>
+        <Field
+                  type="text"
+                  as="textarea"
+                  rows="2"
+                  cols="50"
+                  name="maindesc"
+                  id="maindesc"
+                  placeholder="Enter Description"
+                  validate={(value: any) =>
+                    !value ? 'Description is required' : ''
+                  }
+                  className={styles.textarea}
+                />
+      </div>
+      
                   {renderFormFields(values, push, remove)}
                   <br></br>
-                  <button type="button" onClick={() => handleAddField(push)}>
-                    Add Field
+                  <button type="button" className={styles.addquebtn} onClick={() => handleAddField(push)}>
+                  <i className="fa-solid fa-plus addquebtn"></i><span className={styles.addquename}>Add Question</span>
                   </button>
                 </div>
               )}
             </FieldArray>
-            <br></br>
-            <button type="submit">Submit</button>
           </Form>
         )}
       </Formik>

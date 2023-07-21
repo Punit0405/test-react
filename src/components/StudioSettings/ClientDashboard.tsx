@@ -4,7 +4,7 @@ import ClientList from "./ClientList";
 import AddNewClientModal from "../Modal/AddNewClientModal";
 
 const ClientDashboard: any = () => {
-
+ 
     const [modalShow, setModalShow] = useState(false);
     const [search, setSearch] = useState("");
 

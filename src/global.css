@@ -498,6 +498,11 @@ a:-webkit-any-link:focus {
   font-size: 0.9rem;
 }
 
+.addquebtn{
+  color: var(--color-crimson);
+  /* margin-right:2%; */
+}
+
 .assetediticons {
   margin-top: 3%;
   width: 18%;

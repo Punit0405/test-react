@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from './Templates.module.css'
 import { Container, Image, Nav, Navbar, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const activetab = {
     borderTop: '3px solid var(--color-crimson)'
@@ -28,10 +29,12 @@ const QuestionnairesContent: any = () => {
                             </div>
                         </td>
                         <td className={styles.tableData}>
+                            <Link to="photo-template">
                             <div className={styles.tableDiv}>
                                 <i className="fa-regular fa-pen quepen"></i>
                                 <span className={styles.videoname}> Edit Questionnaire</span>
                             </div>
+                            </Link>
                         </td>
                     </tr>
                     <tr className={styles.tableRow}>
@@ -46,10 +49,12 @@ const QuestionnairesContent: any = () => {
                             </div>
                         </td>
                         <td className={styles.tableData}>
+                        <Link to="photo-template">
                             <div className={styles.tableDiv}>
                                 <i className="fa-regular fa-pen quepen"></i>
                                 <span className={styles.videoname}>Edit Questionnaire</span>
                             </div>
+                        </Link>
                         </td>
                     </tr>
                 </tbody>
