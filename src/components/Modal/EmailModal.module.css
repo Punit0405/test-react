@@ -19,14 +19,8 @@
     font-family: var(--font-poppins);
 }
 
-.maincompclient {
-    margin: 3% 0%;
-    padding: 2% 20%;
-    font-family: var(--font-poppins);
-}
-
 .formlabel {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 400;
     color: black;
     font-family: var(--font-poppins);
@@ -39,7 +33,7 @@
 
 .buttondiv {
     margin-top: 10%;
-    text-align: center;
+    text-align: left;
 }
 
 .cancelbtn {
@@ -59,7 +53,7 @@
     width: 150px;
     background-color: var(--color-crimson);
     color: white;
-    margin: 2% 2%;
+    margin: 2% 0%;
 }
 
 .cancelbtn:hover {
@@ -70,12 +64,4 @@
 .createbtn:hover {
     background-color: var(--color-crimson);
     color: white;
-}
-
-.profileImg{
-    border:var(--bs-border-width) solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    width:100%;
 }

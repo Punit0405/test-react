@@ -45,6 +45,7 @@
 }
 
 .allsessions {
+    padding:2% 2%;
     height: 30vw;
     overflow-y: scroll;
 }

@@ -34,7 +34,7 @@ const DashboardUpcoming: any = () => {
                                 <img
                                     className={styles.groupIcon}
                                     alt=""
-                                    src="../group-103.svg"
+                                    src="../../../group-103.svg"
                                 />
                             </div>
                         </Col>
@@ -66,7 +66,7 @@ const DashboardUpcoming: any = () => {
                                 <img
                                     className={styles.groupIcon}
                                     alt=""
-                                    src="../group-103.svg"
+                                    src="../../../group-103.svg"
                                 />
                             </div>
                         </Col>
@@ -98,7 +98,7 @@ const DashboardUpcoming: any = () => {
                                 <img
                                     className={styles.groupIcon}
                                     alt=""
-                                    src="../group-103.svg"
+                                    src="../../../group-103.svg"
                                 />
                             </div>
                         </Col>
@@ -130,7 +130,7 @@ const DashboardUpcoming: any = () => {
                                 <img
                                     className={styles.groupIcon}
                                     alt=""
-                                    src="../group-103.svg"
+                                    src="../../../group-103.svg"
                                 />
                             </div>
                         </Col>
@@ -162,7 +162,7 @@ const DashboardUpcoming: any = () => {
                                 <img
                                     className={styles.groupIcon}
                                     alt=""
-                                    src="../group-103.svg"
+                                    src="../../../group-103.svg"
                                 />
                             </div>
                         </Col>
@@ -194,7 +194,7 @@ const DashboardUpcoming: any = () => {
                                 <img
                                     className={styles.groupIcon}
                                     alt=""
-                                    src="../group-103.svg"
+                                    src="../../../group-103.svg"
                                 />
                             </div>
                         </Col>

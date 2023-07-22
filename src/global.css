@@ -217,10 +217,15 @@ body {
 }
 
 .nav.nav-tabs .nav-link.active {
-  /* border: 2px solid red; */
   border: none;
   border-radius: 0px;
   border-top: 4px solid #ec1a25;
+}
+
+.nav.nav-tabs .nav-link {
+  border: none;
+  border-radius: 0px;
+  border-top: 4px solid white;
 }
 
 #sidebar-nav .nav.nav-tabs .nav-link.active {
@@ -493,6 +498,15 @@ a:-webkit-any-link:focus {
   font-size: 0.9rem;
 }
 
+.addquebtn{
+  color: var(--color-crimson);
+  /* margin-right:2%; */
+}
+
+.modal-header{
+  border-bottom:none;
+}
+
 .assetediticons {
   margin-top: 3%;
   width: 18%;
@@ -555,9 +569,26 @@ a:-webkit-any-link:focus {
   cursor: pointer;
 }
 
+.quepen {
+  color: var(--color-crimson);
+}
+
+.emailcorrect {
+  color: var(--color-crimson);
+  font-size: 3.5rem;
+  margin: 3% 0%;
+}
+
 .specialediticon {
   font-size: 0.9rem;
   color: var(--color-crimson);
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.specialediticonsingle {
+  font-size: 0.9rem;
+  color: white;
   cursor: pointer;
   margin-top: 2px;
 }
