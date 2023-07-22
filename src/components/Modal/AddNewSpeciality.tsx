@@ -35,6 +35,8 @@ function AddNewSpeciality(props: any) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
+            <Modal.Header closeButton>
+            </Modal.Header>
             <Modal.Body className={styles.maincomp}>
                 <div className={styles.maintitlediv}>
                     <p className={styles.maintitle}>Add New Speciality</p>

@@ -503,6 +503,10 @@ a:-webkit-any-link:focus {
   /* margin-right:2%; */
 }
 
+.modal-header{
+  border-bottom:none;
+}
+
 .assetediticons {
   margin-top: 3%;
   width: 18%;

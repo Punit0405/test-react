@@ -36,6 +36,8 @@ function AddNewClientModal(props: any) {
             centered
             contentClassName="addNewDeviceModal"
         >
+            <Modal.Header closeButton>
+            </Modal.Header>
             <Modal.Body className={styles.maincomp}>
                 <div className={styles.maintitlediv}>
                     <p className={styles.maintitle}>Add New Client</p>
