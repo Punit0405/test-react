@@ -16,10 +16,10 @@ function AddNewSpeciality(props: any) {
 
     const handleSubmit = async (values: any) => {
         try {
+            props.onHide()
             if (props?.createnew) {
                 setLoader(true);
             } else {
-                props.updateDevice(values)
             }
         } catch (err: any) {
             setLoader(false);
