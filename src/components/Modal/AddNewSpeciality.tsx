@@ -1,29 +1,38 @@
 import { useState } from "react";
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import styles from "./AddNewSpecialityModal.module.css";
-import { Formik } from "formik";
+import { Formik,Field  } from "formik";
 import { addSpecilityValidation } from "../../Utils/validations";
 import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
+import {fileUpload} from "../../Utils/helper"
 
 function AddNewSpeciality(props: any) {
 
     let formInitialValues = {
         name: props?.details?.name ? props?.details?.name : "" as string,
+        profileImg:""
     }
 
     const [loader, setLoader] = useState<boolean>(false);
 
     const handleSubmit = async (values: any) => {
         try {
+            setLoader(true)
+            if(values?.profileImg){
+                let ext=values?.profileImg?.name?.split('.').pop()
+                let key=`studio-management/userid/speciality/${Date.now()}.${ext}`
+                // const s3Key=await fileUpload(values?.profileImg,key)
+            }
             props.onHide()
             if (props?.createnew) {
-                setLoader(true);
             } else {
             }
         } catch (err: any) {
             setLoader(false);
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+        }finally{
+            setLoader(false)
         }
 
     }
@@ -53,7 +62,7 @@ function AddNewSpeciality(props: any) {
                         isValid,
                         errors,
                     }) => (
-                        <Form className={styles.formdiv} onSubmit={handleSubmit}>
+                        <Form className={styles.formdiv} onSubmit={handleSubmit} encType="multipart/form-data">
                             <div className={styles.formcomp}>
                                 <Form.Label className={styles.formlabel}>Name</Form.Label>
                                 <InputGroup className="mb-3">
@@ -71,9 +80,26 @@ function AddNewSpeciality(props: any) {
                                     </Form.Control.Feedback> */}
                                 </InputGroup>
                             </div>
-                            <Form.Group controlId="formFileLg" className="mb-3">
+                            <Form.Group className="mb-3">
                                 <Form.Label>Select photo</Form.Label>
-                                <Form.Control type="file" accept="image/*" required />
+                                <br></br>
+                                <Field name="profileImg" >
+                                    {({ field, form }:any) => (
+                                      <input
+                                        className={styles.profileImg}
+                                        type="file"
+                                        accept="image/*"
+                                        name="profileImg"
+                                        required={false}
+                                        onChange={(event) => {
+                                            const file = event.currentTarget.files?.[0];
+                                            if (file) {
+                                              form.setFieldValue('profileImg', file);
+                                            }
+                                        }}
+                                      />
+                                    )}
+                                  </Field>
                             </Form.Group>
                             <div className={styles.buttondiv}>
                                 <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>

@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import styles from "./CreateCollectionModal.module.css";
-import { Formik } from "formik";
+import { Formik,Field } from "formik";
 import { addClientValidation } from "../../Utils/validations";
 import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
+import {fileUpload} from "../../Utils/helper"
 
 function AddNewClientModal(props: any) {
 
@@ -13,17 +14,24 @@ function AddNewClientModal(props: any) {
         name: "",
         email: "",
         phone: "",
+        profileImg:""
     }
 
     const [loader, setLoader] = useState<boolean>(false);
 
     const handleSubmit = async (values: any) => {
-        props.onHide()
         try {
-
+            setLoader(true)
+            if(values?.profileImg){
+                let ext=values?.profileImg?.name?.split('.').pop()
+                let key=`studio-management/userid/client-profile/${Date.now()}.${ext}`
+                // const s3Key=await fileUpload(values?.profileImg,key)
+            }
+            props.onHide()
         } catch (err: any) {
-            setLoader(false);
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+        }finally{
+            setLoader(false)
         }
 
     }
@@ -38,7 +46,7 @@ function AddNewClientModal(props: any) {
         >
             <Modal.Header closeButton>
             </Modal.Header>
-            <Modal.Body className={styles.maincomp}>
+            <Modal.Body className={styles.maincompclient}>
                 <div className={styles.maintitlediv}>
                     <p className={styles.maintitle}>Add New Client</p>
                 </div>
@@ -67,9 +75,9 @@ function AddNewClientModal(props: any) {
                                         isValid={touched.name && !errors.name}
                                         isInvalid={!!errors.name}
                                     />
-                                    <Form.Control.Feedback type="invalid">
+                                    {/* <Form.Control.Feedback type="invalid">
                                         <p>{errors.name}</p>
-                                    </Form.Control.Feedback>
+                                    </Form.Control.Feedback> */}
                                 </InputGroup>
                             </div>
                             <div className={styles.formcomp}>
@@ -84,9 +92,9 @@ function AddNewClientModal(props: any) {
                                         isValid={touched.email && !errors.email}
                                         isInvalid={!!errors.email}
                                     />
-                                    <Form.Control.Feedback type="invalid">
+                                    {/* <Form.Control.Feedback type="invalid">
                                         <p>{errors.email}</p>
-                                    </Form.Control.Feedback>
+                                    </Form.Control.Feedback> */}
                                 </InputGroup>
                             </div>
                             <div className={styles.formcomp}>
@@ -101,10 +109,31 @@ function AddNewClientModal(props: any) {
                                         isValid={touched.phone && !errors.phone}
                                         isInvalid={!!errors.phone}
                                     />
-                                    <Form.Control.Feedback type="invalid">
+                                    {/* <Form.Control.Feedback type="invalid">
                                         <p>{errors.phone}</p>
-                                    </Form.Control.Feedback>
+                                    </Form.Control.Feedback> */}
                                 </InputGroup>
+                                <Form.Group className="mb-3">
+                                <Form.Label>Select photo</Form.Label>
+                                <br></br>
+                                <Field name="profileImg" >
+                                    {({ field, form }:any) => (
+                                      <input
+                                        className={styles.profileImg}
+                                        type="file"
+                                        accept="image/*"
+                                        name="profileImg"
+                                        required={false}
+                                        onChange={(event) => {
+                                            const file = event.currentTarget.files?.[0];
+                                            if (file) {
+                                              form.setFieldValue('profileImg', file);
+                                            }
+                                        }}
+                                      />
+                                    )}
+                                  </Field>
+                            </Form.Group>
                             </div>
                             <div className={styles.buttondiv}>
                                 <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>

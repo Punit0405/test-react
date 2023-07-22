@@ -39,6 +39,7 @@ const Speciality: any = () => {
             <AddNewSpeciality
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+                createnew={true}
             />
         </div>
     )

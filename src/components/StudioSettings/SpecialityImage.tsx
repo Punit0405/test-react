@@ -22,6 +22,7 @@ const SpecialityImage: any = () => {
             <AddNewSpeciality
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+                createnew={false}
             />
         </Col>
     )
