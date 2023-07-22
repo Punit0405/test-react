@@ -101,8 +101,6 @@ function DragMedia() {
         acceptedFiles.forEach((file: any) => {
             totalSize = totalSize + file?.size
             const reader = new FileReader()
-            reader.onabort = () => console.log('file reading was aborted')
-            reader.onerror = () => console.log('file reading has failed')
             reader.onload = () => {
                 const image = new Image();
                 image.addEventListener('load', () => {
