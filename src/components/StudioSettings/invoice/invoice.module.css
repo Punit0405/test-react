@@ -21,6 +21,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    padding: 18px 19px 18px 19px;
 }
 
 .invoiceButton {
@@ -55,4 +56,11 @@
     width: 8px;
     height: 16px;
     flex-shrink: 0;
+}
+
+.invoiceClient {
+    width: 486px;
+    height: 61.643px;
+    flex-shrink: 0;
+    background: #FCFCFC;
 }
