@@ -18,6 +18,7 @@ function AddNewClientModal(props: any) {
     const [loader, setLoader] = useState<boolean>(false);
 
     const handleSubmit = async (values: any) => {
+        props.onHide()
         try {
 
         } catch (err: any) {

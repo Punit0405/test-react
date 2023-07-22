@@ -52,6 +52,7 @@ const addSpecilityValidation = Yup.object().shape({
     name: Yup.string()
         .trim()
         .required(Constants.VALIDATIONS.NAME_REQUIRED),
+    profileImg:Yup.mixed().nullable()
 })
 
 const sendQuestionnarieEmail = Yup.object().shape({
