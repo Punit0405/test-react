@@ -25,6 +25,8 @@
 .dashboard {
     font-weight: 500;
     margin-left: 5px;
+    font-size:1.2rem;
+    margin-right:5%;
 }
 
 .frameChild {
@@ -56,6 +58,7 @@
     background-color: var(--color-crimson);
     border-radius: var(--br-2xs);
     width: 15vw;
+    white-space: nowrap;
 }
 
 @media screen and (max-width: 900px) {
@@ -63,6 +66,10 @@
     .addNewDevice {
         width: 25vw;
         font-size: 0.7rem;
+    }
+
+    .frameChild{
+        width:50%;
     }
 
 }

@@ -49,6 +49,7 @@ const StudioManagementSide: FunctionComponent = () => {
             setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
         }
     };
+    
     return (
         <Sider
             breakpoint="lg"
