@@ -61,6 +61,12 @@
     white-space: nowrap;
 }
 
+.addNewDevice:active,
+.addNewDevice:hover
+{
+    background-color: var(--color-crimson);
+}
+
 @media screen and (max-width: 900px) {
 
     .addNewDevice {

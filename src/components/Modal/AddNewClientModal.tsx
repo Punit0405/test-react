@@ -87,7 +87,7 @@ function AddNewClientModal(props: any) {
                                 </InputGroup>
                             </div>
                             <div className={styles.formcomp}>
-                                <Form.Label className={styles.formlabel}>Device Amount</Form.Label>
+                                <Form.Label className={styles.formlabel}>Phone Number</Form.Label>
                                 <InputGroup className="mb-3">
                                     <Form.Control
                                         type="number"
