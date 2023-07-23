@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal,Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import styles from "./CreateCollectionModal.module.css";
 import { Formik,Field } from "formik";
@@ -9,20 +9,12 @@ import { NotificationWithIcon } from "../../Utils/helper";
 import {fileUpload} from "../../Utils/helper"
 import StudioClientSevice from "../../api/StudioClient/StudioClient"
 
-// {
-//     "name": "test",
-//     "email": "test12@gmail.com",
-//     "phone": "1022111",
-//     "profileUrl": "https://snape-buckets.b-cdn.net/default/userprofile.png",
-//     "createdAt": "2023-07-22T18:27:23.195Z"
-// }
-
 function AddNewClientModal(props: any) {
 
     let formInitialValues = {
-        name: "",
-        email: "",
-        phone: "",
+        name: props?.client?.name || "",
+        email: props?.client?.email || "",
+        phone: props?.client?.phone || "",
         profileImg:""
     }
 
@@ -42,18 +34,22 @@ function AddNewClientModal(props: any) {
                 const s3Key=await fileUpload(values?.profileImg,key)
                 data={...data,profileUrl:s3Key}                
             }
-            const clientRes=await StudioClientSevice.addClient(data);            
-            if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
-                console.log(clientRes?.result)
-                const newData={
-                    name: clientRes?.result?.name,
-                    email: clientRes?.result?.email,
-                    phone: clientRes?.result?.phone,
-                    profileUrl: clientRes?.result?.profileUrl,
-                    createdAt: clientRes?.result?.createdAt
-                }
-                props.setcreateclient(newData)
-            } 
+            if(props.createnew==="true"){
+                const clientRes=await StudioClientSevice.addClient(data);            
+                if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                    console.log(clientRes?.result)
+                    const newData={
+                        name: clientRes?.result?.name,
+                        email: clientRes?.result?.email,
+                        phone: clientRes?.result?.phone,
+                        profileUrl: clientRes?.result?.profileUrl,
+                        createdAt: clientRes?.result?.createdAt
+                    }
+                    props.setcreateclient(newData)
+                } 
+            }else{
+                props.updatedata(data)
+            }
         } catch (err: any) {
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
         }finally{
@@ -62,7 +58,6 @@ function AddNewClientModal(props: any) {
         }
 
     }
-
 
     return (
         <Modal
@@ -76,7 +71,11 @@ function AddNewClientModal(props: any) {
             </Modal.Header>
             <Modal.Body className={styles.maincompclient}>
                 <div className={styles.maintitlediv}>
-                    <p className={styles.maintitle}>Add New Client</p>
+                    {
+                        props.createnew==="true"?
+                        <p className={styles.maintitle}>Add New Client</p>:
+                        <p className={styles.maintitle}>Edit Client</p>
+                    }
                 </div>
                 <Formik
                     initialValues={formInitialValues}
@@ -164,12 +163,36 @@ function AddNewClientModal(props: any) {
                             </Form.Group>
                             </div>
                             <div className={styles.buttondiv}>
-                                <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>
-                                {
-                                    loader ?
-                                        <Button className={styles.createbtn} variant="custom" disabled type="submit">Adding...</Button> :
-                                        <Button className={styles.createbtn} variant="custom" type="submit">Add</Button>
+                            {
+                                    props.createnew === "true" ? (
+                                        loader ?
+                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />{'  '}
+                                                Creating...
+                                            </Button> :
+                                            < Button className={styles.createbtn} variant="custom" type="submit">Create</Button>
+                                    ) : (
+                                        loader ?
+                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />{'  '}
+                                                Saving...
+                                            </Button> :
+                                            < Button className={styles.createbtn} variant="custom" type="submit">Save</Button>
+                                    )
                                 }
+                                <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>
                             </div>
 
                         </Form>

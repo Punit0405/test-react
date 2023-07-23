@@ -10,6 +10,12 @@
     padding: 50% 0%;
 }
 
+.navicons {
+    display: flex;
+    justify-content: left;
+    margin: 4% 2%;
+}
+
 .tableDiv {
     display: flex;
     /* justify-content: center; */

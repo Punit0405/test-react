@@ -2,12 +2,14 @@ import { useState,useEffect } from "react";
 import styles from './ClientDashboard.module.css'
 import ClientList from "./ClientList";
 import AddNewClientModal from "../Modal/AddNewClientModal";
-import { Button } from "react-bootstrap";
+import { Button,Table } from "react-bootstrap";
+import { NavDropdown } from 'react-bootstrap';
 import StudioClientSevice from "../../api/StudioClient/StudioClient"
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import { useNavigate } from "react-router-dom";
 import StudioClientLoader from "../Loader/StudioClientLoader"
+import Moment from "react-moment";
 
 const ClientDashboard: any = () => {
 
@@ -80,7 +82,27 @@ const ClientDashboard: any = () => {
                 <StudioClientLoader />
                 :
                 client && client.length ?
-                <ClientList clientList={client}/>:
+                // <ClientList clientList={client}/>
+                <>
+                    <Table striped className="mt-4" size="md" responsive="md">
+                        <thead>
+                            <tr className={styles.tableheading}>
+                                <td>Client Name</td>
+                                <td>Email</td>
+                                <td>Phone</td>
+                                <td>Created</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                client && client.map((clientList:any,index:any)=>(
+                                <ClientList clientlist={clientList} key={index}/>
+                            ))
+                            }
+                        </tbody>
+                    </Table>
+                </>
+                :
                 <div className={styles.noclient}>
                     <div>
                     <h6>No Clients</h6>
@@ -91,6 +113,7 @@ const ClientDashboard: any = () => {
             <AddNewClientModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+                createnew="true"
                 setcreateclient={setCreateClient}
             />
         </div>
