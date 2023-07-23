@@ -7,6 +7,15 @@ import { addClientValidation } from "../../Utils/validations";
 import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import {fileUpload} from "../../Utils/helper"
+import StudioClientSevice from "../../api/StudioClient/StudioClient"
+
+// {
+//     "name": "test",
+//     "email": "test12@gmail.com",
+//     "phone": "1022111",
+//     "profileUrl": "https://snape-buckets.b-cdn.net/default/userprofile.png",
+//     "createdAt": "2023-07-22T18:27:23.195Z"
+// }
 
 function AddNewClientModal(props: any) {
 
@@ -22,19 +31,38 @@ function AddNewClientModal(props: any) {
     const handleSubmit = async (values: any) => {
         try {
             setLoader(true)
+            let data:any={
+                name:values?.name,
+                email:values?.email,
+                phone:String(values?.phone),
+            }
             if(values?.profileImg){
                 let ext=values?.profileImg?.name?.split('.').pop()
                 let key=`studio-management/userid/client-profile/${Date.now()}.${ext}`
-                // const s3Key=await fileUpload(values?.profileImg,key)
+                const s3Key=await fileUpload(values?.profileImg,key)
+                data={...data,profileUrl:s3Key}                
             }
-            props.onHide()
+            const clientRes=await StudioClientSevice.addClient(data);            
+            if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                console.log(clientRes?.result)
+                const newData={
+                    name: clientRes?.result?.name,
+                    email: clientRes?.result?.email,
+                    phone: clientRes?.result?.phone,
+                    profileUrl: clientRes?.result?.profileUrl,
+                    createdAt: clientRes?.result?.createdAt
+                }
+                props.setcreateclient(newData)
+            } 
         } catch (err: any) {
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
         }finally{
+            props.onHide()
             setLoader(false)
         }
 
     }
+
 
     return (
         <Modal
