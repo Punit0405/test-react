@@ -82,7 +82,6 @@ const ClientDashboard: any = () => {
                 <StudioClientLoader />
                 :
                 client && client.length ?
-                // <ClientList clientList={client}/>
                 <>
                     <Table striped className="mt-4" size="md" responsive="md">
                         <thead>
@@ -114,7 +113,7 @@ const ClientDashboard: any = () => {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 createnew="true"
-                setcreateclient={setCreateClient}
+                setcreateclient={setCreateClient as any}
             />
         </div>
     )

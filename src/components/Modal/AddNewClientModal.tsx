@@ -15,7 +15,7 @@ function AddNewClientModal(props: any) {
         name: props?.client?.name || "",
         email: props?.client?.email || "",
         phone: props?.client?.phone || "",
-        profileImg:""
+        profileImg: props?.client?.profileUrl || ""
     }
 
     const [loader, setLoader] = useState<boolean>(false);
@@ -28,7 +28,7 @@ function AddNewClientModal(props: any) {
                 email:values?.email,
                 phone:String(values?.phone),
             }
-            if(values?.profileImg){
+            if(values?.profileImg!==formInitialValues?.profileImg){
                 let ext=values?.profileImg?.name?.split('.').pop()
                 let key=`studio-management/userid/client-profile/${Date.now()}.${ext}`
                 const s3Key=await fileUpload(values?.profileImg,key)
@@ -48,7 +48,11 @@ function AddNewClientModal(props: any) {
                     props.setcreateclient(newData)
                 } 
             }else{
-                props.updatedata(data)
+                const clientRes=await StudioClientSevice.updateClientDetails(props?.client?.id,data);            
+                if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                    NotificationWithIcon("success", "Client update successfully.")
+                    props.updatedata(data)
+                }
             }
         } catch (err: any) {
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)

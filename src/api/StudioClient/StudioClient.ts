@@ -39,6 +39,31 @@ const StudioClientSevice = {
         } catch (error) {
             throw error
         }
+    },
+
+    updateClientDetails: async (clientId: any,data:any) => {
+        try {
+            const token = await getUserToken()
+            return Service.post({
+                url: `studiomanagement/client/${clientId}`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    deleteClient: async (clientId: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.remove(`studiomanagement/client/${clientId}`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
     }
 
 }

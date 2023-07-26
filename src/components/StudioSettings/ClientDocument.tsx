@@ -1,7 +1,14 @@
 import { Col, Image, Ratio, Row, Table } from "react-bootstrap";
 import styles from "./ClientDocument.module.css";
+import { Link, useNavigate, useParams ,NavLink} from "react-router-dom";
+import { useState,useEffect } from "react";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
+import StudioClientSevice from "../../api/StudioClient/StudioClient"
 
 const ClientDocument: any = () => {
+   
+
     return (
         <>
             <Table className="" size="md" responsive="md">
