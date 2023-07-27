@@ -46,6 +46,9 @@ import Questionnaires from "./components/StudioSettings/Questionnaires";
 import Templates from "./components/StudioSettings/Templates";
 import Speciality from "./components/StudioSettings/Speciality";
 import DynamicForm from "./components/StudioSettings/DynamicForm"
+import Portfolio from "./pages/Portfolio";
+import PortfolioComponent from "./components/Gallery/Portfolio";
+import PortfolioDragMedia from "./components/Gallery/PortfolioDragMedia";
 
 function RoutesAll() {
     return (
@@ -68,6 +71,9 @@ function RoutesAll() {
                     <Route path="for-sale" element={<StudioDashBoard />} />
                 </Route>
                 <Route path="/gallery" element={<Gallery />} />
+                <Route path="/portfolio" element={<Portfolio/>} />
+                <Route path="/portfolio/:portfolioId" element={<PortfolioComponent />} />
+                <Route path="/portfolio/addportfolio/:portfolioId" element={<PortfolioDragMedia />} />
                 <Route path="/gallery" element={<LayoutWithSideBar />} >
                     <Route path="/gallery/newcollection" element={<AddCollection />} />
                     <Route path="/gallery/collection/:collectionId" element={<Collection />} />

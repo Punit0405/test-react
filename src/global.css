@@ -235,6 +235,12 @@ body {
   border-bottom: 2px solid #ec1a25;
 }
 
+#sidebar-nav2 .nav-tabs .nav-link.active{
+  border: none;
+  border-radius: 0px;
+  border-top: 2px solid #ec1a25;
+}
+
 .nav-link:hover {
   border: none;
 }
