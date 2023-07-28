@@ -156,3 +156,10 @@
         width: 100%;
     } */
 }
+
+.settingbtn {
+    background: none;
+    border: none;
+    padding: 3% 3%;
+   
+}

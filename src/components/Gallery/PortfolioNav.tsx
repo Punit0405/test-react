@@ -1,23 +1,17 @@
 import { useState } from 'react';
-import { Dropdown, DropdownButton, InputGroup, Nav, Offcanvas } from 'react-bootstrap';
+import { Dropdown, DropdownButton, Nav } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import { NavLink, useNavigate } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
 import CollectionService from '../../api/Collection/collection';
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
 import { NotificationWithIcon } from '../../Utils/helper';
-import CreateCollectionModal from '../Modal/CreateCollectionModal';
 import styles from "./GalleryNav.module.css";
 import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
+import CreatePortfolioModal from '../Modal/CreatePortfolioModal';
+import PortfolioService from '../../api/Portfolio/portfolio';
 // import MenuIcon from '@mui/icons-material/Menu';
 // import SearchIcon from '@mui/icons-material/Search';
 
@@ -35,6 +29,7 @@ const Search = styled('div')(({ theme }) => ({
         width: 'auto',
     },
 }));
+
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
@@ -64,8 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
-function GalleryNav(props: any): any {
-
+function PortfolioNav(props: any): any {
     const navigate = useNavigate();
     const [search, setSearch] = useState("")
 
@@ -77,6 +71,19 @@ function GalleryNav(props: any): any {
         setSearch(event.target.value)
         const searchString = `?search=${event.target.value}`
         getCollectionList(searchString)
+    }
+    const createPortfolio = async ()=>{
+        try {console.log("helllo")
+        
+        const res = await PortfolioService.createPortfolio()
+                    if (res && res?.code === STATUS_CODE.SUCCESS) {
+                        navigate(`/portfolio/${res.result.id}`)
+                    }
+            
+        } catch (error) {
+            console.log(error , "error")
+        }
+        
     }
 
     const getCollectionList = async (value: any) => {
@@ -118,12 +125,6 @@ function GalleryNav(props: any): any {
                 </Nav.Link>
                 </Nav>
                 </div>
-                    <Nav.Link className={styles.respoaddbtn}>
-                        <Button className={styles.collectionbtn} onClick={() => setModalShow(true)} variant="custom">
-                            New Collection
-                        </Button>
-                    </Nav.Link>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className={styles.rightNavDiv}>
                         <Nav className={styles.innernav}>
                             {/* <div className={styles.rightNavDiv}> */}
@@ -175,10 +176,11 @@ function GalleryNav(props: any): any {
                         </Nav>
                     </Navbar.Collapse>
                     {/* </div> */}
-                    <CreateCollectionModal
+                    <CreatePortfolioModal
                         show={modalShow}
+                        handledeletefiles={createPortfolio as any}
+                        modaltext={"Create Portfolio for your photographs"}
                         onHide={() => setModalShow(false)}
-                        createnew="true"
                     />
                 </Container>
             </Navbar >
@@ -186,4 +188,4 @@ function GalleryNav(props: any): any {
     );
 }
 
-export default GalleryNav;
+export default PortfolioNav;

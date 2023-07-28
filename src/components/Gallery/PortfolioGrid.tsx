@@ -1,25 +1,28 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import CollectionService from "../../api/Collection/collection";
+import PortfolioService from "../../api/Portfolio/portfolio";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import styles from "./GalleryGrid.module.css";
 import GalleryGridCard from "./GalleryGridCard";
 import GalleryNav from "./GalleryNav";
 import CollectionLoader from "../Loader/CollectionLoader";
+import PortfolioNav from "./PortfolioNav";
+import PortfolioGridCard from "./PortfolioGridCard";
 
-const GalleryGrid: FunctionComponent = () => {
+const PortfolioGrid: FunctionComponent = () => {
 
     const [loader, setLoader] = useState<boolean>(true);
-    const [collection, setCollection] = useState([]);
+    const [portfolio, setPortfolio] = useState([]);
     const navigate = useNavigate();
 
-    const getCollectionList = async () => {
+    const getPortfolioList = async () => {
         try {
-            const res = await CollectionService.getCollection()
+            const res = await PortfolioService.getPortfolio()
             if (res && res?.code === STATUS_CODE.SUCCESS) {
-                setCollection(res?.result)
+                console.log(res.result , "result")
+                setPortfolio(res?.result)
                 setLoader(false);
             }
         } catch (err: any) {
@@ -36,29 +39,24 @@ const GalleryGrid: FunctionComponent = () => {
     }
 
     useEffect(() => {
-        getCollectionList();
+        getPortfolioList();
     }, [])
     return (
         <>
-            <GalleryNav setCollectionSort={setCollection} setButtonText="New Collection" setLoaderSort={setLoader} />
-            <div className={styles.collectioncount}>
-                <p className={styles.collectioncountdis}>
-                    {collection.length} collections
-                </p>
-            </div>
+            <PortfolioNav setCollectionSort={setPortfolio} setButtonText="Create Portfolio" setLoaderSort={setLoader} />
             {loader ?
                 <CollectionLoader /> :
                 <Row className={styles.maincomp}>
                     {
-                        collection && collection.length ? collection.map((singleCollection: any) => (
-                            <GalleryGridCard
-                                collectionData={singleCollection}
-                                refreshFunction={getCollectionList}
-                                key={singleCollection?.id}
+                        portfolio && portfolio.length ? portfolio.map((singlePortfolio: any) => (
+                            <PortfolioGridCard
+                                portfolioData={singlePortfolio}
+                                refreshFunction={getPortfolioList}
+                                key={singlePortfolio?.id}
                             />
                         )) :
                             <div className={styles.nocollection}>
-                                No collection found
+                                This section is for you to create your own portfolio which we will show to potential clients. Ensure you create multiple categories which align to your specialty and try to upload a show reel too
                             </div>
                     }
 
@@ -68,4 +66,4 @@ const GalleryGrid: FunctionComponent = () => {
     );
 };
 
-export default GalleryGrid;
+export default PortfolioGrid;
