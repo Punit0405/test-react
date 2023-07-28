@@ -1,33 +1,35 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import CollectionService from "../../api/Collection/collection";
-import FilesSevice from "../../api/Files/files";
+import PortfolioService from "../../api/Portfolio/portfolio";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import AddCollection from "./AddCollection";
-import AddPhotosNav from "./AddPhotosNav";
-import CollectionView from "./CollectionView";
+import  AddPortfolio from "./AddPortfolio";
 import { useDispatch } from 'react-redux'
-import { collectionAction } from "../../redux/actions/collectionAction";
+import { portfolioAction } from "../../redux/actions/portfolioAction";
 import GalleryLoader from "../Loader/GalleryLoader";
+import PortFolioFilesSevice from "../../api/Portfoliofiles/files";
+import AddPhotosNavPortfolio from "./AddPhotosNavPortfolio";
+import PortfolioView from "./PortfolioView";
 
-const Collection: FunctionComponent = () => {
+const Portfolio: FunctionComponent = () => {
 
-    const { collectionId } = useParams()
+    const { portfolioId } = useParams()
     const [loader, setLoader] = useState(true);
     const [files, setFiles]: any = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
-    const getCollectionList = async () => {
+    const getPortfolioList = async () => {
         try {
-            if (collectionId) {
-                const collectionRes = await CollectionService.getCollectionById(collectionId as string)
-                if (collectionRes && collectionRes?.code === STATUS_CODE.SUCCESS) {
-                    dispatch(collectionAction({ collection: collectionRes.result }))
+            if (portfolioId) {
+                console.log(portfolioId , "portfolioID")
+
+                const portfolioRes = await PortfolioService.getPortfolioById(portfolioId as string)
+                if (portfolioRes && portfolioRes?.code === STATUS_CODE.SUCCESS) {
+                    dispatch(portfolioAction({ portfolio: portfolioRes.result }))
                 }
-                const res = await FilesSevice.getFiles(collectionId)
+                const res = await PortFolioFilesSevice.getFiles(portfolioId)
                 if (res && res?.code === STATUS_CODE.SUCCESS) {
                     setLoader(false);
                     setFiles(res?.result)
@@ -39,34 +41,32 @@ const Collection: FunctionComponent = () => {
                 NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
                 navigate('/');
             } else {
-                console.log("hello")
                 setLoader(false);
-                navigate('/gallery');
                 NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
             }
         }
     }
 
     useEffect(() => {
-        getCollectionList();
+        getPortfolioList();
     }, [])
 
     return (
         <>
             <Container fluid >
-                <AddPhotosNav />
+                <AddPhotosNavPortfolio/>
                 {
                     loader ? <GalleryLoader /> :
                         files && files?.length ?
-                            <CollectionView
-                                collectionData={files}
-                                refreshFunction={getCollectionList}
+                            <PortfolioView
+                                portfolioData={files}
+                                refreshFunction={getPortfolioList}
                             /> :
-                            <AddCollection />
+                            <AddPortfolio />
                 }
             </Container>
         </>
     );
 };
 
-export default Collection;
+export default Portfolio;
