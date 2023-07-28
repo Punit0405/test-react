@@ -38,7 +38,7 @@ const ClientList: any = ({clientlist}:any) => {
               NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
           }
       }
-  }
+    }
 
     return (
             <>

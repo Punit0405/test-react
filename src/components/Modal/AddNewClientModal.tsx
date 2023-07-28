@@ -56,7 +56,7 @@ function AddNewClientModal(props: any) {
             }
         } catch (err: any) {
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
-        }finally{
+        } finally{
             props.onHide()
             setLoader(false)
         }

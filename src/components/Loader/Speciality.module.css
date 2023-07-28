@@ -9,14 +9,6 @@
     flex-direction: column;
 }
 
-.noclient{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align:center;
-    height: 33vw;
-    font-family:var(--font-poppins);
-}
 
 .assetnavbar {
     display: flex;

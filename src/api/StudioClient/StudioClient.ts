@@ -64,7 +64,57 @@ const StudioClientSevice = {
         } catch (error) {
             throw error
         }
-    }
+    },
+
+    addSpeciality: async (data: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.post({
+                url: `studiomanagement/speciality`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    getSpeciality: async () => {
+        try {
+            const token = await getUserToken()
+            return Service.get(`studiomanagement/speciality`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    updateSpecialityDetails: async (clientId: any,data:any) => {
+        try {
+            const token = await getUserToken()
+            return Service.post({
+                url: `studiomanagement/speciality/${clientId}`,
+                data: data
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    deleteSpeciality: async (clientId: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.remove(`studiomanagement/speciality/${clientId}`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
 
 }
 

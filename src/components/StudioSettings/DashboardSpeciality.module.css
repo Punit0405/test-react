@@ -12,8 +12,20 @@
 }
 
 .name {
+    display:block;
     cursor: pointer;
+    /* margin:0px 5px;  */
+    padding:0px 5px;
 }
+
+/* .name {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    -moz-animation: my-animation 15s linear infinite;
+    -webkit-animation: my-animation 15s linear infinite;
+    animation: my-animation 15s linear infinite;
+} */
 
 .specialmain {
     margin: 4% 0%;
@@ -50,7 +62,7 @@
     text-align: center;
     position: absolute;
     z-index: +2;
-    left: 15%;
+    /* left: 15%; */
 }
 
 .imgdiv {
