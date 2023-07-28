@@ -2,16 +2,16 @@ import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import styles from "./DragMedia.module.css";
-import DagPhotoNav from './DragPhotoNav';
 import RejectFile from './RejectFile';
-import UploadDoneNav from './UploadDoneNav';
-import FilesSevice from '../../api/Files/files';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
 import { NotificationWithIcon } from '../../Utils/helper';
 import { useSelector } from 'react-redux';
 import DashboardService from '../../api/Dashboard/dashboard';
 import SingleFileUploadPortfolio from './SingleFileUploadPortfolio';
+import PortFolioFilesSevice from '../../api/Portfoliofiles/files';
+import PortfolioDragPhotoNav from './PortfolioDragPhotoNav';
+import UploadDoneNavPortfolio from './UploadDoneNavPortfolio';
 
 const baseStyle = {
     display: 'flex',
@@ -78,7 +78,7 @@ function PortfolioDragMedia() {
     async function getFileNames() {
         try {
             if (portfolioId) {
-                const fileRes = await FilesSevice.getFileName(portfolioId)
+                const fileRes = await PortFolioFilesSevice.getFileName(portfolioId)
                 if (fileRes && fileRes?.code === STATUS_CODE.SUCCESS) {
                     setAllFiles(fileRes.result)
                 }
@@ -180,7 +180,7 @@ function PortfolioDragMedia() {
                 {
                     files.length ?
                         <>
-                            <UploadDoneNav handleSetChange={handleState} />
+                            <UploadDoneNavPortfolio handleSetChange={handleState}/>
                             {
                                 errFileName && errFileName.length ?
                                     <div className={styles.errormain}>
@@ -231,7 +231,7 @@ function PortfolioDragMedia() {
                         </>
                         :
                         <>
-                            <DagPhotoNav />
+                            <PortfolioDragPhotoNav/>
                             <div {...getRootProps({ style })}>
                                 <input {...getInputProps()} />
                                 <div className={styles.addmedia}>

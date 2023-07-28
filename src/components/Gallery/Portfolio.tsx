@@ -5,12 +5,12 @@ import PortfolioService from "../../api/Portfolio/portfolio";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import  AddPortfolio from "./AddPortfolio";
-import AddPhotosNav from "./AddPhotosNav";
-import CollectionView from "./CollectionView";
 import { useDispatch } from 'react-redux'
 import { portfolioAction } from "../../redux/actions/portfolioAction";
 import GalleryLoader from "../Loader/GalleryLoader";
 import PortFolioFilesSevice from "../../api/Portfoliofiles/files";
+import AddPhotosNavPortfolio from "./AddPhotosNavPortfolio";
+import PortfolioView from "./PortfolioView";
 
 const Portfolio: FunctionComponent = () => {
 
@@ -54,12 +54,12 @@ const Portfolio: FunctionComponent = () => {
     return (
         <>
             <Container fluid >
-                <AddPhotosNav />
+                <AddPhotosNavPortfolio/>
                 {
                     loader ? <GalleryLoader /> :
                         files && files?.length ?
-                            <CollectionView
-                                collectionData={files}
+                            <PortfolioView
+                                portfolioData={files}
                                 refreshFunction={getPortfolioList}
                             /> :
                             <AddPortfolio />

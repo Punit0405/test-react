@@ -1,50 +1,44 @@
 import { useState } from "react";
 import { Image, Col, Ratio, NavDropdown } from "react-bootstrap";
-import CreateCollectionModal from "../Modal/CreateCollectionModal";
+import CreatePortfolioModal from "../Modal/CreatePortfolioModal";
 import { useNavigate } from "react-router-dom";
 import styles from "./GalleryGrid.module.css";
 import Moment from "react-moment";
 import 'moment-timezone';
 import { useDispatch } from 'react-redux'
-import { collectionAction } from "../../redux/actions/collectionAction";
 import DeleteConfirmation from "../Modal/DeleteConfirmation";
-import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import GetDirectLinkModal from "../Modal/GetDirectLinkModal";
+import { portfolioAction } from "../../redux/actions/portfolioAction";
+import PortfolioService from "../../api/Portfolio/portfolio";
 
-const PortfolioGridCard = ({ collectionData, refreshFunction }: any) => {
-    console.log(collectionData , "port")
-
-    const [collection, setCollection] = useState({
-        name: collectionData?.name || "",
-        eventDate: collectionData?.eventDate || "",
-        url: collectionData?.url || "",
-        downloadPin: collectionData?.downloadPin || ""
+const PortfolioGridCard = ({ portfolioData, refreshFunction }: any) => {
+    const [portfolio, setPortfolio] = useState({
+        name: portfolioData?.name || "",
+        eventDate: portfolioData?.eventDate || "",
+        url: portfolioData?.url || "",
+        downloadPin: portfolioData?.downloadPin || ""
     })
     const dispatch = useDispatch()
 
-    const onSubmit = (data: any) => {
-        setCollection(data)
-    }
+   
 
-    const [modalShow, setModalShow] = useState(false);
     const [deleteModalShow, setDeleteModalShow] = useState(false);
-    const [getLinkModalShow, setGetLinkModalShow] = useState(false);
 
     const navigate = useNavigate();
 
     const handleClick = () => {
-        dispatch(collectionAction({ collection: collectionData }))
-        navigate(`/portfolio/${collectionData?.id}`)
+        dispatch(portfolioAction({ portfolio: portfolioData }))
+        navigate(`/portfolio/${portfolioData?.id}`)
     }
-    const deleteCollection = async () => {
+    const deletePortfolio = async () => {
         try {
-            if (collectionData?.id) {
-                const deleteRes = await CollectionService.deleteCollection(collectionData?.id)
+            if (portfolioData?.id) {
+                const deleteRes = await PortfolioService.deletePortfolio(portfolioData?.id)
                 if (deleteRes && deleteRes?.code === STATUS_CODE.SUCCESS) {
                     refreshFunction()
-                    setModalShow(false);
+                    setDeleteModalShow(false);
                 }
             }
         } catch (err: any) {
@@ -61,63 +55,40 @@ const PortfolioGridCard = ({ collectionData, refreshFunction }: any) => {
         <Col xl={3} lg={4} sm={6} className={styles.imgblock1} >
             <div className={styles.imgblock}>
                 <Ratio aspectRatio='16x9' onClick={handleClick} className={styles.imgdivpoint}>
-                    <Image className={styles.myimage} src={collectionData.coverPhoto} />
+                    <Image className={styles.myimage} src={portfolioData.coverPhoto} />
                 </Ratio>
                 <div className={styles.outertitle}>
-                    <p className={styles.title}>{collection.name}</p>
+                    <p className={styles.title}>{portfolio.name}</p>
                     <NavDropdown
                         align="end"
                         title={<i className="fa-regular fa-ellipsis setcolorgallery galleryicon"></i>}
-                        className={styles.navdropdown} id="collasible-nav-dropdown gallerydropdown">
-                        <NavDropdown.Item onClick={() => setModalShow(true)} >
-                            <div className={styles.navicons}>
-                                <i className="fa-sharp fa-regular navicons fa-pencil"></i>
-                                <div className={styles.navtags}>Quick Edit</div>
-                            </div>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => setGetLinkModalShow(true)}>
-                            <div className={styles.navicons}>
-                                <i className="fa-solid navicons fa-link"></i>
-                                <div className={styles.navtags}>Get Direct Link</div>
-                            </div>
-                        </NavDropdown.Item>
+                        className={styles.navdropdown} id="collasible-nav-dropdown gallerydropdown">    
                         <NavDropdown.Item onClick={() => setDeleteModalShow(true)}>
                             <div className={styles.navicons}>
                                 <i className="fa-solid navicons fa-trash-can"></i>
-                                <div className={styles.navtags}>Delete Collection</div>
+                                <div className={styles.navtags}>Delete Portfolio</div>
                             </div>
                         </NavDropdown.Item>
                     </NavDropdown>
                 </div>
                 <div className={styles.outerdetails}>
+                    {portfolio.eventDate && 
                     <p className={styles.details}>
-                        <Moment format="MMMM  Do, YYYY">{collection.eventDate}</Moment>
-                    </p>
-                    <p className={styles.details}>{collectionData?.photos} Photos</p>
-                    <p className={styles.details}>{collectionData?.videos} Videos</p>
+                        <Moment format="MMMM  Do, YYYY">{portfolio.eventDate}</Moment>
+                    </p>}
+                    <p className={styles.details}>{portfolioData?.photos} Photos</p>
+                    <p className={styles.details}>{portfolioData?.videos} Videos</p>
                     <p className={styles.details}>{
-                        collectionData && collectionData?.status === "HIDDEN" ? "Hidden" : "Published"
+                        portfolioData && portfolioData?.status === "HIDDEN" ? "Hidden" : "Published"
                     }</p>
                 </div>
             </div>
-            <CreateCollectionModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-                createnew="false"
-                id={collectionData.id}
-                name={collection.name}
-                eventdate={collection.eventDate}
-                onSubmit={onSubmit}
-            />
             <DeleteConfirmation
                 show={deleteModalShow}
-                modaltext={"Are you sure want to delete collection?"}
+                modaltext={"Are you sure want to delete portfolio?"}
                 onHide={() => setDeleteModalShow(false)}
-                handledeletefiles={deleteCollection as any}
+                handledeletefiles={deletePortfolio as any}
             />
-            <GetDirectLinkModal
-                show={getLinkModalShow}
-                collection={{ collection }} onHide={() => setGetLinkModalShow(false)} />
         </Col>
     )
 }

@@ -50,7 +50,7 @@ const PortfolioGrid: FunctionComponent = () => {
                     {
                         portfolio && portfolio.length ? portfolio.map((singlePortfolio: any) => (
                             <PortfolioGridCard
-                                collectionData={singlePortfolio}
+                                portfolioData={singlePortfolio}
                                 refreshFunction={getPortfolioList}
                                 key={singlePortfolio?.id}
                             />
