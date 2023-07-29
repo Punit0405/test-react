@@ -6,6 +6,15 @@
     align-items: center;
 }
 
+.singlemain {
+    margin: 1% 0%;
+    padding: 1%;
+}
+
+.name {
+    cursor: pointer;
+}
+
 .specialmain {
     margin: 4% 0%;
     display: flex;
@@ -94,5 +103,13 @@
 }
 
 .outerimg .button {
+    opacity: 1;
+}
+
+.pensymbol {
+    opacity: 0;
+}
+
+.outerimg:hover .pensymbol {
     opacity: 1;
 }

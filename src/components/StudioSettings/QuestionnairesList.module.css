@@ -1,0 +1,38 @@
+.tableRow {
+    padding: 50% 0%;
+    font-size: 0.9rem;
+    font-family: var(--font-poppins);
+    text-align: center;
+}
+
+.tableData {
+    padding: 50% 0%;
+}
+
+.tableDiv {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 3.5vw;
+    font-size: 0.8rem;
+}
+
+.tableheading {
+    font-family: var(--font-poppins);
+    color: rgb(122, 122, 122);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.nameDiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.imgStyle {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    margin-right: 4px;
+}

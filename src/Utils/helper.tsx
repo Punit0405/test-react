@@ -1,5 +1,8 @@
 import * as Constants from "./constants";
 import { notification } from "antd";
+import { S3 } from "@aws-sdk/client-s3";
+import { Upload } from "@aws-sdk/lib-storage";
+import { XhrHttpHandler } from "@aws-sdk/xhr-http-handler";
 
 export declare type NotificationPlacement =
     | "topLeft"
@@ -61,3 +64,50 @@ export const getNameAndProfile = () => {
     }
     return { firstName, lastName }
 }
+
+export const fileUpload=async(file:any,key:any)=>{
+    // const bufferData = await readFileAsync(file);
+    const Key = key
+        const Bucket = process.env.REACT_APP_AWS_BUCKET_NAME
+        const Body: any = file
+        try {
+            const s3 = new S3({
+                requestHandler: new XhrHttpHandler({}),
+                region: process.env.REACT_APP_WASABI_REGION,
+                endpoint: process.env.REACT_APP_WASABI_ENDPOINT,
+                credentials: {
+                    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY as string,
+                    secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY as string
+                }
+            })
+
+            const parallelUploads3 = new Upload({
+                client: s3,
+                params: { Bucket, Key, Body },
+                queueSize: 4,
+                leavePartsOnError: false,
+            });
+            
+            return await parallelUploads3.done().then((result:any) => {
+                return result.Key               
+            });
+        } catch (e:any) {
+            console.log(e,'-----e-------------');
+            throw new Error(e)
+        }
+}
+
+const readFileAsync = (file: File) => {
+    return new Promise<ArrayBuffer>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          resolve(reader.result as ArrayBuffer);
+        } else {
+          reject(new Error('Failed to read the file.'));
+        }
+      };
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(file);
+    });
+};

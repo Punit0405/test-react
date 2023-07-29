@@ -136,7 +136,7 @@ const CollectionService = {
             throw error
         }
     },
-    downloadFile: async (data: any, id: any) => {
+    downloadFile: async (data: any, id: any,setDownloadPer:any) => {
         try {
             const token = await getUserToken()
             return Service.downloadPost({
@@ -144,7 +144,7 @@ const CollectionService = {
                 data: data
             }, {
                 authorization: token,
-            })
+            },setDownloadPer)
         } catch (error) {
             throw error
         }
@@ -158,6 +158,32 @@ const CollectionService = {
             }, {
                 authorization: token,
             }, setDownloadPer)
+        } catch (error) {
+            throw error
+        }
+    },
+    downloadPinCheck: async (data: any, id: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.post({
+                url: `client/downloadpincheck/${id}`,
+                data: data,
+            }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+    downloadFilePinCheck: async (data: any, id: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.post({
+                url: `client/downloadfilepincheck/${id}`,
+                data: data,
+            }, {
+                authorization: token,
+            })
         } catch (error) {
             throw error
         }

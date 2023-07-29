@@ -4,7 +4,7 @@ import styles from "./StudioDashboard.module.css";
 const DashboardRecentDoc: any = () => {
     return (
         <>
-            <Table striped className="mt-4" size="lg" responsive="md">
+            <Table striped className="mt-4" size="lg" responsive>
                 <tbody>
                     <tr className={styles.tableRow}>
                         <td className={styles.tableData}>

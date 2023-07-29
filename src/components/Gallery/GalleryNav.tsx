@@ -3,7 +3,7 @@ import { Dropdown, DropdownButton, InputGroup, Nav, Offcanvas } from 'react-boot
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import CollectionService from '../../api/Collection/collection';
@@ -107,7 +107,17 @@ function GalleryNav(props: any): any {
             <Navbar className={styles.maincomp} key="sm" expand="sm">
                 <Container fluid>
                     {/* <div className={styles.innerDiv}> */}
-                    <Navbar.Brand className={styles.mainname}>Collections</Navbar.Brand>
+                {/* <Navbar.Brand className={styles.mainname}>Collections</Navbar.Brand> */}
+                <div className={styles.settingtab} id="sidebar-nav2">
+                <Nav variant="tabs">
+                <Nav.Link as={NavLink}  eventKey="image"  to = {`/gallery`} className={styles.settingbtn}>
+                    Collections
+                </Nav.Link>
+                <Nav.Link as={NavLink}  eventKey="setting" to = {`/portfolio`} className={styles.settingbtn}>
+                    Portfolio
+                </Nav.Link>
+                </Nav>
+                </div>
                     <Nav.Link className={styles.respoaddbtn}>
                         <Button className={styles.collectionbtn} onClick={() => setModalShow(true)} variant="custom">
                             New Collection
@@ -119,7 +129,7 @@ function GalleryNav(props: any): any {
                             {/* <div className={styles.rightNavDiv}> */}
                             <Nav.Link className={styles.resposcreenaddbtn}>
                                 <Button className={styles.collectionbtn} onClick={() => setModalShow(true)} variant="custom">
-                                    New Collection
+                                    {props.setButtonText}
                                 </Button>
                             </Nav.Link>
                             <Nav.Link className={styles.navlinksearch}>

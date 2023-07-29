@@ -40,14 +40,12 @@ const StudioSideBar: FunctionComponent = () => {
                 }
             }
         } catch (error) {
-            console.log("error", error)
             NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
         }
     }
 
     const setPreview = () => {
         const clientUrl = Constants.clientViewUrl + collection.url
-        console.log(clientUrl, '-----clientUrl--------');
     }
 
     const getCollectionList = async () => {

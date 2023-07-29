@@ -13,10 +13,10 @@ const StudioLayout: FunctionComponent = () => {
         <Layout>
             <>
                 <Row>
-                    <Col xl={2} lg={2} md={2} sm={2} xs={2}>
+                    <Col xl={2} lg={2} md={2} sm={3} xs={3}>
                         <StudioManagementSide />
                     </Col>
-                    <Col xl={10} lg={10} md={10} sm={10} xs={10}>
+                    <Col xl={10} lg={10} md={10} sm={9} xs={9}>
                         <Outlet />
                     </Col>
                 </Row>

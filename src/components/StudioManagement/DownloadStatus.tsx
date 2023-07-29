@@ -51,7 +51,7 @@ const DownloadStatus: FunctionComponent = () => {
 
     const updateCollection = async (values: any) => {
         try {
-            if (collectionId && (pin.length === 4)) {
+            if (collectionId) {
                 const updateRes = await CollectionService.updateCollection(collectionId, values)
                 if (updateRes && updateRes?.code === STATUS_CODE.SUCCESS) {
                     dispatch(collectionAction({ collection: updateRes.result }))
@@ -82,14 +82,10 @@ const DownloadStatus: FunctionComponent = () => {
             values = { download: Boolean(Number(event.target.value)) }
             await updateCollection(values)
         } else if (event.target.name === 'pin') {
-            if (pin.length !== 4) {
-                setErrmsg("Enter 4 digits pin.")
-            } else {
                 setErrmsg("")
                 values = { downloadPin: pin }
                 await updateCollection(values)
                 setPasswordBtn(false)
-            }
         }
     }
 

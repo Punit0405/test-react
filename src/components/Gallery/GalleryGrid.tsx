@@ -40,7 +40,7 @@ const GalleryGrid: FunctionComponent = () => {
     }, [])
     return (
         <>
-            <GalleryNav setCollectionSort={setCollection} setLoaderSort={setLoader} />
+            <GalleryNav setCollectionSort={setCollection} setButtonText="New Collection" setLoaderSort={setLoader} />
             <div className={styles.collectioncount}>
                 <p className={styles.collectioncountdis}>
                     {collection.length} collections

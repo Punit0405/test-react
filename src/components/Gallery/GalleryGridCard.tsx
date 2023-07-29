@@ -11,12 +11,15 @@ import DeleteConfirmation from "../Modal/DeleteConfirmation";
 import CollectionService from "../../api/Collection/collection";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
+import GetDirectLinkModal from "../Modal/GetDirectLinkModal";
 
-const  GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
+const GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
 
     const [collection, setCollection] = useState({
         name: collectionData?.name || "",
-        eventDate: collectionData?.eventDate || ""
+        eventDate: collectionData?.eventDate || "",
+        url: collectionData?.url || "",
+        downloadPin: collectionData?.downloadPin || ""
     })
     const dispatch = useDispatch()
 
@@ -26,6 +29,7 @@ const  GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
 
     const [modalShow, setModalShow] = useState(false);
     const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [getLinkModalShow, setGetLinkModalShow] = useState(false);
 
     const navigate = useNavigate();
 
@@ -70,7 +74,7 @@ const  GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
                                 <div className={styles.navtags}>Quick Edit</div>
                             </div>
                         </NavDropdown.Item>
-                        <NavDropdown.Item >
+                        <NavDropdown.Item onClick={() => setGetLinkModalShow(true)}>
                             <div className={styles.navicons}>
                                 <i className="fa-solid navicons fa-link"></i>
                                 <div className={styles.navtags}>Get Direct Link</div>
@@ -110,6 +114,9 @@ const  GalleryGridCard = ({ collectionData, refreshFunction }: any) => {
                 onHide={() => setDeleteModalShow(false)}
                 handledeletefiles={deleteCollection as any}
             />
+            <GetDirectLinkModal
+                show={getLinkModalShow}
+                collection={{ collection }} onHide={() => setGetLinkModalShow(false)} />
         </Col>
     )
 }

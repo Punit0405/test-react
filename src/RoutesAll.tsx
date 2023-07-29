@@ -42,7 +42,15 @@ import InsuranceQuoteComponent from "./components/AssetRegistry/InsuranceQuote";
 import StudioDashBoard from "./components/StudioSettings/StudioDashBoard";
 import { InvoiceInfo } from "./components/StudioSettings/invoice/invoiceInfo";
 import { InvoiceOption } from "./components/StudioSettings/invoice/invoiceOption";
-
+import ClientDashboard from "./components/StudioSettings/ClientDashboard";
+import Client from "./components/StudioSettings/Client";
+import Questionnaires from "./components/StudioSettings/Questionnaires";
+import Templates from "./components/StudioSettings/Templates";
+import Speciality from "./components/StudioSettings/Speciality";
+import DynamicForm from "./components/StudioSettings/DynamicForm"
+import Portfolio from "./pages/Portfolio";
+import PortfolioComponent from "./components/Gallery/Portfolio";
+import PortfolioDragMedia from "./components/Gallery/PortfolioDragMedia";
 
 function RoutesAll() {
     return (
@@ -55,12 +63,21 @@ function RoutesAll() {
                     <Route path="billing" element={<BillingComponent />} />
                 </Route>
                 <Route path="/studiomanagement" element={<StudioLayout />} >
+                    <Route path="clients" element={<ClientDashboard />} />
+                    <Route path="clients/:clientId" element={<Client />} />
+                    <Route path="questionnaires" element={<Questionnaires />} />
+                    <Route path="templates" element={<Templates />} />
+                    <Route path="templates/photo-template" element={<DynamicForm />} />
+                    <Route path="speciality" element={<Speciality />} />
                     <Route path="*" element={<StudioDashBoard />} />
                     <Route path="for-sale" element={<StudioDashBoard />} />
                     <Route path="/studiomanagement/invoice-info" element={<InvoiceInfo />} />
                     <Route path="/studiomanagement/invoice-option" element={<InvoiceOption />} />
                 </Route>
                 <Route path="/gallery" element={<Gallery />} />
+                <Route path="/portfolio" element={<Portfolio/>} />
+                <Route path="/portfolio/:portfolioId" element={<PortfolioComponent />} />
+                <Route path="/portfolio/addportfolio/:portfolioId" element={<PortfolioDragMedia />} />
                 <Route path="/gallery" element={<LayoutWithSideBar />} >
                     <Route path="/gallery/newcollection" element={<AddCollection />} />
                     <Route path="/gallery/collection/:collectionId" element={<Collection />} />

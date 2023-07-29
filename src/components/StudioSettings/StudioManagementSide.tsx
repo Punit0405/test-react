@@ -49,15 +49,14 @@ const StudioManagementSide: FunctionComponent = () => {
             setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
         }
     };
+    
     return (
         <Sider
             breakpoint="lg"
             collapsedWidth="0"
             onBreakpoint={(broken) => {
-                console.log(broken);
             }}
             onCollapse={(collapsed, type) => {
-                console.log(collapsed, type);
             }}
             trigger={null}
         >
@@ -138,12 +137,6 @@ const StudioManagementSide: FunctionComponent = () => {
                         </Link>
                     </Menu.Item>
                 </SubMenu>
-                <Menu.Item key="payments">
-                    <Link to="payments">
-                        <i className="fa-regular fa-circle-dollar ant-menu-item-icon"></i>
-                        <span className="ant-menu-title-content">Payments</span>
-                    </Link>
-                </Menu.Item>
                 <Menu.Item key="templates">
                     <Link to="templates">
                         <i className="fa-regular fa-grid-2 ant-menu-item-icon"></i>

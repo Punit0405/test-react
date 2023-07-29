@@ -10,6 +10,12 @@ import { truncate } from "fs/promises";
 import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
 import { clientGalleryViewAction } from "../redux/actions/clientGalleryViewAction";
 import CollectionService from "../api/Collection/collection";
+import PinModal from "./Modal/PinModal";
+import { NotificationWithIcon } from "../Utils/helper";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../Utils/constants'
+
+
+
 
 
 
@@ -20,7 +26,9 @@ interface Props {
 const Grid = (props:any) => {
     const images = props.imagesArr ? props.imagesArr:[];
     const [currentImage, setCurrentImage] = useState(0);
+    const [pinModalShow, setPinModalShow] = useState(false);
     const dispatch = useDispatch();
+    const [downloadPer, setDownloadPer] = useState(0)
     const imageGalleryRef = useRef<any>(null)
     const clientState = useSelector((state: any) => state.clientCollectionViewReducer);
     const newData:any = [];
@@ -49,14 +57,14 @@ const Grid = (props:any) => {
         dispatch(clientGalleryViewAction({isSlideShow:false,isViewOpen:false}))
         setCurrentImage(0);
       };
-    const downloadFile= async(fileId:any)=>{
+    const downloadFile= async(pin?:any)=>{
       try {
       const a = document.createElement("a");
       a.style.display = "none";
       document.body.appendChild(a);
       const currentFileIndex = imageGalleryRef.current.getCurrentIndex();
       const file = images[currentFileIndex];
-      const response = await CollectionService.downloadFile({pin:"2083"},file.id);
+      const response = await CollectionService.downloadFile({pin:pin},file.id,setDownloadPer);
       const blobFile = new Blob([response?.data],{type: response.headers.fileext});
       const url = window.URL.createObjectURL(blobFile);
       a.href = url;
@@ -64,10 +72,29 @@ const Grid = (props:any) => {
       a.click();
       window.URL.revokeObjectURL(url);
       } catch (error) {
-        console.log(error)
       }
       
 
+    }
+    const downloadPinCheck = async () => {
+      try {      
+        const response = await CollectionService.downloadFilePinCheck({}, images[imageGalleryRef.current.getCurrentIndex()].id)
+        if(response.donwloadPinRequired){
+          setPinModalShow(true);
+        }else{
+          downloadFile();
+        }
+        
+      } catch (err: any) {
+        setPinModalShow(false)
+        if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+          NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+        } else {
+          NotificationWithIcon("error", "Invalid pin" || VALIDATIONS.SOMETHING_WENT_WRONG)
+        }
+      }
+  
+  
     }
    
     return (
@@ -75,7 +102,7 @@ const Grid = (props:any) => {
             {clientState.isViewOpen?
             <div className={styles.ImageGalleryMainDiv} >
             <i className="fx-sharp fa-regular fa-circle-xmark fa-xl cancelImageBtn" onClick={closeLightbox} style={{cursor: "pointer"}}></i>
-            <i className="fa-regular fa-arrow-down-to-line fa-xl clientDownloadBtn " onClick={e=>downloadFile(currentImage)}></i>
+            <i className="fa-regular fa-arrow-down-to-line fa-xl clientDownloadBtn " onClick={e=>downloadPinCheck()}></i>
             <div className={styles.ImageGalleryInnerDiv}>
             <div className={styles.ImageGalleryDiv}>
             <ImageGallery items={newData.map((image:any)=>{
@@ -96,6 +123,11 @@ const Grid = (props:any) => {
             :
             <Gallery photos={newData} onClick={openLightbox} columns={getColumnNumbers()} margin={props.gridSpacing === "large" ? 8:3}  direction={props.gridStyle} />
             }
+            <PinModal
+            show={pinModalShow}
+            onHide={() => setPinModalShow(false)}
+            downloadfunction={downloadFile}
+          />
            
         
             

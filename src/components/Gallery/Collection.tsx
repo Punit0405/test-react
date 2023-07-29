@@ -39,7 +39,9 @@ const Collection: FunctionComponent = () => {
                 NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
                 navigate('/');
             } else {
+                console.log("hello")
                 setLoader(false);
+                navigate('/gallery');
                 NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
             }
         }
