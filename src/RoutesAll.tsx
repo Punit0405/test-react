@@ -65,7 +65,7 @@ function RoutesAll() {
                     <Route path="clients/:clientId" element={<Client />} />
                     <Route path="questionnaires" element={<Questionnaires />} />
                     <Route path="templates" element={<Templates />} />
-                    <Route path="templates/photo-template" element={<DynamicForm />} />
+                    <Route path="templates/edit-template" element={<DynamicForm />} />
                     <Route path="speciality" element={<Speciality />} />
                     <Route path="*" element={<StudioDashBoard />} />
                     <Route path="for-sale" element={<StudioDashBoard />} />

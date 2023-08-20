@@ -29,7 +29,7 @@ const QuestionnairesContent: any = () => {
                             </div>
                         </td>
                         <td className={styles.tableData}>
-                            <Link to="photo-template">
+                            <Link to="edit-template?type=Photography">
                             <div className={styles.tableDiv}>
                                 <i className="fa-regular fa-pen quepen"></i>
                                 <span className={styles.videoname}> Edit Questionnaire</span>
@@ -49,7 +49,7 @@ const QuestionnairesContent: any = () => {
                             </div>
                         </td>
                         <td className={styles.tableData}>
-                        <Link to="photo-template">
+                        <Link to="edit-template?type=Videography">
                             <div className={styles.tableDiv}>
                                 <i className="fa-regular fa-pen quepen"></i>
                                 <span className={styles.videoname}>Edit Questionnaire</span>

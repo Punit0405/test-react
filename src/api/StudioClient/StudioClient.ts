@@ -18,9 +18,9 @@ const StudioClientSevice = {
         }
     },
 
-    getCientList: async (search?:any) => {
+    getCientList: async (search?: any) => {
         try {
-            const searchData=search?search:''
+            const searchData = search ? search : ''
             const token = await getUserToken()
             return Service.get(`studiomanagement/client${searchData}`, {
                 authorization: token,
@@ -41,7 +41,7 @@ const StudioClientSevice = {
         }
     },
 
-    updateClientDetails: async (clientId: any,data:any) => {
+    updateClientDetails: async (clientId: any, data: any) => {
         try {
             const token = await getUserToken()
             return Service.post({
@@ -91,7 +91,7 @@ const StudioClientSevice = {
         }
     },
 
-    updateSpecialityDetails: async (clientId: any,data:any) => {
+    updateSpecialityDetails: async (clientId: any, data: any) => {
         try {
             const token = await getUserToken()
             return Service.post({
@@ -109,6 +109,29 @@ const StudioClientSevice = {
         try {
             const token = await getUserToken()
             return Service.remove(`studiomanagement/speciality/${clientId}`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+    getTemplate: async (search: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.get(`studiomanagement/templates?type=${search}`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+    updateTemplate: async (data: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.post({
+                url: `studiomanagement/templates`,
+                data: data
+            }, {
                 authorization: token,
             })
         } catch (error) {
