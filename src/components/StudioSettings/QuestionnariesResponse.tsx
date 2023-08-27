@@ -107,9 +107,7 @@ function QuestionnariesResponse({ initialValue }: any) {
                             </label>
                         </div>
                         {renderFormFields(values)}
-                        <button className={styles.addNewDevice} type="submit">
-                            Save Template
-                        </button>
+                       
                     </Form>
                 )}
             </Formik>

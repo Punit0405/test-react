@@ -44,7 +44,7 @@ const StudioClientSevice = {
     getQuestionnariesDetails: async (questionnariesId: any) => {
         try {
             const token = await getUserToken()
-            return Service.get(`studiomanagement/questionnaries/${questionnariesId}`, {
+            return Service.get(`studiomanagement/questionanries/${questionnariesId}`, {
                 authorization: token,
             })
         } catch (error) {
