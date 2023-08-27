@@ -17,7 +17,7 @@ const DynamicForm = () => {
 
   const [initialValues, setInitialValues] = useState({
     description: "",
-    fields: [{ type: '', question: '', options: [], required: false }],
+    fields: [{ type: '', question: '', response: '', options: [], required: false }],
   })
 
   const [loading, setLoading] = useState(true)
@@ -84,7 +84,7 @@ const DynamicForm = () => {
   });
 
   const handleAddField = (push: any) => {
-    push({ type: '', question: '', options: [], required: false });
+    push({ type: '', question: '', response: '', options: [], required: false });
   };
 
   const handleAddOption = (pushOption: any, fieldIndex: any) => {

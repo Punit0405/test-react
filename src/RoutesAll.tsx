@@ -49,6 +49,7 @@ import DynamicForm from "./components/StudioSettings/DynamicForm"
 import Portfolio from "./pages/Portfolio";
 import PortfolioComponent from "./components/Gallery/Portfolio";
 import PortfolioDragMedia from "./components/Gallery/PortfolioDragMedia";
+import ClientQuestionnaries from "./components/StudioSettings/ClientQuestionnaries";
 
 function RoutesAll() {
     return (
@@ -64,6 +65,7 @@ function RoutesAll() {
                     <Route path="clients" element={<ClientDashboard />} />
                     <Route path="clients/:clientId" element={<Client />} />
                     <Route path="questionnaires" element={<Questionnaires />} />
+                    <Route path="questionnaires/:questionnariesId" element={<ClientQuestionnaries />} />
                     <Route path="templates" element={<Templates />} />
                     <Route path="templates/edit-template" element={<DynamicForm />} />
                     <Route path="speciality" element={<Speciality />} />

@@ -1,31 +1,32 @@
 import { Col, Image, Row, Table } from 'react-bootstrap';
-import styles from './Client.module.css'
-import DashboardUpcoming from './DashboardUpcoming';
-import ClientDocument from './ClientDocument';
+import styles from './ClientQuestionnaries.module.css'
 import { Link, useNavigate, useParams, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import StudioClientSevice from "../../api/StudioClient/StudioClient"
 import Moment from "react-moment";
-import ClientLoader from "../Loader/ClientLoader"
+import QuestionnariesResponse from './QuestionnariesResponse';
+import QueResponseLoader from '../Loader/QueResponseLoader';
 
-const Client: any = () => {
+const ClientQuestionnaries: any = () => {
 
-    const { clientId } = useParams()
+    const { questionnariesId } = useParams()
     const navigate = useNavigate();
     const [client, setClient]: any = useState({})
     const [loader, setLoader] = useState(true)
+    const [questionnaire, setQuestionnaire] = useState({})
     useEffect(() => {
         getClientDetails()
     }, [])
 
     const getClientDetails = async () => {
         try {
-            const clientRes = await StudioClientSevice.getClientDetails(clientId);
+            const clientRes = await StudioClientSevice.getQuestionnariesDetails(questionnariesId);
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                setQuestionnaire(clientRes?.result?.data?.questionnarires?.template)
                 setLoader(false);
-                setClient(clientRes?.result)
+                setClient(clientRes?.result?.data?.questionnarires?.clientId)
             }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -39,14 +40,13 @@ const Client: any = () => {
         }
     }
 
-
     return (
         <div className={styles.maindiv}>
             {
                 loader === true ?
-                    <ClientLoader /> :
+                    <QueResponseLoader /> :
                     <>
-                        <div className={styles.dashboard}>Clients</div>
+                        <div className={styles.dashboard}>Questionnaries</div>
                         <Table striped className="mt-4" size="md" responsive="md">
                             <thead>
                                 <tr className={styles.tableheading}>
@@ -82,23 +82,8 @@ const Client: any = () => {
                                 </tr>
                             </tbody>
                         </Table>
-                        <Row className={styles.clientpayment}>
-                            <Col xl={8} lg={8}>
-                                <h6 className={styles.titlemain}>Payments</h6>
-                                <div className={styles.upcomingmain}>
-                                    <h6 className={styles.datetitle}>Total Received</h6>
-                                    <h6 className={styles.amount}>R0.00</h6>
-                                </div>
-                                <h6 className={styles.titlemain}>Documents</h6>
-                                <div className={styles.upcomingmain1}>
-                                    <ClientDocument />
-                                </div>
-                            </Col>
-                            <Col xl={4} lg={4}>
-                                <h6 className={styles.titlemain}>Upcoming Sessions</h6>
-                                <DashboardUpcoming />
-                            </Col>
-                        </Row>
+                        <h6 className={styles.titlemain}>Questionnaire Details</h6>
+                        <QuestionnariesResponse initialValue={questionnaire} />
                     </>
             }
 
@@ -107,4 +92,4 @@ const Client: any = () => {
     )
 }
 
-export default Client;
+export default ClientQuestionnaries;

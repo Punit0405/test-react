@@ -3,6 +3,7 @@
     font-size: 0.9rem;
     font-family: var(--font-poppins);
     text-align: center;
+    cursor:pointer;
 }
 
 .tableData {
@@ -35,4 +36,18 @@
     width: 50px;
     border-radius: 10px;
     margin-right: 4px;
+}
+
+.awaitingstatus{
+    color: #73b1d3;
+    border: solid #73b1d3;
+    padding: 2% 5%;
+    border-radius: 50vh;
+}
+
+.completestatus{
+    color: #1abc9c;
+    border: solid #1abc9c;
+    padding: 2% 5%;
+    border-radius: 50vh;
 }

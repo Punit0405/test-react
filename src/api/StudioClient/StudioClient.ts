@@ -21,7 +21,7 @@ const StudioClientSevice = {
     getCientList: async (search?: any) => {
         try {
             const searchData = search ? search : ''
-            const token = await getUserToken()
+            const token = getUserToken()
             return Service.get(`studiomanagement/client${searchData}`, {
                 authorization: token,
             })
@@ -36,6 +36,25 @@ const StudioClientSevice = {
             return Service.get(`studiomanagement/client/${clientId}`, {
                 authorization: token,
             })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    getQuestionnariesDetails: async (questionnariesId: any) => {
+        try {
+            const token = await getUserToken()
+            return Service.get(`studiomanagement/questionnaries/${questionnariesId}`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    getClientQuestionnaries: async (questionnariesId: any) => {
+        try {
+            return Service.get(`client/view/questionnaries/${questionnariesId}`, {})
         } catch (error) {
             throw error
         }
@@ -132,6 +151,17 @@ const StudioClientSevice = {
                 url: `studiomanagement/templates`,
                 data: data
             }, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    getQuestionnariesList: async () => {
+        try {
+            const token = getUserToken()
+            return Service.get(`studiomanagement/questionnaries`, {
                 authorization: token,
             })
         } catch (error) {

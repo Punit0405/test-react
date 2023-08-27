@@ -8,7 +8,8 @@
 .titlemain {
     font-weight: 500;
     font-family: var(--font-poppins);
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    margin-top: 2%;
 }
 
 .maindiv {
@@ -92,12 +93,4 @@
 
 .clientpayment {
     margin-top: 4%;
-}
-
-.maincomp{
-    height: 33vw;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
 }

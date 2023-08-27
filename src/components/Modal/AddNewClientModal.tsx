@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Button, Form, InputGroup, Modal,Spinner } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import styles from "./CreateCollectionModal.module.css";
-import { Formik,Field } from "formik";
+import { Formik, Field } from "formik";
 import { addClientValidation } from "../../Utils/validations";
 import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import {fileUpload} from "../../Utils/helper"
+import { fileUpload } from "../../Utils/helper"
 import StudioClientSevice from "../../api/StudioClient/StudioClient"
 
 function AddNewClientModal(props: any) {
@@ -23,22 +23,24 @@ function AddNewClientModal(props: any) {
     const handleSubmit = async (values: any) => {
         try {
             setLoader(true)
-            let data:any={
-                name:values?.name,
-                email:values?.email,
-                phone:String(values?.phone),
+            let data: any = {
+                name: values?.name,
+                email: values?.email,
+                phone: String(values?.phone),
             }
-            if(values?.profileImg!==formInitialValues?.profileImg){
-                let ext=values?.profileImg?.name?.split('.').pop()
-                let key=`studio-management/userid/client-profile/${Date.now()}.${ext}`
-                const s3Key=await fileUpload(values?.profileImg,key)
-                data={...data,profileUrl:s3Key}                
+            console.log(values?.profileImg,'----values?.profileImg----');
+            
+            if (values?.profileImg !== formInitialValues?.profileImg) {
+                let ext = values?.profileImg?.name?.split('.').pop()
+                let key = `studio-management/userid/client-profile/${Date.now()}.${ext}`
+                const s3Key = await fileUpload(values?.profileImg, key)
+                data = { ...data, profileUrl: s3Key }
             }
-            if(props.createnew==="true"){
-                const clientRes=await StudioClientSevice.addClient(data);            
+            if (props.createnew === "true") {
+                const clientRes = await StudioClientSevice.addClient(data);
                 if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
                     console.log(clientRes?.result)
-                    const newData={
+                    const newData = {
                         name: clientRes?.result?.name,
                         email: clientRes?.result?.email,
                         phone: clientRes?.result?.phone,
@@ -46,9 +48,9 @@ function AddNewClientModal(props: any) {
                         createdAt: clientRes?.result?.createdAt
                     }
                     props.setcreateclient(newData)
-                } 
-            }else{
-                const clientRes=await StudioClientSevice.updateClientDetails(props?.client?.id,data);            
+                }
+            } else {
+                const clientRes = await StudioClientSevice.updateClientDetails(props?.client?.id, data);
                 if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
                     NotificationWithIcon("success", "Client update successfully.")
                     props.updatedata(data)
@@ -56,7 +58,7 @@ function AddNewClientModal(props: any) {
             }
         } catch (err: any) {
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
-        } finally{
+        } finally {
             props.onHide()
             setLoader(false)
         }
@@ -76,9 +78,9 @@ function AddNewClientModal(props: any) {
             <Modal.Body className={styles.maincompclient}>
                 <div className={styles.maintitlediv}>
                     {
-                        props.createnew==="true"?
-                        <p className={styles.maintitle}>Add New Client</p>:
-                        <p className={styles.maintitle}>Edit Client</p>
+                        props.createnew === "true" ?
+                            <p className={styles.maintitle}>Add New Client</p> :
+                            <p className={styles.maintitle}>Edit Client</p>
                     }
                 </div>
                 <Formik
@@ -145,29 +147,29 @@ function AddNewClientModal(props: any) {
                                     </Form.Control.Feedback> */}
                                 </InputGroup>
                                 <Form.Group className="mb-3">
-                                <Form.Label>Select photo</Form.Label>
-                                <br></br>
-                                <Field name="profileImg" >
-                                    {({ field, form }:any) => (
-                                      <input
-                                        className={styles.profileImg}
-                                        type="file"
-                                        accept="image/*"
-                                        name="profileImg"
-                                        required={false}
-                                        onChange={(event) => {
-                                            const file = event.currentTarget.files?.[0];
-                                            if (file) {
-                                              form.setFieldValue('profileImg', file);
-                                            }
-                                        }}
-                                      />
-                                    )}
-                                  </Field>
-                            </Form.Group>
+                                    <Form.Label>Select photo</Form.Label>
+                                    <br></br>
+                                    <Field name="profileImg" >
+                                        {({ field, form }: any) => (
+                                            <input
+                                                className={styles.profileImg}
+                                                type="file"
+                                                accept="image/*"
+                                                name="profileImg"
+                                                required={false}
+                                                onChange={(event) => {
+                                                    const file = event.currentTarget.files?.[0];
+                                                    if (file) {
+                                                        form.setFieldValue('profileImg', file);
+                                                    }
+                                                }}
+                                            />
+                                        )}
+                                    </Field>
+                                </Form.Group>
                             </div>
                             <div className={styles.buttondiv}>
-                            {
+                                {
                                     props.createnew === "true" ? (
                                         loader ?
                                             < Button className={styles.createbtn} variant="custom" disabled type="submit">
