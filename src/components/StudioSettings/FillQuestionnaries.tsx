@@ -8,12 +8,15 @@ import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
 import { NotificationWithIcon } from '../../Utils/helper';
 import TemplateLoader from '../Loader/TemplateLoader';
 import { fileUpload } from "../../Utils/helper"
+import { Button, Spinner } from 'react-bootstrap';
 
 function FillQuestionnaries() {
 
     const { questionnariesId } = useParams()
     const [loader, setLoader] = useState(true)
     const [questionnaire, setQuestionnaire]: any = useState({})
+    const [disabled, setDisabled] = useState(true)
+    const [submitLoader, setSubmitLoader] = useState(false)
 
     useEffect(() => {
         getClientDetails()
@@ -22,13 +25,53 @@ function FillQuestionnaries() {
     const getClientDetails = async () => {
         try {
             const clientRes = await StudioClientSevice.getClientQuestionnaries(questionnariesId);
-            console.log(clientRes, '=====clientRes====');
-
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
-                setQuestionnaire(clientRes?.data?.questionnarires?.template)
+                const template = clientRes?.data?.questionnarires?.template
+                setDisabled(clientRes?.data?.questionnarires?.status === "SUBMITTED" ? true : false)
+                setQuestionnaire(template)
                 setLoader(false);
             }
         } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+            } else {
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
+
+    const validateValue = (value: any) => {
+        let error;
+        if (!value) {
+            error = 'Required';
+        }
+        console.log(error, '=======error=======');
+        return error;
+    }
+
+    const validationSchema = Yup.object().shape({
+    });
+
+    const handleSubmit = async (values: any) => {
+        try {
+            setSubmitLoader(true)
+            let allUploadPromise: any = []
+            for (let files of values.fields) {
+                if (files.type === 'file' && files.response && files.response !== '') {
+                    let ext = files?.response?.name?.split('.').pop()
+                    let key = `studio-management/questionnaries/${questionnariesId}/${Date.now()}_${allUploadPromise.length}.${ext}`
+                    const promiseIns = fileUpload(files?.response, key)
+                    allUploadPromise.push(promiseIns)
+                    files.response = 'https://snape-buckets.b-cdn.net/' + key
+                }
+            }
+            await Promise.all(allUploadPromise)
+            await StudioClientSevice.submitClientQuestionnaries(questionnariesId, values);
+            setSubmitLoader(false)
+            setDisabled(true)
+            NotificationWithIcon("success", "Questionnarie submitted.")
+        } catch (err: any) {
+            setSubmitLoader(false)
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
                 setLoader(false);
                 NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
@@ -39,35 +82,14 @@ function FillQuestionnaries() {
         }
     }
 
-    const validationSchema = Yup.object().shape({
-    });
-
-    const handleSubmit = async (values: any) => {
-        try {
-            for (let files of values.fields) {
-                console.log(files, '----value-----');
-                if (files.type === 'file') {
-                    let ext = files?.response?.name?.split('.').pop()
-                    let key = `studio-management/questionnaries/${questionnariesId}/${Date.now()}.${ext}`
-                    console.log(files?.response, '----key-----');
-                    const s3Key = await fileUpload(files?.response, key)
-                    files.response = s3Key
-                }
-            }
-            console.log(values.fields, '======values.fields====');
-        } catch (error) {
-            console.log(error, '======error=========');
-        }
-    }
-
-    const renderFormFields = (values: any) => {
+    const renderFormFields = (errors: any, touched: any, values: any) => {
         return values.fields.map((field: any, index: any) => (
             <div key={index} className={styles.optiondiv}>
                 {field.type && (
                     <>
                         <label htmlFor={`field.question`}
                             className={styles.labeldiv}>
-                            {field.question}
+                            {field.question}{field.required ? <span className={styles.requiredlabel}>*</span> : <></>}
                         </label>
                         {
                             field.type === 'checkbox' ?
@@ -78,16 +100,13 @@ function FillQuestionnaries() {
                                                 <Field
                                                     type="checkbox"
                                                     className={styles.checkboxbtn}
+                                                    disabled={disabled}
                                                     name={`fields.${index}.response.${optionIndex}`}
                                                 />
-                                                <Field
-                                                    type="text"
-                                                    className={styles.checkname}
-                                                    name={`fields.${index}.options.${optionIndex}`}
-                                                    placeholder={`Option${optionIndex}`}
-                                                    readOnly
-                                                    style={{ border: 'none' }}
-                                                />
+                                                <label htmlFor={`field.question`}
+                                                    className={styles.checkname}>
+                                                    {option}
+                                                </label>
                                             </div>
                                         ))}
                                     </div>
@@ -101,6 +120,7 @@ function FillQuestionnaries() {
                                                 id={`fields.${index}.response`}
                                                 placeholder="Enter Question"
                                                 className={styles.filemain}
+                                                disabled={disabled}
                                                 onChange={(event: any) => {
                                                     const file = event.currentTarget.files?.[0];
                                                     if (file) {
@@ -111,14 +131,23 @@ function FillQuestionnaries() {
                                         )}
                                     </Field>
                                     :
-                                    <Field
-                                        type="text"
-                                        // readOnly
-                                        name={`fields.${index}.response`}
-                                        id={`fields.${index}.response`}
-                                        placeholder="Enter Question"
-                                        className={styles.filemain}
-                                    />
+                                    <>
+                                        <Field
+                                            type="text"
+                                            disabled={disabled}
+                                            name={`fields.${index}.response`}
+                                            id={`fields.${index}.response`}
+                                            placeholder="Enter Question"
+                                            className={styles.filemain}
+                                            validate={field.required ? validateValue : {}}
+                                        />
+                                        {
+                                            errors?.['fields']?.[index]?.response && touched?.['fields']?.[index]?.response &&
+                                            <div className={styles.errmsg}>
+                                                {errors['fields'][index].response}
+                                            </div>
+                                        }
+                                    </>
                         }
                     </>
                 )}
@@ -137,7 +166,7 @@ function FillQuestionnaries() {
                         validationSchema={validationSchema}
                         onSubmit={handleSubmit}
                     >
-                        {({ values }) => (
+                        {({ errors, touched, values }) => (
                             <Form>
                                 <div className={styles.uperdiv}>
                                 </div>
@@ -152,15 +181,29 @@ function FillQuestionnaries() {
                                         {values?.description}
                                     </label>
                                 </div>
-                                {renderFormFields(values)}
-                                <button className={styles.addNewDevice} type="submit">
-                                    Submit Response
-                                </button>
+                                {renderFormFields(errors, touched, values)}
+                                {
+                                    disabled ? <></> :
+                                        submitLoader ?
+                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />{'  '}
+                                                Saving...
+                                            </Button> :
+                                            <button className={styles.addNewDevice} type="submit" disabled={disabled}>
+                                                Submit Response
+                                            </button>
+                                }
                             </Form>
                         )}
                     </Formik>
             }
-        </div>
+        </div >
     )
 }
 

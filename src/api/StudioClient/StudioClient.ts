@@ -60,6 +60,17 @@ const StudioClientSevice = {
         }
     },
 
+    submitClientQuestionnaries: async (questionnariesId: any, data: any) => {
+        try {
+            return Service.post({
+                url: `client/questionnaries/${questionnariesId}`,
+                data: data
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
     updateClientDetails: async (clientId: any, data: any) => {
         try {
             const token = await getUserToken()
@@ -162,6 +173,17 @@ const StudioClientSevice = {
         try {
             const token = getUserToken()
             return Service.get(`studiomanagement/questionnaries`, {
+                authorization: token,
+            })
+        } catch (error) {
+            throw error
+        }
+    },
+
+    deleteQuestionnaires: async (id: any) => {
+        try {
+            const token = getUserToken()
+            return Service.remove(`studiomanagement/questionnaries/${id}`, {
                 authorization: token,
             })
         } catch (error) {

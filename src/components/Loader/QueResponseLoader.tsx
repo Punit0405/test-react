@@ -23,6 +23,7 @@ const QueResponseLoader = () => {
                         <td>Client Name</td>
                         <td>Email</td>
                         <td>Phone</td>
+                        <td>Status</td>
                         <td>Created</td>
                     </tr>
                 </thead>
@@ -31,6 +32,9 @@ const QueResponseLoader = () => {
                         <td className={styles.tableData}>
                             <div className={styles.nameDiv}>
                             </div>
+                        </td>
+                        <td className={styles.tableData}>
+                            <div className={styles.tableDiv}></div>
                         </td>
                         <td className={styles.tableData}>
                             <div className={styles.tableDiv}></div>

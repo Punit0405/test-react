@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from './Questionnaires.module.css'
-import QuestionnairesList from "./QuestionnairesList";
 import AddQuestionnaires from "../Modal/AddQuestionnaires";
 import { useNavigate } from "react-router-dom";
 import StudioClientSevice from "../../api/StudioClient/StudioClient";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import StudioClientLoader from "../Loader/StudioClientLoader";
+import { Table } from "react-bootstrap";
+import QuestionnariesTable from "./QuestionnariesTable";
 
 const Questionnaires: any = () => {
 
@@ -38,6 +39,23 @@ const Questionnaires: any = () => {
         }
     }
 
+    const deleteQuestionnaries = async (id: any) => {
+        try {
+            const updatedQuestionnaries = questionnaries.filter(
+                (questionnarie: any) => questionnarie.id !== id);
+            setQuestionnaries(updatedQuestionnaries)
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                setLoader(false);
+                NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
+                navigate('/');
+            } else {
+                setLoader(false);
+                NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            }
+        }
+    }
+
     return (
         <div className={styles.maindiv}>
             <div className={styles.assetnavbar}>
@@ -53,7 +71,25 @@ const Questionnaires: any = () => {
                     <StudioClientLoader />
                     :
                     questionnaries && questionnaries.length ?
-                        <QuestionnairesList questionnaries={questionnaries} />
+                        <Table striped className="mt-4" size="md" responsive="md">
+                            <thead>
+                                <tr className={styles.tableheading}>
+                                    <td>Name</td>
+                                    <td>Client</td>
+                                    <td>Created</td>
+                                    <td>Status</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    questionnaries && questionnaries.length &&
+                                    questionnaries.map((questionnarie: any, index: any) => (
+                                        <QuestionnariesTable questionnarie={questionnarie} key={index} deleteQuestionnaries={deleteQuestionnaries} />
+                                    ))
+                                }
+                            </tbody>
+                        </Table>
                         :
                         <div className={styles.noclient}>
                             <div>

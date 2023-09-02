@@ -8,20 +8,6 @@ function QuestionnariesResponse({ initialValue }: any) {
     console.log(initialValue, '=====initialValue====');
 
     const initialValues = initialValue
-
-    const validationSchema = Yup.object().shape({
-        // fields: Yup.array().of(
-        //     Yup.object().shape({
-        //         type: Yup.string().required('Type is required')
-        //         // label: Yup.string().when('type', {
-        //         //   is: (val: any) => val === 'radio' || val === 'dropdown',
-        //         //   then: Yup.string().required('Label is required'),
-        //         // }),
-
-        //     })
-        // ),
-    });
-
     const handleSubmit = (value: any) => {
         console.log(value, '----value-----');
 
@@ -44,17 +30,14 @@ function QuestionnariesResponse({ initialValue }: any) {
                                             <div key={optionIndex}>
                                                 <Field
                                                     type="checkbox"
+                                                    disabled
                                                     className={styles.checkboxbtn}
                                                     name={`fields.${index}.response.${optionIndex}`}
                                                 />
-                                                <Field
-                                                    type="text"
-                                                    className={styles.checkname}
-                                                    name={`fields.${index}.options.${optionIndex}`}
-                                                    placeholder={`Option${optionIndex}`}
-                                                    readOnly
-                                                    style={{ border: 'none' }}
-                                                />
+                                                <label htmlFor={`field.question`}
+                                                    className={styles.checkname}>
+                                                    {option}
+                                                </label>
                                             </div>
                                         ))}
                                     </div>
@@ -65,15 +48,17 @@ function QuestionnariesResponse({ initialValue }: any) {
                                         name={`fields.${index}.file`}
                                         id={`fields.${index}.file`}
                                         placeholder="Enter Question"
+                                        disabled
                                         className={styles.filemain}
                                     />
                                     :
                                     <Field
                                         type="text"
-                                        // readOnly
+                                        readOnly
                                         name={`fields.${index}.response`}
                                         id={`fields.${index}.response`}
                                         placeholder="Enter Question"
+                                        disabled
                                         className={styles.filemain}
                                     />
                         }
@@ -88,7 +73,7 @@ function QuestionnariesResponse({ initialValue }: any) {
         <div className={styles.maincomp}>
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                // validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
                 {({ values }) => (
@@ -107,7 +92,7 @@ function QuestionnariesResponse({ initialValue }: any) {
                             </label>
                         </div>
                         {renderFormFields(values)}
-                       
+
                     </Form>
                 )}
             </Formik>

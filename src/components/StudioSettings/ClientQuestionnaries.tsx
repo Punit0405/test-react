@@ -16,6 +16,7 @@ const ClientQuestionnaries: any = () => {
     const [client, setClient]: any = useState({})
     const [loader, setLoader] = useState(true)
     const [questionnaire, setQuestionnaire] = useState({})
+    const [status, setStatus] = useState("AWAITING RESPONSE")
     useEffect(() => {
         getClientDetails()
     }, [])
@@ -25,16 +26,15 @@ const ClientQuestionnaries: any = () => {
             const clientRes = await StudioClientSevice.getQuestionnariesDetails(questionnariesId);
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
                 setQuestionnaire(clientRes?.result?.data?.questionnarires?.template)
+                setStatus(clientRes?.result?.data?.questionnarires?.status)
                 setLoader(false);
                 setClient(clientRes?.result?.data?.questionnarires?.clientId)
             }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
-                setLoader(false);
                 NotificationWithIcon("error", MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG)
                 navigate('/');
             } else {
-                setLoader(false);
                 NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
             }
         }
@@ -53,6 +53,7 @@ const ClientQuestionnaries: any = () => {
                                     <td>Client Name</td>
                                     <td>Email</td>
                                     <td>Phone</td>
+                                    <td>Status</td>
                                     <td>Created</td>
                                 </tr>
                             </thead>
@@ -73,6 +74,18 @@ const ClientQuestionnaries: any = () => {
                                     </td>
                                     <td className={styles.tableData}>
                                         <div className={styles.tableDiv}>{client.phone}</div>
+                                    </td>
+                                    <td className={styles.tableData} >
+                                        <div className={styles.tableDiv}>
+                                            <div
+                                                className={
+                                                    status === "AWAITING RESPONSE" ?
+                                                        styles.awaitingstatus : styles.completestatus
+                                                }
+                                            >
+                                                {status}
+                                            </div>
+                                        </div>
                                     </td>
                                     <td className={styles.tableData}>
                                         <div className={styles.tableDiv}>
