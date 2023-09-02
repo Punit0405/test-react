@@ -51,6 +51,8 @@ import DynamicForm from "./components/StudioSettings/DynamicForm"
 import Portfolio from "./pages/Portfolio";
 import PortfolioComponent from "./components/Gallery/Portfolio";
 import PortfolioDragMedia from "./components/Gallery/PortfolioDragMedia";
+import { InvoiceSample } from "./components/StudioSettings/invoice/invoiceSample";
+import { Invoice } from "./components/StudioSettings/invoice/invoice";
 
 function RoutesAll() {
     return (
@@ -71,8 +73,10 @@ function RoutesAll() {
                     <Route path="speciality" element={<Speciality />} />
                     <Route path="*" element={<StudioDashBoard />} />
                     <Route path="for-sale" element={<StudioDashBoard />} />
-                    <Route path="/studiomanagement/invoice-info" element={<InvoiceInfo />} />
-                    <Route path="/studiomanagement/invoice-option" element={<InvoiceOption />} />
+                    <Route path="invoice-info" element={<InvoiceInfo />} />
+                    <Route path="invoice-option" element={<InvoiceOption />} />
+                    <Route path="invoice-sample" element={<InvoiceSample />} />
+                    <Route path="invoice" element={<Invoice />} />
                 </Route>
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/portfolio" element={<Portfolio/>} />

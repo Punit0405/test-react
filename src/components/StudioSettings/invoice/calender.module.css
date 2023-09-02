@@ -1,0 +1,31 @@
+.date-picker-input {
+    display: flex;
+    align-items: center;
+    width: 266px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 2px solid #EFEFEF;
+    color: #252525;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 176px;
+    margin-right: 53px;
+}
+
+.calendar-input {
+    border: none;
+    width: 139px;
+    height: 27px;
+    margin: 18px 86px 19px 19px;
+    /* Hide the date picker input */
+}
+
+.calendar-icon {
+    cursor: pointer;
+    margin-left: -20px;
+    /* Adjust the margin to position the icon properly */
+}
