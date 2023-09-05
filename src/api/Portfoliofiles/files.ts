@@ -18,6 +18,16 @@ const PortFolioFilesSevice = {
         }
     },
 
+    addVideo: async (data: any, portfolioId: any) => {
+        const token = await getUserToken()
+        return Service.post({
+            url: `portfolio/videolink/${portfolioId}`,
+            data
+        }, {
+            authorization: token,
+        })
+    },
+
     getFiles: async (portfolioId: any) => {
         try {
             const token = await getUserToken()
