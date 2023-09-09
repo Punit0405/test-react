@@ -8,11 +8,22 @@
     text-align: left;
 }
 
-.maincomp{
-    padding:2% 2%;
+.maincomp {
+    padding: 2% 2%;
     font-family: var(--font-poppins);
     background-color: #EFEFEF;
-    margin-bottom:2%;
+    margin-bottom: 2%;
+}
+
+.downloadFile {
+    border: 1px solid #EFEFEF;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+}
+
+.downloadBox {
+    border: 1px solid #EFEFEF;
+    /* padding: 6px 12px; */
 }
 
 .addNewDevice {
@@ -25,119 +36,123 @@
     border-radius: var(--br-2xs);
 }
 
-.uperdiv{
-    display:flex;
-    justify-content:space-between;
+.uperdiv {
+    display: flex;
+    justify-content: space-between;
 }
 
-.textarea{
-    border:1px solid #EFEFEF;
-    width:100%;
-    margin-top:1%;
-    padding:0.5% 1%;
+.textarea {
+    border: 1px solid #EFEFEF;
+    width: 100%;
+    margin-top: 1%;
+    padding: 0.5% 1%;
 }
 
-.textarealabel{
-    width:100%;
-    margin-top:1%;
-    padding:0.5% 1%;
+.requiredlabel {
+    color: red;
 }
 
-.maintitle{
-    margin:1% 0%;
-    padding:1.5% 1.5%;
-    background-color:white;
-    margin-top:3%;
+.textarealabel {
+    width: 100%;
+    margin-top: 1%;
+    padding: 0.5% 1%;
 }
 
-.title{
+.maintitle {
+    margin: 1% 0%;
+    padding: 1.5% 1.5%;
+    background-color: white;
+    margin-top: 3%;
+}
+
+.title {
     font-weight: 420;
 }
 
-.addquebtn{
-    border:none;
-    background-color:none;
+.addquebtn {
+    border: none;
+    background-color: none;
     color: var(--color-crimson);
-    font-size:0.9rem;
-    font-weight: 450;
-}
-
-.checkboxbtn{
-    background-color: var(--color-crimson) !important;
-    margin-right:10px;
-}
-
-.filemain{
-    border:1px solid #EFEFEF;
-    padding:0.5% 1%;
-    width:100%;
-    font-size:0.9rem;
-}
-
-.addoptionbtn{
-    border:none;
-    background-color:white;
-    color: var(--color-crimson);
-    font-size:0.9rem;
-    font-weight: 450;
-}
-
-.addquename{
-    margin-left:10px;
-}
-
-.optiondiv{
-    margin:1% 0%;
-    padding:1.5% 1.5%;
-    background-color:white;
-    margin-top:3%;
-}
-
-.optionset{
     font-size: 0.9rem;
     font-weight: 450;
-    border:none;
 }
 
-.removebtn{
+.checkboxbtn {
+    background-color: var(--color-crimson) !important;
+    margin-right: 10px;
+}
+
+.filemain {
+    border: 1px solid #EFEFEF;
+    padding: 0.5% 1%;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.addoptionbtn {
+    border: none;
+    background-color: white;
+    color: var(--color-crimson);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.addquename {
+    margin-left: 10px;
+}
+
+.optiondiv {
+    margin: 1% 0%;
+    padding: 1.5% 1.5%;
+    background-color: white;
+    margin-top: 3%;
+}
+
+.optionset {
+    font-size: 0.9rem;
+    font-weight: 450;
+    border: none;
+}
+
+.removebtn {
     color: var(--color-crimson);
     background: none;
     border: none;
 }
 
-.selectdiv{
-    display:flex;
-    justify-content:space-between;
+.selectdiv {
+    display: flex;
+    justify-content: space-between;
 }
 
-.querightdiv{
-    display:flex;
-    justify-content:right;
+.querightdiv {
+    display: flex;
+    justify-content: right;
 }
 
-.requireddiv{
-    margin-right:15px;
+.requireddiv {
+    margin-right: 15px;
 }
 
-.tglbtn{
-    margin-left:8px;
+.tglbtn {
+    margin-left: 8px;
 }
 
-.quemain{
-    border:1px solid #EFEFEF;
-    margin:1% 0%;
-    padding:0.5% 1%;
-    width:100%
+.quemain {
+    border: 1px solid #EFEFEF;
+    margin: 1% 0%;
+    padding: 0.5% 1%;
+    width: 100%
 }
 
-.labeldiv{
-    padding:0.5% 1%;
-    width:100%
+.labeldiv {
+    padding: 0.5% 1%;
+    width: 100%
 }
 
-.checkname{
-    margin:0.4% 0%;
-    padding:0.3% 0.7%;
-    font-size:0.9rem;
-    width:50%;
+.checkname {
+    margin: 0.4% 0%;
+    padding: 0.3% 0.7%;
+    font-size: 0.9rem;
+    width: 50%;
 }

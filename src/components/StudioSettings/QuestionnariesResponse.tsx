@@ -20,8 +20,9 @@ function QuestionnariesResponse({ initialValue }: any) {
                     <>
                         <label htmlFor={`field.question`}
                             className={styles.labeldiv}>
-                            {field.question}
+                            {field.question}{field.required ? <span className={styles.requiredlabel}>*</span> : <></>}
                         </label>
+
                         {
                             field.type === 'checkbox' ?
                                 <>
@@ -43,14 +44,16 @@ function QuestionnariesResponse({ initialValue }: any) {
                                     </div>
                                 </> :
                                 field.type === 'file' ?
-                                    <Field
-                                        type="file"
-                                        name={`fields.${index}.file`}
-                                        id={`fields.${index}.file`}
-                                        placeholder="Enter Question"
-                                        disabled
-                                        className={styles.filemain}
-                                    />
+                                    <div className={styles.downloadBox}>
+                                        {
+                                            field.response && field.response !== '' ?
+                                                <button className={styles.downloadFile} onClick={() => window.open(field.response)}>
+                                                    Download file
+                                                </button>
+                                                :
+                                                <button className={styles.downloadFile} disabled>No file uploaded</button>
+                                        }
+                                    </div>
                                     :
                                     <Field
                                         type="text"

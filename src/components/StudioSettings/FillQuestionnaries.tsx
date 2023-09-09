@@ -1,4 +1,4 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import styles from './FillQuestionnaries.module.css'
 import { useParams } from "react-router-dom";
@@ -8,7 +8,7 @@ import { MESSAGE, STATUS_CODE, VALIDATIONS } from '../../Utils/constants';
 import { NotificationWithIcon } from '../../Utils/helper';
 import TemplateLoader from '../Loader/TemplateLoader';
 import { fileUpload } from "../../Utils/helper"
-import { Button, Spinner } from 'react-bootstrap';
+import { Button, Form, Spinner } from 'react-bootstrap';
 
 function FillQuestionnaries() {
 
@@ -17,6 +17,7 @@ function FillQuestionnaries() {
     const [questionnaire, setQuestionnaire]: any = useState({})
     const [disabled, setDisabled] = useState(true)
     const [submitLoader, setSubmitLoader] = useState(false)
+    const [validated, setValidated] = useState(false);
 
     useEffect(() => {
         getClientDetails()
@@ -54,6 +55,7 @@ function FillQuestionnaries() {
 
     const handleSubmit = async (values: any) => {
         try {
+            setValidated(true)
             setSubmitLoader(true)
             let allUploadPromise: any = []
             for (let files of values.fields) {
@@ -66,6 +68,7 @@ function FillQuestionnaries() {
                 }
             }
             await Promise.all(allUploadPromise)
+
             await StudioClientSevice.submitClientQuestionnaries(questionnariesId, values);
             setSubmitLoader(false)
             setDisabled(true)
@@ -112,7 +115,11 @@ function FillQuestionnaries() {
                                     </div>
                                 </> :
                                 field.type === 'file' ?
-                                    <Field name={`fields.${index}.response`} >
+                                    <Field
+                                        name={`fields.${index}.response`}
+                                        validate={field.required ? validateValue : {}}
+                                        className={styles.requiredfield}
+                                    >
                                         {({ field, form }: any) => (
                                             <input
                                                 type="file"
@@ -132,7 +139,7 @@ function FillQuestionnaries() {
                                     </Field>
                                     :
                                     <>
-                                        <Field
+                                        {/* <Field
                                             type="text"
                                             disabled={disabled}
                                             name={`fields.${index}.response`}
@@ -140,6 +147,18 @@ function FillQuestionnaries() {
                                             placeholder="Enter Question"
                                             className={styles.filemain}
                                             validate={field.required ? validateValue : {}}
+                                        /> */}
+                                        <Form.Control
+                                            type="input"
+                                            value={values.name}
+                                            name={`fields.${index}.response`}
+                                            id={`fields.${index}.response`}
+                                            placeholder="Enter Question"
+                                            className={styles.filemain}
+                                            // validate={field.required ? validateValue : {}}
+                                            required={field.required}
+                                            isValid={touched?.['fields']?.[index]?.response && !errors?.['fields']?.[index]?.response}
+                                            isInvalid={!!errors?.['fields']?.[index]?.response}
                                         />
                                         {
                                             errors?.['fields']?.[index]?.response && touched?.['fields']?.[index]?.response &&
@@ -155,53 +174,134 @@ function FillQuestionnaries() {
         ))
     }
 
-
     return (
         <div className={styles.maincomp}>
             {
                 loader ?
                     <TemplateLoader /> :
-                    <Formik
-                        initialValues={questionnaire}
-                        validationSchema={validationSchema}
-                        onSubmit={handleSubmit}
-                    >
-                        {({ errors, touched, values }) => (
-                            <Form>
-                                <div className={styles.uperdiv}>
-                                </div>
-                                <div className={styles.maintitle}>
-                                    <div className={styles.title}>
-                                        Questionnaire
+                    questionnaire ?
+                        <Formik
+                            initialValues={questionnaire}
+                            validationSchema={validationSchema}
+                            onSubmit={handleSubmit}
+                        >
+                            {({
+                                handleSubmit,
+                                handleChange,
+                                values,
+                                touched,
+                                isValid,
+                                errors,
+                            }: any) => (
+                                <Form onSubmit={handleSubmit} >
+                                    <div className={styles.uperdiv}>
                                     </div>
-                                    <label
-                                        htmlFor={`description`}
-                                        className={styles.textarealabel}
-                                    >
-                                        {values?.description}
-                                    </label>
-                                </div>
-                                {renderFormFields(errors, touched, values)}
-                                {
-                                    disabled ? <></> :
-                                        submitLoader ?
-                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
-                                                <Spinner
-                                                    as="span"
-                                                    animation="border"
-                                                    size="sm"
-                                                    role="status"
-                                                    aria-hidden="true"
-                                                />{'  '}
-                                                Saving...
-                                            </Button> :
-                                            <button className={styles.addNewDevice} type="submit" disabled={disabled}>
-                                                Submit Response
-                                            </button>
-                                }
-                            </Form>
-                        )}
-                    </Formik>
+                                    <div className={styles.maintitle}>
+                                        <div className={styles.title}>
+                                            Questionnaire
+                                        </div>
+                                        <label
+                                            htmlFor={`description`}
+                                            className={styles.textarealabel}
+                                        >
+                                            {values?.description}
+                                        </label>
+                                    </div>
+                                    {
+                                        values.fields.map((field: any, index: any) => (
+                                            <div key={index} className={styles.optiondiv}>
+                                                {field.type && (
+                                                    <>
+                                                        <label htmlFor={`field.question`}
+                                                            className={styles.labeldiv}>
+                                                            {field.question}{field.required ? <span className={styles.requiredlabel}>*</span> : <></>}
+                                                        </label>
+                                                        {
+                                                            field.type === 'checkbox' ?
+                                                                <>
+                                                                    <div className={styles.optionDiv}>
+                                                                        {field.options.map((option: any, optionIndex: any) => (
+                                                                            <div key={optionIndex}>
+                                                                                <Field
+                                                                                    type="checkbox"
+                                                                                    className={styles.checkboxbtn}
+                                                                                    disabled={disabled}
+                                                                                    name={`fields.${index}.response.${optionIndex}`}
+                                                                                />
+                                                                                <label htmlFor={`field.question`}
+                                                                                    className={styles.checkname}>
+                                                                                    {option}
+                                                                                </label>
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
+                                                                </> :
+                                                                field.type === 'file' ?
+                                                                    <>
+                                                                        <Field
+                                                                            name={`fields.${index}.response`}
+                                                                            // validate={field.required ? validateValue : {}}
+                                                                            className={styles.requiredfield}
+                                                                        >
+                                                                            {({ fieldForm, form }: any) => (
+                                                                                <Form.Control
+                                                                                    type="file"
+                                                                                    required={field.required}
+                                                                                    name={`fields.${index}.response`}
+                                                                                    id={`fields.${index}.response`}
+                                                                                    placeholder="Enter Question"
+                                                                                    className={styles.filemain}
+                                                                                    onChange={(event: any) => {
+                                                                                        const file = event.currentTarget.files?.[0];
+                                                                                        if (file) {
+                                                                                            form.setFieldValue(`fields.${index}.response`, file);
+                                                                                        }
+                                                                                    }} />
+                                                                            )}
+                                                                        </Field>
+                                                                    </>
+                                                                    :
+                                                                    <>
+                                                                        <Form.Control
+                                                                            type="input"
+                                                                            name={`fields.${index}.response`}
+                                                                            id={`fields.${index}.response`}
+                                                                            placeholder="Enter Question"
+                                                                            onChange={handleChange}
+                                                                            className={styles.filemain}
+                                                                            required={field.required}
+                                                                            value={field.response}
+                                                                        />
+                                                                    </>
+                                                        }
+                                                    </>
+                                                )}
+                                            </div>
+                                        ))
+                                    }
+                                    {
+                                        disabled ? <></> :
+                                            submitLoader ?
+                                                < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                    <Spinner
+                                                        as="span"
+                                                        animation="border"
+                                                        size="sm"
+                                                        role="status"
+                                                        aria-hidden="true"
+                                                    />{'  '}
+                                                    Saving...
+                                                </Button> :
+                                                <button className={styles.addNewDevice} type="submit" disabled={disabled}>
+                                                    Submit Response
+                                                </button>
+                                    }
+                                </Form>
+                            )}
+                        </Formik> :
+                        <div className={styles.notfound}>
+                            Questionnarie not found
+                        </div>
             }
         </div >
     )
