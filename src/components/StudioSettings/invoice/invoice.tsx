@@ -50,7 +50,7 @@ export const Invoice = () => {
                 </div>
 
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '49px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '3%' }}>
                 <Image
                     className={Style.imgStyle}
                     alt="customer img"
@@ -59,12 +59,11 @@ export const Invoice = () => {
                 <label className={Style['client-label']}>Sample Client</label>
             </div>
             <label className={Style.currency}>Currency</label>
-
-            <div style={{ textAlign: 'left' }}>
+            <div >
                 <Dropdown menu={menuProps}>
                     <Button variant='custom' className={Style.dropdown}>
                         South African Rand (ZAR)
-                        <svg style={{ marginLeft: '293px' }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M17.625 8.81177L11.7505 14.6863L5.87597 8.81177" stroke="#080B23" />
                         </svg>
                     </Button>

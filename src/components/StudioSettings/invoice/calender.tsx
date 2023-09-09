@@ -8,15 +8,15 @@ export const Calender = ({ paymentDates }: any) => {
 
     const [selectedDate, setSelectedDate]: any = useState({
         dateFormat: '',
-        receipt:''
+        receipt: ''
     });
 
     const handleDateChange: any = (name: any, date: any) => {
-        setSelectedDate({...selectedDate, [name]: date});
+        setSelectedDate({ ...selectedDate, [name]: date });
     };
 
     return (
-        <div style={{display: 'flex'}}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: '40vw' }}>
             {
                 paymentDates.map((item: any) => {
                     return (
