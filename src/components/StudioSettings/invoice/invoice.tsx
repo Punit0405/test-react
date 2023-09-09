@@ -1,6 +1,6 @@
 import React from 'react'
 import Style from './invoice.module.css';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
 import { InvoiceTable } from './invoiceTable';
@@ -24,7 +24,7 @@ export const Invoice = () => {
         placeholder: 'Due on Receipt',
         name: 'receipt'
     }
-];
+    ];
 
     const handleMenuClick: MenuProps['onClick'] = (e) => {
         console.log('click', e);
@@ -38,23 +38,24 @@ export const Invoice = () => {
         <div style={{ marginLeft: '20px' }}>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-                <div style={{ textAlign: 'left' }}>
+                <div>
                     <text className={Style['bill-text']}>Bill To</text>
                 </div>
-                <div style={{ marginLeft: '15%' }}>
+                <div>
                     <text className={Style['header-text']}>Invoice #1001</text>
                 </div>
                 <div>
                     <text className={Style['draft-text']}>Save as Draft</text>
-                </div>
-                <div style={{ marginLeft: '36px' }}>
                     <Button className={Style['email-invoice-button']}>Email Invoice</Button>
                 </div>
+
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '49px' }}>
-                <svg className={Style['yellow-svg']} xmlns="http://www.w3.org/2000/svg" width="66" height="65" viewBox="0 0 66 65" fill="none">
-                    <rect width="65.8949" height="64.0049" rx="18" fill="#FFBB54" />
-                </svg>
+                <Image
+                    className={Style.imgStyle}
+                    alt="customer img"
+                    src={`../../../../sample2.jpg`}
+                />
                 <label className={Style['client-label']}>Sample Client</label>
             </div>
             <label className={Style.currency}>Currency</label>

@@ -39,6 +39,13 @@
     margin-top: 42px;
 }
 
+.invoiceButton:hover,
+.email-invoice-button:hover
+{
+    background-color: crimson;
+    color: white;
+}
+
 .invoiceBack {
     color: #EC1A25;
     font-family: Poppins;
@@ -87,45 +94,40 @@
 .header-text {
     color: #000;
     font-family: Poppins;
-    font-size: 24px;
+    font-size: 1.1rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    width: 162px;
-    height: 36px;
 }
 
 .bill-text {
     color: #000;
     font-family: Poppins;
-    font-size: 24px;
+    font-size: 1.1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    width: 68px;
-    height: 36px;
 }
 
 .draft-text {
     color: #EC1A25;
     font-family: Poppins;
-    font-size: 13px;
+    font-size: 0.8rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-left: 302px;
+    margin-right: 36px;
 }
 
 .email-invoice-button {
     border-radius: 6px;
+    border: none;
     background: #EC1A25;
-    width: 153.13px;
-    height: 40px;
     flex-shrink: 0;
     color: #FFF;
     text-align: center;
     font-family: Poppins;
-    font-size: 13px;
+    font-size: 0.8rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -133,15 +135,13 @@
 
 .client-label {
     display: flex;
-    width: 408px;
-    height: 27px;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
     flex-shrink: 0;
     color: var(--color-main-text, #222132);
     font-family: Poppins;
-    font-size: 18px;
+    font-size: 1.1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -168,42 +168,43 @@
 .currency {
     color: #000;
     font-family: Poppins;
-    font-size: 24px;
+    font-size: 1.1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 47px;
+    margin-bottom: 2%;
 }
 
 .dropdown {
-    width: 585px;
-    height: 60px;
+    display: flex;
+    justify-content: space-between;
     flex-shrink: 0;
     border-radius: 5px;
     border: 2px solid #EFEFEF;
     color: #252525;
     font-family: Poppins;
-    font-size: 18px;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     text-align: left;
-    margin-bottom: 92px;
+    margin-bottom: 5%;
 }
 
 .subject-input {
-    width: 585px;
-    height: 60px;
+    width: 60%;
+    /* height: 60px; */
     flex-shrink: 0;
     border-radius: 5px;
     border: 2px solid #EFEFEF;
-    color: #C4C4C4;
+    color: black;
     font-family: Poppins;
-    font-size: 18px;
+    font-size: 1.1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 107px;
+    margin-bottom: 5%;
+    padding: 1% 0% 1% 1%;
 }
 
 .item-column {
@@ -221,11 +222,11 @@
 .notes {
     color: #000;
     font-family: Poppins;
-    font-size: 24px;
+    font-size: 1.1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin: 71.55px 0px 29px 0px;
+    margin: 5% 0% 2% 0%;
 }
 
 .notes-textarea {
@@ -245,9 +246,16 @@
 .payment {
     color: #000;
     font-family: Poppins;
-    font-size: 24px;
+    font-size: 1.1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 29px;
+    margin-bottom: 2%;
+}
+
+.imgStyle {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    margin-right: 4px;
 }

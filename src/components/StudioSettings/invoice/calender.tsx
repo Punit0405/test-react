@@ -5,7 +5,6 @@ import Style from './calender.module.css';
 import { CalendarIcon } from './calendarIcon';
 
 export const Calender = ({ paymentDates }: any) => {
-    console.log(paymentDates, 'paymentDates');
 
     const [selectedDate, setSelectedDate]: any = useState({
         dateFormat: '',
@@ -36,11 +35,8 @@ export const Calender = ({ paymentDates }: any) => {
                         </div>
 
                     )
-
-
                 })
             }
-
         </div>
     );
 }
