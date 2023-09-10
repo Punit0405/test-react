@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Style from './invoice.module.css';
 import { Button, Image } from 'react-bootstrap';
 import type { MenuProps } from 'antd';
@@ -7,8 +7,12 @@ import { InvoiceTable } from './invoiceTable';
 import TextArea from 'antd/es/input/TextArea';
 import { InvoicePayment } from './invoicePayment';
 import { Calender } from './calender';
+import AddInvoice from '../../Modal/AddInvoice';
 
 export const Invoice = () => {
+
+    const [modalShow, setModalShow] = useState(false);
+
     const items: MenuProps['items'] = [
         {
             label: '1st menu item',
@@ -46,7 +50,7 @@ export const Invoice = () => {
                 </div>
                 <div>
                     <text className={Style['draft-text']}>Save as Draft</text>
-                    <Button className={Style['email-invoice-button']}>Email Invoice</Button>
+                    <Button className={Style['email-invoice-button']} onClick={() => setModalShow(true)}>Email Invoice</Button>
                 </div>
 
             </div>
@@ -63,7 +67,7 @@ export const Invoice = () => {
                 <Dropdown menu={menuProps}>
                     <Button variant='custom' className={Style.dropdown}>
                         South African Rand (ZAR)
-                        <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M17.625 8.81177L11.7505 14.6863L5.87597 8.81177" stroke="#080B23" />
                         </svg>
                     </Button>
@@ -82,6 +86,10 @@ export const Invoice = () => {
             </div>
             <InvoicePayment />
             <Calender paymentDates={paymentDates} />
+            <AddInvoice
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
         </div>
     )
 }
