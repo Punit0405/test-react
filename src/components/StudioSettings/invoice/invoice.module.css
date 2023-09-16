@@ -13,6 +13,40 @@
     width: 25vw;
     line-height: normal;
     margin: 7% 0%;
+    padding: 2% 2%;
+}
+
+.defaultBtn {
+    width: 100%;
+    background-color: white;
+    border: none;
+    padding: 2% 0%;
+    display: flex;
+    align-items: center;
+}
+
+.optionList {
+    display: flex;
+    align-items: center;
+}
+
+.optionMain {
+    padding: 1% 2%;
+
+}
+
+.addBtn {
+    color: crimson;
+    width: 20%;
+}
+
+.photoDiv {
+    border: solid red;
+    width: 20%;
+}
+
+.optname {
+    width: 80%;
 }
 
 .invoiceButton {
