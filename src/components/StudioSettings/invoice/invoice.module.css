@@ -1,0 +1,295 @@
+.invoiceTitle {
+    color: black;
+    font-family: Poppins;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.invoiceInput {
+    color: #252525;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-weight: 400;
+    width: 25vw;
+    line-height: normal;
+    margin: 7% 0%;
+    padding: 2% 2%;
+}
+
+.defaultBtn {
+    width: 100%;
+    background-color: white;
+    border: none;
+    padding: 2% 0%;
+    display: flex;
+    align-items: center;
+}
+
+.optionList {
+    display: flex;
+    align-items: center;
+}
+
+.optionMain {
+    padding: 1% 2%;
+
+}
+
+.addBtn {
+    color: crimson;
+    width: 20%;
+}
+
+.photoDiv {
+    width: 26%;
+}
+
+.optname {
+    width: 80%;
+}
+
+.invoiceButton {
+    background: #c4c4c4;
+    color: #fff;
+    font-family: Poppins;
+    font-size: 1.1rem;
+    font-weight: 400;
+    width: 15vw;
+}
+
+.invoiceButton:hover,
+.email-invoice-button:hover {
+    background-color: crimson;
+    color: white;
+}
+
+.invoiceBack {
+    color: #ec1a25;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 136px;
+}
+
+.invoiceSvg {
+    fill: #ec1a25;
+    stroke-width: 1px;
+    stroke: #ec1a25;
+    width: 8px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.invoiceClient {
+    width: 486px;
+    height: 61.643px;
+    flex-shrink: 0;
+    background: #fcfcfc;
+}
+
+.closeButton {
+    color: #c4c4c4;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 9px;
+    height: 27px;
+}
+
+.nextButton {
+    width: 240px;
+    height: 51px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #ec1a25;
+}
+
+.header-text {
+    color: #000;
+    font-family: Poppins;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.bill-text {
+    color: #000;
+    font-family: Poppins;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.draft-text {
+    color: #ec1a25;
+    font-family: Poppins;
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-right: 30px;
+}
+
+.email-invoice-button {
+    border-radius: 6px;
+    border: none;
+    background: #ec1a25;
+    color: #fff;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 400;
+    padding: 7px 15px;
+}
+
+.client-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    color: black;
+    font-family: Poppins;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 20.11px;
+}
+
+.vector {
+    width: 0px;
+    height: 1684px;
+    transform: rotate(90deg);
+    flex-shrink: 0;
+    stroke-width: 1px;
+    stroke: rgba(0, 0, 0, 0.25);
+    opacity: 0.2;
+    margin: 0px 60px 49px 60px;
+}
+
+.yellow-svg {
+    width: 65.895px;
+    height: 64.005px;
+    flex-shrink: 0;
+}
+
+.currency {
+    color: #000;
+    font-family: Poppins;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 1%;
+}
+
+.dropdown {
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1.5px solid #efefef;
+    color: #252525;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+    width: 40vw;
+    margin-bottom: 4%;
+}
+
+.subject-input {
+    width: 40vw;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1.5px solid #efefef;
+    color: black;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 4%;
+    padding: 6px 8px;
+}
+
+.item-column {
+    font-family: Poppins;
+}
+
+.tableDiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 4vw;
+}
+
+.table-div {
+    padding: 5px 8px;
+    font-size: 0.9rem;
+    border: 1px solid #EFEFEF;
+    border-radius: 5px;
+}
+
+.item-heading {
+    font-size: 1rem;
+    font-weight: 450;
+}
+
+.notes {
+    color: #000;
+    font-family: Poppins;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 5% 0% 2% 0%;
+}
+
+.notes-textarea {
+    border-radius: 5px;
+    border: 1.5px solid #efefef;
+    width: 40vw;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 4%;
+}
+
+.payment {
+    color: #000;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 2%;
+}
+
+.imgStyle {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    margin-right: 4px;
+}
+
+.labelDiv {
+    display: flex;
+    justify-content: left;
+}
+
+.labelItem {
+    display: flex;
+    align-items: center;
+}
