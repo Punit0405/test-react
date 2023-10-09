@@ -13,8 +13,6 @@ const CustomMenuList = (props: any) => {
     const { options, children, getValue } = props;
     const hasOptions = options && options.length > 0;
 
-    console.log(props, "=====props=====");
-
     return (
         <div className={Style.optionMain}>
             <button className={Style.defaultBtn}>
@@ -23,9 +21,6 @@ const CustomMenuList = (props: any) => {
             </button>
             {hasOptions ? (
                 <div className={Style.optionList}>
-                    <div className={Style.photoDiv}>
-                        <Image src="../../../../profile.png" />
-                    </div>
                     <span className={Style.optname}>{children}</span>
                 </div>
             ) : (
@@ -34,6 +29,17 @@ const CustomMenuList = (props: any) => {
         </div>
     );
 };
+
+const CustomOption = ({ innerProps, label, data }: any) => (
+    <div {...innerProps}>
+        <div className={Style.labelDiv}>
+            <div className={Style.photoDiv}>
+                <Image src="../../../../profile.png" />
+            </div>
+            <div className={Style.labelItem}>{label}</div>
+        </div>
+    </div>
+);
 
 export const InvoiceInfo = () => {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -74,7 +80,10 @@ export const InvoiceInfo = () => {
                         onChange={handleChange}
                         onInputChange={handleInputChange}
                         options={filteredOptions}
-                        components={{ MenuList: CustomMenuList }}
+                        components={{
+                            MenuList: CustomMenuList,
+                            Option: CustomOption,
+                        }}
                     />
                     <div>
                         <Button
