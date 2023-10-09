@@ -40,8 +40,6 @@ import BillingComponent from "./components/StudioManagement/BillingComponent";
 import ForRentList from "./components/AssetRegistry/ForRentList";
 import InsuranceQuoteComponent from "./components/AssetRegistry/InsuranceQuote";
 import StudioDashBoard from "./components/StudioSettings/StudioDashBoard";
-import { InvoiceInfo } from "./components/StudioSettings/invoice/invoiceInfo";
-import { InvoiceOption } from "./components/StudioSettings/invoice/invoiceOption";
 import ClientDashboard from "./components/StudioSettings/ClientDashboard";
 import Client from "./components/StudioSettings/Client";
 import Questionnaires from "./components/StudioSettings/Questionnaires";
@@ -51,8 +49,7 @@ import DynamicForm from "./components/StudioSettings/DynamicForm"
 import Portfolio from "./pages/Portfolio";
 import PortfolioComponent from "./components/Gallery/Portfolio";
 import PortfolioDragMedia from "./components/Gallery/PortfolioDragMedia";
-import { InvoiceSample } from "./components/StudioSettings/invoice/invoiceSample";
-import { Invoice } from "./components/StudioSettings/invoice/invoice";
+import ClientQuestionnaries from "./components/StudioSettings/ClientQuestionnaries";
 
 function RoutesAll() {
     return (
@@ -68,15 +65,12 @@ function RoutesAll() {
                     <Route path="clients" element={<ClientDashboard />} />
                     <Route path="clients/:clientId" element={<Client />} />
                     <Route path="questionnaires" element={<Questionnaires />} />
+                    <Route path="questionnaires/:questionnariesId" element={<ClientQuestionnaries />} />
                     <Route path="templates" element={<Templates />} />
-                    <Route path="templates/photo-template" element={<DynamicForm />} />
+                    <Route path="templates/edit-template" element={<DynamicForm />} />
                     <Route path="speciality" element={<Speciality />} />
                     <Route path="*" element={<StudioDashBoard />} />
                     <Route path="for-sale" element={<StudioDashBoard />} />
-                    <Route path="invoice-info" element={<InvoiceInfo />} />
-                    <Route path="invoice-option" element={<InvoiceOption />} />
-                    <Route path="invoice-sample" element={<InvoiceSample />} />
-                    <Route path="invoice" element={<Invoice />} />
                 </Route>
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/portfolio" element={<Portfolio/>} />
