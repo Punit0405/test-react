@@ -7,26 +7,44 @@ import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 
 function EmailModal(props: any) {
-
     let formInitialValues = {
-        name: props?.details?.type ? props?.details?.type : "" as string,
-        email: props?.details?.nickName ? props?.details?.nickName as string : "" as string,
-        subject: props?.details?.deviceID ? props?.details?.deviceID as string : "" as string,
-        message: props?.details?.deviceAmount ? props?.details?.deviceAmount as string : "" as string
-    }
+        name: props?.questionnariesData?.type
+            ? props?.questionnariesData?.type
+            : ("" as string),
+        email: props?.questionnariesData?.email
+            ? (props?.questionnariesData?.email as string)
+            : ("" as string),
+        subject: props?.questionnariesData?.deviceID
+            ? (props?.questionnariesData?.deviceID as string)
+            : ("" as string),
+        message: props?.questionnariesData?.deviceAmount
+            ? (props?.questionnariesData?.deviceAmount as string)
+            : ("" as string),
+    };
 
     const [loader, setLoader] = useState<boolean>(false);
 
     const handleSubmit = async (values: any) => {
         try {
-            props?.onHide()
-            props?.confirm()
+            props.setQuestionnariesData({
+                ...props?.questionnariesData,
+                subject: values?.subject,
+                message: values?.message,
+            });
+            props?.onHide();
+            props?.confirm({
+                ...props?.questionnariesData,
+                subject: values?.subject,
+                message: values?.message,
+            });
         } catch (err: any) {
             setLoader(false);
-            NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
+            NotificationWithIcon(
+                "error",
+                err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG
+            );
         }
-
-    }
+    };
 
     return (
         <Modal
@@ -43,7 +61,8 @@ function EmailModal(props: any) {
                 <Formik
                     initialValues={formInitialValues}
                     onSubmit={handleSubmit}
-                    validationSchema={sendQuestionnarieEmail}>
+                    validationSchema={sendQuestionnarieEmail}
+                >
                     {({
                         handleSubmit,
                         handleChange,
@@ -52,9 +71,14 @@ function EmailModal(props: any) {
                         isValid,
                         errors,
                     }) => (
-                        <Form className={styles.formdiv} onSubmit={handleSubmit}>
+                        <Form
+                            className={styles.formdiv}
+                            onSubmit={handleSubmit}
+                        >
                             <div className={styles.formcomp}>
-                                <Form.Label className={styles.formlabel}>Document</Form.Label>
+                                <Form.Label className={styles.formlabel}>
+                                    Document
+                                </Form.Label>
                                 <Form.Control
                                     type="input"
                                     value={values.name}
@@ -69,7 +93,9 @@ function EmailModal(props: any) {
                                 </Form.Control.Feedback> */}
                             </div>
                             <div className={styles.formcomp}>
-                                <Form.Label className={styles.formlabel}>Email to</Form.Label>
+                                <Form.Label className={styles.formlabel}>
+                                    Email to
+                                </Form.Label>
                                 <InputGroup className="mb-3">
                                     <Form.Control
                                         type="input"
@@ -86,7 +112,9 @@ function EmailModal(props: any) {
                                 </InputGroup>
                             </div>
                             <div className={styles.formcomp}>
-                                <Form.Label className={styles.formlabel}>Subject</Form.Label>
+                                <Form.Label className={styles.formlabel}>
+                                    Subject
+                                </Form.Label>
                                 <InputGroup className="mb-3">
                                     <Form.Control
                                         type="input"
@@ -94,7 +122,9 @@ function EmailModal(props: any) {
                                         name="subject"
                                         placeholder="Subject"
                                         onChange={handleChange}
-                                        isValid={touched.subject && !errors.subject}
+                                        isValid={
+                                            touched.subject && !errors.subject
+                                        }
                                         isInvalid={!!errors.subject}
                                     />
                                     {/* <Form.Control.Feedback type="invalid">
@@ -103,7 +133,9 @@ function EmailModal(props: any) {
                                 </InputGroup>
                             </div>
                             <div className={styles.formcomp}>
-                                <Form.Label className={styles.formlabel}>Message</Form.Label>
+                                <Form.Label className={styles.formlabel}>
+                                    Message
+                                </Form.Label>
                                 <InputGroup className="mb-3">
                                     <Form.Control
                                         as="textarea"
@@ -112,7 +144,9 @@ function EmailModal(props: any) {
                                         name="message"
                                         placeholder="type a message"
                                         onChange={handleChange}
-                                        isValid={touched.message && !errors.message}
+                                        isValid={
+                                            touched.message && !errors.message
+                                        }
                                         isInvalid={!!errors.message}
                                     />
                                     {/* <Form.Control.Feedback type="invalid">
@@ -121,13 +155,25 @@ function EmailModal(props: any) {
                                 </InputGroup>
                             </div>
                             <div className={styles.buttondiv}>
-                                {
-                                    loader ?
-                                        <Button className={styles.createbtn} variant="custom" disabled type="submit">Sending...</Button> :
-                                        <Button className={styles.createbtn} variant="custom" type="submit">Send Email</Button>
-                                }
+                                {loader ? (
+                                    <Button
+                                        className={styles.createbtn}
+                                        variant="custom"
+                                        disabled
+                                        type="submit"
+                                    >
+                                        Sending...
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        className={styles.createbtn}
+                                        variant="custom"
+                                        type="submit"
+                                    >
+                                        Send Email
+                                    </Button>
+                                )}
                             </div>
-
                         </Form>
                     )}
                 </Formik>

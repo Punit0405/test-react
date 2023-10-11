@@ -16,24 +16,6 @@
     padding: 2% 2%;
 }
 
-.addBtn,
-.addBtn:hover,
-.addBtn:active {
-    border: none;
-    color: #ec1a25;
-    white-space: nowrap;
-}
-
-.subtotalDiv {
-    display: flex;
-    justify-content: space-between
-}
-
-.addLabel {
-    margin-left: 5px;
-    font-family: Poppins;
-}
-
 .defaultBtn {
     width: 100%;
     background-color: white;
@@ -59,6 +41,7 @@
 }
 
 .photoDiv {
+    padding: 2%;
     width: 26%;
 }
 
@@ -66,19 +49,26 @@
     width: 80%;
 }
 
-.invoiceButton {
-    background: #c4c4c4;
-    color: #fff;
+.invoiceButton,
+.invoiceButton:hover,
+.email-invoice-button:hover {
+    background-color: crimson;
+    color: white;
     font-family: Poppins;
     font-size: 1.1rem;
     font-weight: 400;
     width: 15vw;
 }
 
-.invoiceButton:hover,
-.email-invoice-button:hover {
-    background-color: crimson;
-    color: white;
+.invoiceButtonDisable,
+.invoiceButtonDisable:hover,
+.invoiceButtonDisable:active {
+    background: #c4c4c4;
+    color: #fff;
+    font-family: Poppins;
+    font-size: 1.1rem;
+    font-weight: 400;
+    width: 15vw;
 }
 
 .invoiceBack {
@@ -251,13 +241,6 @@
     height: 4vw;
 }
 
-.buttonDiv {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 4vw;
-}
-
 .table-div {
     padding: 5px 8px;
     font-size: 0.9rem;
@@ -317,4 +300,20 @@
 .labelItem {
     display: flex;
     align-items: center;
+}
+
+.photoSize {
+    height: 40px;
+    width: 40px;
+}
+
+.backdiv {
+    font-family: var(--font-poppins);
+    color: var(--color-crimson);
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 450;
+    text-align: left;
+    padding: 1% 3%;
 }

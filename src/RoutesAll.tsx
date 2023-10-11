@@ -50,6 +50,9 @@ import Portfolio from "./pages/Portfolio";
 import PortfolioComponent from "./components/Gallery/Portfolio";
 import PortfolioDragMedia from "./components/Gallery/PortfolioDragMedia";
 import ClientQuestionnaries from "./components/StudioSettings/ClientQuestionnaries";
+import { InvoiceInfo } from "./components/StudioSettings/invoice/invoiceInfo";
+import InvoiceDashboard from "./components/StudioSettings/InvoiceDashboard";
+import { Invoice } from "./components/StudioSettings/invoice/invoice";
 
 function RoutesAll() {
     return (
@@ -69,6 +72,11 @@ function RoutesAll() {
                     <Route path="templates" element={<Templates />} />
                     <Route path="templates/edit-template" element={<DynamicForm />} />
                     <Route path="speciality" element={<Speciality />} />
+                    <Route path="invoices" element={<InvoiceDashboard />} />
+                    <Route path="invoices/:invoiceId" element={<Invoice />} />
+                    <Route path="quotations" element={<InvoiceDashboard />} />
+                    <Route path="quotations/:quotationId" element={<Invoice />} />
+                    <Route path="invoice-info" element={<InvoiceInfo />} />
                     <Route path="*" element={<StudioDashBoard />} />
                     <Route path="for-sale" element={<StudioDashBoard />} />
                 </Route>

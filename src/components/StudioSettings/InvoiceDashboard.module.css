@@ -67,6 +67,30 @@
     font-family: var(--font-poppins);
 }
 
+.totalDiv {
+    margin: 3% 0%;
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.label {
+    font-family: var(--font-poppins);
+    font-size: 1rem;
+}
+
+.dueColor {
+    color: #EC1A25;
+}
+
+.tableheading {
+    color: #A3A3A3;
+}
+
+.navname {
+    border-top: 2px solid white;
+}
+
 @media screen and (max-width: 900px) {
 
     .addNewDevice {

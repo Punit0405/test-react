@@ -36,6 +36,7 @@
 }
 
 .tableData {
+    cursor: pointer;
     padding: 100% 0%;
     margin: 10px 0px;
     height: 5vw;
