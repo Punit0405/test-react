@@ -58,6 +58,15 @@
     width: 15vw;
 }
 
+.noclient {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 33vw;
+    font-family: var(--font-poppins);
+}
+
 @media screen and (max-width: 900px) {
 
     .addNewDevice {

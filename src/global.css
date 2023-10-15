@@ -235,12 +235,13 @@ body {
   border-bottom: 2px solid #ec1a25;
 }
 
-#sidebar-nav2 .nav-tabs .nav-link.active{
+#sidebar-nav2 .nav-tabs .nav-link.active {
   border: none;
   border-radius: 0px;
   border-bottom: 2px solid #ec1a25;
 }
-#sidebar-nav2 .nav-tabs .nav-link{
+
+#sidebar-nav2 .nav-tabs .nav-link {
   border-bottom: 2px solid white;
 }
 
@@ -507,13 +508,13 @@ a:-webkit-any-link:focus {
   font-size: 0.9rem;
 }
 
-.addquebtn{
+.addquebtn {
   color: var(--color-crimson);
   /* margin-right:2%; */
 }
 
-.modal-header{
-  border-bottom:none;
+.modal-header {
+  border-bottom: none;
 }
 
 .assetediticons {
@@ -555,7 +556,14 @@ a:-webkit-any-link:focus {
 .setcolorgallery {
   color: #ec1a25;
   font-size: 1.1rem;
-  margin-top: 20%;
+  margin-top: 40%;
+}
+
+.setinvoice {
+  color: #ec1a25;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
 }
 
 .uploadcolor {

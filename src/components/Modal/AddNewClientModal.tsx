@@ -1,20 +1,21 @@
 import { useState } from "react";
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import styles from "./CreateCollectionModal.module.css";
-import { Formik,Field } from "formik";
+import { Formik, Field } from "formik";
 import { addClientValidation } from "../../Utils/validations";
 import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import {fileUpload} from "../../Utils/helper"
+import { fileUpload } from "../../Utils/helper"
+import StudioClientSevice from "../../api/StudioClient/StudioClient"
 
 function AddNewClientModal(props: any) {
 
     let formInitialValues = {
-        name: "",
-        email: "",
-        phone: "",
-        profileImg:""
+        name: props?.client?.name || "",
+        email: props?.client?.email || "",
+        phone: props?.client?.phone || "",
+        profileImg: props?.client?.profileUrl || ""
     }
 
     const [loader, setLoader] = useState<boolean>(false);
@@ -22,15 +23,43 @@ function AddNewClientModal(props: any) {
     const handleSubmit = async (values: any) => {
         try {
             setLoader(true)
-            if(values?.profileImg){
-                let ext=values?.profileImg?.name?.split('.').pop()
-                let key=`studio-management/userid/client-profile/${Date.now()}.${ext}`
-                // const s3Key=await fileUpload(values?.profileImg,key)
+            let data: any = {
+                name: values?.name,
+                email: values?.email,
+                phone: String(values?.phone),
             }
-            props.onHide()
+            console.log(values?.profileImg,'----values?.profileImg----');
+            
+            if (values?.profileImg !== formInitialValues?.profileImg) {
+                let ext = values?.profileImg?.name?.split('.').pop()
+                let key = `studio-management/userid/client-profile/${Date.now()}.${ext}`
+                const s3Key = await fileUpload(values?.profileImg, key)
+                data = { ...data, profileUrl: s3Key }
+            }
+            if (props.createnew === "true") {
+                const clientRes = await StudioClientSevice.addClient(data);
+                if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                    console.log(clientRes?.result)
+                    const newData = {
+                        name: clientRes?.result?.name,
+                        email: clientRes?.result?.email,
+                        phone: clientRes?.result?.phone,
+                        profileUrl: clientRes?.result?.profileUrl,
+                        createdAt: clientRes?.result?.createdAt
+                    }
+                    props.setcreateclient(newData)
+                }
+            } else {
+                const clientRes = await StudioClientSevice.updateClientDetails(props?.client?.id, data);
+                if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                    NotificationWithIcon("success", "Client update successfully.")
+                    props.updatedata(data)
+                }
+            }
         } catch (err: any) {
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
-        }finally{
+        } finally {
+            props.onHide()
             setLoader(false)
         }
 
@@ -48,7 +77,11 @@ function AddNewClientModal(props: any) {
             </Modal.Header>
             <Modal.Body className={styles.maincompclient}>
                 <div className={styles.maintitlediv}>
-                    <p className={styles.maintitle}>Add New Client</p>
+                    {
+                        props.createnew === "true" ?
+                            <p className={styles.maintitle}>Add New Client</p> :
+                            <p className={styles.maintitle}>Edit Client</p>
+                    }
                 </div>
                 <Formik
                     initialValues={formInitialValues}
@@ -114,34 +147,58 @@ function AddNewClientModal(props: any) {
                                     </Form.Control.Feedback> */}
                                 </InputGroup>
                                 <Form.Group className="mb-3">
-                                <Form.Label>Select photo</Form.Label>
-                                <br></br>
-                                <Field name="profileImg" >
-                                    {({ field, form }:any) => (
-                                      <input
-                                        className={styles.profileImg}
-                                        type="file"
-                                        accept="image/*"
-                                        name="profileImg"
-                                        required={false}
-                                        onChange={(event) => {
-                                            const file = event.currentTarget.files?.[0];
-                                            if (file) {
-                                              form.setFieldValue('profileImg', file);
-                                            }
-                                        }}
-                                      />
-                                    )}
-                                  </Field>
-                            </Form.Group>
+                                    <Form.Label>Select photo</Form.Label>
+                                    <br></br>
+                                    <Field name="profileImg" >
+                                        {({ field, form }: any) => (
+                                            <input
+                                                className={styles.profileImg}
+                                                type="file"
+                                                accept="image/*"
+                                                name="profileImg"
+                                                required={false}
+                                                onChange={(event) => {
+                                                    const file = event.currentTarget.files?.[0];
+                                                    if (file) {
+                                                        form.setFieldValue('profileImg', file);
+                                                    }
+                                                }}
+                                            />
+                                        )}
+                                    </Field>
+                                </Form.Group>
                             </div>
                             <div className={styles.buttondiv}>
-                                <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>
                                 {
-                                    loader ?
-                                        <Button className={styles.createbtn} variant="custom" disabled type="submit">Adding...</Button> :
-                                        <Button className={styles.createbtn} variant="custom" type="submit">Add</Button>
+                                    props.createnew === "true" ? (
+                                        loader ?
+                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />{'  '}
+                                                Creating...
+                                            </Button> :
+                                            < Button className={styles.createbtn} variant="custom" type="submit">Create</Button>
+                                    ) : (
+                                        loader ?
+                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />{'  '}
+                                                Saving...
+                                            </Button> :
+                                            < Button className={styles.createbtn} variant="custom" type="submit">Save</Button>
+                                    )
                                 }
+                                <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>
                             </div>
 
                         </Form>

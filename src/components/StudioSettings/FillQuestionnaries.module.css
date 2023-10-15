@@ -1,0 +1,168 @@
+.backdiv {
+    font-family: var(--font-poppins);
+    color: var(--color-crimson);
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 450;
+    text-align: left;
+}
+
+.maincomp{
+    padding:2% 15%;
+    font-family: var(--font-poppins);
+    background-color: #EFEFEF;
+    margin-bottom:2%;
+}
+
+.addNewDevice {
+    font-size: 0.8rem;
+    font-family: var(--font-poppins);
+    color: var(--color-white);
+    border: 0;
+    padding: 1% 1%;
+    background-color: var(--color-crimson);
+    border-radius: var(--br-2xs);
+}
+
+.uperdiv{
+    display:flex;
+    justify-content:space-between;
+}
+
+.textarea{
+    border:1px solid #EFEFEF;
+    width:100%;
+    margin-top:1%;
+    padding:0.5% 1%;
+}
+
+.textarealabel{
+    width:100%;
+    margin-top:1%;
+    padding:0.5% 1%;
+}
+
+.maintitle{
+    margin:1% 0%;
+    padding:1.5% 1.5%;
+    background-color:white;
+    margin-top:3%;
+}
+
+.title{
+    font-weight: 420;
+}
+
+.addquebtn{
+    border:none;
+    background-color:none;
+    color: var(--color-crimson);
+    font-size:0.9rem;
+    font-weight: 450;
+}
+
+.checkboxbtn{
+    background-color: var(--color-crimson) !important;
+    margin-right:10px;
+}
+
+.filemain{
+    border:1px solid #EFEFEF;
+    padding:0.5% 1%;
+    width:100%;
+    font-size:0.9rem;
+}
+
+.addoptionbtn{
+    border:none;
+    background-color:white;
+    color: var(--color-crimson);
+    font-size:0.9rem;
+    font-weight: 450;
+}
+
+.addquename{
+    margin-left:10px;
+}
+
+.optiondiv{
+    margin:1% 0%;
+    padding:1.5% 1.5%;
+    background-color:white;
+    margin-top:3%;
+}
+
+.optionset{
+    font-size: 0.9rem;
+    font-weight: 450;
+    border:none;
+}
+
+.removebtn{
+    color: var(--color-crimson);
+    background: none;
+    border: none;
+}
+
+.selectdiv{
+    display:flex;
+    justify-content:space-between;
+}
+
+.querightdiv{
+    display:flex;
+    justify-content:right;
+}
+
+.requireddiv{
+    margin-right:15px;
+}
+
+.tglbtn{
+    margin-left:8px;
+}
+
+.quemain{
+    border:1px solid #EFEFEF;
+    margin:1% 0%;
+    padding:0.5% 1%;
+    width:100%
+}
+
+.labeldiv{
+    padding:0.5% 1%;
+    width:100%
+}
+
+.checkname{
+    margin:0.4% 0%;
+    padding:0.3% 0.7%;
+    font-size:0.9rem;
+    width:50%;
+    /* margin-right:50px; */
+}
+
+.optionDiv{
+    padding: 0% 3%;
+}
+
+.errmsg{
+    color: red;
+    font-size: 0.9rem;
+    margin: 2px;
+}
+
+.requiredlabel{
+    color: red;
+}
+
+.notfound{
+    text-align: center;
+    height: 40vw;
+    align-items: center;
+}
+
+.requiredfield{
+    border: 1px solid red;
+}

@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal, Spinner } from "react-bootstrap";
 import styles from "./AddNewSpecialityModal.module.css";
-import { Formik,Field  } from "formik";
+import { Formik, Field } from "formik";
 import { addSpecilityValidation } from "../../Utils/validations";
 import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import {fileUpload} from "../../Utils/helper"
+import { fileUpload } from "../../Utils/helper"
+import StudioClientSevice from "../../api/StudioClient/StudioClient"
 
 function AddNewSpeciality(props: any) {
 
     let formInitialValues = {
-        name: props?.details?.name ? props?.details?.name : "" as string,
-        profileImg:""
+        name: props?.special?.name ? props?.special?.name : "" as string,
+        imageUrl: props?.special?.imageUrl ? props?.special?.imageUrl : "" as string
     }
 
     const [loader, setLoader] = useState<boolean>(false);
@@ -19,19 +20,38 @@ function AddNewSpeciality(props: any) {
     const handleSubmit = async (values: any) => {
         try {
             setLoader(true)
-            if(values?.profileImg){
-                let ext=values?.profileImg?.name?.split('.').pop()
-                let key=`studio-management/userid/speciality/${Date.now()}.${ext}`
-                // const s3Key=await fileUpload(values?.profileImg,key)
+            let data: any = {
+                name: values?.name,
             }
-            props.onHide()
-            if (props?.createnew) {
+            if (values?.imageUrl !== formInitialValues?.imageUrl) {
+                let ext = values?.imageUrl?.name?.split('.').pop()
+                let key = `studio-management/userid/speciality/${Date.now()}.${ext}`
+                const s3Key = await fileUpload(values?.imageUrl, key)
+                data = { ...data, imageUrl: s3Key }
+            }
+            if (props?.createnew === "true") {
+                const clientRes = await StudioClientSevice.addSpeciality(data);
+                if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                    const newData = {
+                        id: clientRes?.data?.id,
+                        name: clientRes?.data?.name,
+                        imageUrl: clientRes?.data?.imageUrl,
+                    }
+                    props.setcreatespeciality(newData)
+                }
             } else {
+                const clientRes = await StudioClientSevice.updateSpecialityDetails(props?.special?.id, data);
+                if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                    NotificationWithIcon("success", "Client update successfully.")
+                    console.log(clientRes.data);
+                    props.updatedata(clientRes.data)
+                }
             }
         } catch (err: any) {
             setLoader(false);
             NotificationWithIcon("error", err?.data?.error?.message || VALIDATIONS.SOMETHING_WENT_WRONG)
-        }finally{
+        } finally {
+            props.onHide()
             setLoader(false)
         }
 
@@ -83,32 +103,54 @@ function AddNewSpeciality(props: any) {
                             <Form.Group className="mb-3">
                                 <Form.Label>Select photo</Form.Label>
                                 <br></br>
-                                <Field name="profileImg" >
-                                    {({ field, form }:any) => (
-                                      <input
-                                        className={styles.profileImg}
-                                        type="file"
-                                        accept="image/*"
-                                        name="profileImg"
-                                        required={false}
-                                        onChange={(event) => {
-                                            const file = event.currentTarget.files?.[0];
-                                            if (file) {
-                                              form.setFieldValue('profileImg', file);
-                                            }
-                                        }}
-                                      />
+                                <Field name="imageUrl" >
+                                    {({ field, form }: any) => (
+                                        <input
+                                            className={styles.imageUrl}
+                                            type="file"
+                                            accept="image/*"
+                                            name="imageUrl"
+                                            required={false}
+                                            onChange={(event) => {
+                                                const file = event.currentTarget.files?.[0];
+                                                if (file) {
+                                                    form.setFieldValue('imageUrl', file);
+                                                }
+                                            }}
+                                        />
                                     )}
-                                  </Field>
+                                </Field>
                             </Form.Group>
                             <div className={styles.buttondiv}>
                                 <Button className={styles.cancelbtn} onClick={props.onHide} variant="custom">Cancel</Button>
                                 {
-                                    loader ?
-                                        <Button className={styles.createbtn} variant="custom" disabled type="submit">Adding...</Button> :
-                                        props.createnew ?
-                                            <Button className={styles.createbtn} variant="custom" type="submit">Add</Button> :
-                                            <Button className={styles.createbtn} variant="custom" type="submit">Save</Button>
+                                    props.createnew === "true" ? (
+                                        loader ?
+                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />{'  '}
+                                                Creating...
+                                            </Button> :
+                                            < Button className={styles.createbtn} variant="custom" type="submit">Create</Button>
+                                    ) : (
+                                        loader ?
+                                            < Button className={styles.createbtn} variant="custom" disabled type="submit">
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />{'  '}
+                                                Saving...
+                                            </Button> :
+                                            < Button className={styles.createbtn} variant="custom" type="submit">Save</Button>
+                                    )
                                 }
                             </div>
 
