@@ -19,7 +19,7 @@ const SuccessComponent: any = () => {
 
     useEffect(() => {
         checkStatus();
-    });
+    },[]);
 
     const checkStatus = async () => {
         try {
