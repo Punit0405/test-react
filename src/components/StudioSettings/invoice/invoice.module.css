@@ -5,6 +5,19 @@
     font-weight: 400;
 }
 
+.main-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.clientDiv {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3%;
+}
+
 .invoiceInput {
     color: #252525;
     font-family: Poppins;
@@ -223,6 +236,7 @@
     text-align: left;
     width: 40vw;
     margin-bottom: 4%;
+    padding: 0.6rem;
 }
 
 .subject-input {
@@ -237,7 +251,7 @@
     font-weight: 400;
     line-height: normal;
     margin-bottom: 4%;
-    padding: 6px 8px;
+    padding: 0.5rem;
 }
 
 .item-column {
@@ -290,6 +304,7 @@
     font-weight: 400;
     line-height: normal;
     margin-bottom: 4%;
+    padding: 0.7rem;
 }
 
 .payment {

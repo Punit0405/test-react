@@ -54,14 +54,14 @@ const CreateOptions: any = () => {
                     </button>
                 </Col>
             </Row>
-            <AddNewInvoice
+            {/* <AddNewInvoice
                 show={modalInvoiceShow}
                 onHide={() => setInvoiceModalShow(false)}
-            />
-            <AddQuestionnaires
+            /> */}
+            {/* <AddQuestionnaires
                 show={modalQueShow}
                 onHide={() => setQueModalShow(false)}
-            />
+            /> */}
         </>
     );
 };

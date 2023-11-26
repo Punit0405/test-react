@@ -7,8 +7,20 @@ const activetab = {
     borderTop: "2px solid #EC1A25",
 };
 
-function InvoiceNav() {
-    const [active, setActive] = useState(1);
+function InvoiceNav({ setinvoices, invoices }: any) {
+    const [active, setActive] = useState("all");
+
+    const setStatus = async (index: any) => {
+        setActive(index);
+        if (index !== "all") {
+            const filteredInvoice = invoices?.filter(
+                (invoice: any) => invoice.status === index
+            );
+            setinvoices(filteredInvoice);
+        } else {
+            setinvoices(invoices);
+        }
+    };
 
     return (
         <Nav
@@ -20,43 +32,43 @@ function InvoiceNav() {
         >
             <Nav.Link
                 className={styles.navname}
-                style={active === 1 ? activetab : {}}
-                onClick={() => setActive(1)}
+                style={active === "all" ? activetab : {}}
+                onClick={() => setStatus("all")}
             >
                 All Invoices
             </Nav.Link>
             <Nav.Link
                 className={styles.navname}
-                style={active === 2 ? activetab : {}}
-                onClick={() => setActive(2)}
+                style={active === "Draft" ? activetab : {}}
+                onClick={() => setStatus("Draft")}
             >
                 Draft
             </Nav.Link>
             <Nav.Link
                 className={styles.navname}
-                style={active === 3 ? activetab : {}}
-                onClick={() => setActive(3)}
+                style={active === "Paid" ? activetab : {}}
+                onClick={() => setStatus("Paid")}
             >
                 Paid
             </Nav.Link>
             <Nav.Link
                 className={styles.navname}
-                style={active === 4 ? activetab : {}}
-                onClick={() => setActive(4)}
+                style={active === "Outstanding" ? activetab : {}}
+                onClick={() => setStatus("Outstanding")}
             >
                 Outstanding
             </Nav.Link>
             <Nav.Link
                 className={styles.navname}
-                style={active === 5 ? activetab : {}}
-                onClick={() => setActive(5)}
+                style={active === "PastDue" ? activetab : {}}
+                onClick={() => setStatus("PastDue")}
             >
                 Past Due
             </Nav.Link>
             <Nav.Link
                 className={styles.navname}
-                style={active === 6 ? activetab : {}}
-                onClick={() => setActive(6)}
+                style={active === "Cancelled" ? activetab : {}}
+                onClick={() => setStatus("Cancelled")}
             >
                 Cancelled
             </Nav.Link>

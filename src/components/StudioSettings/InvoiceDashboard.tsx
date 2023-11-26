@@ -13,48 +13,50 @@ import AddNewInvoice from "../Modal/AddNewInvoice";
 function InvoiceDashboard() {
     useEffect(() => {
         getInvoiceList();
+        getClientList();
     }, []);
 
     const [modalShow, setModalShow] = useState(false);
-    const [invoices, setInvoices]: any = useState([
-        {
-            id: "1",
-            amount: "500",
-            profileUrl: "../../../special.png",
-            name: "test client",
-            createdAt: "2020-01-01 15:10:10 ",
-        },
-        {
-            id: "2",
-            amount: "1500",
-            profileUrl: "../../../special.png",
-            name: "my client",
-            createdAt: "2020-01-01 15:10:10 ",
-        },
-        {
-            id: "3",
-            amount: "1000",
-            profileUrl: "../../../special2.png",
-            name: "client 12",
-            createdAt: "2020-01-01 15:10:10 ",
-        },
-        {
-            id: "3",
-            amount: "500",
-            profileUrl: "../../../special.png",
-            name: "test client",
-            createdAt: "2020-01-01 15:10:10 ",
-        },
-    ]);
-    const [loader, setLoader] = useState(false);
+    const [invoices, setInvoices]: any = useState();
+    const [allInvoices, setAllInvoices]: any = useState();
+    const [loader, setLoader] = useState(true);
     const navigate = useNavigate();
+    const [listLoader, setlistLoader] = useState(true);
+    const [client, setClient] = useState([]);
+
+    const getClientList = async (search?: any) => {
+        try {
+            const clientRes = await StudioClientSevice.getCientList(search);
+            if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                setLoader(false);
+                setClient(clientRes?.result);
+                setlistLoader(false);
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon(
+                    "error",
+                    MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+                navigate("/");
+            } else {
+                setLoader(false);
+                NotificationWithIcon(
+                    "error",
+                    err?.data?.error?.message ||
+                        VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+            }
+        }
+    };
 
     const getInvoiceList = async () => {
         try {
-            const clientRes = await StudioClientSevice.getQuestionnariesList();
+            const clientRes = await StudioClientSevice.getInvoicesList();
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
                 setLoader(false);
-                setInvoices(clientRes?.result?.data?.questionnarires);
+                setInvoices(clientRes?.result?.data?.invoices);
+                setAllInvoices(clientRes?.result?.data?.invoices);
             }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -81,6 +83,7 @@ function InvoiceDashboard() {
                 (questionnarie: any) => questionnarie.id !== id
             );
             setInvoices(updatedQuestionnaries);
+            setAllInvoices(updatedQuestionnaries);
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
                 setLoader(false);
@@ -100,6 +103,18 @@ function InvoiceDashboard() {
         }
     };
 
+    const setAllInvoicesList = async (updateInvoice: any) => {
+        const updateAllInvoice = allInvoices.map((invoice: any) => {
+            if (invoice.id === updateInvoice.id) {
+                return updateInvoice;
+            }
+            return invoice;
+        });
+
+        setInvoices(updateAllInvoice);
+        setAllInvoices(updateAllInvoice);
+    };
+
     return (
         <div className={styles.maindiv}>
             <div className={styles.assetnavbar}>
@@ -108,6 +123,7 @@ function InvoiceDashboard() {
                     <button
                         className={styles.addNewDevice}
                         onClick={() => setModalShow(true)}
+                        disabled={listLoader}
                     >
                         New Invoice
                     </button>
@@ -131,7 +147,10 @@ function InvoiceDashboard() {
                             <h3 className={styles.dueColor}>R0.00</h3>
                         </div>
                     </div>
-                    <InvoiceNav />
+                    <InvoiceNav
+                        invoices={allInvoices}
+                        setinvoices={setInvoices}
+                    />
                     <Table striped className="mt-4" size="md" responsive="md">
                         <thead>
                             <tr className={styles.tableheading}>
@@ -144,7 +163,7 @@ function InvoiceDashboard() {
                         </thead>
                         <tbody>
                             {invoices &&
-                                invoices.length &&
+                                invoices.length > 0 &&
                                 invoices.map((invoice: any, index: any) => (
                                     <InvoiceTable
                                         invoice={invoice}
@@ -152,10 +171,18 @@ function InvoiceDashboard() {
                                         deleteQuestionnaries={
                                             deleteQuestionnaries
                                         }
+                                        setAllInvoicesList={setAllInvoicesList}
                                     />
                                 ))}
                         </tbody>
                     </Table>
+                    {!!client && (
+                        <AddNewInvoice
+                            client={client}
+                            show={modalShow}
+                            onHide={() => setModalShow(false)}
+                        />
+                    )}
                 </div>
             ) : (
                 <div className={styles.noclient}>
@@ -168,10 +195,6 @@ function InvoiceDashboard() {
                     </div>
                 </div>
             )}
-            <AddNewInvoice
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-            />
         </div>
     );
 }

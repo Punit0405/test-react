@@ -4,12 +4,6 @@ import Select, { components } from "react-select";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const options = [
-    { value: "option1", label: "Option 1" },
-    { value: "option2", label: "Option 2" },
-    { value: "option3", label: "Option 3" },
-];
-
 const CustomMenuList = (props: any) => {
     const navigate = useNavigate();
     const { options, children, getValue } = props;
@@ -93,7 +87,7 @@ export const ClientSelect = ({ setQuestionnariesData, client }: any) => {
                 <div>
                     <div>
                         <h6 className={Style.invoiceTitle}>
-                            Who is the new invoice for?
+                            Who is the new Questionnaire for?
                         </h6>
                     </div>
                     <Select
