@@ -20,7 +20,7 @@ function AddQuestionnaires(props: any) {
         try {
             const clientRes = await StudioClientSevice.addQuestionnaries(data);
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
-                props.getQuestionnariesList();
+                props?.getQuestionnariesList && props?.getQuestionnariesList();
                 setConfirmShow(true);
                 setTimeout(() => {
                     setConfirmShow(false);
