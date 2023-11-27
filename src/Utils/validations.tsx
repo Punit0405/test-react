@@ -38,6 +38,10 @@ const recordInvoiceValidation = Yup.object().shape({
         .required(Constants.VALIDATIONS.AMOUNT_REQUIRED),
 });
 
+const recordQuotationValidation = Yup.object().shape({
+    status: Yup.string().trim().required(Constants.VALIDATIONS.NAME_REQUIRED)
+});
+
 const addClientValidation = Yup.object().shape({
     name: Yup.string().trim().required(Constants.VALIDATIONS.NAME_REQUIRED),
     email: Yup.string()
@@ -72,4 +76,5 @@ export {
     sendQuestionnarieEmail,
     addSpecilityValidation,
     recordInvoiceValidation,
+    recordQuotationValidation
 };

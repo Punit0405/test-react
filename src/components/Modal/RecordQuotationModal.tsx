@@ -6,18 +6,16 @@ import { Formik } from "formik";
 import {
     assetDeviceValidation,
     recordInvoiceValidation,
+    recordQuotationValidation,
 } from "../../Utils/validations";
 import AssetRegistryService from "../../api/asset-registry/assetRegistry";
 import { STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import StudioClientSevice from "../../api/StudioClient/StudioClient";
 
-function RecordInvoiceModal(props: any) {
+function RecordQuotationModal(props: any) {
     let formInitialValues = {
         status: props?.status ? props?.status : ("" as string),
-        currentOutstanding: props?.currentOutstanding
-            ? (props?.currentOutstanding as number)
-            : 0,
     };
 
     const invoiceId = props?.id;
@@ -27,7 +25,7 @@ function RecordInvoiceModal(props: any) {
     const handleSubmit = async (values: any) => {
         try {
             setLoader(true);
-            const clientRes = await StudioClientSevice.updateInvoiceDetails(
+            const clientRes = await StudioClientSevice.updateQuotationDetails(
                 invoiceId,
                 {
                     ...values,
@@ -58,12 +56,12 @@ function RecordInvoiceModal(props: any) {
         >
             <Modal.Body className={styles.maincomp}>
                 <div className={styles.maintitlediv}>
-                    <p className={styles.maintitle}>Record Invoice</p>
+                    <p className={styles.maintitle}>Record Quotation</p>
                 </div>
                 <Formik
                     initialValues={formInitialValues}
                     onSubmit={handleSubmit}
-                    validationSchema={recordInvoiceValidation}
+                    validationSchema={recordQuotationValidation}
                 >
                     {({
                         handleSubmit,
@@ -89,52 +87,23 @@ function RecordInvoiceModal(props: any) {
                                     <option value="Draft" title="Draft">
                                         Draft
                                     </option>
-                                    <option value="Paid" title="Paid">
-                                        Paid
-                                    </option>
-                                    <option
-                                        value="Outstanding"
-                                        title="Outstanding"
-                                    >
-                                        Outstanding
-                                    </option>
-                                    <option value="PastDue" title="PastDue">
-                                        PastDue
+                                    <option value="Accepted" title="Accepted">
+                                        Accepted
                                     </option>
                                     <option value="Cancelled" title="Cancelled">
                                         Cancelled
+                                    </option>
+                                    <option
+                                        value="InProgress"
+                                        title="InProgress"
+                                    >
+                                        In Progress
                                     </option>
                                 </Form.Select>
                                 <Form.Control.Feedback type="invalid">
                                     <p></p>
                                 </Form.Control.Feedback>
                             </div>
-                            {values.status === "Outstanding" && (
-                                <div className={styles.formcomp}>
-                                    <Form.Label className={styles.formlabel}>
-                                        OutStanding Amount
-                                    </Form.Label>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                            type="input"
-                                            value={values.currentOutstanding}
-                                            name="currentOutstanding"
-                                            placeholder="Amount"
-                                            onChange={handleChange}
-                                            isValid={
-                                                touched.currentOutstanding &&
-                                                !errors.currentOutstanding
-                                            }
-                                            isInvalid={
-                                                !!errors.currentOutstanding
-                                            }
-                                        />
-                                        <Form.Control.Feedback type="invalid">
-                                            <p>{errors.currentOutstanding}</p>
-                                        </Form.Control.Feedback>
-                                    </InputGroup>
-                                </div>
-                            )}
 
                             <div className={styles.buttondiv}>
                                 <Button
@@ -171,4 +140,4 @@ function RecordInvoiceModal(props: any) {
     );
 }
 
-export default RecordInvoiceModal;
+export default RecordQuotationModal;

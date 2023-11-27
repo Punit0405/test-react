@@ -47,7 +47,7 @@ const CustomOption = ({ innerProps, label, data }: any) => (
     </div>
 );
 
-function AddNewInvoice(props: any) {
+function AddNewQuotation(props: any) {
     const options = props?.client.map((clientData: any) => {
         return {
             ...clientData,
@@ -77,16 +77,12 @@ function AddNewInvoice(props: any) {
     const createInvoice = async () => {
         try {
             setLoader(true);
-            const clientRes = await StudioClientSevice.addInvoice({
+            const clientRes = await StudioClientSevice.addQuotation({
                 clientId: selectedOption?.id,
             });
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
                 setLoader(false);
-                navigate(
-                    `/studiomanagement/invoices/${String(
-                        clientRes?.result?.data?.invoice?.id
-                    )}`
-                );
+                navigate(`/studiomanagement/quotations/${String(clientRes?.result?.data?.invoice?.id)}`);
             }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -126,7 +122,7 @@ function AddNewInvoice(props: any) {
                         <div>
                             <div>
                                 <h6 className={Style.invoiceTitle}>
-                                    Who is the new invoice for?
+                                    Who is the new quotation for?
                                 </h6>
                             </div>
                             <Select
@@ -178,4 +174,4 @@ function AddNewInvoice(props: any) {
     );
 }
 
-export default AddNewInvoice;
+export default AddNewQuotation;

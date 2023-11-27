@@ -227,6 +227,17 @@ const StudioClientSevice = {
         }
     },
 
+    getQuotationsList: async () => {
+        try {
+            const token = getUserToken();
+            return Service.get(`studiomanagement/quotation`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
+
     addInvoice: async (data: any) => {
         try {
             const token = await getUserToken();
@@ -244,15 +255,40 @@ const StudioClientSevice = {
         }
     },
 
-    getInvoiceDetails: async (invoiceId: any) => {
+    addQuotation: async (data: any) => {
         try {
             const token = await getUserToken();
-            return Service.get(
-                `studiomanagement/invoice/${invoiceId}`,
+            return Service.post(
+                {
+                    url: `studiomanagement/quotation`,
+                    data: data,
+                },
                 {
                     authorization: token,
                 }
             );
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    getInvoiceDetails: async (invoiceId: any) => {
+        try {
+            const token = await getUserToken();
+            return Service.get(`studiomanagement/invoice/${invoiceId}`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    getQuotationDetails: async (invoiceId: any) => {
+        try {
+            const token = await getUserToken();
+            return Service.get(`studiomanagement/quotation/${invoiceId}`, {
+                authorization: token,
+            });
         } catch (error) {
             throw error;
         }
@@ -275,10 +311,38 @@ const StudioClientSevice = {
         }
     },
 
+    updateQuotationDetails: async (invoiceId: any, data: any) => {
+        try {
+            const token = await getUserToken();
+            return Service.post(
+                {
+                    url: `studiomanagement/quotation/${invoiceId}`,
+                    data: data,
+                },
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    },
+
     deleteInvoice: async (id: any) => {
         try {
             const token = getUserToken();
             return Service.remove(`studiomanagement/invoice/${id}`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    deleteQuotation: async (id: any) => {
+        try {
+            const token = getUserToken();
+            return Service.remove(`studiomanagement/quotation/${id}`, {
                 authorization: token,
             });
         } catch (error) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Style from "./invoice.module.css";
+import Style from "./quotation.module.css";
 import { Button, Image, Spinner } from "react-bootstrap";
 import { Formik, FieldArray, Field, Form } from "formik";
 import * as Yup from "yup";
@@ -11,11 +11,11 @@ import StudioClientSevice from "../../../api/StudioClient/StudioClient";
 import TemplateLoader from "../../Loader/TemplateLoader";
 import moment from "moment";
 
-export const Invoice = () => {
+export const Quotation = () => {
     const navigate = useNavigate();
     const [loader, setLoader] = useState(true);
     const [btnLoader, setbtnLoader] = useState(false);
-    const { invoiceId } = useParams();
+    const { quotationId } = useParams();
     const [invoices, setInvoice]: any = useState();
 
     useEffect(() => {
@@ -24,18 +24,19 @@ export const Invoice = () => {
 
     const getInvoiceList = async () => {
         try {
-            const clientRes = await StudioClientSevice.getInvoiceDetails(
-                invoiceId
+            const clientRes = await StudioClientSevice.getQuotationDetails(
+                quotationId
             );
 
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
                 setInitialValues({
-                    currency: clientRes?.result?.data?.invoice?.currency || "R",
-                    subject: clientRes?.result?.data?.invoice?.subject || "",
+                    currency:
+                        clientRes?.result?.data?.quotation?.currency || "R",
+                    subject: clientRes?.result?.data?.quotation?.subject || "",
                     invoiceDetails:
-                        clientRes?.result?.data?.invoice?.invoiceDetails
+                        clientRes?.result?.data?.quotation?.invoiceDetails
                             .length > 0
-                            ? clientRes?.result?.data?.invoice?.invoiceDetails
+                            ? clientRes?.result?.data?.quotation?.invoiceDetails
                             : [
                                   {
                                       name: "",
@@ -45,17 +46,17 @@ export const Invoice = () => {
                                   },
                               ],
                     subTotalAmount:
-                        clientRes?.result?.data?.invoice?.subTotalAmount || 0,
+                        clientRes?.result?.data?.quotation?.subTotalAmount || 0,
                     totalAmount:
-                        clientRes?.result?.data?.invoice?.totalAmount || 0,
-                    discount: clientRes?.result?.data?.invoice?.discount || 0,
-                    tax: clientRes?.result?.data?.invoice?.tax || 0,
-                    notes: clientRes?.result?.data?.invoice?.notes || "",
-                    paymentDue:
-                        clientRes?.result?.data?.invoice?.paymentDue || null,
+                        clientRes?.result?.data?.quotation?.totalAmount || 0,
+                    discount: clientRes?.result?.data?.quotation?.discount || 0,
+                    tax: clientRes?.result?.data?.quotation?.tax || 0,
+                    notes: clientRes?.result?.data?.quotation?.notes || "",
+                    validFor:
+                        clientRes?.result?.data?.quotation?.validFor || null,
                 });
                 setLoader(false);
-                setInvoice(clientRes?.result?.data?.invoice);
+                setInvoice(clientRes?.result?.data?.quotation);
             }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
@@ -92,7 +93,7 @@ export const Invoice = () => {
         discount: 0,
         tax: 0,
         notes: "",
-        paymentDue: "",
+        validFor: "",
     });
 
     const validationSchema = Yup.object().shape({});
@@ -100,8 +101,8 @@ export const Invoice = () => {
     const handleSubmit = async (values: any, status: any) => {
         try {
             setbtnLoader(true);
-            const clientRes = await StudioClientSevice.updateInvoiceDetails(
-                invoiceId,
+            const clientRes = await StudioClientSevice.updateQuotationDetails(
+                quotationId,
                 {
                     status: status,
                     ...values,
@@ -234,7 +235,7 @@ export const Invoice = () => {
                                     </div>
                                     <div>
                                         <text className={Style["header-text"]}>
-                                            Invoice #{invoices?.id}
+                                            Quotation #{invoices?.id}
                                         </text>
                                     </div>
                                     <div>
@@ -258,11 +259,11 @@ export const Invoice = () => {
                                             onClick={() =>
                                                 handleSubmit(
                                                     values,
-                                                    "Outstanding"
+                                                    "InProgress"
                                                 )
                                             }
                                         >
-                                            Email Invoice
+                                            Email Quotation
                                         </button>
                                     </div>
                                 </div>
@@ -878,7 +879,7 @@ export const Invoice = () => {
                                     />
                                 </div>
                                 <label className={Style.payment}>
-                                    Payment Due
+                                    Valid For
                                 </label>
                                 <div
                                     style={{
@@ -888,18 +889,17 @@ export const Invoice = () => {
                                     }}
                                 >
                                     <Field
-                                        type="date"
-                                        name={`paymentDue`}
-                                        id={`paymentDue`}
-                                        placeholder="Enter Payment Due"
-                                        value={moment(
-                                            values?.paymentDue
-                                        ).format("yyyy-MM-DD")}
-                                        // validate={(value: any) =>
-                                        //     !value ? "paymentDue is required" : ""
-                                        // }
-                                        className={Style["subject-input"]}
-                                    />
+                                        as="select"
+                                        name={`validFor`}
+                                        id={`validFor`}
+                                        className={Style.dropdown}
+                                        placeholder="Select Validity"
+                                    >
+                                        <option value="30">30 Days</option>
+                                        <option value="60">60 Days</option>
+                                        <option value="90">90 Days</option>
+                                        <option value="180">180 Days</option>
+                                    </Field>
                                 </div>
                             </Form>
                         );

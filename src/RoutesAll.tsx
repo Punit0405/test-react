@@ -55,6 +55,8 @@ import InvoiceDashboard from "./components/StudioSettings/InvoiceDashboard";
 import { Invoice } from "./components/StudioSettings/invoice/invoice";
 import SuccessComponent from "./components/StudioManagement/SuccessComponent";
 import ProfileComponent from "./components/StudioManagement/ProfileComponent";
+import { Quotation } from "./components/StudioSettings/quotation/quotation";
+import QuotationDashboard from "./components/StudioSettings/QuotationDashboard";
 
 function RoutesAll() {
     return (
@@ -65,7 +67,7 @@ function RoutesAll() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/settings" element={<Setting />}>
                     <Route path="billing" element={<BillingComponent />} />
-                    <Route path="profile" element={<ProfileComponent/>} />
+                    <Route path="profile" element={<ProfileComponent />} />
                     <Route path="success" element={<SuccessComponent />} />
                 </Route>
                 <Route path="/studiomanagement" element={<StudioLayout />}>
@@ -84,10 +86,10 @@ function RoutesAll() {
                     <Route path="speciality" element={<Speciality />} />
                     <Route path="invoices" element={<InvoiceDashboard />} />
                     <Route path="invoices/:invoiceId" element={<Invoice />} />
-                    <Route path="quotations" element={<InvoiceDashboard />} />
+                    <Route path="quotations" element={<QuotationDashboard />} />
                     <Route
                         path="quotations/:quotationId"
-                        element={<Invoice />}
+                        element={<Quotation />}
                     />
                     <Route path="invoice-info" element={<InvoiceInfo />} />
                     <Route path="*" element={<StudioDashBoard />} />

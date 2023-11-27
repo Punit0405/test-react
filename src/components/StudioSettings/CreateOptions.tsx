@@ -7,9 +7,11 @@ import AddQuestionnaires from "../Modal/AddQuestionnaires";
 import StudioClientSevice from "../../api/StudioClient/StudioClient";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
+import AddNewQuotation from "../Modal/AddNewQuotation";
 
 const CreateOptions: any = () => {
     const [modalInvoiceShow, setInvoiceModalShow] = useState(false);
+    const [modalQuotationShow, setQuotationModalShow] = useState(false);
     const [modalQueShow, setQueModalShow] = useState(false);
     const [client, setClient] = useState([]);
     const [loader, setLoader] = useState(true);
@@ -73,7 +75,7 @@ const CreateOptions: any = () => {
                 <Col xl={3} lg={3} md={6} sm={12}>
                     <button
                         className={styles.buystoragebtn}
-                        onClick={() => setInvoiceModalShow(true)}
+                        onClick={() => setQuotationModalShow(true)}
                         disabled={loader}
                     >
                         {loader ? (
@@ -99,7 +101,7 @@ const CreateOptions: any = () => {
                         onClick={() => setQueModalShow(true)}
                         disabled={loader}
                     >
-                         {loader ? (
+                        {loader ? (
                             <Spinner
                                 as="span"
                                 animation="border"
@@ -126,6 +128,11 @@ const CreateOptions: any = () => {
                 show={modalQueShow}
                 client={client}
                 onHide={() => setQueModalShow(false)}
+            />
+            <AddNewQuotation
+                client={client}
+                show={modalQuotationShow}
+                onHide={() => setQuotationModalShow(false)}
             />
         </>
     );
