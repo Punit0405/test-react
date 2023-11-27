@@ -1,4 +1,4 @@
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import styles from "./StudioDashboard.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import AddNewInvoice from "../Modal/AddNewInvoice";
@@ -53,9 +53,20 @@ const CreateOptions: any = () => {
                         onClick={() => setInvoiceModalShow(true)}
                         disabled={loader}
                     >
-                        <i
-                            className={`fa-regular fa-plus fa-xl setcolorwithoutmargin ${styles.addbtn}`}
-                        ></i>
+                        {loader ? (
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                                className="setcolorwithoutmargin ms-4"
+                            />
+                        ) : (
+                            <i
+                                className={`fa-regular fa-plus fa-xl setcolorwithoutmargin ${styles.addbtn}`}
+                            ></i>
+                        )}
                         <span className={styles.btnname}>Invoice</span>
                     </button>
                 </Col>
@@ -65,9 +76,20 @@ const CreateOptions: any = () => {
                         onClick={() => setInvoiceModalShow(true)}
                         disabled={loader}
                     >
-                        <i
-                            className={`fa-regular fa-plus fa-xl setcolorwithoutmargin ${styles.addbtn}`}
-                        ></i>
+                        {loader ? (
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                                className="setcolorwithoutmargin ms-4"
+                            />
+                        ) : (
+                            <i
+                                className={`fa-regular fa-plus fa-xl setcolorwithoutmargin ${styles.addbtn}`}
+                            ></i>
+                        )}
                         <span className={styles.btnname}>Quotation</span>
                     </button>
                 </Col>
@@ -77,9 +99,20 @@ const CreateOptions: any = () => {
                         onClick={() => setQueModalShow(true)}
                         disabled={loader}
                     >
-                        <i
-                            className={`fa-regular fa-plus fa-xl setcolorwithoutmargin ${styles.addbtn}`}
-                        ></i>
+                         {loader ? (
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                                className="setcolorwithoutmargin ms-4"
+                            />
+                        ) : (
+                            <i
+                                className={`fa-regular fa-plus fa-xl setcolorwithoutmargin ${styles.addbtn}`}
+                            ></i>
+                        )}
                         <span className={styles.btnname}>Questionnaire</span>
                     </button>
                 </Col>
