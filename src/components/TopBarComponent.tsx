@@ -119,7 +119,7 @@ const TopBarComponent: FunctionComponent = () => {
                         <NavDropdown.Item href="#action/3.1">
                             Branding
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
+                        <NavDropdown.Item href="/settings/profile">
                             Profile
                         </NavDropdown.Item>
                         <NavDropdown.Item href="/settings/billing">
