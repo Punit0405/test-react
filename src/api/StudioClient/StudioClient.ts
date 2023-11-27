@@ -216,6 +216,76 @@ const StudioClientSevice = {
         }
     },
 
+    getInvoicesList: async () => {
+        try {
+            const token = getUserToken();
+            return Service.get(`studiomanagement/invoice`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    addInvoice: async (data: any) => {
+        try {
+            const token = await getUserToken();
+            return Service.post(
+                {
+                    url: `studiomanagement/invoice`,
+                    data: data,
+                },
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    getInvoiceDetails: async (invoiceId: any) => {
+        try {
+            const token = await getUserToken();
+            return Service.get(
+                `studiomanagement/invoice/${invoiceId}`,
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    updateInvoiceDetails: async (invoiceId: any, data: any) => {
+        try {
+            const token = await getUserToken();
+            return Service.post(
+                {
+                    url: `studiomanagement/invoice/${invoiceId}`,
+                    data: data,
+                },
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    deleteInvoice: async (id: any) => {
+        try {
+            const token = getUserToken();
+            return Service.remove(`studiomanagement/invoice/${id}`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
+
     deleteQuestionnaires: async (id: any) => {
         try {
             const token = getUserToken();

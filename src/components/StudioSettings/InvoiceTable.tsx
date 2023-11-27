@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import styles from "./QuestionnairesList.module.css";
 import { useNavigate } from "react-router-dom";
-import { Image, Ratio, Table } from "react-bootstrap";
+import { Dropdown, DropdownButton, Image, Ratio, Table } from "react-bootstrap";
 import Moment from "react-moment";
 import DeleteConfirmation from "../Modal/DeleteConfirmation";
 import StudioClientSevice from "../../api/StudioClient/StudioClient";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
+import RecordInvoiceModal from "../Modal/RecordInvoiceModal";
 
-function InvoiceTable({ invoice, deleteQuestionnaries }: any) {
+function InvoiceTable({ invoice, deleteQuestionnaries, setAllInvoicesList }: any) {
     const navigate = useNavigate();
     const [modalDelete, setDeleteShow] = useState(false);
+    const [modalRecord, setRecordShow] = useState(false);
 
     const deleteFiles = async () => {
         try {
-            const clientRes = await StudioClientSevice.deleteQuestionnaires(
+            const clientRes = await StudioClientSevice.deleteInvoice(
                 invoice?.id
             );
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
@@ -22,7 +24,7 @@ function InvoiceTable({ invoice, deleteQuestionnaries }: any) {
                 setDeleteShow(false);
                 NotificationWithIcon(
                     "success",
-                    "Questionnarie deleted successfully."
+                    "Invoice deleted successfully."
                 );
             }
         } catch (err: any) {
@@ -58,7 +60,9 @@ function InvoiceTable({ invoice, deleteQuestionnaries }: any) {
                     navigate(String(invoice.id));
                 }}
             >
-                <div className={styles.tableDiv}>{invoice.amount}</div>
+                <div className={styles.tableDiv}>
+                    {invoice.currency} {invoice.totalAmount}
+                </div>
             </td>
             <td
                 className={styles.tableData}
@@ -70,9 +74,9 @@ function InvoiceTable({ invoice, deleteQuestionnaries }: any) {
                     <Image
                         className={styles.imgStyle}
                         alt="customer img"
-                        src={invoice?.profileUrl}
+                        src={invoice?.clientId?.profileUrl}
                     />
-                    {invoice?.name}
+                    {invoice?.clientId?.name}
                 </div>
             </td>
             <td
@@ -85,19 +89,48 @@ function InvoiceTable({ invoice, deleteQuestionnaries }: any) {
                     <Moment format="MMMM  Do, YYYY">{invoice.createdAt}</Moment>
                 </div>
             </td>
-            <td
-                className={styles.tableData}
-                onClick={() => setDeleteShow(true)}
-            >
+            <td className={styles.tableData}>
                 <div className={styles.tableDiv}>
-                    <i className="fa-regular fa-ellipsis setinvoice"></i>
+                    <DropdownButton
+                        id="dropdown-basic-button"
+                        className={styles.sortbtn}
+                        align="end"
+                        variant="custom"
+                        title={
+                            <i className="fa-regular fa-ellipsis setinvoice"></i>
+                        }
+                    >
+                        <Dropdown.Item
+                            className={styles.navmain}
+                            onClick={() => setRecordShow(true)}
+                        >
+                            Record Payment
+                        </Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item
+                            className={styles.dropitem}
+                            onClick={() => setDeleteShow(true)}
+                        >
+                            Delete Invoice
+                        </Dropdown.Item>
+                    </DropdownButton>
                 </div>
             </td>
             <DeleteConfirmation
                 show={modalDelete}
                 handledeletefiles={deleteFiles as any}
-                modaltext={"Are you sure you want to delete questionnarie ?"}
+                modaltext={"Are you sure you want to delete invoice ?"}
                 onHide={() => setDeleteShow(false)}
+            />
+            <RecordInvoiceModal
+                show={modalRecord}
+                status={invoice?.status}
+                id={invoice?.id}
+                currentOutstanding={
+                    invoice?.currentOutstanding || invoice?.totalAmount
+                }
+                setAllInvoicesList={setAllInvoicesList}
+                onHide={() => setRecordShow(false)}
             />
         </tr>
     );

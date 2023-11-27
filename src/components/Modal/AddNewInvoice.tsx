@@ -1,18 +1,16 @@
-import { Modal } from "react-bootstrap";
+import { Modal, Spinner } from "react-bootstrap";
 import Style from "./Components/ClientSelect.module.css";
 import Select, { components } from "react-select";
 import { useState } from "react";
 import { Button, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
-const options = [
-    { value: "option1", label: "Option 1" },
-    { value: "option2", label: "Option 2" },
-    { value: "option3", label: "Option 3" },
-];
+import StudioClientSevice from "../../api/StudioClient/StudioClient";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
 
 const CustomMenuList = (props: any) => {
     const navigate = useNavigate();
+
     const { options, children, getValue } = props;
     const hasOptions = options && options.length > 0;
 
@@ -42,7 +40,7 @@ const CustomOption = ({ innerProps, label, data }: any) => (
     <div {...innerProps}>
         <div className={Style.labelDiv}>
             <div className={Style.photoDiv}>
-                <Image src="../../../../profile.png" />
+                <Image src={data.profileUrl} className={Style.photoSize} />
             </div>
             <div className={Style.labelItem}>{label}</div>
         </div>
@@ -50,7 +48,15 @@ const CustomOption = ({ innerProps, label, data }: any) => (
 );
 
 function AddNewInvoice(props: any) {
-    const [selectedOption, setSelectedOption] = useState(null);
+    const options = props?.client.map((clientData: any) => {
+        return {
+            ...clientData,
+            value: clientData?.id,
+            label: clientData?.name,
+        };
+    });
+    const [loader, setLoader] = useState(false);
+    const [selectedOption, setSelectedOption]: any = useState(null);
     const [filteredOptions, setFilteredOptions] = useState(options);
     const navigate = useNavigate();
 
@@ -59,7 +65,7 @@ function AddNewInvoice(props: any) {
     };
 
     const handleInputChange = (inputValue: any) => {
-        const filtered = options.filter((option) =>
+        const filtered = options.filter((option: any) =>
             option.label.toLowerCase().includes(inputValue.toLowerCase())
         );
         if (inputValue && filtered.length === 0) {
@@ -68,8 +74,33 @@ function AddNewInvoice(props: any) {
         setFilteredOptions(filtered);
     };
 
-    const createInvoice = () => {
-        navigate("5");
+    const createInvoice = async () => {
+        try {
+            setLoader(true);
+            const clientRes = await StudioClientSevice.addInvoice({
+                clientId: selectedOption?.id,
+            });
+            if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                setLoader(false);
+                navigate(String(clientRes?.result?.data?.invoice?.id));
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                setLoader(false);
+                NotificationWithIcon(
+                    "error",
+                    MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+                navigate("/");
+            } else {
+                setLoader(false);
+                NotificationWithIcon(
+                    "error",
+                    err?.data?.error?.message ||
+                        VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+            }
+        }
     };
 
     return (
@@ -112,7 +143,17 @@ function AddNewInvoice(props: any) {
                                         className={Style.invoiceButton}
                                         size="lg"
                                         onClick={createInvoice}
+                                        disabled={loader}
                                     >
+                                        {loader && (
+                                            <Spinner
+                                                as="span"
+                                                animation="border"
+                                                size="sm"
+                                                role="status"
+                                                aria-hidden="true"
+                                            />
+                                        )}
                                         Next
                                     </Button>
                                 ) : (
