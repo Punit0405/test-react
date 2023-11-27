@@ -54,6 +54,7 @@ import { InvoiceInfo } from "./components/StudioSettings/invoice/invoiceInfo";
 import InvoiceDashboard from "./components/StudioSettings/InvoiceDashboard";
 import { Invoice } from "./components/StudioSettings/invoice/invoice";
 import SuccessComponent from "./components/StudioManagement/SuccessComponent";
+import ProfileComponent from "./components/StudioManagement/ProfileComponent";
 
 function RoutesAll() {
     return (
@@ -64,6 +65,7 @@ function RoutesAll() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/settings" element={<Setting />}>
                     <Route path="billing" element={<BillingComponent />} />
+                    <Route path="profile" element={<ProfileComponent/>} />
                     <Route path="success" element={<SuccessComponent />} />
                 </Route>
                 <Route path="/studiomanagement" element={<StudioLayout />}>

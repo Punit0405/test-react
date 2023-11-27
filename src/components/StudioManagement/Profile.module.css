@@ -1,0 +1,101 @@
+.maindiv {
+    border-left: 0.5px solid grey;
+    padding-left: 2%;
+}
+
+.navtitle {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.navbarcover {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1%;
+}
+
+.mainProfileContainer{
+    margin-top: 1%;
+}
+
+.profileDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgTitleDiv{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+}
+
+.profileImg{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin-right: 1%;
+}
+.profilePhotoT{
+    font-weight: 600;
+}
+
+.profilePhotoD{
+    font-weight: 300;
+}
+.profilePhotoTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.updateProfileBtn {
+    font-family: var(--font-poppins);
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 200px;
+    background-color: crimson;
+    color: white;
+    margin-right: 10px;
+}
+
+.updateProfileBtn:hover{
+    /* background-color: crimson;
+    color: white; */
+    border: 1px solid black;
+}
+
+.formcomp {
+    margin: 2% 0%;
+    width: 48%;
+}
+
+.formlabel {
+    font-size: 0.9rem;
+    font-weight: 100;
+    color: black;
+    font-family: var(--font-poppins);
+}
+.upperDiv{
+   display: flex;
+   justify-content: space-between;
+}
+.leftUpperDiv{
+    width: 50%;
+}
+.rightUpperDiv{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.rightUpperDiv .formcomp {
+    margin: 2% 0%;
+    width: 70%;
+}
+
+.lowerLeftDiv{
+    display: flex;
+    justify-content: space-between;
+    
+}

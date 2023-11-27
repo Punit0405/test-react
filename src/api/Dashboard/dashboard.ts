@@ -71,6 +71,32 @@ const DashboardService = {
             throw error;
         }
     },
+    getProfile: async () => {
+        try {
+            const token = getUserToken();
+            return Service.get(`agent/profile`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
+    updateProfile: async (data:any) => {
+        try {
+            const token = getUserToken();
+            return Service.post(
+                {
+                    url: `agent/profile`,
+                    data: data,
+                },
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    },
 };
 
 export default DashboardService;
