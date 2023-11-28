@@ -1,14 +1,12 @@
 import { Col, Image, Ratio, Row, Table } from "react-bootstrap";
 import styles from "./ClientDocument.module.css";
-import { Link, useNavigate, useParams ,NavLink} from "react-router-dom";
-import { useState,useEffect } from "react";
+import { Link, useNavigate, useParams, NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
-import StudioClientSevice from "../../api/StudioClient/StudioClient"
+import StudioClientSevice from "../../api/StudioClient/StudioClient";
 
 const ClientDocument: any = () => {
-   
-
     return (
         <>
             <Table className="" size="md" responsive="md">
@@ -25,10 +23,16 @@ const ClientDocument: any = () => {
                         </td>
                         <td>
                             <div className={styles.invoicemain}>
-                                <div className={styles.invoicename}>Invoice#001</div>
+                                <div className={styles.invoicename}>
+                                    Invoice#001
+                                </div>
                                 <div className={styles.invoiceinner}>
-                                    <div className={styles.tableamount}>R0.00</div>
-                                    <div className={styles.tabledate}>7 March 2023</div>
+                                    <div className={styles.tableamount}>
+                                        R0.00
+                                    </div>
+                                    <div className={styles.tabledate}>
+                                        7 March 2023
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -48,10 +52,16 @@ const ClientDocument: any = () => {
                         </td>
                         <td>
                             <div className={styles.invoicemain}>
-                                <div className={styles.invoicename}>Invoice#001</div>
+                                <div className={styles.invoicename}>
+                                    Invoice#001
+                                </div>
                                 <div className={styles.invoiceinner}>
-                                    <div className={styles.tableamount}>R0.00</div>
-                                    <div className={styles.tabledate}>7 March 2023</div>
+                                    <div className={styles.tableamount}>
+                                        R0.00
+                                    </div>
+                                    <div className={styles.tabledate}>
+                                        7 March 2023
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -62,7 +72,7 @@ const ClientDocument: any = () => {
                 </tbody>
             </Table>
         </>
-    )
-}
+    );
+};
 
-export default ClientDocument
+export default ClientDocument;
