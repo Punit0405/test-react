@@ -119,21 +119,25 @@ const CreateOptions: any = () => {
                     </button>
                 </Col>
             </Row>
-            <AddNewInvoice
-                show={modalInvoiceShow}
-                client={client}
-                onHide={() => setInvoiceModalShow(false)}
-            />
-            <AddQuestionnaires
-                show={modalQueShow}
-                client={client}
-                onHide={() => setQueModalShow(false)}
-            />
-            <AddNewQuotation
-                client={client}
-                show={modalQuotationShow}
-                onHide={() => setQuotationModalShow(false)}
-            />
+            {!loader && client.length > 0 && (
+                <>
+                    <AddNewInvoice
+                        show={modalInvoiceShow}
+                        client={client}
+                        onHide={() => setInvoiceModalShow(false)}
+                    />
+                    <AddQuestionnaires
+                        show={modalQueShow}
+                        client={client}
+                        onHide={() => setQueModalShow(false)}
+                    />
+                    <AddNewQuotation
+                        client={client}
+                        show={modalQuotationShow}
+                        onHide={() => setQuotationModalShow(false)}
+                    />
+                </>
+            )}
         </>
     );
 };

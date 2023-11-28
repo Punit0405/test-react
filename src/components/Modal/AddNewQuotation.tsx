@@ -1,7 +1,7 @@
 import { Modal, Spinner } from "react-bootstrap";
 import Style from "./Components/ClientSelect.module.css";
 import Select, { components } from "react-select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import StudioClientSevice from "../../api/StudioClient/StudioClient";
@@ -55,6 +55,9 @@ function AddNewQuotation(props: any) {
             label: clientData?.name,
         };
     });
+
+    useEffect(() => {}, [options]);
+
     const [loader, setLoader] = useState(false);
     const [selectedOption, setSelectedOption]: any = useState(null);
     const [filteredOptions, setFilteredOptions] = useState(options);
@@ -82,7 +85,11 @@ function AddNewQuotation(props: any) {
             });
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
                 setLoader(false);
-                navigate(`/studiomanagement/quotations/${String(clientRes?.result?.data?.invoice?.id)}`);
+                navigate(
+                    `/studiomanagement/quotations/${String(
+                        clientRes?.result?.data?.invoice?.id
+                    )}`
+                );
             }
         } catch (err: any) {
             if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
