@@ -153,12 +153,14 @@ const Questionnaires: any = () => {
                     </div>
                 </div>
             )}
-            <AddQuestionnaires
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-                client={client}
-                getQuestionnariesList={getQuestionnariesList}
-            />
+            {!listLoader && (
+                <AddQuestionnaires
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                    client={client}
+                    getQuestionnariesList={getQuestionnariesList}
+                />
+            )}
         </div>
     );
 };

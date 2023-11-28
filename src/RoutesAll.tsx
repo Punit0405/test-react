@@ -57,6 +57,7 @@ import SuccessComponent from "./components/StudioManagement/SuccessComponent";
 import ProfileComponent from "./components/StudioManagement/ProfileComponent";
 import { Quotation } from "./components/StudioSettings/quotation/quotation";
 import QuotationDashboard from "./components/StudioSettings/QuotationDashboard";
+import Booking from "./components/StudioSettings/Booking";
 
 function RoutesAll() {
     return (
@@ -84,6 +85,7 @@ function RoutesAll() {
                         element={<DynamicForm />}
                     />
                     <Route path="speciality" element={<Speciality />} />
+                    <Route path="calendar" element={<Booking />} />
                     <Route path="invoices" element={<InvoiceDashboard />} />
                     <Route path="invoices/:invoiceId" element={<Invoice />} />
                     <Route path="quotations" element={<QuotationDashboard />} />

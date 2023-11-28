@@ -31,6 +31,7 @@
         "moment-timezone": "^0.5.41",
         "react": "^18.2.0",
         "react-audio-player": "^0.17.0",
+        "react-big-calendar": "^1.8.5",
         "react-bootstrap": "^2.7.2",
         "react-calendar": "^4.0.0",
         "react-chartjs-2": "^5.2.0",
@@ -75,6 +76,7 @@
         "@types/file-saver": "^2.0.5",
         "@types/google-map-react": "^2.1.7",
         "@types/jquery": "^3.5.16",
+        "@types/react-big-calendar": "^1.8.5",
         "@types/react-calendar": "^3.9.0",
         "@types/react-datepicker": "^4.15.0",
         "@types/react-image-gallery": "^1.2.0"

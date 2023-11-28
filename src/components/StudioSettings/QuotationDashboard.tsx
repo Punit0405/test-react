@@ -165,7 +165,7 @@ function QuotationDashboard() {
                                 ))}
                         </tbody>
                     </Table>
-                    {!!client && (
+                    {!listLoader && (
                         <AddNewQuotation
                             client={client}
                             show={modalShow}

@@ -176,7 +176,7 @@ function InvoiceDashboard() {
                                 ))}
                         </tbody>
                     </Table>
-                    {!!client && (
+                    {!listLoader && (
                         <AddNewInvoice
                             client={client}
                             show={modalShow}

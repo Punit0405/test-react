@@ -119,7 +119,7 @@ const CreateOptions: any = () => {
                     </button>
                 </Col>
             </Row>
-            {!loader && client.length > 0 && (
+            {!loader && (
                 <>
                     <AddNewInvoice
                         show={modalInvoiceShow}
