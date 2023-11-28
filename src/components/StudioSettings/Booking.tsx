@@ -3,13 +3,9 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
 import event from "./event.js";
 import { useRef, useState } from "react";
-import {
-    Button,
-    Overlay,
-    OverlayTrigger,
-    Popover,
-    Tooltip,
-} from "react-bootstrap";
+import styles from "./Booking.module.css";
+
+import { OverlayTrigger, Popover, Tooltip } from "react-bootstrap";
 
 const localizer = momentLocalizer(moment);
 
@@ -34,14 +30,47 @@ const CustomHeader = ({ label, onNavigate, onView }: any) => {
     return (
         <div>
             <div>
-                <button onClick={() => handleViewChange("day")}>Day</button>
-                <button onClick={() => handleViewChange("week")}>Week</button>
-                <button onClick={() => handleViewChange("month")}>Month</button>
+                <div className="d-flex align-items-center justify-content-center my-4">
+                    <button
+                        className={styles.dayButton}
+                        onClick={() => handleViewChange("day")}
+                    >
+                        Day
+                    </button>
+                    <button
+                        className={styles.dayButton}
+                        onClick={() => handleViewChange("week")}
+                    >
+                        Week
+                    </button>
+                    <button
+                        className={styles.dayButton}
+                        onClick={() => handleViewChange("month")}
+                    >
+                        Month
+                    </button>
+                </div>
             </div>
-            <span>{label}</span>
-            <button onClick={handleTodayClick}>Today</button>
-            <button onClick={handlePrevClick}>Back</button>
-            <button onClick={handleNextClick}>Next</button>
+            <div className="d-flex justify-content-between my-4 align-items-center">
+                <span className={styles.monthDetails}>{label}</span>
+                <div>
+                    <button onClick={handleTodayClick} className="d-none">
+                        Today
+                    </button>
+                    <button
+                        onClick={handlePrevClick}
+                        className={styles.arrowButton}
+                    >
+                        <i className="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button
+                        onClick={handleNextClick}
+                        className={styles.arrowButton}
+                    >
+                        <i className="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
@@ -72,9 +101,12 @@ export default function Booking() {
 
     const handleSelectSlot = ({ start, end }: any) => {
         console.log(start, "=====================", end);
-    };
 
-    const eventRefs: any = useRef({});
+        setTooltipState((prevTooltipState: any) => ({
+            ...prevTooltipState,
+            selectedSlot: !prevTooltipState.selectedSlot,
+        }));
+    };
 
     const handleEventClick = (event: any) => {
         console.log(tooltipState, "=========tooltipState=======");
@@ -86,38 +118,8 @@ export default function Booking() {
         }));
     };
 
-    console.log(eventRefs, "===========eventRefs=============");
-
-    const EventWrapper = ({ event, children }: any) => {
-        console.log(event, "=====event=======");
-
-        const eventRef = useRef(null);
-
-        eventRefs.current[event.id] = eventRef;
-
-        return (
-            <OverlayTrigger
-                trigger="click"
-                key="left"
-                placement="left"
-                overlay={
-                    <Popover id={`${event.id}`}>
-                        <Popover.Header as="h3">{`${event.id}`}</Popover.Header>
-                        <Popover.Body>
-                            <strong>Holy guacamole!</strong> Check this info.
-                        </Popover.Body>
-                    </Popover>
-                }
-            >
-                {children}
-            </OverlayTrigger>
-        );
-    };
-
     const EventWithPopover = ({ event, children }: any) => {
         const [showPopover, setShowPopover] = useState(false);
-        console.log(event, "---------event------------");
-        console.log(children, "---------children------------");
 
         const handlePopoverClick = (e: any) => {
             e.preventDefault();
@@ -159,7 +161,9 @@ export default function Booking() {
 
     return (
         <>
+            <div className={styles.dashboard}>Calendar</div>
             <Calendar
+                className="my-4"
                 localizer={localizer}
                 components={{
                     toolbar: CustomHeader,
@@ -169,44 +173,11 @@ export default function Booking() {
                 eventPropGetter={eventStyleGetter}
                 startAccessor="start"
                 endAccessor="end"
-                style={{ height: 500 }}
+                style={{ height: 700 }}
                 selectable={true} // Allow selecting slots
                 onSelectSlot={handleSelectSlot} // Handle slot selection
                 onSelectEvent={handleEventClick}
             />
-            {/* <>
-                {['top', 'right', 'bottom', 'left'].map((placement: any) => (
-                    <OverlayTrigger
-                        trigger="click"
-                        key={placement}
-                        placement={placement}
-                        overlay={
-                            <Popover id={`popover-positioned-${placement}`}>
-                                <Popover.Header as="h3">{`Popover ${placement}`}</Popover.Header>
-                                <Popover.Body>
-                                    <strong>Holy guacamole!</strong> Check this info.
-                                </Popover.Body>
-                            </Popover>
-                        }
-                    >
-                        <Button variant="secondary">Popover on {placement}</Button>
-                    </OverlayTrigger>
-                ))}
-            </> */}
-            {/* {event.map((events: any) => (
-                <Overlay
-                    key={events.id}
-                    target={eventRefs.current[events.id]}
-                    show={tooltipState[events.id] || false}
-                    placement="auto" // Set the placement to 'auto' or 'right'
-                >
-                    {(props) => (
-                        <Tooltip id={`tooltip-${events.id}`} {...props}>
-                            {events.title}
-                        </Tooltip>
-                    )}
-                </Overlay>
-            ))} */}
         </>
     );
 }

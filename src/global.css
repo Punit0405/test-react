@@ -547,6 +547,20 @@ a:-webkit-any-link:focus {
   font-size: 1.3rem;
 }
 
+.rbc-event {
+  background-color: #ec1a25 !important;
+  color: white !important;
+}
+
+.rbc-today {
+  background-color: #ea50581f !important;
+  color: white !important;
+}
+
+.rbc-show-more {
+  color: #ec1a25 !important;
+}
+
 .setsizeasset {
   margin-right: 10px;
   font-size: 1.1rem;
