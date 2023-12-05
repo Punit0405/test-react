@@ -7,11 +7,6 @@ const BillingNav: any = () => {
 
     return (
         <Nav id="navbar" navbar variant="tabs"  className={`${styles.navpadding}`}>
-            <Nav.Link as={NavLink} to="/dashboard" eventKey="dashboard">
-                <div className={styles.home} >
-                    <p>Branding</p>
-                </div>
-            </Nav.Link>
             <Nav.Link as={NavLink} to="/settings/profile" eventKey="gallery" >
                 <div className={styles.home}>
                     <p>Profile</p>

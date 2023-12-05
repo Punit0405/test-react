@@ -81,6 +81,16 @@ const DashboardService = {
             throw error;
         }
     },
+    getPlans: async () => {
+        try {
+            const token = getUserToken();
+            return Service.get(`agent/plans`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
     updateProfile: async (data:any) => {
         try {
             const token = getUserToken();

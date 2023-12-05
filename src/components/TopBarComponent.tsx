@@ -116,13 +116,10 @@ const TopBarComponent: FunctionComponent = () => {
                         className={styles.navdropdown}
                         id="collasible-nav-dropdown"
                     >
-                        <NavDropdown.Item href="#action/3.1">
-                            Branding
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/settings/profile">
+                        <NavDropdown.Item as={Link}  to="/settings/profile">
                             Profile
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="/settings/billing">
+                        <NavDropdown.Item as={Link}  to="/settings/billing">
                             Billing
                         </NavDropdown.Item>
                         <OverlayTrigger

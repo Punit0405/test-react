@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Col, Image, Ratio, Row } from "react-bootstrap";
 import AddNewDeviceModal from "../Modal/AddNewDeviceModal";
 import styles from "./Billing.module.css";
@@ -8,25 +8,85 @@ import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
 import { NotificationWithIcon } from "../../Utils/helper";
 import { useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import BillingCard from "./Components/BillingCard";
 
-const activeCard = {
-    color: "white",
-    backgroundColor: "#EC1A25",
-};
 
-const activeBtn = {
-    color: "black",
-    backgroundColor: "white",
-};
+
+
+const planDetails = [
+    {
+        active: true,
+        headline: "Just To Get You Started",
+        upperTitle: "Free",
+        bottomTitle: "Forever",
+        price: 0,
+        descriptions: ["3GB Storage","No Royalty Music","No Video Uploads"],
+        btnText: "I Just Arrived",
+        currency:"R"
+    },
+    {
+        active: false,
+        headline: "Okay We See You",
+        upperTitle: "Starter",
+        bottomTitle: "Package",
+        price: 250,
+        descriptions: ["100GB Storage","Royalty Music"],
+        btnText: "Start Rolling",
+        currency:"R"
+    },
+    {
+        active: false,
+        headline: "Things Are Getting Serious",
+        upperTitle: "Professional",
+        bottomTitle: "Hustler",
+        price: 699,
+        descriptions: ["500GB Storage","Royalty Music"],
+        btnText: "Start Rolling",
+        currency:"R"
+    },
+    {
+        active: false,
+        headline: "The Boss Has Arrived",
+        upperTitle: "Elite",
+        bottomTitle: "Hustler",
+        price: 1099,
+        descriptions: ["1TB Storage","Royalty Music"],
+        btnText: "Start Rolling",
+        currency:"R"
+    },
+    {
+        active: false,
+        headline: "The Boss Has Arrived",
+        upperTitle: "Elite",
+        bottomTitle: "Hustler",
+        price: 1099,
+        descriptions: ["1TB Storage","Royalty Music"],
+        btnText: "Start Rolling",
+        currency:"R"
+    },
+]
 
 const BillingComponent: any = () => {
     const [loader, setLoader] = useState(false);
     const navigate = useNavigate();
+    const [plans , setPlans] = useState<any>([]);
 
-    async function handleClick(divno: any) {
-        setActive(divno);
+    const fetchPlans = async ()=>{
+        try {
+            setLoader(true);
+            const {result} = await DashboardService.getPlans();
+            setPlans(result);
+            setLoader(false);
+
+        } catch (error) {
+            setLoader(true);
+            NotificationWithIcon("error","Somethig went Wrong")
+        }
     }
-    const [active, setActive] = useState(1);
+
+    useEffect(()=>{
+        fetchPlans();
+    },[])
 
     const handlePlan = async (planId: any) => {
         try {
@@ -53,7 +113,7 @@ const BillingComponent: any = () => {
                 NotificationWithIcon(
                     "error",
                     err?.data?.error?.message ||
-                        VALIDATIONS.SOMETHING_WENT_WRONG
+                    VALIDATIONS.SOMETHING_WENT_WRONG
                 );
             }
         }
@@ -70,187 +130,19 @@ const BillingComponent: any = () => {
                 <BillingNav />
                 <div className={styles.allcards}>
                     <Row>
-                        <Col sm={12} md={4} lg={3}>
-                            <Ratio
-                                aspectRatio="1x1"
-                                className={styles.maincard}
-                                style={active === 1 ? activeCard : {}}
-                                onClick={() => handleClick(1)}
-                            >
-                                <div className={styles.singlecard}>
-                                    <div className={styles.title}>
-                                        Just To Get You Started
-                                    </div>
-                                    <div className={styles.subtitle}>Free</div>
-                                    <div className={styles.subtitle}>
-                                        Forever
-                                    </div>
-                                    <div className={styles.imgsvg}>
-                                        <div className={styles.points}>R 0</div>
-                                        <ul className={styles.optionlist}>
-                                            <li className={styles.points}>
-                                                3GB Storage
-                                            </li>
-                                            <li className={styles.points}>
-                                                No Royalty Music
-                                            </li>
-                                            <li className={styles.points}>
-                                                No Video Uploads
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className={styles.btndiv}>
-                                        <button
-                                            onClick={() => {
-                                                handlePlan(1);
-                                            }}
-                                            className={styles.addNewDevicebtn}
-                                            style={
-                                                active === 1 ? activeBtn : {}
-                                            }
-                                        >
-                                            I Just Arrived
-                                        </button>
-                                    </div>
-                                </div>
-                            </Ratio>
-                        </Col>
-                        <Col sm={12} md={4} lg={3}>
-                            <Ratio
-                                aspectRatio="1x1"
-                                className={styles.maincard}
-                                style={active === 2 ? activeCard : {}}
-                                onClick={() => handleClick(2)}
-                            >
-                                <div className={styles.singlecard}>
-                                    <div className={styles.title}>
-                                        Okay We See You
-                                    </div>
-                                    <div className={styles.subtitle}>
-                                        Starter
-                                    </div>
-                                    <div className={styles.subtitle}>
-                                        Package
-                                    </div>
-                                    <div className={styles.imgsvg}>
-                                        <div className={styles.points}>
-                                            R 250 p/m
-                                        </div>
-                                        <ul className={styles.optionlist}>
-                                            <li className={styles.points}>
-                                                100GB Storage
-                                            </li>
-                                            <li className={styles.points}>
-                                                Royalty Music
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className={styles.btndiv}>
-                                        <button
-                                            onClick={() => {
-                                                handlePlan(2);
-                                            }}
-                                            className={styles.addNewDevicebtn}
-                                            style={
-                                                active === 2 ? activeBtn : {}
-                                            }
-                                        >
-                                            Start Rolling
-                                        </button>
-                                    </div>
-                                </div>
-                            </Ratio>
-                        </Col>
-                        <Col sm={12} md={4} lg={3}>
-                            <Ratio
-                                aspectRatio="1x1"
-                                className={styles.maincard}
-                                style={active === 3 ? activeCard : {}}
-                                onClick={() => handleClick(3)}
-                            >
-                                <div className={styles.singlecard}>
-                                    <div className={styles.title}>
-                                        Things Are Getting Serious
-                                    </div>
-                                    <div className={styles.subtitle}>
-                                        Professional
-                                    </div>
-                                    <div className={styles.subtitle}>
-                                        Hustler
-                                    </div>
-                                    <div className={styles.imgsvg}>
-                                        <div className={styles.points}>
-                                            R 699 p/m
-                                        </div>
-                                        <ul className={styles.optionlist}>
-                                            <li className={styles.points}>
-                                                500GB Storage
-                                            </li>
-                                            <li className={styles.points}>
-                                                Royalty Music
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className={styles.btndiv}>
-                                        <button
-                                            onClick={() => {
-                                                handlePlan(3);
-                                            }}
-                                            className={styles.addNewDevicebtn}
-                                            style={
-                                                active === 3 ? activeBtn : {}
-                                            }
-                                        >
-                                            Start Rolling
-                                        </button>
-                                    </div>
-                                </div>
-                            </Ratio>
-                        </Col>
-                        <Col sm={12} md={4} lg={3}>
-                            <Ratio
-                                aspectRatio="1x1"
-                                className={styles.maincard}
-                                style={active === 4 ? activeCard : {}}
-                                onClick={() => handleClick(4)}
-                            >
-                                <div className={styles.singlecard}>
-                                    <div className={styles.title}>
-                                        The Boss Has Arrived
-                                    </div>
-                                    <div className={styles.subtitle}>Elite</div>
-                                    <div className={styles.subtitle}>
-                                        Hustler
-                                    </div>
-                                    <div className={styles.imgsvg}>
-                                        <div className={styles.points}>
-                                            R 1099 p/m
-                                        </div>
-                                        <ul className={styles.optionlist}>
-                                            <li className={styles.points}>
-                                                1TB Storage
-                                            </li>
-                                            <li className={styles.points}>
-                                                Royalty Music
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className={styles.btndiv}>
-                                        <button
-                                            onClick={() => {
-                                                handlePlan(4);
-                                            }}
-                                            className={styles.addNewDevicebtn}
-                                            style={
-                                                active === 4 ? activeBtn : {}
-                                            }
-                                        >
-                                            Start Rolling
-                                        </button>
-                                    </div>
-                                </div>
-                            </Ratio>
-                        </Col>
+                        {plans.map((plan:any)=>(
+                            <BillingCard active={plan.active} 
+                            upperTitle={plan.name} 
+                            currency={plan.currency} 
+                            description={plan.description}
+                            bottomTitle={plan.bottomTitle}
+                            btnText={plan.active ? "I Just Arrived" : "Start Rolling"}
+                            headline={plan.headline}
+                            price={plan.amountPerMonth}
+                            handlePlan={handlePlan}
+                            planId={plan.id}
+                            />
+                        ))}
                     </Row>
                 </div>
                 <div className={styles.buystorage}>
