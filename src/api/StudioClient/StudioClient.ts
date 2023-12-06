@@ -31,6 +31,17 @@ const StudioClientSevice = {
         }
     },
 
+    getInvoiceSummary: async () => {
+        try {
+            const token = getUserToken();
+            return Service.get(`studiomanagement/invoicedashboard/summary`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
+
     getClientDetails: async (clientId: any) => {
         try {
             const token = await getUserToken();

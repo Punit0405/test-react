@@ -14,6 +14,7 @@ function InvoiceDashboard() {
     useEffect(() => {
         getInvoiceList();
         getClientList();
+        getDashboardData();
     }, []);
 
     const [modalShow, setModalShow] = useState(false);
@@ -23,6 +24,37 @@ function InvoiceDashboard() {
     const navigate = useNavigate();
     const [listLoader, setlistLoader] = useState(true);
     const [client, setClient] = useState([]);
+    const [summary, setSummary] = useState({
+        totalPaid: 0,
+        totalOutStanding: 0,
+        totalPastDue: 0,
+    });
+
+    const getDashboardData = async () => {
+        try {
+            const clientRes = await StudioClientSevice.getInvoiceSummary();
+            console.log(clientRes, "-----clientRes------");
+
+            if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {
+                // setClient(clientRes?.result?.data);
+                setSummary(clientRes?.result?.data);
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon(
+                    "error",
+                    MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+                navigate("/");
+            } else {
+                NotificationWithIcon(
+                    "error",
+                    err?.data?.error?.message ||
+                        VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+            }
+        }
+    };
 
     const getClientList = async (search?: any) => {
         try {
@@ -136,15 +168,17 @@ function InvoiceDashboard() {
                     <div className={styles.totalDiv}>
                         <div>
                             <p className={styles.label}>Total Paid</p>
-                            <h3>R0.00</h3>
+                            <h3>R{summary?.totalPaid || 0}</h3>
                         </div>
                         <div>
                             <p className={styles.label}>Total Outstanding</p>
-                            <h3>R0.00</h3>
+                            <h3>R{summary?.totalOutStanding || 0}</h3>
                         </div>
                         <div>
                             <p className={styles.label}>Past Due</p>
-                            <h3 className={styles.dueColor}>R0.00</h3>
+                            <h3 className={styles.dueColor}>
+                                R{summary?.totalPastDue || 0}
+                            </h3>
                         </div>
                     </div>
                     <InvoiceNav

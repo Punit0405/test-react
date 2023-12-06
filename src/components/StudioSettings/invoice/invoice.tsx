@@ -106,6 +106,11 @@ export const Invoice = () => {
                     status: status,
                     ...values,
                     sendMail: status === "Draft" ? false : true,
+                    currentOutstanding:
+                        values?.currentOutstanding != undefined ||
+                        values?.currentOutstanding != null
+                            ? values?.currentOutstanding
+                            : values?.totalAmount,
                 }
             );
             if (clientRes && clientRes?.code === STATUS_CODE.SUCCESS) {

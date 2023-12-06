@@ -7,7 +7,7 @@ const DashboardRecentDoc: any = ({ document }: any) => {
         <div className={styles.dashboardTable}>
             <Table striped className="mt-4" size="lg" responsive>
                 <tbody>
-                    {document?.length &&
+                    {document?.length ? (
                         document.map((doc: any) => (
                             <tr className={styles.tableRow}>
                                 <td className={styles.tableData}>
@@ -28,7 +28,12 @@ const DashboardRecentDoc: any = ({ document }: any) => {
                                     </div>
                                 </td>
                             </tr>
-                        ))}
+                        ))
+                    ) : (
+                        <div className="d-flex justify-content-center">
+                            No Recent Documents Found
+                        </div>
+                    )}
                 </tbody>
             </Table>
         </div>

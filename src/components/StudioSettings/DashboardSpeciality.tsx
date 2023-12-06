@@ -6,7 +6,7 @@ const DashboardSpeciality: any = ({ speciality }: any) => {
     return (
         <>
             <Row className={styles.specialmain}>
-                {speciality?.length &&
+                {speciality?.length ? (
                     speciality.map((special: any) => (
                         <Col xl={2} lg={2} md={3} sm={4} xs={4}>
                             <Ratio
@@ -25,7 +25,12 @@ const DashboardSpeciality: any = ({ speciality }: any) => {
                                 </div>
                             </Ratio>
                         </Col>
-                    ))}
+                    ))
+                ) : (
+                    <div className="d-flex justify-content-center">
+                        No Available Speciality
+                    </div>
+                )}
             </Row>
             <Link to="speciality">
                 <div className={styles.editspecial}>

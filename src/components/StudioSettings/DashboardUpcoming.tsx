@@ -6,7 +6,6 @@ import Moment from "react-moment";
 const DashboardUpcoming: any = ({ booking }: any) => {
     const [book, setBook]: any = useState({});
     const setSelect = (booking: any) => {
-        console.log(booking, "-----booking----");
         setBook(booking);
         setShow(true);
     };
@@ -22,7 +21,7 @@ const DashboardUpcoming: any = ({ booking }: any) => {
                     </Moment>
                 </h6>
                 <div className={styles.allsessions}>
-                    {booking &&
+                    {booking.length ? (
                         booking?.map((book: any) => (
                             <Row className={styles.customerBox}>
                                 <Col xs={3} sm={3} md={2} lg={3} xl={3}>
@@ -74,7 +73,12 @@ const DashboardUpcoming: any = ({ booking }: any) => {
                                     </div>
                                 </Col>
                             </Row>
-                        ))}
+                        ))
+                    ) : (
+                        <div className="d-flex justify-content-center">
+                            No Upcoming Booking Found
+                        </div>
+                    )}
                 </div>
             </div>
             <Offcanvas show={show} onHide={handleClose} placement="end">
