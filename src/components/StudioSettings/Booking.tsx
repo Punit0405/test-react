@@ -2,10 +2,17 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
 import event from "./event.js";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Booking.module.css";
 
 import { OverlayTrigger, Popover, Tooltip } from "react-bootstrap";
+import AddNewBooking from "../Modal/AddNewBooking";
+import StudioClientSevice from "../../api/StudioClient/StudioClient";
+import { MESSAGE, STATUS_CODE, VALIDATIONS } from "../../Utils/constants";
+import { NotificationWithIcon } from "../../Utils/helper";
+import { useNavigate } from "react-router-dom";
+import TemplateLoader from "../Loader/TemplateLoader";
+import UpdateBooking from "../Modal/UpdateBooking";
 
 const localizer = momentLocalizer(moment);
 
@@ -98,26 +105,121 @@ const eventStyleGetter = (
 
 export default function Booking() {
     const [tooltipState, setTooltipState]: any = useState({});
+    const [modalShow, setShow] = useState(false);
+    const [modalUpdateShow, setUpdateShow] = useState(false);
+    const [client, setClient] = useState([]);
+    const [booking, setBooking] = useState([]);
+    const [loader, setLoader] = useState(true);
+    const [startTime, setStartTime] = useState("");
+    const [endTime, setEndTime] = useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [id, setId] = useState(0);
+    const navigate = useNavigate();
+
+    const getClientList = async (search?: any) => {
+        try {
+            const clientRes = await StudioClientSevice.getCientList(search);
+            const bookingRes = await StudioClientSevice.getBooking();
+            if (
+                clientRes &&
+                clientRes?.code === STATUS_CODE.SUCCESS &&
+                bookingRes &&
+                bookingRes?.code === STATUS_CODE.SUCCESS
+            ) {
+                setLoader(false);
+                setClient(clientRes?.result);
+                setBooking(
+                    bookingRes?.result?.data?.booking.map((booking: any) => ({
+                        ...booking,
+                        start: new Date(booking?.startDate),
+                        end: new Date(booking?.endDate),
+                    }))
+                );
+                setTooltipState(bookingRes?.result);
+            } else {
+                setLoader(false);
+                setClient(clientRes?.result);
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon(
+                    "error",
+                    MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+                navigate("/");
+            } else {
+                setLoader(false);
+                NotificationWithIcon(
+                    "error",
+                    err?.data?.error?.message ||
+                        VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+            }
+        }
+    };
+
+    const getBooking = async () => {
+        try {
+            const bookingRes = await StudioClientSevice.getBooking();
+            if (bookingRes && bookingRes?.code === STATUS_CODE.SUCCESS) {
+                setLoader(false);
+                setBooking(
+                    bookingRes?.result?.data?.booking.map((booking: any) => ({
+                        ...booking,
+                        start: new Date(booking?.startDate),
+                        end: new Date(booking?.endDate),
+                    }))
+                );
+                setTooltipState(bookingRes?.result);
+            } else {
+                setLoader(false);
+            }
+        } catch (err: any) {
+            if (err && err?.status === STATUS_CODE.UNAUTHORIZED) {
+                NotificationWithIcon(
+                    "error",
+                    MESSAGE.UNAUTHORIZED || VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+                navigate("/");
+            } else {
+                setLoader(false);
+                NotificationWithIcon(
+                    "error",
+                    err?.data?.error?.message ||
+                        VALIDATIONS.SOMETHING_WENT_WRONG
+                );
+            }
+        }
+    };
+
+    useEffect(() => {
+        getClientList();
+    }, []);
 
     const handleSelectSlot = ({ start, end }: any) => {
-        console.log(start, "=====================", end);
+        const startDate = moment(start).format("YYYY-MM-DDTHH:mm:ss");
+        const endDate = moment(end).format("YYYY-MM-DDTHH:mm:ss");
 
-        setTooltipState((prevTooltipState: any) => ({
-            ...prevTooltipState,
-            selectedSlot: !prevTooltipState.selectedSlot,
-        }));
+        setStartTime(startDate);
+        setEndTime(endDate);
+
+        setShow(true);
     };
 
-    const handleEventClick = (event: any) => {
-        console.log(tooltipState, "=========tooltipState=======");
-        console.log(event);
+    const handleEventClick = ({ start, end, title, description, id }: any) => {
+        const startDate = moment(start).format("YYYY-MM-DDTHH:mm:ss");
+        const endDate = moment(end).format("YYYY-MM-DDTHH:mm:ss");
 
-        setTooltipState((prevTooltipState: any) => ({
-            ...prevTooltipState,
-            [event.id]: !prevTooltipState[event.id],
-        }));
+        setTitle(title);
+        setDescription(description);
+        setId(id);
+
+        setStartTime(startDate);
+        setEndTime(endDate);
+
+        setUpdateShow(true);
     };
-
     const EventWithPopover = ({ event, children }: any) => {
         const [showPopover, setShowPopover] = useState(false);
 
@@ -161,23 +263,48 @@ export default function Booking() {
 
     return (
         <>
-            <div className={styles.dashboard}>Calendar</div>
-            <Calendar
-                className="my-4"
-                localizer={localizer}
-                components={{
-                    toolbar: CustomHeader,
-                    eventWrapper: EventWithPopover,
-                }}
-                events={event}
-                eventPropGetter={eventStyleGetter}
-                startAccessor="start"
-                endAccessor="end"
-                style={{ height: 700 }}
-                selectable={true} // Allow selecting slots
-                onSelectSlot={handleSelectSlot} // Handle slot selection
-                onSelectEvent={handleEventClick}
-            />
+            {loader ? (
+                <TemplateLoader />
+            ) : (
+                <>
+                    <div className={styles.dashboard}>Calendar</div>
+                    <Calendar
+                        className="my-4"
+                        localizer={localizer}
+                        components={{
+                            toolbar: CustomHeader,
+                        }}
+                        events={booking}
+                        // events={event}
+                        eventPropGetter={eventStyleGetter}
+                        startAccessor="start"
+                        endAccessor="end"
+                        style={{ height: 700 }}
+                        selectable={true} // Allow selecting slots
+                        onSelectSlot={handleSelectSlot} // Handle slot selection
+                        onSelectEvent={handleEventClick}
+                    />
+                    <AddNewBooking
+                        show={modalShow}
+                        client={client}
+                        onHide={() => setShow(false)}
+                        startTime={startTime}
+                        endTime={endTime}
+                        getBooking={getBooking}
+                    />
+                    <UpdateBooking
+                        show={modalUpdateShow}
+                        client={client}
+                        onHide={() => setUpdateShow(false)}
+                        startTime={startTime}
+                        endTime={endTime}
+                        getBooking={getBooking}
+                        title={title}
+                        description={description}
+                        id={id}
+                    />
+                </>
+            )}
         </>
     );
 }

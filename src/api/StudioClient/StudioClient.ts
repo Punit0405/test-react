@@ -151,6 +151,17 @@ const StudioClientSevice = {
         }
     },
 
+    getBooking: async () => {
+        try {
+            const token = await getUserToken();
+            return Service.get(`studiomanagement/booking`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
+
     updateSpecialityDetails: async (clientId: any, data: any) => {
         try {
             const token = await getUserToken();
@@ -238,6 +249,17 @@ const StudioClientSevice = {
         }
     },
 
+    getDashboardData: async () => {
+        try {
+            const token = getUserToken();
+            return Service.get(`studiomanagement/dashboard`, {
+                authorization: token,
+            });
+        } catch (error) {
+            throw error;
+        }
+    },
+
     addInvoice: async (data: any) => {
         try {
             const token = await getUserToken();
@@ -267,6 +289,51 @@ const StudioClientSevice = {
                     authorization: token,
                 }
             );
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    addBooking: async (data: any) => {
+        try {
+            const token = await getUserToken();
+            return Service.post(
+                {
+                    url: `studiomanagement/booking`,
+                    data: data,
+                },
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    updateBooking: async (bookingId: any, data: any) => {
+        try {
+            const token = await getUserToken();
+            return Service.post(
+                {
+                    url: `studiomanagement/booking/${bookingId}`,
+                    data: data,
+                },
+                {
+                    authorization: token,
+                }
+            );
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    deleteBooking: async (clientId: any) => {
+        try {
+            const token = await getUserToken();
+            return Service.remove(`studiomanagement/booking/${clientId}`, {
+                authorization: token,
+            });
         } catch (error) {
             throw error;
         }

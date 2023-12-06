@@ -39,7 +39,7 @@ const recordInvoiceValidation = Yup.object().shape({
 });
 
 const recordQuotationValidation = Yup.object().shape({
-    status: Yup.string().trim().required(Constants.VALIDATIONS.NAME_REQUIRED)
+    status: Yup.string().trim().required(Constants.VALIDATIONS.NAME_REQUIRED),
 });
 
 const addClientValidation = Yup.object().shape({
@@ -68,6 +68,18 @@ const sendQuestionnarieEmail = Yup.object().shape({
     message: Yup.string().trim().required(Constants.VALIDATIONS.NAME_REQUIRED),
 });
 
+const bookingValidation = Yup.object().shape({
+    clientId: Yup.number()
+        .min(1, "Client id required")
+        .required(Constants.VALIDATIONS.NAME_REQUIRED),
+    title: Yup.string().trim().required(Constants.VALIDATIONS.TITLE_REQUIRED),
+    description: Yup.string().trim(),
+    startDate: Yup.string()
+        .trim()
+        .required(Constants.VALIDATIONS.DATE_REQUIRED),
+    endDate: Yup.string().trim().required(Constants.VALIDATIONS.DATE_REQUIRED),
+});
+
 export {
     loginValidations,
     collectionValidations,
@@ -76,5 +88,6 @@ export {
     sendQuestionnarieEmail,
     addSpecilityValidation,
     recordInvoiceValidation,
-    recordQuotationValidation
+    recordQuotationValidation,
+    bookingValidation,
 };

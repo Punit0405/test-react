@@ -116,3 +116,8 @@
 .buttons:hover {
     border: 0.5px solid black;
 }
+
+.dashboardTable {
+    height: 40%;
+    overflow-y: scroll;
+}

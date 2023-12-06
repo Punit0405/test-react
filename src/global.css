@@ -550,6 +550,17 @@ a:-webkit-any-link:focus {
 .rbc-event {
   background-color: #ec1a25 !important;
   color: white !important;
+  opacity: 1 !important;
+  border: none !important;
+}
+
+.rbc-selected {
+  border: none !important;
+}
+
+.rbc-event:focus,
+.rbc-day-slot .rbc-background-event:focus {
+  outline: none !important;
 }
 
 .rbc-today {

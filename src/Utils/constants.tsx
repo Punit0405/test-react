@@ -2,6 +2,7 @@ export const EMAIL_REGEX = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export const VALIDATIONS = Object.freeze({
     INVALID_CONTACT: "Please enter valid contact number",
+    TITLE_REQUIRED:"Please enter title",
     USERNAME_EMAIL_REQUIRED: "Please enter email address",
     PASSWORD_REQUIRED: "Please enter password",
     FIRSTNAME_REQUIRED: "Please enter firstname",

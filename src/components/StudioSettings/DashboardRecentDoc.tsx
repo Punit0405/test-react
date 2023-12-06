@@ -1,37 +1,38 @@
 import { Table } from "react-bootstrap";
 import styles from "./StudioDashboard.module.css";
+import Moment from "react-moment";
 
-const DashboardRecentDoc: any = () => {
+const DashboardRecentDoc: any = ({ document }: any) => {
     return (
-        <>
+        <div className={styles.dashboardTable}>
             <Table striped className="mt-4" size="lg" responsive>
                 <tbody>
-                    <tr className={styles.tableRow}>
-                        <td className={styles.tableData}>
-                            <div className={styles.tableDiv}>Invoice#001</div>
-                        </td>
-                        <td className={styles.tableData}>
-                            <div className={styles.tableDiv}>Cameron green</div>
-                        </td>
-                        <td className={styles.tableData}>
-                            <div className={styles.tableDiv}>6 March 2023</div>
-                        </td>
-                    </tr>
-                    <tr className={styles.tableRow}>
-                        <td className={styles.tableData}>
-                            <div className={styles.tableDiv}>Invoice#002</div>
-                        </td>
-                        <td className={styles.tableData}>
-                            <div className={styles.tableDiv}>Virat Kohli</div>
-                        </td>
-                        <td className={styles.tableData}>
-                            <div className={styles.tableDiv}>6 March 2023</div>
-                        </td>
-                    </tr>
+                    {document?.length &&
+                        document.map((doc: any) => (
+                            <tr className={styles.tableRow}>
+                                <td className={styles.tableData}>
+                                    <div className={styles.tableDiv}>
+                                        {doc?.source}#{doc?.id}
+                                    </div>
+                                </td>
+                                <td className={styles.tableData}>
+                                    <div className={styles.tableDiv}>
+                                        {doc?.name}
+                                    </div>
+                                </td>
+                                <td className={styles.tableData}>
+                                    <div className={styles.tableDiv}>
+                                        <Moment format="MMMM  Do, YYYY">
+                                            {doc.createdAt}
+                                        </Moment>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
             </Table>
-        </>
-    )
-}
+        </div>
+    );
+};
 
-export default DashboardRecentDoc
+export default DashboardRecentDoc;
