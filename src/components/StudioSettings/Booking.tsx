@@ -114,6 +114,7 @@ export default function Booking() {
     const [endTime, setEndTime] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [selectedClient, setSelectedClient] = useState({});
     const [id, setId] = useState(0);
     const navigate = useNavigate();
 
@@ -207,9 +208,17 @@ export default function Booking() {
         setShow(true);
     };
 
-    const handleEventClick = ({ start, end, title, description, id }: any) => {
+    const handleEventClick = ({
+        start,
+        end,
+        title,
+        description,
+        id,
+        clientId,
+    }: any) => {
         const startDate = moment(start).format("YYYY-MM-DDTHH:mm:ss");
         const endDate = moment(end).format("YYYY-MM-DDTHH:mm:ss");
+        setSelectedClient(clientId);
 
         setTitle(title);
         setDescription(description);
@@ -302,6 +311,7 @@ export default function Booking() {
                         title={title}
                         description={description}
                         id={id}
+                        selectedClient={selectedClient}
                     />
                 </>
             )}

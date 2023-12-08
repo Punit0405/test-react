@@ -11,7 +11,7 @@ import DeleteConfirmation from "./DeleteConfirmation";
 
 function UpdateBooking(props: any) {
     let formInitialValues = {
-        clientId: props?.client[0]?.id || 0,
+        clientId: props?.selectedClient?.id || 0,
         title: props?.title || ("" as string),
         description: props?.description || ("" as string),
         startDate: props?.startTime || ("" as string),
@@ -27,7 +27,10 @@ function UpdateBooking(props: any) {
     const handleSubmit = async (values: any) => {
         try {
             setLoader(true);
-            const res = await StudioClientSevice.updateBooking(id, values);
+            const res = await StudioClientSevice.updateBooking(id, {
+                ...values,
+                clientId: Number(values?.clientId),
+            });
             if (res && res?.code === STATUS_CODE.SUCCESS) {
                 await props?.getBooking();
                 setLoader(false);

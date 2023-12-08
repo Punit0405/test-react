@@ -14,7 +14,7 @@ import StudioClientSevice from "../../api/StudioClient/StudioClient";
 
 function AddNewBooking(props: any) {
     let formInitialValues = {
-        clientId: props?.client[0]?.id || 0,
+        clientId: Number(props?.client[0]?.id) || 0,
         title: props?.details?.title
             ? (props?.details?.nickName as string)
             : ("" as string),
@@ -30,7 +30,10 @@ function AddNewBooking(props: any) {
     const handleSubmit = async (values: any) => {
         try {
             setLoader(true);
-            const res = await StudioClientSevice.addBooking(values);
+            const res = await StudioClientSevice.addBooking({
+                ...values,
+                clientId: Number(values?.clientId),
+            });
             if (res && res?.code === STATUS_CODE.SUCCESS) {
                 await props?.getBooking();
                 setLoader(false);
@@ -93,7 +96,7 @@ function AddNewBooking(props: any) {
                                         (item: any, index: any) => (
                                             <option
                                                 key={index}
-                                                value={item.id}
+                                                value={Number(item.id)}
                                                 title={item.name}
                                             >
                                                 {item.name}
